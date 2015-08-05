@@ -2,6 +2,8 @@ package eu.unicredit.shocon
 
 import org.parboiled2._
 
+import scala.util.Try
+
 class ConfigParser(val input: ParserInput) extends Parser {
   def InputLine = rule { ConfigElement ~ EOI }
   def ConfigElement: Rule1[Ast.Value] = rule {
@@ -10,16 +12,18 @@ class ConfigParser(val input: ParserInput) extends Parser {
   }
 
   def Array: Rule1[Ast.Array] = rule {
-    '[' ~ zeroOrMore(Value).separatedBy(anyOf(",\n")) ~  ']' ~> { (x: Seq[Ast.Value]) => Ast.Array(x) }
+    wsn~'[' ~ zeroOrMore(Value).separatedBy(anyOf(",\n")) ~  wsn~']' ~> { (x: Seq[Ast.Value]) => Ast.Array(x) }
   }
 
   def Object: Rule1[Ast.Object] = rule {
-    '{' ~ zeroOrMore(KeyValue).separatedBy(anyOf(",\n")) ~ wsn~'}' ~> { (x: Seq[Ast.KeyValue]) => Ast.Object( x.map( (kv: Ast.KeyValue) => (kv.key,kv.value) ).toMap ) }
+    wsn~'{' ~ zeroOrMore(KeyValue).separatedBy(anyOf(",\n")) ~ wsn~'}'~ws ~> { (x: Seq[Ast.KeyValue]) => Ast.Object( x.map( (kv: Ast.KeyValue) => (kv.key,kv.value) ).toMap ) }
   }
 
   def KeyValue: Rule1[Ast.KeyValue] = rule { wsn ~
     ( (Key ~ ':' ~ Value)
-    | (Key ~ '=' ~ Value) ) ~> { (x:Ast.StringLiteral,y:Ast.Value) => Ast.KeyValue(x.value,y) }
+    | (Key ~ '=' ~ Value)
+    | (Key ~ Array)
+    | (Key ~ Object) ) ~> { (x:Ast.StringLiteral,y:Ast.Value) => Ast.KeyValue(x.value,y) }
   }
 
   def Key: Rule1[Ast.StringLiteral] = rule {
@@ -31,22 +35,37 @@ class ConfigParser(val input: ParserInput) extends Parser {
   }
 
   def SimpleValue: Rule1[Ast.SimpleValue] = rule {
-    ws ~(Number | StringLiteral | Boolean)
+    ws ~( Number  | StringLiteral ~> { (s:Ast.StringLiteral) => Try(Ast.BooleanLiteral(s.value.toBoolean)).getOrElse(s) } )
   }
 
   def StringLiteral: Rule1[Ast.StringLiteral] = rule {
+    QuotedString | UnquotedString
+  }
+
+  def UnquotedString: Rule1[Ast.StringLiteral] = rule {
     capture(oneOrMore(CharPredicate.AlphaNum)) ~> { s => Ast.StringLiteral(s) }
   }
+
+  def QuotedString: Rule1[Ast.StringLiteral] = rule {
+   Quote ~ capture(zeroOrMore(!Quote  ~ ANY)) ~ Quote ~> Ast.StringLiteral
+  }
+
+  val Quote = "\""
+
+//  val NormalChar = rule { noneOf("\"") }
+
+
+
   def Number: Rule1[Ast.NumberLiteral] = rule {
     capture(oneOrMore(CharPredicate.Digit)) ~> { n => Ast.NumberLiteral(n) }
   }
-  def Boolean: Rule1[Ast.BooleanLiteral] = rule {
-    capture("true" | "false") ~> { (b:String) => Ast.BooleanLiteral (b) }
-  }
+//  def Boolean: Rule1[Ast.BooleanLiteral] = rule {
+//    capture("true" | "false") ~> { (b:String) => Ast.BooleanLiteral (b) }
+//  }
 
 
   implicit def wsp(c: Char): Rule0 = rule {
-    str(c.toString) ~ zeroOrMore(anyOf(" \n\r\t"))
+    str(c.toString) ~ zeroOrMore(anyOf(" \r\t"))
   }
   def ws: Rule0 = rule {
     zeroOrMore(anyOf(" \t\r"))
@@ -54,6 +73,8 @@ class ConfigParser(val input: ParserInput) extends Parser {
   def wsn: Rule0 = rule {
     zeroOrMore(anyOf(" \t\r\n"))
   }
+
+
 
 
 }
@@ -81,7 +102,7 @@ object Ast {
 
   case class StringLiteral(value: String) extends SimpleValue
 
-  case class BooleanLiteral(value: String) extends SimpleValue
+  case class BooleanLiteral(value: Boolean) extends SimpleValue
 
   case object NullLiteral extends SimpleValue
 

@@ -6,22 +6,33 @@ object Main {
 
     print(new ConfigParser(
       """
-        |foobar = [
+        |foobar [
         |
         |
         |   1
         |   2,
         |
         |  {
-        |      x =   10
+        |      x =  "asda  sdd"
+        |y = ciao
         |
-        |      y = 123,
+        |      k = 12
         |
-        |
+        | anobj {
+        |   k: 123
+        |   z = 4444
+        |       }
         |
         |      z = 23232
         |      }
         |
+        |      {
+        |
+        |          option = true
+        |
+        |          other = truebar
+        |
+        |      }
         |]
       """.stripMargin.trim()).InputLine.run()) // evaluates to `scala.util.Success(2)`
   }
