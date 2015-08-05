@@ -5,20 +5,32 @@ import org.parboiled2._
 import scala.util.Try
 
 class ConfigParser(val input: ParserInput) extends Parser {
-  def InputLine = rule { ConfigElement ~ EOI }
-  def ConfigElement: Rule1[Ast.Value] = rule {
-      KeyValue | Object
+  def InputLine = rule { ConfigElement ~ wscn ~ EOI }
+  def ConfigElement: Rule1[Ast.Object] = rule {
+      ObjectBody | Object
 
   }
 
   def Array: Rule1[Ast.Array] = rule {
-    wscn~'[' ~ zeroOrMore(Value ~ zeroOrMore(valuecomments)).separatedBy(ws~anyOf(",\n")~ws) ~  wscn~']' ~> { (x: Seq[Ast.Value]) => Ast.Array(x) }
+    wscn~'[' ~ ArrayBody ~  wscn~']'~wsc
   }
 
-  def valuecomments = rule { ws~(singlelinecomment) }
+  def ArrayBody : Rule1[Ast.Array] = rule {
+    zeroOrMore(Value ~ zeroOrMore(ValueComments)).separatedBy(Separator) ~> { (x: Seq[Ast.Value]) => Ast.Array(x) }
+  }
+
+  def ValueComments = rule { ws~(singlelinecomment) }
 
   def Object: Rule1[Ast.Object] = rule {
-    wscn~'{' ~ zeroOrMore(KeyValue).separatedBy(ws~anyOf(",\n")~ws) ~ wscn~'}'~wsc ~> { (x: Seq[Ast.KeyValue]) => Ast.Object( x.map( (kv: Ast.KeyValue) => (kv.key,kv.value) ).toMap ) }
+    wscn~'{' ~ObjectBody ~ wscn~'}'~wsc
+  }
+
+  def ObjectBody: Rule1[Ast.Object] = rule {
+     zeroOrMore(KeyValue ~ zeroOrMore(ValueComments)).separatedBy(Separator)  ~> { (x: Seq[Ast.KeyValue]) => Ast.Object( x.map( (kv: Ast.KeyValue) => (kv.key,kv.value) ).toMap ) }
+  }
+
+  def Separator = rule {
+    ws~anyOf(",\n")~ws
   }
 
   def KeyValue: Rule1[Ast.KeyValue] = rule { wscn ~
@@ -45,7 +57,7 @@ class ConfigParser(val input: ParserInput) extends Parser {
   }
 
   def UnquotedString: Rule1[Ast.StringLiteral] = rule {
-    capture(oneOrMore(CharPredicate.AlphaNum)) ~> { s => Ast.StringLiteral(s) }
+    capture(oneOrMore(!' '~ANY)) ~> { s => Ast.StringLiteral(s) }
   }
 
   def QuotedString: Rule1[Ast.StringLiteral] = rule {
@@ -117,4 +129,8 @@ object Ast {
 
   case object NullLiteral extends SimpleValue
 
+}
+
+object SHocon {
+  def parse(input: ParserInput) = new ConfigParser(input).InputLine.run()
 }

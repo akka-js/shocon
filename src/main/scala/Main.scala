@@ -1,11 +1,11 @@
-import eu.unicredit.shocon.ConfigParser
+import eu.unicredit.shocon.SHocon
 import org.parboiled2._
 
 object Main {
   def main(args: Array[String]): Unit = {
 
-    print(new ConfigParser(
-      """
+
+      val input = """
         |foobar [
         |
         |
@@ -29,7 +29,7 @@ object Main {
         |
         |y = foo
         |
-        |      k = 12
+        |      k = 12 //acomment
         |
         | anobj {
         |   k: 123
@@ -47,6 +47,10 @@ object Main {
         |
         |      }
         |]
-      """.stripMargin.trim()).InputLine.run()) // evaluates to `scala.util.Success(2)`
+      """.stripMargin.trim()
+
+
+    print(SHocon.parse(input))
+
   }
 }
