@@ -18,8 +18,6 @@ class ConfigParser(val input: ParserInput) extends Parser {
     zeroOrMore(Value).separatedBy(Separator) ~> { (x: Seq[Ast.Value]) => Ast.Array(x) }
   }
 
-
-
   def Object: Rule1[Ast.Object] = rule {
     wspn_("{") ~ObjectBody ~ wspn_("}")
   }
@@ -29,9 +27,7 @@ class ConfigParser(val input: ParserInput) extends Parser {
   }
 
   def Separator = rule { 
-
     zeroOrMore( anyOf(" \t\r\n,") | Comment )
-
    }
 
   def KeyValue: Rule1[Ast.KeyValue] = rule { 
@@ -68,8 +64,6 @@ class ConfigParser(val input: ParserInput) extends Parser {
 
   val Quote = "\""
 
-//  val NormalChar = rule { noneOf("\"") }
-
   def Identifier = rule { capture(IdentifierFirstChar ~ zeroOrMore(IdentifierChar)) }
 
   val WhiteSpaceChar = CharPredicate(" \n\r\t\f")
@@ -80,13 +74,6 @@ class ConfigParser(val input: ParserInput) extends Parser {
   def Number: Rule1[Ast.NumberLiteral] = rule {
     capture(oneOrMore(CharPredicate.Digit|'.')) ~> { n => Ast.NumberLiteral(n) }
   }
-//  def Boolean: Rule1[Ast.BooleanLiteral] = rule {
-//    capture("true" | "false") ~> { (b:String) => Ast.BooleanLiteral (b) }
-//  }
-
-  // implicit def wsp(c: Char): Rule0 = rule {
-  //   str(c.toString) ~ zeroOrMore(anyOf(" \r\t"))
-  // }
 
   def wsp_(s:String): Rule0 = rule {
     s~ws 
@@ -138,6 +125,49 @@ object Ast {
 
 }
 
+trait Extractor[T] {
+  def extract(tree: Ast.Object, key: String): T
+}
+
 object SHocon {
   def parse(input: ParserInput) = new ConfigParser(input).InputLine.run()
+
+  implicit object BooleanExtractor extends Extractor[Boolean] {
+    def extract(tree: Ast.Object, key: String) = {
+      tree.fields(key) match {
+        case Ast.BooleanLiteral(v) => v 
+      } 
+    }
+  }
+  implicit object StringExtractor extends Extractor[String] {
+    def extract(tree: Ast.Object, key: String) = {
+      tree.fields(key) match {
+        case Ast.StringLiteral(v) => v 
+      } 
+    }
+  }
+  implicit object DoubleExtractor extends Extractor[Double] {
+    def extract(tree: Ast.Object, key: String) = {
+      tree.fields(key) match {
+        case Ast.NumberLiteral(v) => v.toDouble
+      } 
+    }
+  }
+  implicit object LongExtractor extends Extractor[Long] {
+    def extract(tree: Ast.Object, key: String) = {
+      tree.fields(key) match {
+        case Ast.NumberLiteral(v) => v.toLong
+      } 
+    }
+  }
 }
+
+class Config(input: ParserInput) {
+  val tree = SHocon.parse(input).get
+
+  def get[T](key: String)(implicit ev: Extractor[T]) = {
+    ev.extract(tree, key)
+  }
+
+}
+
