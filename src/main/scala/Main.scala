@@ -9,12 +9,15 @@ object Main {
         |foobar [
         |
         |
-        |   1
-        |   2,
+        |   1 #cmt
+        |     // ssss
+        |
+        |   2, # SD
         |
         |  {
-        |      x =  "asda  sdd"
-        |y = ciao
+        |      x = "test val", //as
+        |      
+        |y = foo
         |
         |      k = 12
         |
@@ -28,7 +31,7 @@ object Main {
         |
         |      {
         |
-        |          option = true
+        |          option = true,
         |
         |          other = truebar
         |

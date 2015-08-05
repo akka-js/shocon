@@ -12,14 +12,16 @@ class ConfigParser(val input: ParserInput) extends Parser {
   }
 
   def Array: Rule1[Ast.Array] = rule {
-    wsn~'[' ~ zeroOrMore(Value).separatedBy(anyOf(",\n")) ~  wsn~']' ~> { (x: Seq[Ast.Value]) => Ast.Array(x) }
+    wscn~'[' ~ zeroOrMore(Value ~ zeroOrMore(valuecomments)).separatedBy(anyOf(",\n")) ~  wscn~']' ~> { (x: Seq[Ast.Value]) => Ast.Array(x) }
   }
+
+  def valuecomments = rule { ws~(singlelinecomment) }
 
   def Object: Rule1[Ast.Object] = rule {
-    wsn~'{' ~ zeroOrMore(KeyValue).separatedBy(anyOf(",\n")) ~ wsn~'}'~ws ~> { (x: Seq[Ast.KeyValue]) => Ast.Object( x.map( (kv: Ast.KeyValue) => (kv.key,kv.value) ).toMap ) }
+    wscn~'{' ~ zeroOrMore(KeyValue).separatedBy(anyOf(",\n")) ~ wscn~'}'~wsc ~> { (x: Seq[Ast.KeyValue]) => Ast.Object( x.map( (kv: Ast.KeyValue) => (kv.key,kv.value) ).toMap ) }
   }
 
-  def KeyValue: Rule1[Ast.KeyValue] = rule { wsn ~
+  def KeyValue: Rule1[Ast.KeyValue] = rule { wscn ~
     ( (Key ~ ':' ~ Value)
     | (Key ~ '=' ~ Value)
     | (Key ~ Array)
@@ -27,15 +29,15 @@ class ConfigParser(val input: ParserInput) extends Parser {
   }
 
   def Key: Rule1[Ast.StringLiteral] = rule {
-    StringLiteral ~ ws
+    StringLiteral ~ wsc
   }
 
   def Value : Rule1[Ast.Value] = rule {
-    wsn ~( SimpleValue | Array | Object )
+    wscn ~( SimpleValue | Array | Object )
   }
 
   def SimpleValue: Rule1[Ast.SimpleValue] = rule {
-    ws ~( Number  | StringLiteral ~> { (s:Ast.StringLiteral) => Try(Ast.BooleanLiteral(s.value.toBoolean)).getOrElse(s) } )
+    wsc ~( Number  | StringLiteral ~> { (s:Ast.StringLiteral) => Try(Ast.BooleanLiteral(s.value.toBoolean)).getOrElse(s) } )
   }
 
   def StringLiteral: Rule1[Ast.StringLiteral] = rule {
@@ -70,8 +72,17 @@ class ConfigParser(val input: ParserInput) extends Parser {
   def ws: Rule0 = rule {
     zeroOrMore(anyOf(" \t\r"))
   }
+  def wsc: Rule0 = rule {
+    ws
+  }
+  def wscn: Rule0 = rule {
+    wsn ~ optional((singlelinecomment) ~ wsn)
+  }
   def wsn: Rule0 = rule {
     zeroOrMore(anyOf(" \t\r\n"))
+  }
+  def singlelinecomment: Rule0 = rule {
+    ("//"| "#") ~zeroOrMore(!"\n"~ANY)
   }
 
 
