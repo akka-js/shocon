@@ -5,51 +5,49 @@ import org.parboiled2._
 import scala.util.Try
 
 class ConfigParser(val input: ParserInput) extends Parser {
-  def InputLine = rule { ConfigElement ~ wscn ~ EOI }
+  def InputLine = rule { ConfigElement  ~ EOI }
   def ConfigElement: Rule1[Ast.Object] = rule {
-      ObjectBody | Object
-
+      wsn ~ ( Object | ObjectBody )
   }
 
   def Array: Rule1[Ast.Array] = rule {
-    wscn~'[' ~ ArrayBody ~  wscn~']'~wsc
+    wspn_("[") ~ ArrayBody ~  wspn_("]")
   }
 
   def ArrayBody : Rule1[Ast.Array] = rule {
-    zeroOrMore(Value ~ zeroOrMore(ValueComments)).separatedBy(Separator) ~> { (x: Seq[Ast.Value]) => Ast.Array(x) }
+    zeroOrMore(Value).separatedBy(Separator) ~> { (x: Seq[Ast.Value]) => Ast.Array(x) }
   }
 
-  def ValueComments = rule { ws~(singlelinecomment) }
+
 
   def Object: Rule1[Ast.Object] = rule {
-    wscn~'{' ~ObjectBody ~ wscn~'}'~wsc
+    wspn_("{") ~ObjectBody ~ wspn_("}")
   }
 
   def ObjectBody: Rule1[Ast.Object] = rule {
-     zeroOrMore(KeyValue ~ zeroOrMore(ValueComments)).separatedBy(Separator)  ~> { (x: Seq[Ast.KeyValue]) => Ast.Object( x.map( (kv: Ast.KeyValue) => (kv.key,kv.value) ).toMap ) }
+     zeroOrMore(KeyValue).separatedBy(Separator)  ~> { (x: Seq[Ast.KeyValue]) => Ast.Object( x.map( (kv: Ast.KeyValue) => (kv.key,kv.value) ).toMap ) }
   }
 
-  def Separator = rule {
-    ws~anyOf(",\n")~ws
-  }
+  def Separator = rule { wsn ~ "," ~ wsn }
 
-  def KeyValue: Rule1[Ast.KeyValue] = rule { wscn ~
-    ( (Key ~ ':' ~ Value)
-    | (Key ~ '=' ~ Value)
+  def KeyValue: Rule1[Ast.KeyValue] = rule { 
+    ( (Key ~ wsp_(":") ~ (Value))
+    | (Key ~ wsp_("=") ~ (Value))
     | (Key ~ Array)
     | (Key ~ Object) ) ~> { (x:Ast.StringLiteral,y:Ast.Value) => Ast.KeyValue(x.value,y) }
   }
 
   def Key: Rule1[Ast.StringLiteral] = rule {
-    StringLiteral ~ wsc
+    StringLiteral ~ ws
   }
 
   def Value : Rule1[Ast.Value] = rule {
-    wscn ~( SimpleValue | Array | Object )
+    (wsn~SimpleValue~wsn) | ( Array | Object )
+    //wscn ~( SimpleValue | Array | Object )
   }
 
   def SimpleValue: Rule1[Ast.SimpleValue] = rule {
-    wsc ~( Number  | StringLiteral ~> { (s:Ast.StringLiteral) => Try(Ast.BooleanLiteral(s.value.toBoolean)).getOrElse(s) } )
+    ( Number  | StringLiteral ~> { (s:Ast.StringLiteral) => Try(Ast.BooleanLiteral(s.value.toBoolean)).getOrElse(s) } )
   }
 
   def StringLiteral: Rule1[Ast.StringLiteral] = rule {
@@ -57,7 +55,7 @@ class ConfigParser(val input: ParserInput) extends Parser {
   }
 
   def UnquotedString: Rule1[Ast.StringLiteral] = rule {
-    capture(oneOrMore(!' '~ANY)) ~> { s => Ast.StringLiteral(s) }
+    ((Identifier)) ~> { s => Ast.StringLiteral(s) }
   }
 
   def QuotedString: Rule1[Ast.StringLiteral] = rule {
@@ -68,6 +66,11 @@ class ConfigParser(val input: ParserInput) extends Parser {
 
 //  val NormalChar = rule { noneOf("\"") }
 
+  def Identifier = rule { capture(IdentifierFirstChar ~ zeroOrMore(IdentifierChar)) }
+
+  val WhiteSpaceChar = CharPredicate(" \n\r\t\f")
+  val IdentifierFirstChar = CharPredicate.Alpha ++ '_' ++ '-'
+  val IdentifierChar = IdentifierFirstChar ++ CharPredicate.Digit
 
 
   def Number: Rule1[Ast.NumberLiteral] = rule {
@@ -77,23 +80,23 @@ class ConfigParser(val input: ParserInput) extends Parser {
 //    capture("true" | "false") ~> { (b:String) => Ast.BooleanLiteral (b) }
 //  }
 
+  // implicit def wsp(c: Char): Rule0 = rule {
+  //   str(c.toString) ~ zeroOrMore(anyOf(" \r\t"))
+  // }
 
-  implicit def wsp(c: Char): Rule0 = rule {
-    str(c.toString) ~ zeroOrMore(anyOf(" \r\t"))
+  def wsp_(s:String): Rule0 = rule {
+    s~ws 
+  }
+  def wspn_(s:String): Rule0 = rule {
+    s~wsn 
+  }
+  def wsn: Rule0 = rule {
+    zeroOrMore(anyOf(" \t\r\n") | Comment)
   }
   def ws: Rule0 = rule {
     zeroOrMore(anyOf(" \t\r"))
   }
-  def wsc: Rule0 = rule {
-    ws
-  }
-  def wscn: Rule0 = rule {
-    wsn ~ zeroOrMore((singlelinecomment) ~ wsn)
-  }
-  def wsn: Rule0 = rule {
-    zeroOrMore(anyOf(" \t\r\n"))
-  }
-  def singlelinecomment: Rule0 = rule {
+  def Comment: Rule0 = rule {
     ("//"| "#") ~zeroOrMore(!"\n"~ANY)
   }
 
