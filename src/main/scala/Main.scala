@@ -6,7 +6,23 @@ object Main {
 
     print(new ConfigParser(
       """
-        |{a:1,b:2,c:3}
+        |foobar = [
+        |
+        |
+        |   1
+        |   2,
+        |
+        |  {
+        |      x =   10
+        |
+        |      y = 123,
+        |
+        |
+        |
+        |      z = 23232
+        |      }
+        |
+        |]
       """.stripMargin.trim()).InputLine.run()) // evaluates to `scala.util.Success(2)`
   }
 }
