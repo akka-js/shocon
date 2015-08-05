@@ -12,13 +12,13 @@ class ConfigParser(val input: ParserInput) extends Parser {
   }
 
   def Array: Rule1[Ast.Array] = rule {
-    wscn~'[' ~ zeroOrMore(Value ~ zeroOrMore(valuecomments)).separatedBy(anyOf(",\n")) ~  wscn~']' ~> { (x: Seq[Ast.Value]) => Ast.Array(x) }
+    wscn~'[' ~ zeroOrMore(Value ~ zeroOrMore(valuecomments)).separatedBy(ws~anyOf(",\n")~ws) ~  wscn~']' ~> { (x: Seq[Ast.Value]) => Ast.Array(x) }
   }
 
   def valuecomments = rule { ws~(singlelinecomment) }
 
   def Object: Rule1[Ast.Object] = rule {
-    wscn~'{' ~ zeroOrMore(KeyValue).separatedBy(anyOf(",\n")) ~ wscn~'}'~wsc ~> { (x: Seq[Ast.KeyValue]) => Ast.Object( x.map( (kv: Ast.KeyValue) => (kv.key,kv.value) ).toMap ) }
+    wscn~'{' ~ zeroOrMore(KeyValue).separatedBy(ws~anyOf(",\n")~ws) ~ wscn~'}'~wsc ~> { (x: Seq[Ast.KeyValue]) => Ast.Object( x.map( (kv: Ast.KeyValue) => (kv.key,kv.value) ).toMap ) }
   }
 
   def KeyValue: Rule1[Ast.KeyValue] = rule { wscn ~
@@ -76,7 +76,7 @@ class ConfigParser(val input: ParserInput) extends Parser {
     ws
   }
   def wscn: Rule0 = rule {
-    wsn ~ optional((singlelinecomment) ~ wsn)
+    wsn ~ zeroOrMore((singlelinecomment) ~ wsn)
   }
   def wsn: Rule0 = rule {
     zeroOrMore(anyOf(" \t\r\n"))

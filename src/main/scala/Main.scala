@@ -12,11 +12,21 @@ object Main {
         |   1 #cmt
         |     // ssss
         |
-        |   2, # SD
+        |   2 , # SD
+        |
+        |// prova
         |
         |  {
+        |
+        |  // altri
+        |
+        |
         |      x = "test val", //as
-        |      
+        |
+        |      # sdsds
+        |
+        |      // sdddd
+        |
         |y = foo
         |
         |      k = 12
