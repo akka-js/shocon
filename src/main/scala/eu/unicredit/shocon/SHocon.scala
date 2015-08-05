@@ -28,7 +28,11 @@ class ConfigParser(val input: ParserInput) extends Parser {
      zeroOrMore(KeyValue).separatedBy(Separator)  ~> { (x: Seq[Ast.KeyValue]) => Ast.Object( x.map( (kv: Ast.KeyValue) => (kv.key,kv.value) ).toMap ) }
   }
 
-  def Separator = rule { wsn ~ "," ~ wsn }
+  def Separator = rule { 
+
+    zeroOrMore( anyOf(" \t\r\n,") | Comment )
+
+   }
 
   def KeyValue: Rule1[Ast.KeyValue] = rule { 
     ( (Key ~ wsp_(":") ~ (Value))
@@ -74,7 +78,7 @@ class ConfigParser(val input: ParserInput) extends Parser {
 
 
   def Number: Rule1[Ast.NumberLiteral] = rule {
-    capture(oneOrMore(CharPredicate.Digit)) ~> { n => Ast.NumberLiteral(n) }
+    capture(oneOrMore(CharPredicate.Digit|'.')) ~> { n => Ast.NumberLiteral(n) }
   }
 //  def Boolean: Rule1[Ast.BooleanLiteral] = rule {
 //    capture("true" | "false") ~> { (b:String) => Ast.BooleanLiteral (b) }

@@ -48,14 +48,18 @@ class HelloSpec extends FlatSpec with Matchers {
     SHocon.parse(nl_in_list) shouldBe a [Success[_]]
   }
 
- val fileContents = io.Source.fromFile("src/test/resources/akka.conf").mkString
+ val akka = io.Source.fromFile("src/test/resources/akka.conf").mkString
 
  "akka.conf" should "parse" in {
-   val res = SHocon.parse(fileContents)
-//    res match {
-//      case Failure(ParseError(p1,p2,traces)) => print(p1,p2,traces)
-//      case _=>
-//    }
+   val res = SHocon.parse(akka)
    res shouldBe a [Success[_]]
  }
+
+ val akka_long = io.Source.fromFile("src/test/resources/akka-long.conf").mkString
+
+ "akka-long.conf" should "parse" in {
+   val res = SHocon.parse(akka_long)
+   res shouldBe a [Success[_]]
+ }
+
 }
