@@ -1,24 +1,41 @@
-package eu.unicredit.shocon
+package eu.unicredit
 
 import org.parboiled2._
 
 
-object SHocon extends Extractors {
-  def parse(input: ParserInput) = new ConfigParser(input).InputLine.run()
+package object shocon extends Extractors {
 
   object Config {
-    def apply(input: ParserInput) = new Config(input)
+    type Key = String
+
+    sealed trait Value
+
+    case class Array(elements: Seq[Value]) extends Value
+    case class Object(fields: Map[Key, Value]) extends Value
+    case class KeyValue(key: String, value: Value) extends Value
+
+
+    trait SimpleValue extends Value
+
+    case class NumberLiteral(value: String) extends SimpleValue
+    case class StringLiteral(value: String) extends SimpleValue
+    case class BooleanLiteral(value: Boolean) extends SimpleValue
+    case object NullLiteral extends SimpleValue
+
+
+
+    def parse(input: ParserInput) = new ConfigParser(input).InputLine.run()
+    def apply(input: ParserInput) = parse(input).get // new Config(input)
     def fromFile(path: String) = apply(io.Source.fromFile(path).mkString)
   }
 
-  class Config(input: ParserInput) {
-    val tree = SHocon.parse(input).get
-
-    def get[T](key: String)(implicit ev: SHocon.Extractor[T]) = {
+  
+  implicit class RichAst(val tree:  Config.Value) {
+    def get[T](key: String)(implicit ev: Extractor[T]) = {
       val keys = key.split('.')
-      def visit(v: Ast.Value, keys: Seq[String]): T = v match {
-          case _ if (keys.isEmpty)  => ev.apply(v)
-          case o@Ast.Object(fields) => visit(fields(keys.head), keys.tail)
+      def visit(v:  Config.Value, keys: Seq[String]): T = v match {
+          case _ if (keys.isEmpty)     => ev.apply(v)
+          case o@Config.Object(fields) => visit(fields(keys.head), keys.tail)
         }
       visit(tree, keys)
     }

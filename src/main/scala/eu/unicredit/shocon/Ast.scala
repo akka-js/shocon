@@ -1,10 +1,8 @@
 package eu.unicredit.shocon
 
-object Ast {
+object Config {
+  
   type Key = String
-
-
-  case class Config(root: Value)
 
   sealed trait Value
 

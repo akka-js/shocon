@@ -1,4 +1,4 @@
-import eu.unicredit.shocon.SHocon
+import eu.unicredit.shocon._
 import org.parboiled2._
 
 object Main {
@@ -50,7 +50,7 @@ object Main {
       """.stripMargin.trim()
 
 
-    print(SHocon.parse(input))
+    print(Config.parse(input))
 
   }
 }

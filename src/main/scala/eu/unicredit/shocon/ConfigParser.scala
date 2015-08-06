@@ -5,60 +5,61 @@ import org.parboiled2._
 import scala.util.Try
 
 class ConfigParser(val input: ParserInput) extends Parser {
+
   def InputLine = rule { ConfigElement  ~ EOI }
-  def ConfigElement: Rule1[Ast.Object] = rule {
+  def ConfigElement: Rule1[Config.Object] = rule {
       wsn ~ ( Object | ObjectBody )
   }
 
-  def Array: Rule1[Ast.Array] = rule {
+  def Array: Rule1[Config.Array] = rule {
     wspn_("[") ~ ArrayBody ~  wspn_("]")
   }
 
-  def ArrayBody : Rule1[Ast.Array] = rule {
-    zeroOrMore(Value).separatedBy(Separator) ~> { (x: Seq[Ast.Value]) => Ast.Array(x) }
+  def ArrayBody : Rule1[Config.Array] = rule {
+    zeroOrMore(Value).separatedBy(Separator) ~> { (x: Seq[Config.Value]) => Config.Array(x) }
   }
 
-  def Object: Rule1[Ast.Object] = rule {
+  def Object: Rule1[Config.Object] = rule {
     wspn_("{") ~ObjectBody ~ wspn_("}")
   }
 
-  def ObjectBody: Rule1[Ast.Object] = rule {
-     zeroOrMore(KeyValue).separatedBy(Separator) ~> { (x: Seq[Ast.KeyValue]) => Ast.Object( x.map( (kv: Ast.KeyValue) => (kv.key,kv.value) ).toMap ) }
+  def ObjectBody: Rule1[Config.Object] = rule {
+     zeroOrMore(KeyValue).separatedBy(Separator) ~> { (x: Seq[Config.KeyValue]) => Config.Object( x.map( (kv: Config.KeyValue) => (kv.key,kv.value) ).toMap ) }
   }
 
   def Separator = rule { 
     zeroOrMore( anyOf(" \t\r\n,") | Comment )
    }
 
-  def KeyValue: Rule1[Ast.KeyValue] = rule { 
+  def KeyValue: Rule1[Config.KeyValue] = rule { 
     ( (Key ~ wsp_(":") ~ (Value))
     | (Key ~ wsp_("=") ~ (Value))
     | (Key ~ Array)
-    | (Key ~ Object) ) ~> { (x:Ast.StringLiteral,y:Ast.Value) => Ast.KeyValue(x.value,y) }
+    | (Key ~ Object) ) ~> { (x:Config.StringLiteral,y:Config.Value) => Config.KeyValue(x.value,y) }
   }
 
-  def Key: Rule1[Ast.StringLiteral] = rule {
+  def Key: Rule1[Config.StringLiteral] = rule {
     StringLiteral ~ ws
   }
 
-  def Value : Rule1[Ast.Value] = rule {
+  def Value : Rule1[Config.Value] = rule {
     (wsn~SimpleValue~wsn) | ( Array | Object )
   }
 
-  def SimpleValue: Rule1[Ast.SimpleValue] = rule {
-    ( Number  | StringLiteral ~> { (s:Ast.StringLiteral) => Try(Ast.BooleanLiteral(s.value.toBoolean)).getOrElse(s) } )
+  def SimpleValue: Rule1[Config.SimpleValue] = rule {
+    ( Number  | StringLiteral ~> { (s:Config.StringLiteral) => Try(Config.BooleanLiteral(s.value.toBoolean)).getOrElse(s) } )
   }
 
-  def StringLiteral: Rule1[Ast.StringLiteral] = rule {
+  def StringLiteral: Rule1[Config.StringLiteral] = rule {
     QuotedString | UnquotedString
   }
 
-  def UnquotedString: Rule1[Ast.StringLiteral] = rule {
-    ((Identifier)) ~> { s => Ast.StringLiteral(s) }
+  def UnquotedString: Rule1[Config.StringLiteral] = rule {
+    ((Identifier)) ~> { s => Config.StringLiteral(s) }
   }
 
-  def QuotedString: Rule1[Ast.StringLiteral] = rule {
-   Quote ~ capture(zeroOrMore(!Quote  ~ ANY)) ~ Quote ~> Ast.StringLiteral
+  def QuotedString: Rule1[Config.StringLiteral] = rule {
+   Quote ~ capture(zeroOrMore(!Quote  ~ ANY)) ~ Quote ~> Config.StringLiteral
   }
 
   val Quote = "\""
@@ -70,8 +71,8 @@ class ConfigParser(val input: ParserInput) extends Parser {
   val IdentifierChar = IdentifierFirstChar ++ CharPredicate.Digit ++ '-'
 
 
-  def Number: Rule1[Ast.NumberLiteral] = rule {
-    capture(optional('-') ~ oneOrMore(CharPredicate.Digit ++ '.')) ~> { n => Ast.NumberLiteral(n) }
+  def Number: Rule1[Config.NumberLiteral] = rule {
+    capture(optional('-') ~ oneOrMore(CharPredicate.Digit ++ '.')) ~> { n => Config.NumberLiteral(n) }
   }
 
   def wsp_(s:String): Rule0 = rule {
