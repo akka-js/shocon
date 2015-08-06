@@ -160,13 +160,36 @@ object SHocon {
       } 
     }
   }
+  implicit object ObjectExtractor extends Extractor[Ast.Object] {
+   def extract(tree: Ast.Object, key: String) = {
+      tree.fields(key) match {
+        case obj@Ast.Object(_) => obj
+      } 
+    } 
+  }
+  implicit object SeqExtractor extends Extractor[Seq[Long]] {
+   def extract(tree: Ast.Object, key: String) = {
+      tree.fields(key) match {
+        case obj@Ast.Array(seq) => seq.map{ _ match {
+          case Ast.NumberLiteral(v) => v.toLong
+        }}
+      } 
+    } 
+  }
+
 }
 
 class Config(input: ParserInput) {
   val tree = SHocon.parse(input).get
 
   def get[T](key: String)(implicit ev: Extractor[T]) = {
-    ev.extract(tree, key)
+    val keys = key.split('.')
+    def visit(v: Ast.Object, keys: Seq[String]): T = 
+      if (keys.size == 1) ev.extract(v, keys.head) 
+      else v match {
+        case o@Ast.Object(fields)    => visit(SHocon.ObjectExtractor.extract(o, keys.head), keys.tail)
+      }
+    visit(tree, keys)
   }
 
 }
