@@ -27,7 +27,7 @@ package object shocon extends Extractors {
   }
 
   
-  implicit class RichConfig(val tree:  Config.Value) {
+  implicit class ConfigOps(val tree:  Config.Value) {
     def as[T](implicit ev: Extractor[T]) = ev.apply(tree)
     def get[T](key: String)(implicit ev: Extractor[T]) = {
       val keys = key.split('.')

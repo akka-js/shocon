@@ -47,7 +47,7 @@ class ConfigParser(val input: ParserInput) extends Parser {
   }
 
   def SimpleValue: Rule1[Config.SimpleValue] = rule {
-    ( Number  | StringLiteral ~> { (s:Config.StringLiteral) => Try(Config.BooleanLiteral(s.value.toBoolean)).getOrElse(s) } )
+    ( StringLiteral ~> { (s:Config.StringLiteral) => Try(Config.BooleanLiteral(s.value.toBoolean)).getOrElse(s) } )
   }
 
   def StringLiteral: Rule1[Config.StringLiteral] = rule {
@@ -55,7 +55,7 @@ class ConfigParser(val input: ParserInput) extends Parser {
   }
 
   def UnquotedString: Rule1[Config.StringLiteral] = rule {
-    ((Identifier)) ~> { s => Config.StringLiteral(s) }
+    capture(oneOrMore(IdentifierChar ++ ' ' ++ '\t')) ~> { s:String => Config.StringLiteral(s.trim()) }
   }
 
   def QuotedString: Rule1[Config.StringLiteral] = rule {
@@ -64,11 +64,11 @@ class ConfigParser(val input: ParserInput) extends Parser {
 
   val Quote = "\""
 
-  def Identifier = rule { capture(IdentifierFirstChar ~ zeroOrMore(IdentifierChar)) }
+  def Identifier = rule { capture(oneOrMore(IdentifierChar)) }
 
   val WhiteSpaceChar = CharPredicate(" \n\r\t\f")
-  val IdentifierFirstChar = CharPredicate.Alpha ++ '_' 
-  val IdentifierChar = IdentifierFirstChar ++ CharPredicate.Digit ++ '-'
+  //val IdentifierFirstChar = CharPredicate.Alpha ++ '_' ++ '-' ++ '.'
+  val IdentifierChar = CharPredicate.Alpha ++ '_' ++ '-' ++ '.' ++ CharPredicate.Digit 
 
 
   def Number: Rule1[Config.NumberLiteral] = rule {
