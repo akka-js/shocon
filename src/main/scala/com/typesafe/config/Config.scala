@@ -12,33 +12,35 @@ object ConfigFactory {
   }
 }
 
-class Config(cfg: shocon.Config.Value) {
+case class Config(cfg: shocon.Config.Value) {
   import shocon.ConfigOps
   import shocon.Extractors._
 
-  val fallback = Promise[Config]
+  val fallback = Promise[shocon.Config.Value]
   
   def this() = {
     this(shocon.Config("{}"))
   }
   
   def withFallback(c: Config) = {
-    fallback.success(c)
+    fallback.success(c.cfg)
     this
   }
 
   
-  def hasPath(path: String) = scala.util.Try { cfg.get[shocon.Config.Value](path) }.isSuccess
+  def hasPath(path: String)     = scala.util.Try { 
+    cfg.get[shocon.Config.Value](path) 
+  }.isSuccess
   
-  def getConfig(path: String) = new Config(cfg.get[shocon.Config.Value](path))
+  def getConfig(path: String)   = new Config(cfg.get[shocon.Config.Value](path))
   
-  def getString(path: String) =  cfg.get[String](path)
+  def getString(path: String)   = cfg.get[String](path)
   
-  def getBoolean(path: String) = cfg.get[Boolean](path)
+  def getBoolean(path: String)  = cfg.get[Boolean](path)
   
-  def getInt(path: String) = cfg.get[Int](path)
+  def getInt(path: String)      = cfg.get[Int](path)
   
-  def getDouble(path: String) = cfg.get[Double](path)
+  def getDouble(path: String)   = cfg.get[Double](path)
     
   def getStringList(path: String) = cfg.get[Seq[String]](path)
 
