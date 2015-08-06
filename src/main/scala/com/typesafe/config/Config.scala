@@ -56,7 +56,7 @@ class Config(cfg: shocon.Config.Value) {
   def getNanosDuration(path: String) = {
     val res = getString(path)
     val parts = res.split("[ \t]")
-    assert( nanos contains parts(1) )
+    assert( parts.size == 2 && ( nanos contains parts(1) ) )
     Duration(parts(0).toInt, NANOSECONDS)
   }
 
