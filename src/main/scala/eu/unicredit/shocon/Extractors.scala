@@ -18,9 +18,11 @@ trait Extractors {
   }
   implicit val GenericExtractor:  Extractor[Config.Value] = {
     case x => x
-    case obj@Config.Object(_) => obj
   } 
   implicit def SeqExtractor[T](implicit ex: Extractor[T]): Extractor[Seq[T]] = {
     case Config.Array(seq) => seq.map(ex.apply(_))
+  }
+  implicit def MapExtractor[T](implicit ex: Extractor[T]): Extractor[Map[String, T]] = {
+    case Config.Object(keyValues) => keyValues.map{ case (k,v) => (k, ex.apply(v)) }
   }
 }
