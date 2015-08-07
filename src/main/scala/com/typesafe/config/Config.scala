@@ -12,6 +12,11 @@ object ConfigFactory {
   }
 }
 
+abstract class ConfigException extends RuntimeException
+object ConfigException {
+  case class Missing(path: String) extends ConfigException
+}
+
 case class Config(cfg: shocon.Config.Value) {
   import shocon.ConfigOps
   import shocon.Extractors._
@@ -27,22 +32,26 @@ case class Config(cfg: shocon.Config.Value) {
     this
   }
 
+
+  def getOrThrow[T](path: String)(implicit ev: Extractor[T]) =
+    cfg.get(path) 
+       .flatMap(_.as[T](ev))
+       .getOrElse( throw ConfigException.Missing(path) )
   
-  def hasPath(path: String)     = scala.util.Try { 
-    cfg.get[shocon.Config.Value](path) 
-  }.isSuccess
+  def hasPath(path: String)     = cfg.get(path).isDefined
   
-  def getConfig(path: String)   = new Config(cfg.get[shocon.Config.Value](path))
   
-  def getString(path: String)   = cfg.get[String](path)
+  def getConfig(path: String)   = new Config(getOrThrow[shocon.Config.Value](path))
   
-  def getBoolean(path: String)  = cfg.get[Boolean](path)
+  def getString(path: String)   = getOrThrow[String](path)
   
-  def getInt(path: String)      = cfg.get[Int](path)
+  def getBoolean(path: String)  = getOrThrow[Boolean](path)
   
-  def getDouble(path: String)   = cfg.get[Double](path)
+  def getInt(path: String)      = getOrThrow[Int](path)
+
+  def getDouble(path: String)   = getOrThrow[Double](path)
     
-  def getStringList(path: String) = cfg.get[Seq[String]](path)
+  def getStringList(path: String) = getOrThrow[String](path)
 
   private val millis = Set("ms", "millis", "milliseconds")
   private val nanos = Set("ns", "nanos", "nanoseconds")
