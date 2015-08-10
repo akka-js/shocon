@@ -11,12 +11,15 @@ lazy val shocon = crossProject.in(file(".")).
 	name := "shocon",
 	organization := "eu.unicredit",
 	version := "0.0.1-SNAPSHOT",
-	scalaVersion := "2.11.7",
-	libraryDependencies += "org.scalatest" %% "scalatest" % "2.2.4" % "test",
-	libraryDependencies += "org.parboiled" %% "parboiled" % "2.1.0"
+	scalaVersion := "2.11.7"
   ).
-  jvmSettings().
-  jsSettings()
+  jvmSettings(
+  	libraryDependencies += "org.parboiled" %% "parboiled" % "2.1.0",
+  	libraryDependencies += "org.scalatest" %% "scalatest" % "2.2.4" % "test"
+  ).
+  jsSettings(
+  	libraryDependencies += "org.parboiled" %%% "parboiled" % "2.1.1-SNAPSHOT"
+  )
 
 lazy val shoconJVM = shocon.jvm
 lazy val shoconJS = shocon.js
