@@ -1,0 +1,700 @@
+format version: 5
+output mode:
+1 items
+0 -> single
+output directories:
+1 items
+output dir -> /Users/andrea/Documents/workspace/temp/shocon/js/target/scala-2.11/classes
+compile options:
+1 items
+0 -> -Xplugin:/Users/andrea/.ivy2/cache/org.scala-js/scalajs-compiler_2.11.7/jars/scalajs-compiler_2.11.7-0.6.4.jar
+javac options:
+0 items
+compiler version:
+1 items
+0 -> 2.11.7
+compile order:
+1 items
+0 -> Mixed
+name hashing:
+1 items
+0 -> true
+products:
+52 items
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/Main.scala -> /Users/andrea/Documents/workspace/temp/shocon/js/target/scala-2.11/classes/Main$.class
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/Main.scala -> /Users/andrea/Documents/workspace/temp/shocon/js/target/scala-2.11/classes/Main.class
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/com/typesafe/config/Config.scala -> /Users/andrea/Documents/workspace/temp/shocon/js/target/scala-2.11/classes/com/typesafe/config/Config$$anonfun$getOrThrow$1.class
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/com/typesafe/config/Config.scala -> /Users/andrea/Documents/workspace/temp/shocon/js/target/scala-2.11/classes/com/typesafe/config/Config$$anonfun$getOrThrow$2.class
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/com/typesafe/config/Config.scala -> /Users/andrea/Documents/workspace/temp/shocon/js/target/scala-2.11/classes/com/typesafe/config/Config$.class
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/com/typesafe/config/Config.scala -> /Users/andrea/Documents/workspace/temp/shocon/js/target/scala-2.11/classes/com/typesafe/config/Config.class
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/com/typesafe/config/Config.scala -> /Users/andrea/Documents/workspace/temp/shocon/js/target/scala-2.11/classes/com/typesafe/config/ConfigException$.class
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/com/typesafe/config/Config.scala -> /Users/andrea/Documents/workspace/temp/shocon/js/target/scala-2.11/classes/com/typesafe/config/ConfigException$Missing$.class
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/com/typesafe/config/Config.scala -> /Users/andrea/Documents/workspace/temp/shocon/js/target/scala-2.11/classes/com/typesafe/config/ConfigException$Missing.class
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/com/typesafe/config/Config.scala -> /Users/andrea/Documents/workspace/temp/shocon/js/target/scala-2.11/classes/com/typesafe/config/ConfigException.class
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/com/typesafe/config/Config.scala -> /Users/andrea/Documents/workspace/temp/shocon/js/target/scala-2.11/classes/com/typesafe/config/ConfigFactory$.class
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/com/typesafe/config/Config.scala -> /Users/andrea/Documents/workspace/temp/shocon/js/target/scala-2.11/classes/com/typesafe/config/ConfigFactory.class
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/ConfigParser.scala -> /Users/andrea/Documents/workspace/temp/shocon/js/target/scala-2.11/classes/eu/unicredit/shocon/ConfigParser$$anonfun$1.class
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/ConfigParser.scala -> /Users/andrea/Documents/workspace/temp/shocon/js/target/scala-2.11/classes/eu/unicredit/shocon/ConfigParser$$anonfun$2.class
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/ConfigParser.scala -> /Users/andrea/Documents/workspace/temp/shocon/js/target/scala-2.11/classes/eu/unicredit/shocon/ConfigParser$$anonfun$3.class
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/ConfigParser.scala -> /Users/andrea/Documents/workspace/temp/shocon/js/target/scala-2.11/classes/eu/unicredit/shocon/ConfigParser$$anonfun$wrapped$11$1.class
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/ConfigParser.scala -> /Users/andrea/Documents/workspace/temp/shocon/js/target/scala-2.11/classes/eu/unicredit/shocon/ConfigParser$$anonfun$wrapped$11$2.class
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/ConfigParser.scala -> /Users/andrea/Documents/workspace/temp/shocon/js/target/scala-2.11/classes/eu/unicredit/shocon/ConfigParser$$anonfun$wrapped$7$1.class
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/ConfigParser.scala -> /Users/andrea/Documents/workspace/temp/shocon/js/target/scala-2.11/classes/eu/unicredit/shocon/ConfigParser.class
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/Extractors.scala -> /Users/andrea/Documents/workspace/temp/shocon/js/target/scala-2.11/classes/eu/unicredit/shocon/Extractors$$anonfun$1.class
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/Extractors.scala -> /Users/andrea/Documents/workspace/temp/shocon/js/target/scala-2.11/classes/eu/unicredit/shocon/Extractors$$anonfun$2.class
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/Extractors.scala -> /Users/andrea/Documents/workspace/temp/shocon/js/target/scala-2.11/classes/eu/unicredit/shocon/Extractors$$anonfun$3.class
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/Extractors.scala -> /Users/andrea/Documents/workspace/temp/shocon/js/target/scala-2.11/classes/eu/unicredit/shocon/Extractors$$anonfun$4.class
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/Extractors.scala -> /Users/andrea/Documents/workspace/temp/shocon/js/target/scala-2.11/classes/eu/unicredit/shocon/Extractors$$anonfun$5.class
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/Extractors.scala -> /Users/andrea/Documents/workspace/temp/shocon/js/target/scala-2.11/classes/eu/unicredit/shocon/Extractors$$anonfun$6.class
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/Extractors.scala -> /Users/andrea/Documents/workspace/temp/shocon/js/target/scala-2.11/classes/eu/unicredit/shocon/Extractors$$anonfun$MapExtractor$1$$anonfun$applyOrElse$2.class
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/Extractors.scala -> /Users/andrea/Documents/workspace/temp/shocon/js/target/scala-2.11/classes/eu/unicredit/shocon/Extractors$$anonfun$MapExtractor$1.class
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/Extractors.scala -> /Users/andrea/Documents/workspace/temp/shocon/js/target/scala-2.11/classes/eu/unicredit/shocon/Extractors$$anonfun$SeqExtractor$1$$anonfun$applyOrElse$1.class
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/Extractors.scala -> /Users/andrea/Documents/workspace/temp/shocon/js/target/scala-2.11/classes/eu/unicredit/shocon/Extractors$$anonfun$SeqExtractor$1.class
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/Extractors.scala -> /Users/andrea/Documents/workspace/temp/shocon/js/target/scala-2.11/classes/eu/unicredit/shocon/Extractors$.class
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/Extractors.scala -> /Users/andrea/Documents/workspace/temp/shocon/js/target/scala-2.11/classes/eu/unicredit/shocon/Extractors$class.class
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/Extractors.scala -> /Users/andrea/Documents/workspace/temp/shocon/js/target/scala-2.11/classes/eu/unicredit/shocon/Extractors.class
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/SHocon.scala -> /Users/andrea/Documents/workspace/temp/shocon/js/target/scala-2.11/classes/eu/unicredit/shocon/package$.class
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/SHocon.scala -> /Users/andrea/Documents/workspace/temp/shocon/js/target/scala-2.11/classes/eu/unicredit/shocon/package$Config$$anonfun$parse$1.class
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/SHocon.scala -> /Users/andrea/Documents/workspace/temp/shocon/js/target/scala-2.11/classes/eu/unicredit/shocon/package$Config$.class
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/SHocon.scala -> /Users/andrea/Documents/workspace/temp/shocon/js/target/scala-2.11/classes/eu/unicredit/shocon/package$Config$Array$.class
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/SHocon.scala -> /Users/andrea/Documents/workspace/temp/shocon/js/target/scala-2.11/classes/eu/unicredit/shocon/package$Config$Array.class
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/SHocon.scala -> /Users/andrea/Documents/workspace/temp/shocon/js/target/scala-2.11/classes/eu/unicredit/shocon/package$Config$BooleanLiteral$.class
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/SHocon.scala -> /Users/andrea/Documents/workspace/temp/shocon/js/target/scala-2.11/classes/eu/unicredit/shocon/package$Config$BooleanLiteral.class
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/SHocon.scala -> /Users/andrea/Documents/workspace/temp/shocon/js/target/scala-2.11/classes/eu/unicredit/shocon/package$Config$KeyValue$.class
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/SHocon.scala -> /Users/andrea/Documents/workspace/temp/shocon/js/target/scala-2.11/classes/eu/unicredit/shocon/package$Config$KeyValue.class
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/SHocon.scala -> /Users/andrea/Documents/workspace/temp/shocon/js/target/scala-2.11/classes/eu/unicredit/shocon/package$Config$NullLiteral$.class
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/SHocon.scala -> /Users/andrea/Documents/workspace/temp/shocon/js/target/scala-2.11/classes/eu/unicredit/shocon/package$Config$NumberLiteral$.class
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/SHocon.scala -> /Users/andrea/Documents/workspace/temp/shocon/js/target/scala-2.11/classes/eu/unicredit/shocon/package$Config$NumberLiteral.class
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/SHocon.scala -> /Users/andrea/Documents/workspace/temp/shocon/js/target/scala-2.11/classes/eu/unicredit/shocon/package$Config$Object$.class
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/SHocon.scala -> /Users/andrea/Documents/workspace/temp/shocon/js/target/scala-2.11/classes/eu/unicredit/shocon/package$Config$Object.class
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/SHocon.scala -> /Users/andrea/Documents/workspace/temp/shocon/js/target/scala-2.11/classes/eu/unicredit/shocon/package$Config$SimpleValue.class
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/SHocon.scala -> /Users/andrea/Documents/workspace/temp/shocon/js/target/scala-2.11/classes/eu/unicredit/shocon/package$Config$StringLiteral$.class
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/SHocon.scala -> /Users/andrea/Documents/workspace/temp/shocon/js/target/scala-2.11/classes/eu/unicredit/shocon/package$Config$StringLiteral.class
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/SHocon.scala -> /Users/andrea/Documents/workspace/temp/shocon/js/target/scala-2.11/classes/eu/unicredit/shocon/package$Config$Value.class
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/SHocon.scala -> /Users/andrea/Documents/workspace/temp/shocon/js/target/scala-2.11/classes/eu/unicredit/shocon/package$ConfigOps.class
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/SHocon.scala -> /Users/andrea/Documents/workspace/temp/shocon/js/target/scala-2.11/classes/eu/unicredit/shocon/package.class
+binary dependencies:
+16 items
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/Main.scala -> /Library/Java/JavaVirtualMachines/jdk1.8.0_40.jdk/Contents/Home/jre/lib/rt.jar
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/Main.scala -> /Users/andrea/.ivy2/cache/org.parboiled/parboiled_2.11/jars/parboiled_2.11-2.1.0.jar
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/Main.scala -> /Users/andrea/.ivy2/cache/org.scala-lang/scala-library/jars/scala-library-2.11.7.jar
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/com/typesafe/config/Config.scala -> /Library/Java/JavaVirtualMachines/jdk1.8.0_40.jdk/Contents/Home/jre/lib/rt.jar
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/com/typesafe/config/Config.scala -> /Users/andrea/.ivy2/cache/org.parboiled/parboiled_2.11/jars/parboiled_2.11-2.1.0.jar
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/com/typesafe/config/Config.scala -> /Users/andrea/.ivy2/cache/org.scala-lang/scala-library/jars/scala-library-2.11.7.jar
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/ConfigParser.scala -> /Library/Java/JavaVirtualMachines/jdk1.8.0_40.jdk/Contents/Home/jre/lib/rt.jar
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/ConfigParser.scala -> /Users/andrea/.ivy2/cache/com.chuusai/shapeless_2.11/bundles/shapeless_2.11-2.1.0.jar
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/ConfigParser.scala -> /Users/andrea/.ivy2/cache/org.parboiled/parboiled_2.11/jars/parboiled_2.11-2.1.0.jar
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/ConfigParser.scala -> /Users/andrea/.ivy2/cache/org.scala-lang/scala-library/jars/scala-library-2.11.7.jar
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/Extractors.scala -> /Library/Java/JavaVirtualMachines/jdk1.8.0_40.jdk/Contents/Home/jre/lib/rt.jar
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/Extractors.scala -> /Users/andrea/.ivy2/cache/org.scala-lang/scala-library/jars/scala-library-2.11.7.jar
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/SHocon.scala -> /Library/Java/JavaVirtualMachines/jdk1.8.0_40.jdk/Contents/Home/jre/lib/rt.jar
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/SHocon.scala -> /Users/andrea/.ivy2/cache/com.chuusai/shapeless_2.11/bundles/shapeless_2.11-2.1.0.jar
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/SHocon.scala -> /Users/andrea/.ivy2/cache/org.parboiled/parboiled_2.11/jars/parboiled_2.11-2.1.0.jar
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/SHocon.scala -> /Users/andrea/.ivy2/cache/org.scala-lang/scala-library/jars/scala-library-2.11.7.jar
+direct source dependencies:
+0 items
+direct external dependencies:
+0 items
+public inherited source dependencies:
+0 items
+public inherited external dependencies:
+0 items
+member reference internal dependencies:
+7 items
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/Main.scala -> /Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/SHocon.scala
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/com/typesafe/config/Config.scala -> /Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/Extractors.scala
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/com/typesafe/config/Config.scala -> /Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/SHocon.scala
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/ConfigParser.scala -> /Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/SHocon.scala
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/Extractors.scala -> /Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/SHocon.scala
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/SHocon.scala -> /Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/ConfigParser.scala
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/SHocon.scala -> /Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/Extractors.scala
+member reference external dependencies:
+0 items
+inheritance internal dependencies:
+1 items
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/SHocon.scala -> /Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/Extractors.scala
+inheritance external dependencies:
+0 items
+class names:
+52 items
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/Main.scala -> Main
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/Main.scala -> Main$
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/com/typesafe/config/Config.scala -> com.typesafe.config.Config
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/com/typesafe/config/Config.scala -> com.typesafe.config.Config$
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/com/typesafe/config/Config.scala -> com.typesafe.config.Config$$anonfun$getOrThrow$1
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/com/typesafe/config/Config.scala -> com.typesafe.config.Config$$anonfun$getOrThrow$2
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/com/typesafe/config/Config.scala -> com.typesafe.config.ConfigException
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/com/typesafe/config/Config.scala -> com.typesafe.config.ConfigException$
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/com/typesafe/config/Config.scala -> com.typesafe.config.ConfigException$Missing
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/com/typesafe/config/Config.scala -> com.typesafe.config.ConfigException$Missing$
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/com/typesafe/config/Config.scala -> com.typesafe.config.ConfigFactory
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/com/typesafe/config/Config.scala -> com.typesafe.config.ConfigFactory$
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/ConfigParser.scala -> eu.unicredit.shocon.ConfigParser
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/ConfigParser.scala -> eu.unicredit.shocon.ConfigParser$$anonfun$1
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/ConfigParser.scala -> eu.unicredit.shocon.ConfigParser$$anonfun$2
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/ConfigParser.scala -> eu.unicredit.shocon.ConfigParser$$anonfun$3
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/ConfigParser.scala -> eu.unicredit.shocon.ConfigParser$$anonfun$wrapped$11$1
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/ConfigParser.scala -> eu.unicredit.shocon.ConfigParser$$anonfun$wrapped$11$2
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/ConfigParser.scala -> eu.unicredit.shocon.ConfigParser$$anonfun$wrapped$7$1
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/Extractors.scala -> eu.unicredit.shocon.Extractors
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/Extractors.scala -> eu.unicredit.shocon.Extractors$
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/Extractors.scala -> eu.unicredit.shocon.Extractors$$anonfun$1
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/Extractors.scala -> eu.unicredit.shocon.Extractors$$anonfun$2
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/Extractors.scala -> eu.unicredit.shocon.Extractors$$anonfun$3
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/Extractors.scala -> eu.unicredit.shocon.Extractors$$anonfun$4
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/Extractors.scala -> eu.unicredit.shocon.Extractors$$anonfun$5
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/Extractors.scala -> eu.unicredit.shocon.Extractors$$anonfun$6
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/Extractors.scala -> eu.unicredit.shocon.Extractors$$anonfun$MapExtractor$1
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/Extractors.scala -> eu.unicredit.shocon.Extractors$$anonfun$MapExtractor$1$$anonfun$applyOrElse$2
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/Extractors.scala -> eu.unicredit.shocon.Extractors$$anonfun$SeqExtractor$1
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/Extractors.scala -> eu.unicredit.shocon.Extractors$$anonfun$SeqExtractor$1$$anonfun$applyOrElse$1
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/Extractors.scala -> eu.unicredit.shocon.Extractors$class
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/SHocon.scala -> eu.unicredit.shocon.package
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/SHocon.scala -> eu.unicredit.shocon.package$
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/SHocon.scala -> eu.unicredit.shocon.package$Config$
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/SHocon.scala -> eu.unicredit.shocon.package$Config$$anonfun$parse$1
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/SHocon.scala -> eu.unicredit.shocon.package$Config$Array
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/SHocon.scala -> eu.unicredit.shocon.package$Config$Array$
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/SHocon.scala -> eu.unicredit.shocon.package$Config$BooleanLiteral
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/SHocon.scala -> eu.unicredit.shocon.package$Config$BooleanLiteral$
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/SHocon.scala -> eu.unicredit.shocon.package$Config$KeyValue
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/SHocon.scala -> eu.unicredit.shocon.package$Config$KeyValue$
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/SHocon.scala -> eu.unicredit.shocon.package$Config$NullLiteral$
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/SHocon.scala -> eu.unicredit.shocon.package$Config$NumberLiteral
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/SHocon.scala -> eu.unicredit.shocon.package$Config$NumberLiteral$
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/SHocon.scala -> eu.unicredit.shocon.package$Config$Object
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/SHocon.scala -> eu.unicredit.shocon.package$Config$Object$
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/SHocon.scala -> eu.unicredit.shocon.package$Config$SimpleValue
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/SHocon.scala -> eu.unicredit.shocon.package$Config$StringLiteral
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/SHocon.scala -> eu.unicredit.shocon.package$Config$StringLiteral$
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/SHocon.scala -> eu.unicredit.shocon.package$Config$Value
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/SHocon.scala -> eu.unicredit.shocon.package$ConfigOps
+used names:
+425 items
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/Main.scala -> <init>
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/Main.scala -> AnyRef
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/Main.scala -> Array
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/Main.scala -> Config
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/Main.scala -> Main
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/Main.scala -> ParserInput
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/Main.scala -> Predef
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/Main.scala -> String
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/Main.scala -> Unit
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/Main.scala -> apply
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/Main.scala -> augmentString
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/Main.scala -> eu
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/Main.scala -> input
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/Main.scala -> org
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/Main.scala -> package
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/Main.scala -> parboiled2
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/Main.scala -> parse
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/Main.scala -> print
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/Main.scala -> scala
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/Main.scala -> shocon
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/Main.scala -> stripMargin
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/Main.scala -> trim
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/Main.scala -> unicredit
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/com/typesafe/config/Config.scala -> &&
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/com/typesafe/config/Config.scala -> <init>
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/com/typesafe/config/Config.scala -> ==
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/com/typesafe/config/Config.scala -> AbstractFunction1
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/com/typesafe/config/Config.scala -> AnyRef
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/com/typesafe/config/Config.scala -> Boolean
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/com/typesafe/config/Config.scala -> BooleanExtractor
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/com/typesafe/config/Config.scala -> Config
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/com/typesafe/config/Config.scala -> ConfigException
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/com/typesafe/config/Config.scala -> ConfigFactory
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/com/typesafe/config/Config.scala -> ConfigOps
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/com/typesafe/config/Config.scala -> Double
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/com/typesafe/config/Config.scala -> DoubleExtractor
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/com/typesafe/config/Config.scala -> Duration
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/com/typesafe/config/Config.scala -> Extractor
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/com/typesafe/config/Config.scala -> Extractors
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/com/typesafe/config/Config.scala -> Failure
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/com/typesafe/config/Config.scala -> Future
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/com/typesafe/config/Config.scala -> GenericExtractor
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/com/typesafe/config/Config.scala -> Int
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/com/typesafe/config/Config.scala -> IntExtractor
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/com/typesafe/config/Config.scala -> Missing
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/com/typesafe/config/Config.scala -> None
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/com/typesafe/config/Config.scala -> ParserInput
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/com/typesafe/config/Config.scala -> Predef
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/com/typesafe/config/Config.scala -> Product
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/com/typesafe/config/Config.scala -> Promise
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/com/typesafe/config/Config.scala -> RuntimeException
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/com/typesafe/config/Config.scala -> ScalaRunTime
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/com/typesafe/config/Config.scala -> Serializable
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/com/typesafe/config/Config.scala -> Set
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/com/typesafe/config/Config.scala -> String
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/com/typesafe/config/Config.scala -> StringExtractor
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/com/typesafe/config/Config.scala -> Success
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/com/typesafe/config/Config.scala -> T
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/com/typesafe/config/Config.scala -> Value
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/com/typesafe/config/Config.scala -> _hashCode
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/com/typesafe/config/Config.scala -> _toString
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/com/typesafe/config/Config.scala -> apply
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/com/typesafe/config/Config.scala -> as
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/com/typesafe/config/Config.scala -> asInstanceOf
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/com/typesafe/config/Config.scala -> assert
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/com/typesafe/config/Config.scala -> augmentString
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/com/typesafe/config/Config.scala -> c
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/com/typesafe/config/Config.scala -> cfg
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/com/typesafe/config/Config.scala -> com
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/com/typesafe/config/Config.scala -> concurrent
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/com/typesafe/config/Config.scala -> config
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/com/typesafe/config/Config.scala -> contains
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/com/typesafe/config/Config.scala -> duration
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/com/typesafe/config/Config.scala -> eq
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/com/typesafe/config/Config.scala -> eu
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/com/typesafe/config/Config.scala -> ev
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/com/typesafe/config/Config.scala -> fallback
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/com/typesafe/config/Config.scala -> flatMap
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/com/typesafe/config/Config.scala -> get
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/com/typesafe/config/Config.scala -> getOrElse
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/com/typesafe/config/Config.scala -> getOrThrow
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/com/typesafe/config/Config.scala -> getString
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/com/typesafe/config/Config.scala -> isDefined
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/com/typesafe/config/Config.scala -> isInstanceOf
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/com/typesafe/config/Config.scala -> millis
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/com/typesafe/config/Config.scala -> nanos
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/com/typesafe/config/Config.scala -> package
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/com/typesafe/config/Config.scala -> parboiled2
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/com/typesafe/config/Config.scala -> parts
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/com/typesafe/config/Config.scala -> path
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/com/typesafe/config/Config.scala -> refArrayOps
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/com/typesafe/config/Config.scala -> res
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/com/typesafe/config/Config.scala -> runtime
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/com/typesafe/config/Config.scala -> s
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/com/typesafe/config/Config.scala -> scala
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/com/typesafe/config/Config.scala -> shocon
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/com/typesafe/config/Config.scala -> size
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/com/typesafe/config/Config.scala -> split
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/com/typesafe/config/Config.scala -> success
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/com/typesafe/config/Config.scala -> toInt
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/com/typesafe/config/Config.scala -> toLong
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/com/typesafe/config/Config.scala -> toString
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/com/typesafe/config/Config.scala -> typedProductIterator
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/com/typesafe/config/Config.scala -> typesafe
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/com/typesafe/config/Config.scala -> unicredit
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/com/typesafe/config/Config.scala -> util
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/com/typesafe/config/Config.scala -> ||
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/ConfigParser.scala -> !=
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/ConfigParser.scala -> $conforms
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/ConfigParser.scala -> &&
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/ConfigParser.scala -> +
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/ConfigParser.scala -> ++
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/ConfigParser.scala -> +=
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/ConfigParser.scala -> -
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/ConfigParser.scala -> ::
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/ConfigParser.scala -> <init>
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/ConfigParser.scala -> ==
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/ConfigParser.scala -> ANY
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/ConfigParser.scala -> Action
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/ConfigParser.scala -> ActionOps
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/ConfigParser.scala -> Alpha
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/ConfigParser.scala -> Any
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/ConfigParser.scala -> ApplyMagnet
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/ConfigParser.scala -> Array
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/ConfigParser.scala -> ArrayBody
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/ConfigParser.scala -> Aux
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/ConfigParser.scala -> Boolean
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/ConfigParser.scala -> Capture
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/ConfigParser.scala -> CharPredicate
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/ConfigParser.scala -> Comment
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/ConfigParser.scala -> Config
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/ConfigParser.scala -> ConfigElement
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/ConfigParser.scala -> ConfigParser
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/ConfigParser.scala -> Digit
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/ConfigParser.scala -> EOI
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/ConfigParser.scala -> FCapture
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/ConfigParser.scala -> FirstOf
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/ConfigParser.scala -> IdentifierChar
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/ConfigParser.scala -> Join
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/ConfigParser.scala -> Key
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/ConfigParser.scala -> KeyValue
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/ConfigParser.scala -> Lifter
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/ConfigParser.scala -> Mark
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/ConfigParser.scala -> Nil
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/ConfigParser.scala -> NotPredicate
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/ConfigParser.scala -> NumberLiteral
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/ConfigParser.scala -> Object
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/ConfigParser.scala -> ObjectBody
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/ConfigParser.scala -> OneOrMore
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/ConfigParser.scala -> Optional
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/ConfigParser.scala -> Parser
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/ConfigParser.scala -> ParserInput
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/ConfigParser.scala -> Predef
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/ConfigParser.scala -> Prepend
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/ConfigParser.scala -> Quote
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/ConfigParser.scala -> QuotedString
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/ConfigParser.scala -> ReversePrepend
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/ConfigParser.scala -> Rule
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/ConfigParser.scala -> Rule0
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/ConfigParser.scala -> Rule1
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/ConfigParser.scala -> RuleCall
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/ConfigParser.scala -> RuleTrace
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/ConfigParser.scala -> Separator
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/ConfigParser.scala -> Seq
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/ConfigParser.scala -> Sequence
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/ConfigParser.scala -> SimpleValue
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/ConfigParser.scala -> StartTracingException
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/ConfigParser.scala -> String
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/ConfigParser.scala -> StringLiteral
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/ConfigParser.scala -> TailSwitch
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/ConfigParser.scala -> TracingBubbleException
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/ConfigParser.scala -> Try
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/ConfigParser.scala -> UnquotedString
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/ConfigParser.scala -> Value
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/ConfigParser.scala -> VectorBuilder
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/ConfigParser.scala -> WhiteSpaceChar
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/ConfigParser.scala -> ZeroOrMore
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/ConfigParser.scala -> __advance
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/ConfigParser.scala -> __bubbleUp
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/ConfigParser.scala -> __enterNotPredicate
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/ConfigParser.scala -> __exitNotPredicate
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/ConfigParser.scala -> __inErrorAnalysis
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/ConfigParser.scala -> __matchAnyOf
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/ConfigParser.scala -> __matchString
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/ConfigParser.scala -> __matchStringWrapped
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/ConfigParser.scala -> __push
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/ConfigParser.scala -> __registerMismatch
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/ConfigParser.scala -> __restoreState
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/ConfigParser.scala -> __saveState
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/ConfigParser.scala -> __updateMaxCursor
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/ConfigParser.scala -> anyOf
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/ConfigParser.scala -> apply
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/ConfigParser.scala -> asInstanceOf
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/ConfigParser.scala -> augmentString
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/ConfigParser.scala -> bubbleUp
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/ConfigParser.scala -> builder
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/ConfigParser.scala -> canBuildFrom
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/ConfigParser.scala -> capture
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/ConfigParser.scala -> ch
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/ConfigParser.scala -> collection
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/ConfigParser.scala -> cursor
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/ConfigParser.scala -> cursorChar
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/ConfigParser.scala -> e
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/ConfigParser.scala -> eu
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/ConfigParser.scala -> firstMark
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/ConfigParser.scala -> forAny
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/ConfigParser.scala -> forRule0
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/ConfigParser.scala -> forRule1
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/ConfigParser.scala -> fromString
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/ConfigParser.scala -> getOrElse
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/ConfigParser.scala -> hlist
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/ConfigParser.scala -> hlistReversePrepend
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/ConfigParser.scala -> hnilPrepend1
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/ConfigParser.scala -> hnilReversePrepend1
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/ConfigParser.scala -> immutable
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/ConfigParser.scala -> input
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/ConfigParser.scala -> iter1
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/ConfigParser.scala -> iter2
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/ConfigParser.scala -> join
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/ConfigParser.scala -> key
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/ConfigParser.scala -> kv
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/ConfigParser.scala -> l
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/ConfigParser.scala -> m
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/ConfigParser.scala -> map
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/ConfigParser.scala -> mark
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/ConfigParser.scala -> matchEnd
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/ConfigParser.scala -> matched
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/ConfigParser.scala -> n
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/ConfigParser.scala -> ne
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/ConfigParser.scala -> oneOrMore
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/ConfigParser.scala -> ops1
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/ConfigParser.scala -> ops2
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/ConfigParser.scala -> optional
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/ConfigParser.scala -> org
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/ConfigParser.scala -> package
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/ConfigParser.scala -> parboiled2
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/ConfigParser.scala -> pop
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/ConfigParser.scala -> predicate
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/ConfigParser.scala -> prepend
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/ConfigParser.scala -> push
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/ConfigParser.scala -> rec
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/ConfigParser.scala -> result
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/ConfigParser.scala -> rule
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/ConfigParser.scala -> rule2ActionOperator
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/ConfigParser.scala -> rule2WithSeparatedBy
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/ConfigParser.scala -> s
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/ConfigParser.scala -> saved
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/ConfigParser.scala -> scala
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/ConfigParser.scala -> separatedBy
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/ConfigParser.scala -> shocon
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/ConfigParser.scala -> sliceString
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/ConfigParser.scala -> start
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/ConfigParser.scala -> str
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/ConfigParser.scala -> support
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/ConfigParser.scala -> tailSwitch
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/ConfigParser.scala -> terminate
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/ConfigParser.scala -> terminate1
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/ConfigParser.scala -> terminate2
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/ConfigParser.scala -> toBoolean
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/ConfigParser.scala -> toMap
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/ConfigParser.scala -> trim
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/ConfigParser.scala -> unary_!
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/ConfigParser.scala -> unary_-
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/ConfigParser.scala -> unicredit
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/ConfigParser.scala -> util
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/ConfigParser.scala -> value
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/ConfigParser.scala -> value0
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/ConfigParser.scala -> valueStack
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/ConfigParser.scala -> wrapped
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/ConfigParser.scala -> ws
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/ConfigParser.scala -> wsn
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/ConfigParser.scala -> wsp_
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/ConfigParser.scala -> wspn_
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/ConfigParser.scala -> x
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/ConfigParser.scala -> y
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/ConfigParser.scala -> zeroOrMore
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/ConfigParser.scala -> |
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/ConfigParser.scala -> ||
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/ConfigParser.scala -> ~
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/ConfigParser.scala -> ~>
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/Extractors.scala -> <init>
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/Extractors.scala -> A1
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/Extractors.scala -> AnyRef
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/Extractors.scala -> B1
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/Extractors.scala -> Boolean
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/Extractors.scala -> BooleanExtractor
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/Extractors.scala -> Config
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/Extractors.scala -> Double
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/Extractors.scala -> DoubleExtractor
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/Extractors.scala -> Extractor
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/Extractors.scala -> Extractors
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/Extractors.scala -> Function1
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/Extractors.scala -> GenericExtractor
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/Extractors.scala -> Int
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/Extractors.scala -> IntExtractor
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/Extractors.scala -> Long
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/Extractors.scala -> LongExtractor
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/Extractors.scala -> Map
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/Extractors.scala -> PartialFunction
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/Extractors.scala -> Predef
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/Extractors.scala -> Seq
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/Extractors.scala -> String
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/Extractors.scala -> StringExtractor
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/Extractors.scala -> T
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/Extractors.scala -> Value
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/Extractors.scala -> _1
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/Extractors.scala -> _2
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/Extractors.scala -> apply
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/Extractors.scala -> asInstanceOf
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/Extractors.scala -> augmentString
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/Extractors.scala -> canBuildFrom
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/Extractors.scala -> collection
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/Extractors.scala -> elements
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/Extractors.scala -> eu
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/Extractors.scala -> ex
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/Extractors.scala -> fields
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/Extractors.scala -> immutable
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/Extractors.scala -> isInstanceOf
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/Extractors.scala -> k
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/Extractors.scala -> keyValues
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/Extractors.scala -> map
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/Extractors.scala -> ne
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/Extractors.scala -> package
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/Extractors.scala -> scala
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/Extractors.scala -> seq
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/Extractors.scala -> shocon
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/Extractors.scala -> toDouble
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/Extractors.scala -> toInt
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/Extractors.scala -> toLong
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/Extractors.scala -> unchecked
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/Extractors.scala -> unicredit
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/Extractors.scala -> v
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/Extractors.scala -> value
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/SHocon.scala -> &&
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/SHocon.scala -> <init>
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/SHocon.scala -> ==
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/SHocon.scala -> AbstractFunction1
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/SHocon.scala -> AbstractFunction2
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/SHocon.scala -> AnyRef
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/SHocon.scala -> Array
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/SHocon.scala -> Boolean
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/SHocon.scala -> BooleanLiteral
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/SHocon.scala -> Codec
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/SHocon.scala -> Config
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/SHocon.scala -> ConfigOps
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/SHocon.scala -> ConfigParser
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/SHocon.scala -> DeliveryScheme
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/SHocon.scala -> Extractor
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/SHocon.scala -> Extractors
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/SHocon.scala -> InputLine
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/SHocon.scala -> Key
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/SHocon.scala -> KeyValue
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/SHocon.scala -> Map
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/SHocon.scala -> None
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/SHocon.scala -> NullLiteral
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/SHocon.scala -> NumberLiteral
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/SHocon.scala -> Object
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/SHocon.scala -> Option
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/SHocon.scala -> Parser
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/SHocon.scala -> ParserInput
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/SHocon.scala -> Predef
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/SHocon.scala -> Product
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/SHocon.scala -> Rule
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/SHocon.scala -> ScalaRunTime
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/SHocon.scala -> Seq
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/SHocon.scala -> Serializable
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/SHocon.scala -> SimpleValue
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/SHocon.scala -> Source
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/SHocon.scala -> Statics
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/SHocon.scala -> String
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/SHocon.scala -> StringLiteral
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/SHocon.scala -> T
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/SHocon.scala -> Try
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/SHocon.scala -> Unpack
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/SHocon.scala -> Value
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/SHocon.scala -> __run
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/SHocon.scala -> _hashCode
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/SHocon.scala -> _toString
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/SHocon.scala -> apply
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/SHocon.scala -> applyOrElse
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/SHocon.scala -> asInstanceOf
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/SHocon.scala -> augmentString
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/SHocon.scala -> contains
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/SHocon.scala -> elements
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/SHocon.scala -> eq
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/SHocon.scala -> eu
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/SHocon.scala -> ev
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/SHocon.scala -> fallbackSystemCodec
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/SHocon.scala -> fields
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/SHocon.scala -> finalizeHash
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/SHocon.scala -> fromFile
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/SHocon.scala -> get
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/SHocon.scala -> head
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/SHocon.scala -> input
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/SHocon.scala -> io
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/SHocon.scala -> isEmpty
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/SHocon.scala -> isInstanceOf
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/SHocon.scala -> key
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/SHocon.scala -> keys
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/SHocon.scala -> mix
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/SHocon.scala -> mkString
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/SHocon.scala -> org
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/SHocon.scala -> p
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/SHocon.scala -> package
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/SHocon.scala -> parboiled2
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/SHocon.scala -> parse
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/SHocon.scala -> path
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/SHocon.scala -> run
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/SHocon.scala -> runtime
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/SHocon.scala -> scala
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/SHocon.scala -> shocon
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/SHocon.scala -> single
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/SHocon.scala -> split
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/SHocon.scala -> support
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/SHocon.scala -> tail
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/SHocon.scala -> toString
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/SHocon.scala -> tree
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/SHocon.scala -> typedProductIterator
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/SHocon.scala -> unicredit
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/SHocon.scala -> util
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/SHocon.scala -> v
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/SHocon.scala -> value
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/SHocon.scala -> visit
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/SHocon.scala -> wrapRefArray
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/SHocon.scala -> ||
+product stamps:
+52 items
+/Users/andrea/Documents/workspace/temp/shocon/js/target/scala-2.11/classes/Main$.class -> lastModified(1439217323000)
+/Users/andrea/Documents/workspace/temp/shocon/js/target/scala-2.11/classes/Main.class -> lastModified(1439217323000)
+/Users/andrea/Documents/workspace/temp/shocon/js/target/scala-2.11/classes/com/typesafe/config/Config$$anonfun$getOrThrow$1.class -> lastModified(1439217323000)
+/Users/andrea/Documents/workspace/temp/shocon/js/target/scala-2.11/classes/com/typesafe/config/Config$$anonfun$getOrThrow$2.class -> lastModified(1439217323000)
+/Users/andrea/Documents/workspace/temp/shocon/js/target/scala-2.11/classes/com/typesafe/config/Config$.class -> lastModified(1439217323000)
+/Users/andrea/Documents/workspace/temp/shocon/js/target/scala-2.11/classes/com/typesafe/config/Config.class -> lastModified(1439217323000)
+/Users/andrea/Documents/workspace/temp/shocon/js/target/scala-2.11/classes/com/typesafe/config/ConfigException$.class -> lastModified(1439217323000)
+/Users/andrea/Documents/workspace/temp/shocon/js/target/scala-2.11/classes/com/typesafe/config/ConfigException$Missing$.class -> lastModified(1439217323000)
+/Users/andrea/Documents/workspace/temp/shocon/js/target/scala-2.11/classes/com/typesafe/config/ConfigException$Missing.class -> lastModified(1439217323000)
+/Users/andrea/Documents/workspace/temp/shocon/js/target/scala-2.11/classes/com/typesafe/config/ConfigException.class -> lastModified(1439217323000)
+/Users/andrea/Documents/workspace/temp/shocon/js/target/scala-2.11/classes/com/typesafe/config/ConfigFactory$.class -> lastModified(1439217323000)
+/Users/andrea/Documents/workspace/temp/shocon/js/target/scala-2.11/classes/com/typesafe/config/ConfigFactory.class -> lastModified(1439217323000)
+/Users/andrea/Documents/workspace/temp/shocon/js/target/scala-2.11/classes/eu/unicredit/shocon/ConfigParser$$anonfun$1.class -> lastModified(1439217323000)
+/Users/andrea/Documents/workspace/temp/shocon/js/target/scala-2.11/classes/eu/unicredit/shocon/ConfigParser$$anonfun$2.class -> lastModified(1439217323000)
+/Users/andrea/Documents/workspace/temp/shocon/js/target/scala-2.11/classes/eu/unicredit/shocon/ConfigParser$$anonfun$3.class -> lastModified(1439217323000)
+/Users/andrea/Documents/workspace/temp/shocon/js/target/scala-2.11/classes/eu/unicredit/shocon/ConfigParser$$anonfun$wrapped$11$1.class -> lastModified(1439217323000)
+/Users/andrea/Documents/workspace/temp/shocon/js/target/scala-2.11/classes/eu/unicredit/shocon/ConfigParser$$anonfun$wrapped$11$2.class -> lastModified(1439217323000)
+/Users/andrea/Documents/workspace/temp/shocon/js/target/scala-2.11/classes/eu/unicredit/shocon/ConfigParser$$anonfun$wrapped$7$1.class -> lastModified(1439217323000)
+/Users/andrea/Documents/workspace/temp/shocon/js/target/scala-2.11/classes/eu/unicredit/shocon/ConfigParser.class -> lastModified(1439217323000)
+/Users/andrea/Documents/workspace/temp/shocon/js/target/scala-2.11/classes/eu/unicredit/shocon/Extractors$$anonfun$1.class -> lastModified(1439217323000)
+/Users/andrea/Documents/workspace/temp/shocon/js/target/scala-2.11/classes/eu/unicredit/shocon/Extractors$$anonfun$2.class -> lastModified(1439217323000)
+/Users/andrea/Documents/workspace/temp/shocon/js/target/scala-2.11/classes/eu/unicredit/shocon/Extractors$$anonfun$3.class -> lastModified(1439217323000)
+/Users/andrea/Documents/workspace/temp/shocon/js/target/scala-2.11/classes/eu/unicredit/shocon/Extractors$$anonfun$4.class -> lastModified(1439217323000)
+/Users/andrea/Documents/workspace/temp/shocon/js/target/scala-2.11/classes/eu/unicredit/shocon/Extractors$$anonfun$5.class -> lastModified(1439217323000)
+/Users/andrea/Documents/workspace/temp/shocon/js/target/scala-2.11/classes/eu/unicredit/shocon/Extractors$$anonfun$6.class -> lastModified(1439217323000)
+/Users/andrea/Documents/workspace/temp/shocon/js/target/scala-2.11/classes/eu/unicredit/shocon/Extractors$$anonfun$MapExtractor$1$$anonfun$applyOrElse$2.class -> lastModified(1439217323000)
+/Users/andrea/Documents/workspace/temp/shocon/js/target/scala-2.11/classes/eu/unicredit/shocon/Extractors$$anonfun$MapExtractor$1.class -> lastModified(1439217323000)
+/Users/andrea/Documents/workspace/temp/shocon/js/target/scala-2.11/classes/eu/unicredit/shocon/Extractors$$anonfun$SeqExtractor$1$$anonfun$applyOrElse$1.class -> lastModified(1439217323000)
+/Users/andrea/Documents/workspace/temp/shocon/js/target/scala-2.11/classes/eu/unicredit/shocon/Extractors$$anonfun$SeqExtractor$1.class -> lastModified(1439217323000)
+/Users/andrea/Documents/workspace/temp/shocon/js/target/scala-2.11/classes/eu/unicredit/shocon/Extractors$.class -> lastModified(1439217323000)
+/Users/andrea/Documents/workspace/temp/shocon/js/target/scala-2.11/classes/eu/unicredit/shocon/Extractors$class.class -> lastModified(1439217323000)
+/Users/andrea/Documents/workspace/temp/shocon/js/target/scala-2.11/classes/eu/unicredit/shocon/Extractors.class -> lastModified(1439217323000)
+/Users/andrea/Documents/workspace/temp/shocon/js/target/scala-2.11/classes/eu/unicredit/shocon/package$.class -> lastModified(1439217323000)
+/Users/andrea/Documents/workspace/temp/shocon/js/target/scala-2.11/classes/eu/unicredit/shocon/package$Config$$anonfun$parse$1.class -> lastModified(1439217323000)
+/Users/andrea/Documents/workspace/temp/shocon/js/target/scala-2.11/classes/eu/unicredit/shocon/package$Config$.class -> lastModified(1439217323000)
+/Users/andrea/Documents/workspace/temp/shocon/js/target/scala-2.11/classes/eu/unicredit/shocon/package$Config$Array$.class -> lastModified(1439217323000)
+/Users/andrea/Documents/workspace/temp/shocon/js/target/scala-2.11/classes/eu/unicredit/shocon/package$Config$Array.class -> lastModified(1439217323000)
+/Users/andrea/Documents/workspace/temp/shocon/js/target/scala-2.11/classes/eu/unicredit/shocon/package$Config$BooleanLiteral$.class -> lastModified(1439217323000)
+/Users/andrea/Documents/workspace/temp/shocon/js/target/scala-2.11/classes/eu/unicredit/shocon/package$Config$BooleanLiteral.class -> lastModified(1439217323000)
+/Users/andrea/Documents/workspace/temp/shocon/js/target/scala-2.11/classes/eu/unicredit/shocon/package$Config$KeyValue$.class -> lastModified(1439217323000)
+/Users/andrea/Documents/workspace/temp/shocon/js/target/scala-2.11/classes/eu/unicredit/shocon/package$Config$KeyValue.class -> lastModified(1439217323000)
+/Users/andrea/Documents/workspace/temp/shocon/js/target/scala-2.11/classes/eu/unicredit/shocon/package$Config$NullLiteral$.class -> lastModified(1439217323000)
+/Users/andrea/Documents/workspace/temp/shocon/js/target/scala-2.11/classes/eu/unicredit/shocon/package$Config$NumberLiteral$.class -> lastModified(1439217323000)
+/Users/andrea/Documents/workspace/temp/shocon/js/target/scala-2.11/classes/eu/unicredit/shocon/package$Config$NumberLiteral.class -> lastModified(1439217323000)
+/Users/andrea/Documents/workspace/temp/shocon/js/target/scala-2.11/classes/eu/unicredit/shocon/package$Config$Object$.class -> lastModified(1439217323000)
+/Users/andrea/Documents/workspace/temp/shocon/js/target/scala-2.11/classes/eu/unicredit/shocon/package$Config$Object.class -> lastModified(1439217323000)
+/Users/andrea/Documents/workspace/temp/shocon/js/target/scala-2.11/classes/eu/unicredit/shocon/package$Config$SimpleValue.class -> lastModified(1439217323000)
+/Users/andrea/Documents/workspace/temp/shocon/js/target/scala-2.11/classes/eu/unicredit/shocon/package$Config$StringLiteral$.class -> lastModified(1439217323000)
+/Users/andrea/Documents/workspace/temp/shocon/js/target/scala-2.11/classes/eu/unicredit/shocon/package$Config$StringLiteral.class -> lastModified(1439217323000)
+/Users/andrea/Documents/workspace/temp/shocon/js/target/scala-2.11/classes/eu/unicredit/shocon/package$Config$Value.class -> lastModified(1439217323000)
+/Users/andrea/Documents/workspace/temp/shocon/js/target/scala-2.11/classes/eu/unicredit/shocon/package$ConfigOps.class -> lastModified(1439217323000)
+/Users/andrea/Documents/workspace/temp/shocon/js/target/scala-2.11/classes/eu/unicredit/shocon/package.class -> lastModified(1439217323000)
+source stamps:
+5 items
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/Main.scala -> hash(d385f966c1de9692d4f3952bca566bffcec80ff4)
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/com/typesafe/config/Config.scala -> hash(1a638dfd5c9414f4ed20c59b8e1e415c5ae0f1ac)
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/ConfigParser.scala -> hash(ab876f94a3da7fe4e9afb9bee18281665a65867a)
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/Extractors.scala -> hash(b4e5f5fac8c0173f6b3281feb35b53fcd28f803a)
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/SHocon.scala -> hash(e993d00d34f47dd4bef01f619a90c23d1b5045d2)
+binary stamps:
+4 items
+/Library/Java/JavaVirtualMachines/jdk1.8.0_40.jdk/Contents/Home/jre/lib/rt.jar -> lastModified(1426248356000)
+/Users/andrea/.ivy2/cache/com.chuusai/shapeless_2.11/bundles/shapeless_2.11-2.1.0.jar -> lastModified(1423525477000)
+/Users/andrea/.ivy2/cache/org.parboiled/parboiled_2.11/jars/parboiled_2.11-2.1.0.jar -> lastModified(1424437940000)
+/Users/andrea/.ivy2/cache/org.scala-lang/scala-library/jars/scala-library-2.11.7.jar -> lastModified(1435004218000)
+class names:
+4 items
+/Library/Java/JavaVirtualMachines/jdk1.8.0_40.jdk/Contents/Home/jre/lib/rt.jar -> java.lang.Object
+/Users/andrea/.ivy2/cache/com.chuusai/shapeless_2.11/bundles/shapeless_2.11-2.1.0.jar -> shapeless.$colon$colon
+/Users/andrea/.ivy2/cache/org.parboiled/parboiled_2.11/jars/parboiled_2.11-2.1.0.jar -> org.parboiled2.support.Unpack$
+/Users/andrea/.ivy2/cache/org.scala-lang/scala-library/jars/scala-library-2.11.7.jar -> scala.Serializable
+internal apis:
+5 items
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/Main.scala -> 
+rO0ABXNyABB4c2J0aS5hcGkuU291cmNlFlpwRASfbtoCAAZJAAdhcGlIYXNoWgAIaGFzTWFjcm9MABhfaW50ZXJuYWxPbmx5X25hbWVIYXNoZXN0ACRMeHNidGkvYXBpL19pbnRlcm5hbE9ubHlfTmFtZUhhc2hlcztMAANhcGl0ABVMeHNidGkvYXBpL1NvdXJjZUFQSTtMAAtjb21waWxhdGlvbnQAF0x4c2J0aS9hcGkvQ29tcGlsYXRpb247WwAEaGFzaHQAAltCeHBftFheAHNyACJ4c2J0aS5hcGkuX2ludGVybmFsT25seV9OYW1lSGFzaGVzVNq+mfrU7EwCAAJbAA9pbXBsaWNpdE1lbWJlcnN0ACNbTHhzYnRpL2FwaS9faW50ZXJuYWxPbmx5X05hbWVIYXNoO1sADnJlZ3VsYXJNZW1iZXJzcQB+AAd4cHVyACNbTHhzYnRpLmFwaS5faW50ZXJuYWxPbmx5X05hbWVIYXNoO0lagLbdlov0AgAAeHAAAAAAdXEAfgAJAAAAFXNyACB4c2J0aS5hcGkuX2ludGVybmFsT25seV9OYW1lSGFzaFsO9SJ2OFfPAgACSQAEaGFzaEwABG5hbWV0ABJMamF2YS9sYW5nL1N0cmluZzt4cPbjxQZ0AAZub3RpZnlzcQB+AAxOTUcbdAAEd2FpdHNxAH4ADGBKIyZ0AA0kYXNJbnN0YW5jZU9mc3EAfgAMogLr93QABmVxdWFsc3NxAH4ADIt3LQh0AAxhc0luc3RhbmNlT2ZzcQB+AAxIJtIodAAMc3luY2hyb25pemVkc3EAfgAMEvrNp3QADSRpc0luc3RhbmNlT2ZzcQB+AAwgch6MdAAEbWFpbnNxAH4ADF0q7PN0AAlub3RpZnlBbGxzcQB+AAyoh3JZdAAMaXNJbnN0YW5jZU9mc3EAfgAMRUAxYXQAAj09c3EAfgAMMdillnQABWNsb25lc3EAfgAMC2lUi3QABE1haW5zcQB+AAwp2qJXdAAIdG9TdHJpbmdzcQB+AAwo3axNdAACIT1zcQB+AAz2jva6dAAIZ2V0Q2xhc3NzcQB+AAzTS0awdAACbmVzcQB+AAz/0aa8dAACZXFzcQB+AAx1h7yCdAACIyNzcQB+AAwM636fdAAIZmluYWxpemVzcQB+AAzU8EpHdAAIaGFzaENvZGVzcgATeHNidGkuYXBpLlNvdXJjZUFQSblep/kpIzikAgACWwALZGVmaW5pdGlvbnN0ABdbTHhzYnRpL2FwaS9EZWZpbml0aW9uO1sACHBhY2thZ2VzdAAUW0x4c2J0aS9hcGkvUGFja2FnZTt4cHVyABdbTHhzYnRpLmFwaS5EZWZpbml0aW9uO4jJXOe0414OAgAAeHAAAAABc3IAE3hzYnRpLmFwaS5DbGFzc0xpa2WDNByh37CXbAIABEwADmRlZmluaXRpb25UeXBldAAaTHhzYnRpL2FwaS9EZWZpbml0aW9uVHlwZTtbABBzYXZlZEFubm90YXRpb25zdAATW0xqYXZhL2xhbmcvU3RyaW5nO0wACHNlbGZUeXBldAAQTHhzYnRpL2FwaS9MYXp5O0wACXN0cnVjdHVyZXEAfgBBeHIAIXhzYnRpLmFwaS5QYXJhbWV0ZXJpemVkRGVmaW5pdGlvbvkRbrHVUDziAgABWwAOdHlwZVBhcmFtZXRlcnN0ABpbTHhzYnRpL2FwaS9UeXBlUGFyYW1ldGVyO3hyABR4c2J0aS5hcGkuRGVmaW5pdGlvbocqG+hxQuNGAgAETAAGYWNjZXNzdAASTHhzYnRpL2FwaS9BY2Nlc3M7WwALYW5ub3RhdGlvbnN0ABdbTHhzYnRpL2FwaS9Bbm5vdGF0aW9uO0wACW1vZGlmaWVyc3QAFUx4c2J0aS9hcGkvTW9kaWZpZXJzO0wABG5hbWVxAH4ADXhwc3IAEHhzYnRpLmFwaS5QdWJsaWO6WD2ubC1gQgIAAHhyABB4c2J0aS5hcGkuQWNjZXNz3WKa+B1jMUgCAAB4cHVyABdbTHhzYnRpLmFwaS5Bbm5vdGF0aW9uO+uX6xkQ9o1IAgAAeHAAAAAAc3IAE3hzYnRpLmFwaS5Nb2RpZmllcnPHERMhaZzcJAIAAUIABWZsYWdzeHAAcQB+ACd1cgAaW0x4c2J0aS5hcGkuVHlwZVBhcmFtZXRlcjvZbSYPKJ3ytgIAAHhwAAAAAH5yABh4c2J0aS5hcGkuRGVmaW5pdGlvblR5cGUAAAAAAAAAABIAAHhyAA5qYXZhLmxhbmcuRW51bQAAAAAAAAAAEgAAeHB0AAZNb2R1bGV1cgATW0xqYXZhLmxhbmcuU3RyaW5nO63SVufpHXtHAgAAeHAAAAAAc3IAE3hzYnRpLlNhZmVMYXp5JEltcGxQAi6Tl5dAPwIAA1oACGJpdG1hcCQwTAACX3R0ABJMamF2YS9sYW5nL09iamVjdDtMAARldmFsdAARTHNjYWxhL0Z1bmN0aW9uMDt4cgAWeHNidGkuYXBpLkFic3RyYWN0TGF6edN3tQFfu+egAgAAeHAAcHNyACB4c2J0aS5TYWZlTGF6eSQkYW5vbmZ1biRzdHJpY3QkMQAAAAAAAAAAAgABTAAHdmFsdWUkMXEAfgBZeHBzcgATeHNidGkuYXBpLkVtcHR5VHlwZbz9nkZJO4kkAgAAeHIAFHhzYnRpLmFwaS5TaW1wbGVUeXBlcnhiiCEjv0ACAAB4cgAOeHNidGkuYXBpLlR5cGU/atkhFkmqygIAAHhwc3EAfgBYAHBzcQB+AF1zcgATeHNidGkuYXBpLlN0cnVjdHVyZamq+YCTb9gAAgADTAAIZGVjbGFyZWRxAH4AQUwACWluaGVyaXRlZHEAfgBBTAAHcGFyZW50c3EAfgBBeHEAfgBhc3EAfgBYAHBzcQB+AF11cQB+ADwAAAABc3IADXhzYnRpLmFwaS5EZWZSvp/ifLQ2aQIAAkwACnJldHVyblR5cGV0ABBMeHNidGkvYXBpL1R5cGU7WwAPdmFsdWVQYXJhbWV0ZXJzdAAaW0x4c2J0aS9hcGkvUGFyYW1ldGVyTGlzdDt4cQB+AEJxAH4AS3VxAH4ATAAAAABzcQB+AE4AcQB+AB11cQB+AFAAAAAAc3IAFHhzYnRpLmFwaS5Qcm9qZWN0aW9u89KNVOlFpC0CAAJMAAJpZHEAfgANTAAGcHJlZml4dAAWTHhzYnRpL2FwaS9TaW1wbGVUeXBlO3hxAH4AYHQABFVuaXRzcgATeHNidGkuYXBpLlNpbmdsZXRvbvynX/jPVuRGAgABTAAEcGF0aHQAEEx4c2J0aS9hcGkvUGF0aDt4cQB+AGBzcgAOeHNidGkuYXBpLlBhdGibPVwIzqUnhAIAAVsACmNvbXBvbmVudHN0ABpbTHhzYnRpL2FwaS9QYXRoQ29tcG9uZW50O3hwdXIAGltMeHNidGkuYXBpLlBhdGhDb21wb25lbnQ7Q9oJdC1nFnQCAAB4cAAAAAJzcgAMeHNidGkuYXBpLklkmDJsizdTxEACAAFMAAJpZHEAfgANeHIAF3hzYnRpLmFwaS5QYXRoQ29tcG9uZW50X5oiWy6Gn7wCAAB4cHQABXNjYWxhc3IADnhzYnRpLmFwaS5UaGlz2wntpsxaQFwCAAB4cQB+AH51cgAaW0x4c2J0aS5hcGkuUGFyYW1ldGVyTGlzdDv10zod8rNw7gIAAHhwAAAAAXNyABd4c2J0aS5hcGkuUGFyYW1ldGVyTGlzdNbFvBxkSXTjAgACWgAKaXNJbXBsaWNpdFsACnBhcmFtZXRlcnN0ABxbTHhzYnRpL2FwaS9NZXRob2RQYXJhbWV0ZXI7eHAAdXIAHFtMeHNidGkuYXBpLk1ldGhvZFBhcmFtZXRlcjvPuMVdpd21bQIAAHhwAAAAAXNyABl4c2J0aS5hcGkuTWV0aG9kUGFyYW1ldGVyH0WuF9NJsOoCAARaAApoYXNEZWZhdWx0TAAIbW9kaWZpZXJ0AB1MeHNidGkvYXBpL1BhcmFtZXRlck1vZGlmaWVyO0wABG5hbWVxAH4ADUwAA3RwZXEAfgBreHAAfnIAG3hzYnRpLmFwaS5QYXJhbWV0ZXJNb2RpZmllcgAAAAAAAAAAEgAAeHEAfgBTdAAFUGxhaW50AARhcmdzc3IAF3hzYnRpLmFwaS5QYXJhbWV0ZXJpemVkFmzuaQPJu38CAAJMAAhiYXNlVHlwZXEAfgByWwANdHlwZUFyZ3VtZW50c3QAEVtMeHNidGkvYXBpL1R5cGU7eHEAfgBgc3EAfgBxdAAFQXJyYXlxAH4Ad3VyABFbTHhzYnRpLmFwaS5UeXBlO3T/pVp7+elBAgAAeHAAAAABc3EAfgBxdAAGU3RyaW5nc3EAfgB1c3EAfgB4dXEAfgB7AAAAA3NxAH4AfXQABGphdmFzcQB+AH10AARsYW5ncQB+AIJzcQB+AFgAcHNxAH4AXXVxAH4APAAAAABzcQB+AFgAcHNxAH4AXXVxAH4AlgAAAAJzcQB+AHF0AAZPYmplY3RxAH4AmnNxAH4AcXQAA0FueXEAfgB3dXIAFFtMeHNidGkuYXBpLlBhY2thZ2U7WxMZN3CnJ6ECAAB4cAAAAABzcgAVeHNidGkuYXBpLkNvbXBpbGF0aW9u7frgw2rooEICAAJKAAlzdGFydFRpbWVbAAdvdXRwdXRzdAAaW0x4c2J0aS9hcGkvT3V0cHV0U2V0dGluZzt4cAAAAU8YCWLtdXIAGltMeHNidGkuYXBpLk91dHB1dFNldHRpbmc7f2rC86eHpUICAAB4cAAAAAFzcgAXeHNidGkuYXBpLk91dHB1dFNldHRpbmd62ZpHdPsdewIAAkwAD291dHB1dERpcmVjdG9yeXEAfgANTAAPc291cmNlRGlyZWN0b3J5cQB+AA14cHQASi9Vc2Vycy9hbmRyZWEvRG9jdW1lbnRzL3dvcmtzcGFjZS90ZW1wL3Nob2Nvbi9qcy90YXJnZXQvc2NhbGEtMi4xMS9jbGFzc2VzdAABL3VyAAJbQqzzF/gGCFTgAgAAeHAAAAAU04X5ZsHelpLU85UrylZr/87ID/Q=
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/com/typesafe/config/Config.scala -> 
+rO0ABXNyABB4c2J0aS5hcGkuU291cmNlFlpwRASfbtoCAAZJAAdhcGlIYXNoWgAIaGFzTWFjcm9MABhfaW50ZXJuYWxPbmx5X25hbWVIYXNoZXN0ACRMeHNidGkvYXBpL19pbnRlcm5hbE9ubHlfTmFtZUhhc2hlcztMAANhcGl0ABVMeHNidGkvYXBpL1NvdXJjZUFQSTtMAAtjb21waWxhdGlvbnQAF0x4c2J0aS9hcGkvQ29tcGlsYXRpb247WwAEaGFzaHQAAltCeHDY+BVXAHNyACJ4c2J0aS5hcGkuX2ludGVybmFsT25seV9OYW1lSGFzaGVzVNq+mfrU7EwCAAJbAA9pbXBsaWNpdE1lbWJlcnN0ACNbTHhzYnRpL2FwaS9faW50ZXJuYWxPbmx5X05hbWVIYXNoO1sADnJlZ3VsYXJNZW1iZXJzcQB+AAd4cHVyACNbTHhzYnRpLmFwaS5faW50ZXJuYWxPbmx5X05hbWVIYXNoO0lagLbdlov0AgAAeHAAAAAAdXEAfgAJAAAAQXNyACB4c2J0aS5hcGkuX2ludGVybmFsT25seV9OYW1lSGFzaFsO9SJ2OFfPAgACSQAEaGFzaEwABG5hbWV0ABJMamF2YS9sYW5nL1N0cmluZzt4cIo9Clp0AAZub3RpZnlzcQB+AAwDEO1cdAAHdW5hcHBseXNxAH4ADAkIjBh0AA9Db25maWdFeGNlcHRpb25zcQB+AAyu9sUUdAANZ2V0U3RyaW5nTGlzdHNxAH4ADIqzqo50AAx3aXRoRmFsbGJhY2tzcQB+AAxDQuDUdAAPcHJpbnRTdGFja1RyYWNlc3EAfgAM5cL99HQAE2dldExvY2FsaXplZE1lc3NhZ2VzcQB+AAy92IiudAAEd2FpdHNxAH4ADAFoI7V0AA0kYXNJbnN0YW5jZU9mc3EAfgAM40ukmHQABHBhdGhzcQB+AAyIj3WrdAAHY29tcG9zZXNxAH4ADHVF3S90AAxwcm9kdWN0QXJpdHlzcQB+AAz2uWpudAAGZXF1YWxzc3EAfgAMLE40WHQAEGZpbGxJblN0YWNrVHJhY2VzcQB+AAwodWw1dAAIZmFsbGJhY2tzcQB+AAwahIGXdAAJaW5pdENhdXNlc3EAfgAM4r68u3QADGFzSW5zdGFuY2VPZnNxAH4ADAKZWQ10AAlnZXREb3VibGVzcQB+AAxKPKjjdAARZ2V0TWlsbGlzRHVyYXRpb25zcQB+AAzjFcDLdAAJZ2V0U3RyaW5nc3EAfgAMtLd35HQADHN5bmNocm9uaXplZHNxAH4ADC+osdN0AA0kaXNJbnN0YW5jZU9mc3EAfgAMZMieC3QABW5hbm9zc3EAfgAMAsT75HQAB2FuZFRoZW5zcQB+AAwmuMyBdAAIZ2V0Q2F1c2VzcQB+AAy/VJ+ydAAIY2FuRXF1YWxzcQB+AAyVXfKvdAANcHJvZHVjdFByZWZpeHNxAH4ADHSGYXF0AA1Db25maWdGYWN0b3J5c3EAfgAMYN5rRHQACW5vdGlmeUFsbHNxAH4ADB2XImd0AAtyZWFkUmVzb2x2ZXNxAH4ADHP7HHJ0AAxpc0luc3RhbmNlT2ZzcQB+AAwGcRYDdAANZ2V0U3RhY2tUcmFjZXNxAH4ADDCEZxh0ABRnZXRTdGFja1RyYWNlRWxlbWVudHNxAH4ADL9u4Kl0AAY8aW5pdD5zcQB+AAyOTTeadAAGQ29uZmlnc3EAfgAM3mAXk3QACmdldE1lc3NhZ2VzcQB+AAyTWygkdAANc2V0U3RhY2tUcmFjZXNxAH4ADI+G7vp0AAVhcHBseXNxAH4ADIQLi1x0AA1nZXRTdXBwcmVzc2Vkc3EAfgAMmFDrenQABm1pbGxpc3NxAH4ADChi1hV0AAI9PXNxAH4ADAsHYC50ABJnZXRTdGFja1RyYWNlRGVwdGhzcQB+AAwpanZmdAAFY2xvbmVzcQB+AAxih5ztdAADY2Znc3EAfgAMI3ykWnQADWFkZFN1cHByZXNzZWRzcQB+AAzQUTDLdAAGZ2V0SW50c3EAfgAMHDkqW3QACmdldE9yVGhyb3dzcQB+AAxMPbS2dAAHTWlzc2luZ3NxAH4ADCvZ2+l0AARjb3B5c3EAfgAM7GBRkXQAB2hhc1BhdGhzcQB+AAweIyTzdAAIdG9TdHJpbmdzcQB+AAy29dYUdAAKZ2V0Qm9vbGVhbnNxAH4ADP+wNwd0AAIhPXNxAH4ADGztTlB0AAhnZXRDbGFzc3NxAH4ADDkSmsx0AAtwYXJzZVN0cmluZ3NxAH4ADAnf3Lh0AA5jb3B5JGRlZmF1bHQkMXNxAH4ADLUpiHJ0AAJuZXNxAH4ADESGGZV0AAlnZXRDb25maWdzcQB+AAzDxUAzdAAQZ2V0TmFub3NEdXJhdGlvbnNxAH4ADFRwz7p0AAJlcXNxAH4ADKqBctJ0AA9wcm9kdWN0SXRlcmF0b3JzcQB+AAxKQFoFdAACIyNzcQB+AAzrHG2xdAAIZmluYWxpemVzcQB+AAx2FZxbdAAOcHJvZHVjdEVsZW1lbnRzcQB+AAzI+knVdAAIaGFzaENvZGVzcgATeHNidGkuYXBpLlNvdXJjZUFQSblep/kpIzikAgACWwALZGVmaW5pdGlvbnN0ABdbTHhzYnRpL2FwaS9EZWZpbml0aW9uO1sACHBhY2thZ2VzdAAUW0x4c2J0aS9hcGkvUGFja2FnZTt4cHVyABdbTHhzYnRpLmFwaS5EZWZpbml0aW9uO4jJXOe0414OAgAAeHAAAAAEc3IAE3hzYnRpLmFwaS5DbGFzc0xpa2WDNByh37CXbAIABEwADmRlZmluaXRpb25UeXBldAAaTHhzYnRpL2FwaS9EZWZpbml0aW9uVHlwZTtbABBzYXZlZEFubm90YXRpb25zdAATW0xqYXZhL2xhbmcvU3RyaW5nO0wACHNlbGZUeXBldAAQTHhzYnRpL2FwaS9MYXp5O0wACXN0cnVjdHVyZXEAfgCZeHIAIXhzYnRpLmFwaS5QYXJhbWV0ZXJpemVkRGVmaW5pdGlvbvkRbrHVUDziAgABWwAOdHlwZVBhcmFtZXRlcnN0ABpbTHhzYnRpL2FwaS9UeXBlUGFyYW1ldGVyO3hyABR4c2J0aS5hcGkuRGVmaW5pdGlvbocqG+hxQuNGAgAETAAGYWNjZXNzdAASTHhzYnRpL2FwaS9BY2Nlc3M7WwALYW5ub3RhdGlvbnN0ABdbTHhzYnRpL2FwaS9Bbm5vdGF0aW9uO0wACW1vZGlmaWVyc3QAFUx4c2J0aS9hcGkvTW9kaWZpZXJzO0wABG5hbWVxAH4ADXhwc3IAEHhzYnRpLmFwaS5QdWJsaWO6WD2ubC1gQgIAAHhyABB4c2J0aS5hcGkuQWNjZXNz3WKa+B1jMUgCAAB4cHVyABdbTHhzYnRpLmFwaS5Bbm5vdGF0aW9uO+uX6xkQ9o1IAgAAeHAAAAAAc3IAE3hzYnRpLmFwaS5Nb2RpZmllcnPHERMhaZzcJAIAAUIABWZsYWdzeHAAdAAhY29tLnR5cGVzYWZlLmNvbmZpZy5Db25maWdGYWN0b3J5dXIAGltMeHNidGkuYXBpLlR5cGVQYXJhbWV0ZXI72W0mDyid8rYCAAB4cAAAAAB+cgAYeHNidGkuYXBpLkRlZmluaXRpb25UeXBlAAAAAAAAAAASAAB4cgAOamF2YS5sYW5nLkVudW0AAAAAAAAAABIAAHhwdAAGTW9kdWxldXIAE1tMamF2YS5sYW5nLlN0cmluZzut0lbn6R17RwIAAHhwAAAAAHNyABN4c2J0aS5TYWZlTGF6eSRJbXBsUAIuk5eXQD8CAANaAAhiaXRtYXAkMEwAAl90dAASTGphdmEvbGFuZy9PYmplY3Q7TAAEZXZhbHQAEUxzY2FsYS9GdW5jdGlvbjA7eHIAFnhzYnRpLmFwaS5BYnN0cmFjdExhennTd7UBX7vnoAIAAHhwAHBzcgAgeHNidGkuU2FmZUxhenkkJGFub25mdW4kc3RyaWN0JDEAAAAAAAAAAAIAAUwAB3ZhbHVlJDFxAH4Asnhwc3IAE3hzYnRpLmFwaS5FbXB0eVR5cGW8/Z5GSTuJJAIAAHhyABR4c2J0aS5hcGkuU2ltcGxlVHlwZXJ4YoghI79AAgAAeHIADnhzYnRpLmFwaS5UeXBlP2rZIRZJqsoCAAB4cHNxAH4AsQBwc3EAfgC2c3IAE3hzYnRpLmFwaS5TdHJ1Y3R1cmWpqvmAk2/YAAIAA0wACGRlY2xhcmVkcQB+AJlMAAlpbmhlcml0ZWRxAH4AmUwAB3BhcmVudHNxAH4AmXhxAH4AunNxAH4AsQBwc3EAfgC2dXEAfgCUAAAAAHNxAH4AsQBwc3EAfgC2dXEAfgCUAAAAAHNxAH4AsQBwc3EAfgC2dXIAEVtMeHNidGkuYXBpLlR5cGU7dP+lWnv56UECAAB4cAAAAAJzcgAUeHNidGkuYXBpLlByb2plY3Rpb27z0o1U6UWkLQIAAkwAAmlkcQB+AA1MAAZwcmVmaXh0ABZMeHNidGkvYXBpL1NpbXBsZVR5cGU7eHEAfgC5dAAGT2JqZWN0c3IAE3hzYnRpLmFwaS5TaW5nbGV0b278p1/4z1bkRgIAAUwABHBhdGh0ABBMeHNidGkvYXBpL1BhdGg7eHEAfgC5c3IADnhzYnRpLmFwaS5QYXRomz1cCM6lJ4QCAAFbAApjb21wb25lbnRzdAAaW0x4c2J0aS9hcGkvUGF0aENvbXBvbmVudDt4cHVyABpbTHhzYnRpLmFwaS5QYXRoQ29tcG9uZW50O0PaCXQtZxZ0AgAAeHAAAAADc3IADHhzYnRpLmFwaS5JZJgybIs3U8RAAgABTAACaWRxAH4ADXhyABd4c2J0aS5hcGkuUGF0aENvbXBvbmVudF+aIlsuhp+8AgAAeHB0AARqYXZhc3EAfgDWdAAEbGFuZ3NyAA54c2J0aS5hcGkuVGhpc9sJ7abMWkBcAgAAeHEAfgDXc3EAfgDKdAADQW55c3EAfgDOc3EAfgDRdXEAfgDUAAAAAnNxAH4A1nQABXNjYWxhcQB+AN1zcQB+AJZxAH4Ao3VxAH4ApAAAAABzcQB+AKYBdAAjY29tLnR5cGVzYWZlLmNvbmZpZy5Db25maWdFeGNlcHRpb251cQB+AKkAAAAAfnEAfgCrdAAIQ2xhc3NEZWZ1cQB+AK8AAAAAc3EAfgCxAHBzcQB+ALZxAH4Au3NxAH4AsQBwc3EAfgC2c3EAfgC+c3EAfgCxAHBzcQB+ALZ1cQB+AJQAAAAAc3EAfgCxAHBzcQB+ALZ1cQB+AJQAAAAAc3EAfgCxAHBzcQB+ALZ1cQB+AMgAAAAGc3EAfgDKdAAQUnVudGltZUV4Y2VwdGlvbnNxAH4AznNxAH4A0XVxAH4A1AAAAANzcQB+ANZxAH4A2XNxAH4A1nEAfgDbcQB+AN1zcQB+AMp0AAlFeGNlcHRpb25xAH4A/XNxAH4AynQACVRocm93YWJsZXEAfgD9c3EAfgDKdAAMU2VyaWFsaXphYmxlc3EAfgDOc3EAfgDRdXEAfgDUAAAAA3NxAH4A1nEAfgDZc3EAfgDWdAACaW9xAH4A3XNxAH4AynEAfgDNcQB+AP1zcQB+AMpxAH4A33NxAH4AznNxAH4A0XVxAH4A1AAAAAJzcQB+ANZxAH4A5HEAfgDdc3EAfgCWcQB+AKN1cQB+AKQAAAAAc3EAfgCmAHQAI2NvbS50eXBlc2FmZS5jb25maWcuQ29uZmlnRXhjZXB0aW9udXEAfgCpAAAAAHEAfgCtdXEAfgCvAAAAAHNxAH4AsQBwc3EAfgC2cQB+ALtzcQB+ALEAcHNxAH4AtnNxAH4AvnNxAH4AsQBwc3EAfgC2dXEAfgCUAAAAAHNxAH4AsQBwc3EAfgC2dXEAfgCUAAAAAHNxAH4AsQBwc3EAfgC2dXEAfgDIAAAABHNxAH4AynEAfgEHc3EAfgDOc3EAfgDRdXEAfgDUAAAAAnNxAH4A1nEAfgDkcQB+AN1zcQB+AMpxAH4BB3NxAH4AznNxAH4A0XVxAH4A1AAAAANzcQB+ANZxAH4A2XNxAH4A1nQAAmlvcQB+AN1zcQB+AMpxAH4AzXNxAH4AznNxAH4A0XVxAH4A1AAAAANzcQB+ANZxAH4A2XNxAH4A1nEAfgDbcQB+AN1zcQB+AMpxAH4A33EAfgEpc3EAfgCWcQB+AKN1cQB+AKQAAAAAc3EAfgCmAHQAGmNvbS50eXBlc2FmZS5jb25maWcuQ29uZmlndXEAfgCpAAAAAHEAfgDqdXEAfgCvAAAAAHNxAH4AsQBwc3EAfgC2cQB+ALtzcQB+ALEAcHNxAH4AtnNxAH4AvnNxAH4AsQBwc3EAfgC2dXEAfgCUAAAAAHNxAH4AsQBwc3EAfgC2dXEAfgCUAAAAAHNxAH4AsQBwc3EAfgC2dXEAfgDIAAAABnNxAH4AynEAfgEHc3EAfgDOc3EAfgDRdXEAfgDUAAAAAnNxAH4A1nEAfgDkcQB+AN1zcQB+AMpxAH4BB3NxAH4AznNxAH4A0XVxAH4A1AAAAANzcQB+ANZxAH4A2XNxAH4A1nQAAmlvcQB+AN1zcQB+AMp0AAdQcm9kdWN0cQB+AVBzcQB+AMp0AAZFcXVhbHNxAH4BUHNxAH4AynEAfgDNc3EAfgDOc3EAfgDRdXEAfgDUAAAAA3NxAH4A1nEAfgDZc3EAfgDWcQB+ANtxAH4A3XNxAH4AynEAfgDfcQB+AVB1cgAUW0x4c2J0aS5hcGkuUGFja2FnZTtbExk3cKcnoQIAAHhwAAAAA3NyABF4c2J0aS5hcGkuUGFja2FnZX5Zj/auzjlYAgABTAAEbmFtZXEAfgANeHB0AAxjb20udHlwZXNhZmVzcQB+AWh0ABNjb20udHlwZXNhZmUuY29uZmlnc3EAfgFodAADY29tc3IAFXhzYnRpLmFwaS5Db21waWxhdGlvbu364MNq6KBCAgACSgAJc3RhcnRUaW1lWwAHb3V0cHV0c3QAGltMeHNidGkvYXBpL091dHB1dFNldHRpbmc7eHAAAAFPGAli7XVyABpbTHhzYnRpLmFwaS5PdXRwdXRTZXR0aW5nO39qwvOnh6VCAgAAeHAAAAABc3IAF3hzYnRpLmFwaS5PdXRwdXRTZXR0aW5netmaR3T7HXsCAAJMAA9vdXRwdXREaXJlY3RvcnlxAH4ADUwAD3NvdXJjZURpcmVjdG9yeXEAfgANeHB0AEovVXNlcnMvYW5kcmVhL0RvY3VtZW50cy93b3Jrc3BhY2UvdGVtcC9zaG9jb24vanMvdGFyZ2V0L3NjYWxhLTIuMTEvY2xhc3Nlc3QAAS91cgACW0Ks8xf4BghU4AIAAHhwAAAAFBpjjf1clBT07SDFm44eQVxa4PGs
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/ConfigParser.scala -> 
+rO0ABXNyABB4c2J0aS5hcGkuU291cmNlFlpwRASfbtoCAAZJAAdhcGlIYXNoWgAIaGFzTWFjcm9MABhfaW50ZXJuYWxPbmx5X25hbWVIYXNoZXN0ACRMeHNidGkvYXBpL19pbnRlcm5hbE9ubHlfTmFtZUhhc2hlcztMAANhcGl0ABVMeHNidGkvYXBpL1NvdXJjZUFQSTtMAAtjb21waWxhdGlvbnQAF0x4c2J0aS9hcGkvQ29tcGlsYXRpb247WwAEaGFzaHQAAltCeHB8AYesAHNyACJ4c2J0aS5hcGkuX2ludGVybmFsT25seV9OYW1lSGFzaGVzVNq+mfrU7EwCAAJbAA9pbXBsaWNpdE1lbWJlcnN0ACNbTHhzYnRpL2FwaS9faW50ZXJuYWxPbmx5X05hbWVIYXNoO1sADnJlZ3VsYXJNZW1iZXJzcQB+AAd4cHVyACNbTHhzYnRpLmFwaS5faW50ZXJuYWxPbmx5X05hbWVIYXNoO0lagLbdlov0AgAAeHAAAAAJc3IAIHhzYnRpLmFwaS5faW50ZXJuYWxPbmx5X05hbWVIYXNoWw71InY4V88CAAJJAARoYXNoTAAEbmFtZXQAEkxqYXZhL2xhbmcvU3RyaW5nO3hwHwGrqHQACXByZWRpY2F0ZXNxAH4AC3RCaiN0ABNydWxlMkFjdGlvbk9wZXJhdG9yc3EAfgAL/EJ9CXQAFHN0cjJDaGFyUmFuZ2VTdXBwb3J0c3EAfgALuvXSg3QACmludDJOVGltZXNzcQB+AAtFkqZ3dAAMcmFuZ2UyTlRpbWVzc3EAfgAL/pkAzHQAFHJ1bGUyV2l0aFNlcGFyYXRlZEJ5c3EAfgALOe45OnQAAmNoc3EAfgALOQWEaHQAA3N0cnNxAH4ACwSd8il0AAh2YWx1ZU1hcHVxAH4ACQAAAI5zcQB+AAtOcJoLdAADRU9Jc3EAfgAL7W6wvXQACW5hbWVkUnVsZXNxAH4AC2jQVct0AAZub3RpZnlzcQB+AAuvFVymdAADQU5Zc3EAfgALGGywrnQAEV9fbWF0Y2hNYXBXcmFwcGVkc3EAfgALZlZDinQAEl9fcmVnaXN0ZXJNaXNtYXRjaHNxAH4ACwNvMbZ0AAR0ZXN0c3EAfgALDHqXz3QAFWZvcm1hdEVycm9yJGRlZmF1bHQkMnNxAH4AC5Y8Zyd0AARmYWlsc3EAfgALnBO+lXQAFl9fbWF0Y2hBbnlPZiRkZWZhdWx0JDJzcQB+AAsm58gFdAAITUlTTUFUQ0hzcQB+AAvb3+xtdAAPcHJpbnRTdGFja1RyYWNlc3EAfgALkh2qhnQAE2dldExvY2FsaXplZE1lc3NhZ2VzcQB+AAuSZMXMdAAEd2FpdHNxAH4ACyGbG8B0ABFfX3VwZGF0ZU1heEN1cnNvcnNxAH4ACxvuMDp0AA5VbnF1b3RlZFN0cmluZ3NxAH4AC9ef3Ip0AA0kYXNJbnN0YW5jZU9mc3EAfgALXnUjTHQADF9fZW50ZXJRdWlldHNxAH4AC9rUCe10AAV0cmFjZXNxAH4ACxRYllx0AAlfX2FkdmFuY2VzcQB+AAvIYrKAdAAHcHJlcGVuZHNxAH4AC3cXUzZ0AA1fX2VudGVyQXRvbWljc3EAfgAL70zUynQADHJ1blN1YlBhcnNlcnNxAH4AC8fjyz50AAtzZXBhcmF0ZWRCeXNxAH4ACyL5m5d0AAZlcXVhbHNzcQB+AAtpvxajdAAFX19ydW5zcQB+AAvMU8SPdAAHZ2V0TGluZXNxAH4AC6XzClp0AApfX2J1YmJsZVVwc3EAfgALZJa16XQAF19fbWF0Y2hTdHJpbmckZGVmYXVsdCQyc3EAfgALJ8HNXHQABU1BVENIc3EAfgALs+2AtHQAEGZpbGxJblN0YWNrVHJhY2VzcQB+AAuW+FNtdAANX19tYXRjaFN0cmluZ3NxAH4AC3fJ0IR0AApPYmplY3RCb2R5c3EAfgALgrRWf3QABWFueU9mc3EAfgAL9rcQzHQABk51bWJlcnNxAH4AC+aXCCx0AAlpbml0Q2F1c2VzcQB+AAtj6wIOdAADd3Nuc3EAfgALwUpuBnQAFF9fbWF0Y2hTdHJpbmdXcmFwcGVkc3EAfgALp1qRYXQAFlRyYWNpbmdCdWJibGVFeGNlcHRpb25zcQB+AAvMz7rmdAAMYXNJbnN0YW5jZU9mc3EAfgALL/dgWXQAEENoYXJSYW5nZVN1cHBvcnRzcQB+AAtVvxyrdAAGTlRpbWVzc3EAfgALOV6NanQAA3J1bnNxAH4AC/ICCAd0AApfX2hhcmRGYWlsc3EAfgALmJQVg3QACnZhbHVlU3RhY2tzcQB+AAvZV8bEdAAEcHVzaHNxAH4AC2BS5l50AAEmc3EAfgALpPFC7HQADHN5bmNocm9uaXplZHNxAH4AC64oXC50AAxDb25maWdQYXJzZXJzcQB+AAvwbaZrdAANU3RyaW5nTGl0ZXJhbHNxAH4AC3B4ZMJ0AA0kaXNJbnN0YW5jZU9mc3EAfgALApqAenQAE19fZW50ZXJOb3RQcmVkaWNhdGVzcQB+AAvHoHnodAAIZ2V0Q2F1c2VzcQB+AAsQsSybdAACfj5zcQB+AAsKLuJedAAJTUlTTUFUQ0gwc3EAfgALxLAdLXQAF19fbWF0Y2hOb25lT2YkZGVmYXVsdCQyc3EAfgALxh2bOHQABHJ1bGVzcQB+AAvvNKWkdAAIb3B0aW9uYWxzcQB+AAttY+mUdAAOc2xpY2VDaGFyQXJyYXlzcQB+AAte05hkdAAFcXVpZXRzcQB+AAvZqqLudAAOSWRlbnRpZmllckNoYXJzcQB+AAuA8O1mdAAKX19tYXRjaE1hcHNxAH4AC0rNtLh0ABBfX1N1YlBhcnNlcklucHV0c3EAfgALU2AV23QABHdzcF9zcQB+AAthSoz4dAAeX19tYXRjaFN0cmluZ1dyYXBwZWQkZGVmYXVsdCQyc3EAfgALwAK0yXQABUFycmF5c3EAfgALqzPApnQAIV9fbWF0Y2hJZ25vcmVDYXNlU3RyaW5nJGRlZmF1bHQkMnNxAH4AC8MRB4p0AAVWYWx1ZXNxAH4AC8KHUnN0AAZjdXJzb3JzcQB+AAt3U40ddAAJbm90aWZ5QWxsc3EAfgALsGdWfHQABWZhaWxYc3EAfgALgJ1fg3QABGRyb3BzcQB+AAsYDUvMdAABLXNxAH4ACwI6moB0AAxpc0luc3RhbmNlT2ZzcQB+AAvMYO09dAAoX19tYXRjaElnbm9yZUNhc2VTdHJpbmdXcmFwcGVkJGRlZmF1bHQkMnNxAH4AC0zk8jN0AA1nZXRTdGFja1RyYWNlc3EAfgALSEhP+XQAFGdldFN0YWNrVHJhY2VFbGVtZW50c3EAfgALEay903QADF9fbWF0Y2hBbnlPZnNxAH4AC4BRy4p0AAp6ZXJvT3JNb3Jlc3EAfgALq9audnQABl9fcHVzaHNxAH4AC0uoJMt0AApjdXJzb3JDaGFyc3EAfgALksewq3QABjxpbml0PnNxAH4AC7RXv/x0AAlJbnB1dExpbmVzcQB+AAsXdCcIdAALU2ltcGxlVmFsdWVzcQB+AAsxgUCzdAAPV2l0aFNlcGFyYXRlZEJ5c3EAfgAL5r7gfnQACmdldE1lc3NhZ2VzcQB+AAuRPYVEdAANX19tYXRjaE5vbmVPZnNxAH4AC89jlL50AAZvZmZzZXRzcQB+AAtX4NOcdAANc2V0U3RhY2tUcmFjZXNxAH4AC33Rl4h0AAZhdG9taWNzcQB+AAuoThf9dAALZm9ybWF0RXJyb3JzcQB+AAtVpStJdAAGbm9uZU9mc3EAfgALcUdz/XQADWdldFN1cHByZXNzZWRzcQB+AAtC/XwqdAAGT2JqZWN0c3EAfgALumOkUHQADldoaXRlU3BhY2VDaGFyc3EAfgALsAXEX3QAAj09c3EAfgALvTufSHQADUNvbmZpZ0VsZW1lbnRzcQB+AAuxiAM8dAASZ2V0U3RhY2tUcmFjZURlcHRoc3EAfgALxLszq3QABWNsb25lc3EAfgAL73ibs3QADkFjdGlvbk9wZXJhdG9yc3EAfgALzqG4CnQADWNvcHlTdGF0ZUZyb21zcQB+AAvmmNaCdAAMX19leGl0QXRvbWljc3EAfgALbmmnz3QADWFkZFN1cHByZXNzZWRzcQB+AAsSYlFjdAALX19zYXZlU3RhdGVzcQB+AAsMfVBodAAFdGltZXNzcQB+AAsOTFFfdAAGJGluaXQkc3EAfgALwYgPlHQABVF1b3Rlc3EAfgALOH3faHQACmlnbm9yZUNhc2VzcQB+AAsi9N2YdAAKSWRlbnRpZmllcnNxAH4AC7Crn1d0AAhjaGFyQXRSQ3NxAH4AC+ygPvB0AAh0b1N0cmluZ3NxAH4AC0uN+4J0AA5fX3Jlc3RvcmVTdGF0ZXNxAH4AC2Df2g10AAZsZW5ndGhzcQB+AAty4IEldAACIT1zcQB+AAvPJR5zdAAGX3RyYWNlc3EAfgALlN4ZI3QACGdldENsYXNzc3EAfgALBkq4/HQAF19fbWF0Y2hJZ25vcmVDYXNlU3RyaW5nc3EAfgALLGwZ23QAC19fZXhpdFF1aWV0c3EAfgALJhhJ5HQAB2NhcHR1cmVzcQB+AAvzdMspdAAHQ29tbWVudHNxAH4ACxVu1nl0AB5fX21hdGNoSWdub3JlQ2FzZVN0cmluZ1dyYXBwZWRzcQB+AAvpmK5UdAACbmVzcQB+AAsWjPtJdAAIYnViYmxlVXBzcQB+AAumhVhXdAAIS2V5VmFsdWVzcQB+AAu6xZXFdAALc2xpY2VTdHJpbmdzcQB+AAuVw14LdAACd3NzcQB+AAvwEJfodAAIbGFzdENoYXJzcQB+AAuVsOCgdAAJQXJyYXlCb2R5c3EAfgALrv6g3XQAGWVycm9yVHJhY2VDb2xsZWN0aW9uTGltaXRzcQB+AAteGZLydAAFaW5wdXRzcQB+AAsL+kewdAACZXFzcQB+AAvrWwaodAAJb25lT3JNb3Jlc3EAfgALFh/P9XQAEl9fZXhpdE5vdFByZWRpY2F0ZXNxAH4AC1oK/y10AAIjI3NxAH4AC24pCPF0ABFfX2luRXJyb3JBbmFseXNpc3NxAH4AC6nQkw90AAhmaW5hbGl6ZXNxAH4AC01fHQJ0AAhoYXNoQ29kZXNxAH4AC4xVuCZ0AAxRdW90ZWRTdHJpbmdzcQB+AAt8VHXVdAADS2V5c3EAfgALFngH53QABXdzcG5fc3EAfgALGvB55XQABmNoYXJBdHNxAH4AC3+ncrZ0AAlTZXBhcmF0b3JzcgATeHNidGkuYXBpLlNvdXJjZUFQSblep/kpIzikAgACWwALZGVmaW5pdGlvbnN0ABdbTHhzYnRpL2FwaS9EZWZpbml0aW9uO1sACHBhY2thZ2VzdAAUW0x4c2J0aS9hcGkvUGFja2FnZTt4cHVyABdbTHhzYnRpLmFwaS5EZWZpbml0aW9uO4jJXOe0414OAgAAeHAAAAABc3IAE3hzYnRpLmFwaS5DbGFzc0xpa2WDNByh37CXbAIABEwADmRlZmluaXRpb25UeXBldAAaTHhzYnRpL2FwaS9EZWZpbml0aW9uVHlwZTtbABBzYXZlZEFubm90YXRpb25zdAATW0xqYXZhL2xhbmcvU3RyaW5nO0wACHNlbGZUeXBldAAQTHhzYnRpL2FwaS9MYXp5O0wACXN0cnVjdHVyZXEAfgFFeHIAIXhzYnRpLmFwaS5QYXJhbWV0ZXJpemVkRGVmaW5pdGlvbvkRbrHVUDziAgABWwAOdHlwZVBhcmFtZXRlcnN0ABpbTHhzYnRpL2FwaS9UeXBlUGFyYW1ldGVyO3hyABR4c2J0aS5hcGkuRGVmaW5pdGlvbocqG+hxQuNGAgAETAAGYWNjZXNzdAASTHhzYnRpL2FwaS9BY2Nlc3M7WwALYW5ub3RhdGlvbnN0ABdbTHhzYnRpL2FwaS9Bbm5vdGF0aW9uO0wACW1vZGlmaWVyc3QAFUx4c2J0aS9hcGkvTW9kaWZpZXJzO0wABG5hbWVxAH4ADHhwc3IAEHhzYnRpLmFwaS5QdWJsaWO6WD2ubC1gQgIAAHhyABB4c2J0aS5hcGkuQWNjZXNz3WKa+B1jMUgCAAB4cHVyABdbTHhzYnRpLmFwaS5Bbm5vdGF0aW9uO+uX6xkQ9o1IAgAAeHAAAAAAc3IAE3hzYnRpLmFwaS5Nb2RpZmllcnPHERMhaZzcJAIAAUIABWZsYWdzeHAAdAAgZXUudW5pY3JlZGl0LnNob2Nvbi5Db25maWdQYXJzZXJ1cgAaW0x4c2J0aS5hcGkuVHlwZVBhcmFtZXRlcjvZbSYPKJ3ytgIAAHhwAAAAAH5yABh4c2J0aS5hcGkuRGVmaW5pdGlvblR5cGUAAAAAAAAAABIAAHhyAA5qYXZhLmxhbmcuRW51bQAAAAAAAAAAEgAAeHB0AAhDbGFzc0RlZnVyABNbTGphdmEubGFuZy5TdHJpbmc7rdJW5+kde0cCAAB4cAAAAAN0ACBzY2FsYS5hbm5vdGF0aW9uLmNvbXBpbGVUaW1lT25seXQAJ3NjYWxhLnJlZmxlY3QubWFjcm9zLmludGVybmFsLm1hY3JvSW1wbHQAGHNjYWxhLmFubm90YXRpb24udGFpbHJlY3NyABN4c2J0aS5TYWZlTGF6eSRJbXBsUAIuk5eXQD8CAANaAAhiaXRtYXAkMEwAAl90dAASTGphdmEvbGFuZy9PYmplY3Q7TAAEZXZhbHQAEUxzY2FsYS9GdW5jdGlvbjA7eHIAFnhzYnRpLmFwaS5BYnN0cmFjdExhennTd7UBX7vnoAIAAHhwAHBzcgAgeHNidGkuU2FmZUxhenkkJGFub25mdW4kc3RyaWN0JDEAAAAAAAAAAAIAAUwAB3ZhbHVlJDFxAH4BYXhwc3IAE3hzYnRpLmFwaS5FbXB0eVR5cGW8/Z5GSTuJJAIAAHhyABR4c2J0aS5hcGkuU2ltcGxlVHlwZXJ4YoghI79AAgAAeHIADnhzYnRpLmFwaS5UeXBlP2rZIRZJqsoCAAB4cHNxAH4BYABwc3EAfgFlc3IAE3hzYnRpLmFwaS5TdHJ1Y3R1cmWpqvmAk2/YAAIAA0wACGRlY2xhcmVkcQB+AUVMAAlpbmhlcml0ZWRxAH4BRUwAB3BhcmVudHNxAH4BRXhxAH4BaXNxAH4BYABwc3EAfgFldXEAfgFAAAAAAHNxAH4BYABwc3EAfgFldXEAfgFAAAAAAHNxAH4BYABwc3EAfgFldXIAEVtMeHNidGkuYXBpLlR5cGU7dP+lWnv56UECAAB4cAAAAAdzcgAUeHNidGkuYXBpLlByb2plY3Rpb27z0o1U6UWkLQIAAkwAAmlkcQB+AAxMAAZwcmVmaXh0ABZMeHNidGkvYXBpL1NpbXBsZVR5cGU7eHEAfgFodAAGUGFyc2Vyc3IAE3hzYnRpLmFwaS5TaW5nbGV0b278p1/4z1bkRgIAAUwABHBhdGh0ABBMeHNidGkvYXBpL1BhdGg7eHEAfgFoc3IADnhzYnRpLmFwaS5QYXRomz1cCM6lJ4QCAAFbAApjb21wb25lbnRzdAAaW0x4c2J0aS9hcGkvUGF0aENvbXBvbmVudDt4cHVyABpbTHhzYnRpLmFwaS5QYXRoQ29tcG9uZW50O0PaCXQtZxZ0AgAAeHAAAAADc3IADHhzYnRpLmFwaS5JZJgybIs3U8RAAgABTAACaWRxAH4ADHhyABd4c2J0aS5hcGkuUGF0aENvbXBvbmVudF+aIlsuhp+8AgAAeHB0AANvcmdzcQB+AYV0AApwYXJib2lsZWQyc3IADnhzYnRpLmFwaS5UaGlz2wntpsxaQFwCAAB4cQB+AYZzcQB+AXl0AAdSdWxlRFNMcQB+AX9zcQB+AXl0AA5SdWxlRFNMQWN0aW9uc3EAfgF/c3EAfgF5dAASUnVsZURTTENvbWJpbmF0b3JzcQB+AX9zcQB+AXl0AA1SdWxlRFNMQmFzaWNzcQB+AX9zcQB+AXlxAH4A23NxAH4BfXNxAH4BgHVxAH4BgwAAAANzcQB+AYV0AARqYXZhc3EAfgGFdAAEbGFuZ3EAfgGMc3EAfgF5dAADQW55c3EAfgF9c3EAfgGAdXEAfgGDAAAAAnNxAH4BhXQABXNjYWxhcQB+AYx1cgAUW0x4c2J0aS5hcGkuUGFja2FnZTtbExk3cKcnoQIAAHhwAAAAA3NyABF4c2J0aS5hcGkuUGFja2FnZX5Zj/auzjlYAgABTAAEbmFtZXEAfgAMeHB0ABNldS51bmljcmVkaXQuc2hvY29uc3EAfgGmdAACZXVzcQB+AaZ0AAxldS51bmljcmVkaXRzcgAVeHNidGkuYXBpLkNvbXBpbGF0aW9u7frgw2rooEICAAJKAAlzdGFydFRpbWVbAAdvdXRwdXRzdAAaW0x4c2J0aS9hcGkvT3V0cHV0U2V0dGluZzt4cAAAAU8YCWLtdXIAGltMeHNidGkuYXBpLk91dHB1dFNldHRpbmc7f2rC86eHpUICAAB4cAAAAAFzcgAXeHNidGkuYXBpLk91dHB1dFNldHRpbmd62ZpHdPsdewIAAkwAD291dHB1dERpcmVjdG9yeXEAfgAMTAAPc291cmNlRGlyZWN0b3J5cQB+AAx4cHQASi9Vc2Vycy9hbmRyZWEvRG9jdW1lbnRzL3dvcmtzcGFjZS90ZW1wL3Nob2Nvbi9qcy90YXJnZXQvc2NhbGEtMi4xMS9jbGFzc2VzdAABL3VyAAJbQqzzF/gGCFTgAgAAeHAAAAAUq4dvlKPaf+Tpr7m+4YKBZlplhno=
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/Extractors.scala -> 
+rO0ABXNyABB4c2J0aS5hcGkuU291cmNlFlpwRASfbtoCAAZJAAdhcGlIYXNoWgAIaGFzTWFjcm9MABhfaW50ZXJuYWxPbmx5X25hbWVIYXNoZXN0ACRMeHNidGkvYXBpL19pbnRlcm5hbE9ubHlfTmFtZUhhc2hlcztMAANhcGl0ABVMeHNidGkvYXBpL1NvdXJjZUFQSTtMAAtjb21waWxhdGlvbnQAF0x4c2J0aS9hcGkvQ29tcGlsYXRpb247WwAEaGFzaHQAAltCeHBea1bkAHNyACJ4c2J0aS5hcGkuX2ludGVybmFsT25seV9OYW1lSGFzaGVzVNq+mfrU7EwCAAJbAA9pbXBsaWNpdE1lbWJlcnN0ACNbTHhzYnRpL2FwaS9faW50ZXJuYWxPbmx5X05hbWVIYXNoO1sADnJlZ3VsYXJNZW1iZXJzcQB+AAd4cHVyACNbTHhzYnRpLmFwaS5faW50ZXJuYWxPbmx5X05hbWVIYXNoO0lagLbdlov0AgAAeHAAAAAIc3IAIHhzYnRpLmFwaS5faW50ZXJuYWxPbmx5X05hbWVIYXNoWw71InY4V88CAAJJAARoYXNoTAAEbmFtZXQAEkxqYXZhL2xhbmcvU3RyaW5nO3hw6VFNtnQAEEJvb2xlYW5FeHRyYWN0b3JzcQB+AAuqed1BdAAMU2VxRXh0cmFjdG9yc3EAfgALs1antnQAD0RvdWJsZUV4dHJhY3RvcnNxAH4AC+ptxeR0AAxNYXBFeHRyYWN0b3JzcQB+AAtnfDqydAAMSW50RXh0cmFjdG9yc3EAfgALrtl5kHQAEEdlbmVyaWNFeHRyYWN0b3JzcQB+AAtYdj0hdAANTG9uZ0V4dHJhY3RvcnNxAH4ACzRTpqx0AA9TdHJpbmdFeHRyYWN0b3J1cQB+AAkAAAAWc3EAfgALoy1spnQABm5vdGlmeXNxAH4AC2Onh4Z0AAR3YWl0c3EAfgALPaTUJHQADSRhc0luc3RhbmNlT2ZzcQB+AAtciYQgdAAGZXF1YWxzc3EAfgAL4dWHOXQACkV4dHJhY3RvcnNzcQB+AAuO0AzDdAAMYXNJbnN0YW5jZU9mc3EAfgALuw844nQADHN5bmNocm9uaXplZHNxAH4AC9C3qNF0AA0kaXNJbnN0YW5jZU9mc3EAfgALeyWPpXQACUV4dHJhY3RvcnNxAH4AC+dn2sl0AAlub3RpZnlBbGxzcQB+AAvweEiTdAAMaXNJbnN0YW5jZU9mc3EAfgALLEou2HQAAj09c3EAfgALfk/AiHQABWNsb25lc3EAfgALay+9jHQABiRpbml0JHNxAH4AC8fVI950AAh0b1N0cmluZ3NxAH4ACx13aHx0AAIhPXNxAH4AC5zc/L50AAhnZXRDbGFzc3NxAH4AC/zi4oB0AAJuZXNxAH4AC3Q12V10AAJlcXNxAH4AC8bzs2l0AAIjI3NxAH4ACxYnILZ0AAhmaW5hbGl6ZXNxAH4AC64Pldt0AAhoYXNoQ29kZXNyABN4c2J0aS5hcGkuU291cmNlQVBJuV6n+SkjOKQCAAJbAAtkZWZpbml0aW9uc3QAF1tMeHNidGkvYXBpL0RlZmluaXRpb247WwAIcGFja2FnZXN0ABRbTHhzYnRpL2FwaS9QYWNrYWdlO3hwdXIAF1tMeHNidGkuYXBpLkRlZmluaXRpb247iMlc57TjXg4CAAB4cAAAAAJzcgATeHNidGkuYXBpLkNsYXNzTGlrZYM0HKHfsJdsAgAETAAOZGVmaW5pdGlvblR5cGV0ABpMeHNidGkvYXBpL0RlZmluaXRpb25UeXBlO1sAEHNhdmVkQW5ub3RhdGlvbnN0ABNbTGphdmEvbGFuZy9TdHJpbmc7TAAIc2VsZlR5cGV0ABBMeHNidGkvYXBpL0xhenk7TAAJc3RydWN0dXJlcQB+AFN4cgAheHNidGkuYXBpLlBhcmFtZXRlcml6ZWREZWZpbml0aW9u+RFusdVQPOICAAFbAA50eXBlUGFyYW1ldGVyc3QAGltMeHNidGkvYXBpL1R5cGVQYXJhbWV0ZXI7eHIAFHhzYnRpLmFwaS5EZWZpbml0aW9uhyob6HFC40YCAARMAAZhY2Nlc3N0ABJMeHNidGkvYXBpL0FjY2VzcztbAAthbm5vdGF0aW9uc3QAF1tMeHNidGkvYXBpL0Fubm90YXRpb247TAAJbW9kaWZpZXJzdAAVTHhzYnRpL2FwaS9Nb2RpZmllcnM7TAAEbmFtZXEAfgAMeHBzcgAQeHNidGkuYXBpLlB1YmxpY7pYPa5sLWBCAgAAeHIAEHhzYnRpLmFwaS5BY2Nlc3PdYpr4HWMxSAIAAHhwdXIAF1tMeHNidGkuYXBpLkFubm90YXRpb24765frGRD2jUgCAAB4cAAAAABzcgATeHNidGkuYXBpLk1vZGlmaWVyc8cREyFpnNwkAgABQgAFZmxhZ3N4cAF0AB5ldS51bmljcmVkaXQuc2hvY29uLkV4dHJhY3RvcnN1cgAaW0x4c2J0aS5hcGkuVHlwZVBhcmFtZXRlcjvZbSYPKJ3ytgIAAHhwAAAAAH5yABh4c2J0aS5hcGkuRGVmaW5pdGlvblR5cGUAAAAAAAAAABIAAHhyAA5qYXZhLmxhbmcuRW51bQAAAAAAAAAAEgAAeHB0AAVUcmFpdHVyABNbTGphdmEubGFuZy5TdHJpbmc7rdJW5+kde0cCAAB4cAAAAABzcgATeHNidGkuU2FmZUxhenkkSW1wbFACLpOXl0A/AgADWgAIYml0bWFwJDBMAAJfdHQAEkxqYXZhL2xhbmcvT2JqZWN0O0wABGV2YWx0ABFMc2NhbGEvRnVuY3Rpb24wO3hyABZ4c2J0aS5hcGkuQWJzdHJhY3RMYXp503e1AV+756ACAAB4cABwc3IAIHhzYnRpLlNhZmVMYXp5JCRhbm9uZnVuJHN0cmljdCQxAAAAAAAAAAACAAFMAAd2YWx1ZSQxcQB+AGx4cHNyABN4c2J0aS5hcGkuRW1wdHlUeXBlvP2eRkk7iSQCAAB4cgAUeHNidGkuYXBpLlNpbXBsZVR5cGVyeGKIISO/QAIAAHhyAA54c2J0aS5hcGkuVHlwZT9q2SEWSarKAgAAeHBzcQB+AGsAcHNxAH4AcHNyABN4c2J0aS5hcGkuU3RydWN0dXJlqar5gJNv2AACAANMAAhkZWNsYXJlZHEAfgBTTAAJaW5oZXJpdGVkcQB+AFNMAAdwYXJlbnRzcQB+AFN4cQB+AHRzcQB+AGsAcHNxAH4AcHVxAH4ATgAAAABzcQB+AGsAcHNxAH4AcHVxAH4ATgAAAABzcQB+AGsAcHNxAH4AcHVyABFbTHhzYnRpLmFwaS5UeXBlO3T/pVp7+elBAgAAeHAAAAACc3IAFHhzYnRpLmFwaS5Qcm9qZWN0aW9u89KNVOlFpC0CAAJMAAJpZHEAfgAMTAAGcHJlZml4dAAWTHhzYnRpL2FwaS9TaW1wbGVUeXBlO3hxAH4Ac3QABk9iamVjdHNyABN4c2J0aS5hcGkuU2luZ2xldG9u/Kdf+M9W5EYCAAFMAARwYXRodAAQTHhzYnRpL2FwaS9QYXRoO3hxAH4Ac3NyAA54c2J0aS5hcGkuUGF0aJs9XAjOpSeEAgABWwAKY29tcG9uZW50c3QAGltMeHNidGkvYXBpL1BhdGhDb21wb25lbnQ7eHB1cgAaW0x4c2J0aS5hcGkuUGF0aENvbXBvbmVudDtD2gl0LWcWdAIAAHhwAAAAA3NyAAx4c2J0aS5hcGkuSWSYMmyLN1PEQAIAAUwAAmlkcQB+AAx4cgAXeHNidGkuYXBpLlBhdGhDb21wb25lbnRfmiJbLoafvAIAAHhwdAAEamF2YXNxAH4AkHQABGxhbmdzcgAOeHNidGkuYXBpLlRoaXPbCe2mzFpAXAIAAHhxAH4AkXNxAH4AhHQAA0FueXNxAH4AiHNxAH4Ai3VxAH4AjgAAAAJzcQB+AJB0AAVzY2FsYXEAfgCXc3EAfgBQcQB+AF11cQB+AF4AAAAAc3EAfgBgAHQAHmV1LnVuaWNyZWRpdC5zaG9jb24uRXh0cmFjdG9yc3VxAH4AYwAAAAB+cQB+AGV0AAZNb2R1bGV1cQB+AGkAAAAAc3EAfgBrAHBzcQB+AHBxAH4AdXNxAH4AawBwc3EAfgBwc3EAfgB4c3EAfgBrAHBzcQB+AHB1cQB+AE4AAAAAc3EAfgBrAHBzcQB+AHB1cQB+AE4AAAAAc3EAfgBrAHBzcQB+AHB1cQB+AIIAAAADc3EAfgCEdAAKRXh0cmFjdG9yc3NxAH4AiHNxAH4Ai3VxAH4AjgAAAARzcQB+AJB0AAJldXNxAH4AkHQACXVuaWNyZWRpdHNxAH4AkHQABnNob2NvbnEAfgCXc3EAfgCEcQB+AIdzcQB+AIhzcQB+AIt1cQB+AI4AAAADc3EAfgCQcQB+AJNzcQB+AJBxAH4AlXEAfgCXc3EAfgCEcQB+AJlzcQB+AIhzcQB+AIt1cQB+AI4AAAACc3EAfgCQcQB+AJ5xAH4Al3VyABRbTHhzYnRpLmFwaS5QYWNrYWdlO1sTGTdwpyehAgAAeHAAAAADc3IAEXhzYnRpLmFwaS5QYWNrYWdlflmP9q7OOVgCAAFMAARuYW1lcQB+AAx4cHQAE2V1LnVuaWNyZWRpdC5zaG9jb25zcQB+AM10AAJldXNxAH4AzXQADGV1LnVuaWNyZWRpdHNyABV4c2J0aS5hcGkuQ29tcGlsYXRpb27t+uDDauigQgIAAkoACXN0YXJ0VGltZVsAB291dHB1dHN0ABpbTHhzYnRpL2FwaS9PdXRwdXRTZXR0aW5nO3hwAAABTxgJYu11cgAaW0x4c2J0aS5hcGkuT3V0cHV0U2V0dGluZzt/asLzp4elQgIAAHhwAAAAAXNyABd4c2J0aS5hcGkuT3V0cHV0U2V0dGluZ3rZmkd0+x17AgACTAAPb3V0cHV0RGlyZWN0b3J5cQB+AAxMAA9zb3VyY2VEaXJlY3RvcnlxAH4ADHhwdABKL1VzZXJzL2FuZHJlYS9Eb2N1bWVudHMvd29ya3NwYWNlL3RlbXAvc2hvY29uL2pzL3RhcmdldC9zY2FsYS0yLjExL2NsYXNzZXN0AAEvdXIAAltCrPMX+AYIVOACAAB4cAAAABS05fX6yMAXP2sygf6zW1P80o+AOg==
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/SHocon.scala -> 
+rO0ABXNyABB4c2J0aS5hcGkuU291cmNlFlpwRASfbtoCAAZJAAdhcGlIYXNoWgAIaGFzTWFjcm9MABhfaW50ZXJuYWxPbmx5X25hbWVIYXNoZXN0ACRMeHNidGkvYXBpL19pbnRlcm5hbE9ubHlfTmFtZUhhc2hlcztMAANhcGl0ABVMeHNidGkvYXBpL1NvdXJjZUFQSTtMAAtjb21waWxhdGlvbnQAF0x4c2J0aS9hcGkvQ29tcGlsYXRpb247WwAEaGFzaHQAAltCeHA6IfNFAHNyACJ4c2J0aS5hcGkuX2ludGVybmFsT25seV9OYW1lSGFzaGVzVNq+mfrU7EwCAAJbAA9pbXBsaWNpdE1lbWJlcnN0ACNbTHhzYnRpL2FwaS9faW50ZXJuYWxPbmx5X05hbWVIYXNoO1sADnJlZ3VsYXJNZW1iZXJzcQB+AAd4cHVyACNbTHhzYnRpLmFwaS5faW50ZXJuYWxPbmx5X05hbWVIYXNoO0lagLbdlov0AgAAeHAAAAAJc3IAIHhzYnRpLmFwaS5faW50ZXJuYWxPbmx5X05hbWVIYXNoWw71InY4V88CAAJJAARoYXNoTAAEbmFtZXQAEkxqYXZhL2xhbmcvU3RyaW5nO3hweuW+/XQAEEJvb2xlYW5FeHRyYWN0b3JzcQB+AAuYD5r8dAAMU2VxRXh0cmFjdG9yc3EAfgAL84BARHQAD0RvdWJsZUV4dHJhY3RvcnNxAH4ACydcbHF0AAlDb25maWdPcHNzcQB+AAtEspkzdAAMTWFwRXh0cmFjdG9yc3EAfgALaXFoJHQADEludEV4dHJhY3RvcnNxAH4AC/HeviF0ABBHZW5lcmljRXh0cmFjdG9yc3EAfgALZzfhYXQADUxvbmdFeHRyYWN0b3JzcQB+AAvlWUUldAAPU3RyaW5nRXh0cmFjdG9ydXEAfgAJAAAAOXNxAH4ACyND8JB0AAhlbGVtZW50c3NxAH4AC8MqjFx0AAZub3RpZnlzcQB+AAsHyzoFdAAHdW5hcHBseXNxAH4ACzxivFV0AAdjdXJyaWVkc3EAfgALCLC+BnQAB3BhY2thZ2VzcQB+AAt1wxAzdAAEd2FpdHNxAH4AC6zeoEx0AA5jb3B5JGRlZmF1bHQkMnNxAH4ACyjbL9N0AA0kYXNJbnN0YW5jZU9mc3EAfgALWkWSsXQAB2NvbXBvc2VzcQB+AAtMJneFdAAMcHJvZHVjdEFyaXR5c3EAfgALgtDLoHQABmVxdWFsc3NxAH4AC3QzCvZ0AAxhc0luc3RhbmNlT2ZzcQB+AAt76K84dAAMc3luY2hyb25pemVkc3EAfgALOo6ucHQADVN0cmluZ0xpdGVyYWxzcQB+AAt5i0vfdAANJGlzSW5zdGFuY2VPZnNxAH4AC6w6Fj10AAdhbmRUaGVuc3EAfgALPkv2N3QAAmFzc3EAfgALaH51xXQABnR1cGxlZHNxAH4AC3Da4Zp0AA1OdW1iZXJMaXRlcmFsc3EAfgAL36KekHQACGNhbkVxdWFsc3EAfgALqjEnK3QABUFycmF5c3EAfgALrRh0BHQACUV4dHJhY3RvcnNxAH4AC+czJ6t0AA1wcm9kdWN0UHJlZml4c3EAfgALqcxPvXQABVZhbHVlc3EAfgAL7fHnCnQACW5vdGlmeUFsbHNxAH4AC8NqBXh0AAtyZWFkUmVzb2x2ZXNxAH4ACyZWPwN0AANrZXlzcQB+AAuSSh+gdAAMaXNJbnN0YW5jZU9mc3EAfgAL4JidN3QABjxpbml0PnNxAH4AC3VApFh0AAZDb25maWdzcQB+AAubcVShdAALU2ltcGxlVmFsdWVzcQB+AAtNzH03dAAFYXBwbHlzcQB+AAsCqZZedAALTnVsbExpdGVyYWxzcQB+AAvLSFn4dAAGT2JqZWN0c3EAfgALNWd6XXQABXBhcnNlc3EAfgALyBuy23QAAj09c3EAfgAL1uKklHQABWNsb25lc3EAfgAL/W9dhXQABmZpZWxkc3NxAH4ACy4AABN0AARjb3B5c3EAfgALmht7jHQACHRvU3RyaW5nc3EAfgALLhBVLHQABHRyZWVzcQB+AAvSEHtvdAACIT1zcQB+AAudYnBydAADZ2V0c3EAfgALUyZG+XQACGdldENsYXNzc3EAfgALfXjFSHQADmNvcHkkZGVmYXVsdCQxc3EAfgALIFw+InQAAm5lc3EAfgALoaWvXnQACEtleVZhbHVlc3EAfgAL1in893QABXZhbHVlc3EAfgALlZTw+3QADkJvb2xlYW5MaXRlcmFsc3EAfgAL5O0CL3QAAmVxc3EAfgAL7fA/9HQAD3Byb2R1Y3RJdGVyYXRvcnNxAH4ACyTMwhd0AAIjI3NxAH4AC0kwyUN0AAhmaW5hbGl6ZXNxAH4AC8F/bKd0AA5wcm9kdWN0RWxlbWVudHNxAH4AC4aQwNB0AAhmcm9tRmlsZXNxAH4ACx/3eJ10AAhoYXNoQ29kZXNxAH4AC3smHpx0AANLZXlzcgATeHNidGkuYXBpLlNvdXJjZUFQSblep/kpIzikAgACWwALZGVmaW5pdGlvbnN0ABdbTHhzYnRpL2FwaS9EZWZpbml0aW9uO1sACHBhY2thZ2VzdAAUW0x4c2J0aS9hcGkvUGFja2FnZTt4cHVyABdbTHhzYnRpLmFwaS5EZWZpbml0aW9uO4jJXOe0414OAgAAeHAAAAABc3IAE3hzYnRpLmFwaS5DbGFzc0xpa2WDNByh37CXbAIABEwADmRlZmluaXRpb25UeXBldAAaTHhzYnRpL2FwaS9EZWZpbml0aW9uVHlwZTtbABBzYXZlZEFubm90YXRpb25zdAATW0xqYXZhL2xhbmcvU3RyaW5nO0wACHNlbGZUeXBldAAQTHhzYnRpL2FwaS9MYXp5O0wACXN0cnVjdHVyZXEAfgCbeHIAIXhzYnRpLmFwaS5QYXJhbWV0ZXJpemVkRGVmaW5pdGlvbvkRbrHVUDziAgABWwAOdHlwZVBhcmFtZXRlcnN0ABpbTHhzYnRpL2FwaS9UeXBlUGFyYW1ldGVyO3hyABR4c2J0aS5hcGkuRGVmaW5pdGlvbocqG+hxQuNGAgAETAAGYWNjZXNzdAASTHhzYnRpL2FwaS9BY2Nlc3M7WwALYW5ub3RhdGlvbnN0ABdbTHhzYnRpL2FwaS9Bbm5vdGF0aW9uO0wACW1vZGlmaWVyc3QAFUx4c2J0aS9hcGkvTW9kaWZpZXJzO0wABG5hbWVxAH4ADHhwc3IAEHhzYnRpLmFwaS5QdWJsaWO6WD2ubC1gQgIAAHhyABB4c2J0aS5hcGkuQWNjZXNz3WKa+B1jMUgCAAB4cHVyABdbTHhzYnRpLmFwaS5Bbm5vdGF0aW9uO+uX6xkQ9o1IAgAAeHAAAAAAc3IAE3hzYnRpLmFwaS5Nb2RpZmllcnPHERMhaZzcJAIAAUIABWZsYWdzeHAAdAAbZXUudW5pY3JlZGl0LnNob2Nvbi5wYWNrYWdldXIAGltMeHNidGkuYXBpLlR5cGVQYXJhbWV0ZXI72W0mDyid8rYCAAB4cAAAAAB+cgAYeHNidGkuYXBpLkRlZmluaXRpb25UeXBlAAAAAAAAAAASAAB4cgAOamF2YS5sYW5nLkVudW0AAAAAAAAAABIAAHhwdAAGTW9kdWxldXIAE1tMamF2YS5sYW5nLlN0cmluZzut0lbn6R17RwIAAHhwAAAAAHNyABN4c2J0aS5TYWZlTGF6eSRJbXBsUAIuk5eXQD8CAANaAAhiaXRtYXAkMEwAAl90dAASTGphdmEvbGFuZy9PYmplY3Q7TAAEZXZhbHQAEUxzY2FsYS9GdW5jdGlvbjA7eHIAFnhzYnRpLmFwaS5BYnN0cmFjdExhennTd7UBX7vnoAIAAHhwAHBzcgAgeHNidGkuU2FmZUxhenkkJGFub25mdW4kc3RyaWN0JDEAAAAAAAAAAAIAAUwAB3ZhbHVlJDFxAH4AtHhwc3IAE3hzYnRpLmFwaS5FbXB0eVR5cGW8/Z5GSTuJJAIAAHhyABR4c2J0aS5hcGkuU2ltcGxlVHlwZXJ4YoghI79AAgAAeHIADnhzYnRpLmFwaS5UeXBlP2rZIRZJqsoCAAB4cHNxAH4AswBwc3EAfgC4c3IAE3hzYnRpLmFwaS5TdHJ1Y3R1cmWpqvmAk2/YAAIAA0wACGRlY2xhcmVkcQB+AJtMAAlpbmhlcml0ZWRxAH4Am0wAB3BhcmVudHNxAH4Am3hxAH4AvHNxAH4AswBwc3EAfgC4dXEAfgCWAAAAAHNxAH4AswBwc3EAfgC4dXEAfgCWAAAAAHNxAH4AswBwc3EAfgC4dXIAEVtMeHNidGkuYXBpLlR5cGU7dP+lWnv56UECAAB4cAAAAANzcgAUeHNidGkuYXBpLlByb2plY3Rpb27z0o1U6UWkLQIAAkwAAmlkcQB+AAxMAAZwcmVmaXh0ABZMeHNidGkvYXBpL1NpbXBsZVR5cGU7eHEAfgC7dAAKRXh0cmFjdG9yc3NyABN4c2J0aS5hcGkuU2luZ2xldG9u/Kdf+M9W5EYCAAFMAARwYXRodAAQTHhzYnRpL2FwaS9QYXRoO3hxAH4Au3NyAA54c2J0aS5hcGkuUGF0aJs9XAjOpSeEAgABWwAKY29tcG9uZW50c3QAGltMeHNidGkvYXBpL1BhdGhDb21wb25lbnQ7eHB1cgAaW0x4c2J0aS5hcGkuUGF0aENvbXBvbmVudDtD2gl0LWcWdAIAAHhwAAAABHNyAAx4c2J0aS5hcGkuSWSYMmyLN1PEQAIAAUwAAmlkcQB+AAx4cgAXeHNidGkuYXBpLlBhdGhDb21wb25lbnRfmiJbLoafvAIAAHhwdAACZXVzcQB+ANh0AAl1bmljcmVkaXRzcQB+ANh0AAZzaG9jb25zcgAOeHNidGkuYXBpLlRoaXPbCe2mzFpAXAIAAHhxAH4A2XNxAH4AzHQABk9iamVjdHNxAH4A0HNxAH4A03VxAH4A1gAAAANzcQB+ANh0AARqYXZhc3EAfgDYdAAEbGFuZ3EAfgDhc3EAfgDMdAADQW55c3EAfgDQc3EAfgDTdXEAfgDWAAAAAnNxAH4A2HQABXNjYWxhcQB+AOF1cgAUW0x4c2J0aS5hcGkuUGFja2FnZTtbExk3cKcnoQIAAHhwAAAAA3NyABF4c2J0aS5hcGkuUGFja2FnZX5Zj/auzjlYAgABTAAEbmFtZXEAfgAMeHB0ABNldS51bmljcmVkaXQuc2hvY29uc3EAfgD0dAACZXVzcQB+APR0AAxldS51bmljcmVkaXRzcgAVeHNidGkuYXBpLkNvbXBpbGF0aW9u7frgw2rooEICAAJKAAlzdGFydFRpbWVbAAdvdXRwdXRzdAAaW0x4c2J0aS9hcGkvT3V0cHV0U2V0dGluZzt4cAAAAU8YCWLtdXIAGltMeHNidGkuYXBpLk91dHB1dFNldHRpbmc7f2rC86eHpUICAAB4cAAAAAFzcgAXeHNidGkuYXBpLk91dHB1dFNldHRpbmd62ZpHdPsdewIAAkwAD291dHB1dERpcmVjdG9yeXEAfgAMTAAPc291cmNlRGlyZWN0b3J5cQB+AAx4cHQASi9Vc2Vycy9hbmRyZWEvRG9jdW1lbnRzL3dvcmtzcGFjZS90ZW1wL3Nob2Nvbi9qcy90YXJnZXQvc2NhbGEtMi4xMS9jbGFzc2VzdAABL3VyAAJbQqzzF/gGCFTgAgAAeHAAAAAU6ZPQDTT0fdS+8B9hmpDCPRtQRdI=
+external apis:
+0 items
+source infos:
+5 items
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/Main.scala -> 
+AAAAAAAAAAA=
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/com/typesafe/config/Config.scala -> 
+AAAAAAAAAAA=
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/ConfigParser.scala -> 
+AAAAAAAAAAA=
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/Extractors.scala -> 
+AAAAAAAAAAA=
+/Users/andrea/Documents/workspace/temp/shocon/shared/src/main/scala/eu/unicredit/shocon/SHocon.scala -> 
+AAAAAAAAAAA=
+compilations:
+1 items
+0 -> rO0ABXNyABV4c2J0aS5hcGkuQ29tcGlsYXRpb27t+uDDauigQgIAAkoACXN0YXJ0VGltZVsAB291dHB1dHN0ABpbTHhzYnRpL2FwaS9PdXRwdXRTZXR0aW5nO3hwAAABTxgJYu11cgAaW0x4c2J0aS5hcGkuT3V0cHV0U2V0dGluZzt/asLzp4elQgIAAHhwAAAAAXNyABd4c2J0aS5hcGkuT3V0cHV0U2V0dGluZ3rZmkd0+x17AgACTAAPb3V0cHV0RGlyZWN0b3J5dAASTGphdmEvbGFuZy9TdHJpbmc7TAAPc291cmNlRGlyZWN0b3J5cQB+AAZ4cHQASi9Vc2Vycy9hbmRyZWEvRG9jdW1lbnRzL3dvcmtzcGFjZS90ZW1wL3Nob2Nvbi9qcy90YXJnZXQvc2NhbGEtMi4xMS9jbGFzc2VzdAABLw==
