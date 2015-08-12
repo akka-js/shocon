@@ -6,4 +6,4 @@
 /target/
 target
 bin
-
+.ensime*

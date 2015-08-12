@@ -1,3 +1,4 @@
+name := "shocon"
 
 lazy val root = project.in(file(".")).
   aggregate(shoconJS, shoconJVM).
@@ -13,12 +14,13 @@ lazy val shocon = crossProject.in(file(".")).
 	version := "0.0.1-SNAPSHOT",
 	scalaVersion := "2.11.7"
   ).
+  settings(
+    libraryDependencies += "com.lihaoyi" %%% "fastparse" % "0.2.1"
+  ).
   jvmSettings(
-  	libraryDependencies += "org.parboiled" %% "parboiled" % "2.1.0",
   	libraryDependencies += "org.scalatest" %% "scalatest" % "2.2.4" % "test"
   ).
   jsSettings(
-  	libraryDependencies += "org.parboiled" %%% "parboiled" % "2.1.1-SNAPSHOT"
   )
 
 lazy val shoconJVM = shocon.jvm
