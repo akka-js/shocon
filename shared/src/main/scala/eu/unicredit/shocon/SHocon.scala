@@ -21,7 +21,7 @@ package object shocon extends Extractors {
     case class BooleanLiteral(value: Boolean) extends SimpleValue
     case object NullLiteral extends SimpleValue
 
-    //def parse(input: ParserInput) = new ConfigParser(input).InputLine.run()
+    def parse(input: String) = ConfigParser.InputLine.parse(input)
     def apply(input: String): Config.Value = Config.Object(Map.empty)
     def fromFile(path: String) = apply(io.Source.fromFile(path).mkString)
   }

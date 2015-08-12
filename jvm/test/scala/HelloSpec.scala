@@ -1,7 +1,7 @@
 import eu.unicredit.shocon.Config
 import org.scalatest._
 
-import fastparse.core.Result.Success
+import scala.util.{Failure, Success}
 
 class HelloSpec extends FlatSpec with Matchers {
 
@@ -47,14 +47,14 @@ class HelloSpec extends FlatSpec with Matchers {
     Config.parse(nl_in_list) shouldBe a [Success[_]]
   }
 
- val akka = io.Source.fromFile("jvm/src/test/resources/akka.conf").mkString
+ val akka = io.Source.fromFile("src/test/resources/akka.conf").mkString
 
  "akka.conf" should "parse" in {
    val res = Config.parse(akka)
    res shouldBe a [Success[_]]
  }
 
- val akka_long = io.Source.fromFile("jvm/src/test/resources/akka-long.conf").mkString
+ val akka_long = io.Source.fromFile("src/test/resources/akka-long.conf").mkString
 
  "akka-long.conf" should "parse" in {
    val res = Config.parse(akka_long)

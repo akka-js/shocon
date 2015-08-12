@@ -109,8 +109,8 @@ object ConfigParser {
   // def ws: Rule0 = rule {
   //   zeroOrMore(anyOf(" \t\r"))
   // }
-  // def Comment: Rule0 = rule {
-  //   ("//"| "#") ~zeroOrMore(!"\n"~ANY)
-  // }
+  def Comment = P {
+    ("//"| "#") ~ CharsWhile((c:Char)=>(c != "\n"))
+  }
 
 }
