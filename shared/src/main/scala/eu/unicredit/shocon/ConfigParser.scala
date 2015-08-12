@@ -7,7 +7,7 @@ import scala.util.Try
 object ConfigParser {
 
   val Whitespace_n = NamedFunction(" \n".contains(_: Char), "Whitespace_n")
-  val wspn  = P( CharsWhile(Whitespace_n).? )
+  val wspn  = P( ( (CharsWhile(Whitespace_n) | Comment).rep ).? )
 
   val Whitespace = NamedFunction(" ".contains(_: Char), "Whitespace")
   val wsp   = P( CharsWhile(Whitespace).? )
@@ -110,7 +110,7 @@ object ConfigParser {
   //   zeroOrMore(anyOf(" \t\r"))
   // }
   def Comment = P {
-    ("//"| "#") ~ CharsWhile((c:Char)=>(c != "\n"))
+    ("//"| "#") ~ (AnyChar ~ !("\n")).rep ~ "\n"
   }
 
 }

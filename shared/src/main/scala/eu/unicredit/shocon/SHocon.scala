@@ -1,8 +1,5 @@
 package eu.unicredit
 
-import scala.util.Try
-
-
 package object shocon extends Extractors {
 
   object Config {
@@ -21,8 +18,12 @@ package object shocon extends Extractors {
     case class BooleanLiteral(value: Boolean) extends SimpleValue
     case object NullLiteral extends SimpleValue
 
+    import fastparse.all.Result
     def parse(input: String) = ConfigParser.InputLine.parse(input)
-    def apply(input: String): Config.Value = Config.Object(Map.empty)
+    def apply(input: String): Config.Value = parse(input) match{
+      case Result.Success(v,_) => v
+      case f: Result.Failure => throw new Error(f.msg)
+    }
     def fromFile(path: String) = apply(io.Source.fromFile(path).mkString)
   }
 
