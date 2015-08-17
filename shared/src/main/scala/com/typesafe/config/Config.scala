@@ -76,7 +76,11 @@ case class Config(cfg: shocon.Config.Value) {
 
   def getDouble(path: String)   = getOrThrow[Double](path)
 
-  def getStringList(path: String) = getOrThrow[ju.List[String]](path)
+  def getStringList(path: String): ju.List[String] =
+    getOrThrow[ju.List[String]](path) match {
+      case null => List[String]().asJava
+      case ret => ret
+    }
 
   private val millis = Set("ms", "millis", "milliseconds")
   private val nanos = Set("ns", "nanos", "nanoseconds")
