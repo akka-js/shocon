@@ -12,6 +12,10 @@ object ConfigParser {
 
   // Here is the parser
   val Whitespace = NamedFunction(" \n".contains(_: Char), "Whitespace")
+  val letter     = P( lowercase | uppercase )
+  val lowercase  = P( CharIn('a' to 'z') )
+  val uppercase  = P( CharIn('A' to 'Z') )
+  val digit      = P( CharIn('0' to '9') )
   val Digits = NamedFunction('0' to '9' contains (_: Char), "Digits")
   val StringChars = NamedFunction(!"\"\\".contains(_: Char), "StringChars")
   val UnquotedStringChars = NamedFunction(!Whitespace(_: Char), "UnquotedStringChars  ")
@@ -41,10 +45,9 @@ object ConfigParser {
 
 
 
-  val unquotedStrChars = P(CharsWhile(x => ( 'a' to 'z' contains x )))
-  val unquotedString =
-    P( space ~ unquotedStrChars.rep.! ).map(s => Config.StringLiteral(s))
-
+  val unquotedString: P[Config.StringLiteral] =
+    P ( space ~ (letter|"_") ~ (letter | digit | "_").rep.!)
+    .map(Config.StringLiteral)
 
   val string = P(quotedString | unquotedString)
 
