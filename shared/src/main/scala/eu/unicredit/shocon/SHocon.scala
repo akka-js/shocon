@@ -19,7 +19,7 @@ package object shocon extends Extractors {
     case object NullLiteral extends SimpleValue
 
     import fastparse.all.Result
-    def parse(input: String) = ConfigParser.obj.parse(input)
+    def parse(input: String) = ConfigParser.root.parse(input)
     def apply(input: String): Config.Value = parse(input) match{
       case Result.Success(v,_) => v
       case f: Result.Failure => throw new Error(f.msg)

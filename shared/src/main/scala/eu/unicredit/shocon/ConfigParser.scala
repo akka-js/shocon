@@ -20,12 +20,21 @@ object ConfigParser {
   val StringChars = NamedFunction(!"\"\\".contains(_: Char), "StringChars")
   val UnquotedStringChars = NamedFunction(!Whitespace(_: Char), "UnquotedStringChars  ")
 
-  val space         = P( CharsWhile(Whitespace).? )
+  val wspace        = P( CharsWhile(Whitespace) )
   val digits        = P( CharsWhile(Digits))
   val exponent      = P( CharIn("eE") ~ CharIn("+-").? ~ digits )
   val fieldSep      = P( CharIn(":="))
   val fractional    = P( "." ~ digits )
   val integral      = P( "0" | CharIn('1' to '9') ~ digits.? )
+
+  //val comment       = P( ("#"|"//") ~/ CharsWhile(! "\n" .contains (_: Char) ) ~/ "\n" )
+
+  val comment = P( "#" ~ CharsWhile(_ != '\n', min = 0) )
+  val space = P( (CharsWhile(" \n".toSet, min = 1) | comment | "\\\n").rep )
+  val nonewlinewscomment = P( (CharsWhile(" ".toSet, min = 1) | comment | "\\\n").rep )
+
+
+  // val space         = P( wspace.? ~ (comment ~ wspace.?).rep(min = 0) )
 
   val number = P( CharIn("+-").? ~ integral ~ fractional.? ~ exponent.? ).!.map(
     x => Config.NumberLiteral(x)
@@ -43,8 +52,6 @@ object ConfigParser {
   val quotedString =
     P( space ~ "\"" ~/ (strChars | escape).rep.! ~ "\"").map(s => Config.StringLiteral(s))
 
-
-
   val unquotedString: P[Config.StringLiteral] =
     P ( space ~ (letter|"_") ~ (letter | digit | "_").rep.!)
     .map(Config.StringLiteral)
@@ -57,13 +64,19 @@ object ConfigParser {
   val array =
     P( "[" ~/ jsonExpr.rep(sep=",".~/) ~ space ~ "]").map( x => Config.Array(x) )
 
-  val pair = P( string.map(_.value) ~/ space ~ fieldSep ~/ jsonExpr )
+  val pair = P( string.map(_.value) ~/ space ~ (
+    (&("{") ~/ obj) // if there is an open bracket, then we know an object follows
+    | fieldSep   ~/ jsonExpr ) )
 
-  val obj =
-    P( "{" ~/ pair.rep(sep=",".~/) ~ space ~ "}").map( x => Config.Object(Map(x:_*)) )
+  val obj: P[Config.Object] =
+    P( "{" ~/ objBody ~ "}").map( x => Config.Object(Map(x:_*)) )
+
+  val objBody = P( pair.rep(sep=(","|"\n").~/) ~ space )
 
   val jsonExpr: P[Config.Value] = P(
     space ~ (obj | array | string | `true` | `false` | `null` | number) ~ space
   )
+
+  val root = P( objBody.map( x => Config.Object(Map(x:_*)) ) | obj ).log()
 
 }

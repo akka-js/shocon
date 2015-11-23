@@ -14,7 +14,7 @@ class HelloSpec extends FlatSpec with Matchers {
   val list_q = """{a ="2"}"""
   list_q should "parse" in {
     val result = Config.parse(list_q)
-    println(result)
+    // println(result)
     result shouldBe a [Success[_]]
   }
 
@@ -41,14 +41,36 @@ class HelloSpec extends FlatSpec with Matchers {
   val nl_in_list = "{a:[[b,c,{d:e,f:g}],[]]}"
   nl_in_list should "parse" in {
     val result = Config.parse(nl_in_list)
-    println(result)
+    // println(result)
     result shouldBe a [Success[_]]
   }
 
- val akka = io.Source.fromFile("jvm/src/test/resources/akka.conf").mkString
+ val naked = "a { b = 1 }"
+ naked should "parse" in {
+   val result = Config.parse(naked)
+   result shouldBe a [ Success[_] ]
+ }
 
+
+
+val naked2 = """
+akka {
+  version = "2.0-SNAPSHOT"
+# comment
+  enabled-modules = []
+}
+#
+"""
+naked2 should "parse" in {
+  val result = Config.parse(naked)
+  result shouldBe a [ Success[_] ]
+}
+
+ val akka = io.Source.fromFile("jvm/src/test/resources/akka.conf").mkString
+ 
  "akka.conf" should "parse" in {
    val res = Config.parse(akka)
+   println(res)
    res shouldBe a [Success[_]]
  }
 
