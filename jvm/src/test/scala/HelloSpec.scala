@@ -6,15 +6,9 @@ import fastparse.core.Result.Success
 class HelloSpec extends FlatSpec with Matchers {
 
 
-  // val list = "{ a = [] }"
-  // list should "parse" in {
-  //   SHocon.parse(list) shouldBe a [Success[_]]
-  // }
-
-
-  val list2 = "{a=1}"
-  list2 should "parse" in {
-    Config.parse(list2) shouldBe a [Success[_]]
+  val list = """{ "a" : [] }"""
+  list should "parse" in {
+    Config.parse(list) shouldBe a [Success[_]]
   }
 
   val list_q = "{a =\"2\"}"

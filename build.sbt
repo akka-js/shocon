@@ -15,7 +15,7 @@ lazy val shocon = crossProject.in(file(".")).
 	scalaVersion := "2.11.7"
   ).
   settings(
-    libraryDependencies += "com.lihaoyi" %%% "fastparse" % "0.2.1"
+    libraryDependencies += "com.lihaoyi" %%% "fastparse" % "0.3.1"
   ).
   jvmSettings(
   	libraryDependencies += "org.scalatest" %% "scalatest" % "2.2.4" % "test"
