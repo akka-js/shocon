@@ -96,13 +96,13 @@ final_newline should "parse" in {
 }
 
 
-  //  val akka = io.Source.fromFile("jvm/src/test/resources/akka.conf").mkString
-   //
-  //  "akka.conf" should "parse" in {
-  //    val res = Config.parse(akka)
-  //    println(res)
-  //    res shouldBe a [Success[_]]
-  //  }
+   val akka = io.Source.fromFile("jvm/src/test/resources/akka.conf").mkString
+
+   "akka.conf" should "parse" in {
+     val res = Config.parse(akka)
+     println(res)
+     res shouldBe a [Success[_]]
+   }
 
    val akka_long = io.Source.fromFile("jvm/src/test/resources/akka-long.conf").mkString
 

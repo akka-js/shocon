@@ -71,7 +71,7 @@ object ConfigParser {
   val obj: P[Config.Object] =
     P( "{" ~/ objBody ~ "}")
 
-  val objBody = P( pair.rep(sep=("\n"|(",".~/))) ~ nlspace )
+  val objBody = P( pair.rep(sep=(("\n" ~ nlspace ~ ",".?)|(",".~/))) ~ nlspace )
                 .map( x => Config.Object(Map(x:_*)) )
                 .log()
 
