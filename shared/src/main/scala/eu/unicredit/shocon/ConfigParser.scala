@@ -53,10 +53,10 @@ object ConfigParser {
     P( space ~ "\"" ~/ (strChars | escape).rep.! ~ "\"").map(s => Config.StringLiteral(s))
 
   val unquotedString: P[Config.StringLiteral] =
-    P ( space ~ (letter|"_") ~ (letter | digit | "_").rep.!)
+    P ( space ~ (letter|"_") ~ (letter | digit | "_" | "-").rep(min=0).!)
     .map(Config.StringLiteral)
 
-  val string = P(quotedString | unquotedString)
+  val string = P(unquotedString)
 
 
   //val string = P( (quotedString | unquotedString ).map(s => Config.StringLiteral(s)) )
@@ -64,19 +64,21 @@ object ConfigParser {
   val array =
     P( "[" ~/ jsonExpr.rep(sep=",".~/) ~ space ~ "]").map( x => Config.Array(x) )
 
-  val pair = P( string.map(_.value) ~/ space ~ (
-    (&("{") ~/ obj) // if there is an open bracket, then we know an object follows
-    | fieldSep   ~/ jsonExpr ) )
+  val pair = P( string.map(_.value) ~/ space ~
+  ((fieldSep   ~/ jsonExpr )
+  |(obj ~ space))   )
 
   val obj: P[Config.Object] =
-    P( "{" ~/ objBody ~ "}").map( x => Config.Object(Map(x:_*)) )
+    P( "{" ~/ objBody ~ "}")
 
-  val objBody = P( pair.rep(sep=(","|"\n").~/) ~ space )
+  val objBody = P( pair.rep(sep=("\n"|",").~/) ~ space )
+                .map( x => Config.Object(Map(x:_*)) )
+                .log()
 
   val jsonExpr: P[Config.Value] = P(
     space ~ (obj | array | string | `true` | `false` | `null` | number) ~ space
-  )
+  ).log()
 
-  val root = P( objBody.map( x => Config.Object(Map(x:_*)) ) | obj ).log()
+  val root = P( (&(space ~ "{") ~/ obj )|(objBody)   ~ End ).log()
 
 }
