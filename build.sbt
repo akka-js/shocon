@@ -11,7 +11,7 @@ lazy val shocon = crossProject.in(file(".")).
   settings(
 	name := "shocon",
 	organization := "eu.unicredit",
-	version := "0.0.1-SNAPSHOT",
+	version := "0.0.2-SNAPSHOT",
 	scalaVersion := "2.11.7"
   ).
   settings(

@@ -51,10 +51,18 @@ case class Config(cfg: shocon.Config.Value) {
     this
   }
 
-  def getOrThrow[T](path: String)(implicit ev: Extractor[T]) =
+  def getOrThrow[T](path: String)(implicit ev: Extractor[T]): T =
     cfg.get(path)
        .flatMap(_.as[T](ev))
-       .getOrElse( throw ConfigException.Missing(path) )
+       .getOrElse{
+         fallback.future.value match {
+            case Some(Success(flbCfg)) =>
+              new Config(flbCfg).getOrThrow[T](path)(ev)
+            case _ =>
+              //println("Config Exception cannot extract "+path+" from "+cfg)
+              null.asInstanceOf[T] //throw ConfigException.Missing(path)
+         }
+      }
 
   def hasPath(path: String)     = cfg.get(path).isDefined
 
@@ -68,17 +76,25 @@ case class Config(cfg: shocon.Config.Value) {
 
   def getDouble(path: String)   = getOrThrow[Double](path)
 
-  def getStringList(path: String) = getOrThrow[ju.List[String]](path)
+  def getStringList(path: String): ju.List[String] =
+    getOrThrow[ju.List[String]](path) match {
+      case null => List[String]().asJava
+      case ret => ret
+    }
 
   private val millis = Set("ms", "millis", "milliseconds")
   private val nanos = Set("ns", "nanos", "nanoseconds")
   def getMillisDuration(path: String) = {
-    val res = getString(path)
-    val parts = res.split("[ \t]")
-    // either parts(1) is empty string (fallback: ms)
-    // or it actually is one spelling for "milliseconds"
-    assert( parts.size == 1 || (millis contains parts(1)) )
-    Duration(parts(0).toInt, MILLISECONDS)
+    try {
+      val res = getString(path)
+      val parts = res.split("[ \t]")
+      // either parts(1) is empty string (fallback: ms)
+      // or it actually is one spelling for "milliseconds"
+      assert( parts.size == 1 || (millis contains parts(1)) )
+      Duration(parts(0).toInt, MILLISECONDS)
+    } catch {
+      case err: Exception => null
+    }
   }
 
   def getNanosDuration(path: String) = {
