@@ -52,7 +52,7 @@ class HelloSpec extends FlatSpec with Matchers {
  }
 
 val empty_nested_objs =
-"""sx { n {} }"""
+"""sx { "/n" {} }"""
 empty_nested_objs should "parse" in {
   val result = Config.parse(empty_nested_objs)
   result shouldBe a [ Success[_] ]
@@ -95,20 +95,20 @@ final_newline should "parse" in {
   println (result)
 }
 
+
+  //  val akka = io.Source.fromFile("jvm/src/test/resources/akka.conf").mkString
    //
-   // val akka = io.Source.fromFile("jvm/src/test/resources/akka.conf").mkString
-   //
-   // "akka.conf" should "parse" in {
-   //   val res = Config.parse(akka)
-   //   println(res)
-   //   res shouldBe a [Success[_]]
-   // }
-   //
-   // val akka_long = io.Source.fromFile("jvm/src/test/resources/akka-long.conf").mkString
-   //
-   // "akka-long.conf" should "parse" in {
-   //   val res = Config.parse(akka_long)
-   //   res shouldBe a [Success[_]]
-   // }
+  //  "akka.conf" should "parse" in {
+  //    val res = Config.parse(akka)
+  //    println(res)
+  //    res shouldBe a [Success[_]]
+  //  }
+
+   val akka_long = io.Source.fromFile("jvm/src/test/resources/akka-long.conf").mkString
+
+   "akka-long.conf" should "parse" in {
+     val res = Config.parse(akka_long)
+     res shouldBe a [Success[_]]
+   }
 
 }

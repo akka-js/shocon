@@ -50,7 +50,7 @@ object ConfigParser {
 
   val strChars = P( CharsWhile(StringChars) )
   val quotedString =
-    P( space ~ "\"" ~/ (strChars | escape).rep.! ~ "\"").map(s => Config.StringLiteral(s))
+    P( nlspace ~ "\"" ~/ (strChars | escape).rep.! ~ "\"").map(s => Config.StringLiteral(s))
 
   val unquotedString: P[Config.StringLiteral] =
     P ( nlspace ~ (letter|"_") ~ (letter | digit | "_" | "-").rep(min=0).!)
