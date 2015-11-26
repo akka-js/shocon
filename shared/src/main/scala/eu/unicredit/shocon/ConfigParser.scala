@@ -30,8 +30,8 @@ object ConfigParser {
   //val comment       = P( ("#"|"//") ~/ CharsWhile(! "\n" .contains (_: Char) ) ~/ "\n" )
 
   val comment = P( "#" ~ CharsWhile(_ != '\n', min = 0) )
-  val space = P( (CharsWhile(" \n".toSet, min = 1) | comment | "\\\n").rep )
-  val nonewlinewscomment = P( (CharsWhile(" ".toSet, min = 1) | comment | "\\\n").rep )
+  val nlspace = P( (CharsWhile(" \n".toSet, min = 1) | comment ).rep )
+  val space = P( (CharsWhile(" ".toSet, min = 1) | comment ).rep )
 
 
   // val space         = P( wspace.? ~ (comment ~ wspace.?).rep(min = 0) )
@@ -53,16 +53,16 @@ object ConfigParser {
     P( space ~ "\"" ~/ (strChars | escape).rep.! ~ "\"").map(s => Config.StringLiteral(s))
 
   val unquotedString: P[Config.StringLiteral] =
-    P ( space ~ (letter|"_") ~ (letter | digit | "_" | "-").rep(min=0).!)
+    P ( nlspace ~ (letter|"_") ~ (letter | digit | "_" | "-").rep(min=0).!)
     .map(Config.StringLiteral)
 
-  val string = P(unquotedString)
+  val string = P(quotedString|unquotedString)
 
 
   //val string = P( (quotedString | unquotedString ).map(s => Config.StringLiteral(s)) )
 
   val array =
-    P( "[" ~/ jsonExpr.rep(sep=",".~/) ~ space ~ "]").map( x => Config.Array(x) )
+    P( "[" ~/ jsonExpr.rep(sep=",".~/) ~ nlspace ~ "]").map( x => Config.Array(x) )
 
   val pair = P( string.map(_.value) ~/ space ~
   ((fieldSep   ~/ jsonExpr )
@@ -71,7 +71,7 @@ object ConfigParser {
   val obj: P[Config.Object] =
     P( "{" ~/ objBody ~ "}")
 
-  val objBody = P( pair.rep(sep=("\n"|",").~/) ~ space )
+  val objBody = P( pair.rep(sep=("\n"|(",".~/))) ~ nlspace )
                 .map( x => Config.Object(Map(x:_*)) )
                 .log()
 
