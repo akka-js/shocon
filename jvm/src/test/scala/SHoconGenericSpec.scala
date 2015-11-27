@@ -96,7 +96,11 @@ class SHoconGenericSpec extends FlatSpec with Matchers {
   }
 
 
-  val concat_bare_strings = "x = a b c d"
+  val concat_bare_strings =
+    """
+      |x = a b c d
+      |y = 10
+      |""".stripMargin
   "x" should """be "a b c d"""" in {
     import eu.unicredit.shocon._
     val cfg = Config(concat_bare_strings)

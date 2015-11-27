@@ -22,27 +22,11 @@ object ConfigParser {
 
   val fieldSep      = P( CharIn(":="))
   val wspace        = P( CharsWhile(Whitespace) )
-  //  val digits        = P( CharsWhile(Digits))
-  //  val exponent      = P( CharIn("eE") ~ CharIn("+-").? ~ digits )
-//  val fractional    = P( "." ~ digits )
-//  val integral      = P( "0" | CharIn('1' to '9') ~ digits.? )
 
-  //val comment       = P( ("#"|"//") ~/ CharsWhile(! "\n" .contains (_: Char) ) ~/ "\n" )
 
   val comment = P( "#" ~ CharsWhile(_ != '\n', min = 0) )
   val nlspace = P( (CharsWhile(" \n".toSet, min = 1) | comment ).rep )
   val space = P( (CharsWhile(" ".toSet, min = 1) | comment ).rep )
-
-
-  // val space         = P( wspace.? ~ (comment ~ wspace.?).rep(min = 0) )
-
-//  val number = P( CharIn("+-").? ~ integral ~ fractional.? ~ exponent.? ).!.map(
-//    x => Config.NumberLiteral(x)
-//  )
-
-//  val `null`        = P( "null" ).map(_ => Config.NullLiteral)
-//  val `false`       = P( "false" ).map(_ => Config.BooleanLiteral(false))
-//  val `true`        = P( "true" ).map(_ => Config.BooleanLiteral(true))
 
   val hexDigit      = P( CharIn('0'to'9', 'a'to'f', 'A'to'F') )
   val unicodeEscape = P( "u" ~ hexDigit ~ hexDigit ~ hexDigit ~ hexDigit )
@@ -52,13 +36,9 @@ object ConfigParser {
   val quotedString =
     P( nlspace ~ "\"" ~/ (strChars | escape).rep.! ~ "\"")
   val unquotedString =
-    P ( nlspace ~ (letter | digit | "_" | "-" | ".").rep(min=1).!)
+    P ( nlspace ~ ( (letter | digit | "_" | "-" | ".").rep(min=1).! ).rep(min=1,sep=CharsWhile(_.isSpaceChar)).! )
 
   val string = P(quotedString|unquotedString).map(Config.StringLiteral)
-
-
-
-  //val string = P( (quotedString | unquotedString ).map(s => Config.StringLiteral(s)) )
 
   val array =
     P( "[" ~/ jsonExpr.rep(sep=",".~/) ~ nlspace ~ "]").map( x => Config.Array(x) )
