@@ -3,7 +3,7 @@ import org.scalatest._
 
 import fastparse.core.Result.Success
 
-class HelloSpec extends FlatSpec with Matchers {
+class SHoconGenericSpec extends FlatSpec with Matchers {
 
 
   val list = """{ "a" : [] }"""
@@ -79,7 +79,7 @@ newlines_instead_of_commas should "parse" in {
     case Success(v,_) => v should not be Config.Object(Map())
     case _ =>
   }
-  println (result)
+//  println (result)
 }
 
 
@@ -92,7 +92,7 @@ baz = 3
 final_newline should "parse" in {
   val result = Config.parse( final_newline  )
   result shouldBe a [ Success[_] ]
-  println (result)
+//  println (result)
 }
 
 
@@ -100,7 +100,7 @@ final_newline should "parse" in {
 
    "akka.conf" should "parse" in {
      val res = Config.parse(akka)
-     println(res)
+//     println(res)
      res shouldBe a [Success[_]]
    }
 

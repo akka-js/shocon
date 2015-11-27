@@ -20,12 +20,12 @@ object ConfigParser {
   val StringChars = NamedFunction(!"\"\\".contains(_: Char), "StringChars")
   val UnquotedStringChars = NamedFunction(!Whitespace(_: Char), "UnquotedStringChars  ")
 
-  val wspace        = P( CharsWhile(Whitespace) )
-  val digits        = P( CharsWhile(Digits))
-  val exponent      = P( CharIn("eE") ~ CharIn("+-").? ~ digits )
   val fieldSep      = P( CharIn(":="))
-  val fractional    = P( "." ~ digits )
-  val integral      = P( "0" | CharIn('1' to '9') ~ digits.? )
+  val wspace        = P( CharsWhile(Whitespace) )
+  //  val digits        = P( CharsWhile(Digits))
+  //  val exponent      = P( CharIn("eE") ~ CharIn("+-").? ~ digits )
+//  val fractional    = P( "." ~ digits )
+//  val integral      = P( "0" | CharIn('1' to '9') ~ digits.? )
 
   //val comment       = P( ("#"|"//") ~/ CharsWhile(! "\n" .contains (_: Char) ) ~/ "\n" )
 
@@ -36,13 +36,13 @@ object ConfigParser {
 
   // val space         = P( wspace.? ~ (comment ~ wspace.?).rep(min = 0) )
 
-  val number = P( CharIn("+-").? ~ integral ~ fractional.? ~ exponent.? ).!.map(
-    x => Config.NumberLiteral(x)
-  )
+//  val number = P( CharIn("+-").? ~ integral ~ fractional.? ~ exponent.? ).!.map(
+//    x => Config.NumberLiteral(x)
+//  )
 
-  val `null`        = P( "null" ).map(_ => Config.NullLiteral)
-  val `false`       = P( "false" ).map(_ => Config.BooleanLiteral(false))
-  val `true`        = P( "true" ).map(_ => Config.BooleanLiteral(true))
+//  val `null`        = P( "null" ).map(_ => Config.NullLiteral)
+//  val `false`       = P( "false" ).map(_ => Config.BooleanLiteral(false))
+//  val `true`        = P( "true" ).map(_ => Config.BooleanLiteral(true))
 
   val hexDigit      = P( CharIn('0'to'9', 'a'to'f', 'A'to'F') )
   val unicodeEscape = P( "u" ~ hexDigit ~ hexDigit ~ hexDigit ~ hexDigit )
@@ -53,7 +53,7 @@ object ConfigParser {
     P( nlspace ~ "\"" ~/ (strChars | escape).rep.! ~ "\"").map(s => Config.StringLiteral(s))
 
   val unquotedString: P[Config.StringLiteral] =
-    P ( nlspace ~ (letter|"_") ~ (letter | digit | "_" | "-").rep(min=0).!)
+    P ( nlspace ~ (letter | digit | "_" | "-" | ".").rep(min=1).!)
     .map(Config.StringLiteral)
 
   val string = P(quotedString|unquotedString)
@@ -73,12 +73,12 @@ object ConfigParser {
 
   val objBody = P( pair.rep(sep=(("\n" ~ nlspace ~ ",".?)|(",".~/))) ~ nlspace )
                 .map( x => Config.Object(Map(x:_*)) )
-                .log()
+                // .log()
 
   val jsonExpr: P[Config.Value] = P(
-    space ~ (obj | array | string | `true` | `false` | `null` | number) ~ space
-  ).log()
+    space ~ (obj | array | string /*| `true` | `false` | `null` | number*/) ~ space
+  ) // .log()
 
-  val root = P( (&(space ~ "{") ~/ obj )|(objBody)   ~ End ).log()
+  val root = P( (&(space ~ "{") ~/ obj )|(objBody)   ~ End ) // .log()
 
 }
