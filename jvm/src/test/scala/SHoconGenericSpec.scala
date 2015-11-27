@@ -51,49 +51,57 @@ class SHoconGenericSpec extends FlatSpec with Matchers {
    result shouldBe a [ Success[_] ]
  }
 
-val empty_nested_objs =
-"""sx { "/n" {} }"""
-empty_nested_objs should "parse" in {
-  val result = Config.parse(empty_nested_objs)
-  result shouldBe a [ Success[_] ]
-}
-
-val nonempty_nested_objs =
-"""sx { n { x = 2 } }"""
-nonempty_nested_objs should "parse" in {
-  val result = Config.parse(nonempty_nested_objs)
-  result shouldBe a [ Success[_] ]
-}
-
-val newlines_instead_of_commas = """{
-  foo = 1
-
-  bar = 2
-
-  baz = 3}
-"""
-newlines_instead_of_commas should "parse" in {
-  val result = Config.parse( newlines_instead_of_commas  )
-  result shouldBe a [ Success[_] ]
-  result match {
-    case Success(v,_) => v should not be Config.Object(Map())
-    case _ =>
+  val empty_nested_objs =
+  """sx { "/n" {} }"""
+  empty_nested_objs should "parse" in {
+    val result = Config.parse(empty_nested_objs)
+    result shouldBe a [ Success[_] ]
   }
-//  println (result)
-}
+
+  val nonempty_nested_objs =
+  """sx { n { x = 2 } }"""
+  nonempty_nested_objs should "parse" in {
+    val result = Config.parse(nonempty_nested_objs)
+    result shouldBe a [ Success[_] ]
+  }
+
+  val newlines_instead_of_commas = """{
+    foo = 1
+
+    bar = 2
+
+    baz = 3}
+  """
+  newlines_instead_of_commas should "parse" in {
+    val result = Config.parse( newlines_instead_of_commas  )
+    result shouldBe a [ Success[_] ]
+    result match {
+      case Success(v,_) => v should not be Config.Object(Map())
+      case _ =>
+    }
+  //  println (result)
+  }
 
 
-val final_newline = """{
-foo = 1
-bar = 2
-baz = 3
-}
-"""
-final_newline should "parse" in {
-  val result = Config.parse( final_newline  )
-  result shouldBe a [ Success[_] ]
-//  println (result)
-}
+  val final_newline = """{
+  foo = 1
+  bar = 2
+  baz = 3
+  }
+  """
+  final_newline should "parse" in {
+    val result = Config.parse( final_newline  )
+    result shouldBe a [ Success[_] ]
+  //  println (result)
+  }
+
+
+  val concat_bare_strings = "x = a b c d"
+  "x" should """be "a b c d"""" in {
+    import eu.unicredit.shocon._
+    val cfg = Config(concat_bare_strings)
+    cfg("x").as[String].get shouldBe "a b c d"
+  }
 
 
    val akka = io.Source.fromFile("jvm/src/test/resources/akka.conf").mkString

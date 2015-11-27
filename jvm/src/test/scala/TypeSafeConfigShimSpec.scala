@@ -5,8 +5,16 @@ import fastparse.core.Result.Success
 
 class TypeSafeConfigShimSpec extends FlatSpec with Matchers {
 
-  val cfg = ConfigFactory.parseString("""{x = 1}""")
-  val x = cfg.getDuration("x")
-  print("duration "+x.toNanos+"\n\n")
+  {
+    val input = """x = "1 ms" """
+
+    input should "have x == 1 ms" in {
+      val cfg = ConfigFactory.parseString(input)
+      val x = cfg.getDuration("x")
+      x.toMillis shouldBe 1
+    }
+
+  }
+
 
 }

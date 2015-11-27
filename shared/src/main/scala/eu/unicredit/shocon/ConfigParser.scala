@@ -50,13 +50,12 @@ object ConfigParser {
 
   val strChars = P( CharsWhile(StringChars) )
   val quotedString =
-    P( nlspace ~ "\"" ~/ (strChars | escape).rep.! ~ "\"").map(s => Config.StringLiteral(s))
-
-  val unquotedString: P[Config.StringLiteral] =
+    P( nlspace ~ "\"" ~/ (strChars | escape).rep.! ~ "\"")
+  val unquotedString =
     P ( nlspace ~ (letter | digit | "_" | "-" | ".").rep(min=1).!)
-    .map(Config.StringLiteral)
 
-  val string = P(quotedString|unquotedString)
+  val string = P(quotedString|unquotedString).map(Config.StringLiteral)
+
 
 
   //val string = P( (quotedString | unquotedString ).map(s => Config.StringLiteral(s)) )
@@ -76,7 +75,7 @@ object ConfigParser {
                 // .log()
 
   val jsonExpr: P[Config.Value] = P(
-    space ~ (obj | array | string /*| `true` | `false` | `null` | number*/) ~ space
+    space ~ (obj | array | string) ~ space
   ) // .log()
 
   val root = P( (&(space ~ "{") ~/ obj )|(objBody)   ~ End ) // .log()
