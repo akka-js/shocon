@@ -49,8 +49,16 @@ class SHoconGenericSpec extends FlatSpec with Matchers {
     Config(simple_arr) shouldBe Config(nl_arr)
   }
 
+  val list_concat = "l = [a,b] \n[c, d]"
+  "concatenated lists" should "parse" in {
+    val parsed = Config.parse(list_concat)
+    parsed shouldBe a [Success[_]]
+  }
 
 
+  "concatenated list" should "parse the same as a non-concat list with same contents" in {
+    Config("l = [a, b, c, d]") shouldBe Config(list_concat)
+  }
 
 
   val nl_in_list = "{a:[[b,c,{d:e,f:g}],[]]}"

@@ -53,8 +53,11 @@ object ConfigParser {
 
   // *** Parsing ***
 
-  val array =
-    P( "[" ~/ jsonExpr.rep(sep=itemSeparator) ~ nlspace ~ "]").map( x => Config.Array(x) )
+  val array: P[Seq[Config.Value]] =
+    P( "[" ~/ jsonExpr.rep(sep=itemSeparator) ~ nlspace ~ "]")
+
+  val repeatedArray =
+    array.rep(min = 1, sep=nlspace).map( ( arrays: Seq[Seq[Config.Value]] ) => Config.Array ( arrays.flatten ) )
 
   val pair = P( string.map(_.value) ~/ space ~
     ((keyValueSeparator   ~/ jsonExpr )
@@ -70,7 +73,7 @@ object ConfigParser {
                 // .log()
 
   val jsonExpr: P[Config.Value] = P(
-    space ~ (obj | array | string) ~ space
+    space ~ (obj | repeatedArray | string) ~ space
   ) // .log()
 
   val root = P( (&(space ~ "{") ~/ obj )|(objBody)   ~ End ) // .log()
