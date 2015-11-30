@@ -9,9 +9,18 @@ object ConfigParser {
 
   }
 
+  val isWhitespace = (c: Char) =>
+    c match {
+      // try to hit the most common ASCII ones first, then the nonbreaking
+      // spaces that Java brokenly leaves out of isWhitespace.
+      case ' '|'\n'|'\u00A0'|'\u2007'|'\u202F'|'\uFEFF' /* BOM */ => true;
+      case _ => Character.isWhitespace(c);
+    }
+
+  val isWhitespaceNL = (c: Char) =>  c == '\n' || isWhitespace(c)
 
   // *** Lexing ***
-  val Whitespace = NamedFunction(" \n".contains(_: Char), "Whitespace")
+  val Whitespace = NamedFunction(isWhitespace, "Whitespace")
   val letter     = P( lowercase | uppercase )
   val lowercase  = P( CharIn('a' to 'z') )
   val uppercase  = P( CharIn('A' to 'Z') )
