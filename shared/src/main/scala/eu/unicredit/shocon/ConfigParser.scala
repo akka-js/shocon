@@ -17,26 +17,26 @@ object ConfigParser {
       case _ => Character.isWhitespace(c);
     }
 
-  val isWhitespaceNL = (c: Char) =>  c == '\n' || isWhitespace(c)
+  val isWhitespaceNoNl = (c: Char) =>  c != '\n' && isWhitespace(c)
 
   // *** Lexing ***
-  val Whitespace = NamedFunction(isWhitespace, "Whitespace")
+//  val Whitespace = NamedFunction(isWhitespace, "Whitespace")
   val letter     = P( lowercase | uppercase )
   val lowercase  = P( CharIn('a' to 'z') )
   val uppercase  = P( CharIn('A' to 'Z') )
   val digit      = P( CharIn('0' to '9') )
   val Digits = NamedFunction('0' to '9' contains (_: Char), "Digits")
   val StringChars = NamedFunction(!"\"\\".contains(_: Char), "StringChars")
-  val UnquotedStringChars = NamedFunction(!Whitespace(_: Char), "UnquotedStringChars  ")
+  val UnquotedStringChars = NamedFunction(!isWhitespaceNoNl(_: Char), "UnquotedStringChars  ")
 
   val keyValueSeparator      = P( CharIn(":="))
 
 
   // whitespace
-  val wspace        = P( CharsWhile(Whitespace) )
+//  val wspace        = P( CharsWhile(Whitespace) )
   val comment = P( "#" ~ CharsWhile(_ != '\n', min = 0) )
-  val nlspace = P( (CharsWhile(" \n".toSet, min = 1) | comment ).rep )
-  val space = P( (CharsWhile(" ".toSet, min = 1) | comment ).rep )
+  val nlspace = P( (CharsWhile(isWhitespace, min = 1) | comment ).rep )
+  val space = P( ( CharsWhile(isWhitespaceNoNl, min = 1) | comment ).rep )
 
   val hexDigit      = P( CharIn('0'to'9', 'a'to'f', 'A'to'F') )
   val unicodeEscape = P( "u" ~ hexDigit ~ hexDigit ~ hexDigit ~ hexDigit )
