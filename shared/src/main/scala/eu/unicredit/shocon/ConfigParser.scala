@@ -10,7 +10,7 @@ object ConfigParser {
   }
 
 
-  // Here is the parser
+  // *** Lexing ***
   val Whitespace = NamedFunction(" \n".contains(_: Char), "Whitespace")
   val letter     = P( lowercase | uppercase )
   val lowercase  = P( CharIn('a' to 'z') )
@@ -20,10 +20,11 @@ object ConfigParser {
   val StringChars = NamedFunction(!"\"\\".contains(_: Char), "StringChars")
   val UnquotedStringChars = NamedFunction(!Whitespace(_: Char), "UnquotedStringChars  ")
 
-  val fieldSep      = P( CharIn(":="))
+  val keyValueSeparator      = P( CharIn(":="))
+
+
+  // whitespace
   val wspace        = P( CharsWhile(Whitespace) )
-
-
   val comment = P( "#" ~ CharsWhile(_ != '\n', min = 0) )
   val nlspace = P( (CharsWhile(" \n".toSet, min = 1) | comment ).rep )
   val space = P( (CharsWhile(" ".toSet, min = 1) | comment ).rep )
@@ -32,6 +33,7 @@ object ConfigParser {
   val unicodeEscape = P( "u" ~ hexDigit ~ hexDigit ~ hexDigit ~ hexDigit )
   val escape        = P( "\\" ~ (CharIn("\"/\\bfnrt") | unicodeEscape) )
 
+  // strings
   val strChars = P( CharsWhile(StringChars) )
   val quotedString =
     P( nlspace ~ "\"" ~/ (strChars | escape).rep.! ~ "\"")
@@ -40,17 +42,21 @@ object ConfigParser {
 
   val string = P(quotedString|unquotedString).map(Config.StringLiteral)
 
+  // *** Parsing ***
+
   val array =
-    P( "[" ~/ jsonExpr.rep(sep=",".~/) ~ nlspace ~ "]").map( x => Config.Array(x) )
+    P( "[" ~/ jsonExpr.rep(sep=itemSeparator) ~ nlspace ~ "]").map( x => Config.Array(x) )
 
   val pair = P( string.map(_.value) ~/ space ~
-  ((fieldSep   ~/ jsonExpr )
-  |(obj ~ space))   )
+    ((keyValueSeparator   ~/ jsonExpr )
+    |(obj ~ space))   )
 
   val obj: P[Config.Object] =
     P( "{" ~/ objBody ~ "}")
 
-  val objBody = P( pair.rep(sep=(("\n" ~ nlspace ~ ",".?)|(",".~/))) ~ nlspace )
+  val itemSeparator = P(("\n" ~ nlspace ~ ",".?)|(",".~/))
+
+  val objBody = P( pair.rep(sep=itemSeparator) ~ nlspace )
                 .map( x => Config.Object(Map(x:_*)) )
                 // .log()
 

@@ -37,6 +37,21 @@ class SHoconGenericSpec extends FlatSpec with Matchers {
     Config.parse(nl_in_empty_list) shouldBe a [Success[_]]
   }
 
+  val simple_arr = "l = [ a, b, c, d ]"
+  val nl_arr =
+    """l =[ a
+      |
+      |   b
+      |  c
+      |
+      | d ]""".stripMargin
+  simple_arr + nl_arr should "parse the same" in {
+    Config(simple_arr) shouldBe Config(nl_arr)
+  }
+
+
+
+
 
   val nl_in_list = "{a:[[b,c,{d:e,f:g}],[]]}"
   nl_in_list should "parse" in {
