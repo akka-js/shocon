@@ -56,26 +56,30 @@ object ConfigParser {
   val array: P[Seq[Config.Value]] =
     P( "[" ~/ jsonExpr.rep(sep=itemSeparator) ~ nlspace ~ "]")
 
-  val repeatedArray =
+  val repeatedArray: P[Config.Array] =
     array.rep(min = 1, sep=nlspace).map( ( arrays: Seq[Seq[Config.Value]] ) => Config.Array ( arrays.flatten ) )
 
-  val pair = P( string.map(_.value) ~/ space ~
+  val pair: P[(String, Config.Value)] = P( string.map(_.value) ~/ space ~
     ((keyValueSeparator   ~/ jsonExpr )
-    |(obj ~ space))   )
+    |(repeatedObj ~ space))   )
 
-  val obj: P[Config.Object] =
+  val obj: P[Seq[(String, Config.Value)]] =
     P( "{" ~/ objBody ~ "}")
+
+  val repeatedObj: P[Config.Object] =
+    obj.rep(min = 1, sep=nlspace).map(fields => Config.Object(Map( fields.flatten :_*) ))
+
 
   val itemSeparator = P(("\n" ~ nlspace ~ ",".?)|(",".~/))
 
   val objBody = P( pair.rep(sep=itemSeparator) ~ nlspace )
-                .map( x => Config.Object(Map(x:_*)) )
                 // .log()
 
   val jsonExpr: P[Config.Value] = P(
-    space ~ (obj | repeatedArray | string) ~ space
+    space ~ (repeatedObj | repeatedArray | string) ~ space
   ) // .log()
 
-  val root = P( (&(space ~ "{") ~/ obj )|(objBody)   ~ End ) // .log()
+  val root = P( (&(space ~ "{") ~/ obj )|(objBody)   ~ End ).map( x => Config.Object(Map(x:_*)) )
+  // .log()
 
 }

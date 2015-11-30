@@ -106,6 +106,19 @@ class SHoconGenericSpec extends FlatSpec with Matchers {
   }
 
 
+
+  val concat_objs = "x = {a:1, b: 2}\n {c: 3, d: 4}"
+  "concatenated objects" should "parse" in {
+
+    val result = Config.parse( concat_objs  )
+    result shouldBe a [ Success[_] ]
+
+  }
+
+  they should "parse the same as equivalent non-concat objects with same contents" in {
+    Config( concat_objs  ) shouldBe Config("x = {a:1, b: 2\nc: 3, d: 4}")
+  }
+
   val final_newline = """{
   foo = 1
   bar = 2
