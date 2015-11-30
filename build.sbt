@@ -1,3 +1,10 @@
+import SonatypeKeys._
+
+sonatypeSettings
+
+scalariformSettings
+
+org.scalastyle.sbt.ScalastylePlugin.Settings
 
 lazy val root = project.in(file(".")).
   aggregate(shoconJS, shoconJVM).
