@@ -1,14 +1,15 @@
 package com.typesafe.config
 
-import scala.concurrent.duration._
-import scala.concurrent.{ Promise, Future }
-import scala.util.{Try, Success, Failure}
-import scala.collection.JavaConverters._
+import eu.unicredit.shocon
+
 import java.{util => ju}
 import java.util.{concurrent => juc}
 import java.{time => jt}
 
-import eu.unicredit.shocon
+import scala.concurrent.duration._
+import scala.concurrent.{ Promise, Future }
+import scala.util.{Try, Success, Failure}
+import scala.collection.JavaConverters._
 
 object ConfigFactory {
   def parseString(s: String): Config = {
@@ -17,7 +18,6 @@ object ConfigFactory {
 
    def empty() = Config(shocon.Config("{}"))
 }
-
 
 case class Config(cfg: shocon.Config.Value) {
   self =>
@@ -57,8 +57,7 @@ case class Config(cfg: shocon.Config.Value) {
             case Some(Success(flbCfg)) =>
               new Config(flbCfg).getOrReturnNull[T](path)(ev)
             case _ =>
-              //println("Config Exception cannot extract "+path+" from "+cfg)
-              null.asInstanceOf[T] //throw ConfigException.Missing(path)
+              null.asInstanceOf[T]
          }
       }
 
@@ -92,7 +91,6 @@ case class Config(cfg: shocon.Config.Value) {
     return jt.Duration.ofNanos(nanos)
   }
 
-
   def parseDurationAsNanos(input: String): Long = {
     import juc.TimeUnit._
 
@@ -115,7 +113,6 @@ case class Config(cfg: shocon.Config.Value) {
                  "Could not parse time unit '" + originalUnitString + "' (try ns, us, ms, s, m, h, d)")
     }
 
-
     try {
       // return here
       if (numberString.matches("[0-9]+")) units.toNanos(numberString.toLong)
@@ -124,7 +121,6 @@ case class Config(cfg: shocon.Config.Value) {
       case e: NumberFormatException => {
         throw new ConfigException.BadValue("Could not parse duration number '" + numberString + "'")
       }
-
     }
   }
 

@@ -3,7 +3,7 @@ import org.scalatest._
 
 import fastparse.core.Result.Success
 
-class SHoconGenericSpec extends FlatSpec with Matchers {
+class SHoconGenericSpecOLD extends FlatSpec with Matchers {
 
 
   val list = """{ "a" : [] }"""
