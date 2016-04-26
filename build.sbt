@@ -21,6 +21,8 @@ lazy val shocon = crossProject.in(file(".")).
     _.enablePlugins(ScalaJSJUnitPlugin)
   ).
   jsSettings(
+    libraryDependencies += "org.scala-js" %%% "scalajs-java-time" % "0.1.0",
+    //libraryDependencies += "org.scala-js" % "scalajs-java-time_sjs0.6_2.11" % "0.1.0",
     scalaJSUseRhino in Global := true,
     parallelExecution in Test := true
   )

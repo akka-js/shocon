@@ -1,4 +1,17 @@
-
+/* Copyright 2016 UniCredit S.p.A.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+* http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
 import java.{util => ju}
 
 import org.junit.Assert._
@@ -8,6 +21,7 @@ import scala.util.{Success, Failure}
 
 import com.typesafe.config.{Config, ConfigValue, ConfigFactory}
 import scala.collection.JavaConverters._
+import java.util.concurrent.TimeUnit
 
 class SHoconGenericSpec {
 
@@ -82,62 +96,46 @@ class SHoconGenericSpec {
 
     val config2 = ConfigFactory.parseString("x = {a:1, b: 2\nc: 3, d: 4}")
 
-    
-  }
-/*
+    assert { config1 != null && config2 != null }
 
-  val concat_objs = "x = {a:1, b: 2}\n {c: 3, d: 4}"
-  "concatenated objects" should "parse" in {
-
-    val result = Config.parse( concat_objs  )
-    result shouldBe a [ Success[_] ]
-
+    assertEquals ( config1, config2)
   }
 
-  they should "parse the same as equivalent non-concat objects with same contents" in {
-    Config( concat_objs  ) shouldBe Config("x = {a:1, b: 2\nc: 3, d: 4}")
+  @Test
+  def parseAndConcatenateStringValues = {
+    val config = ConfigFactory.parseString(
+      """
+        |x = a b c d
+        |y = 10
+        |""".stripMargin)
+
+    assert { config != null }
+
+    assertEquals(config.getString("x"), "a b c d")
   }
 
-  val final_newline = """{
-  foo = 1
-  bar = 2
-  baz = 3
-  }
-  """
-  final_newline should "parse" in {
-    val result = Config.parse( final_newline  )
-    result shouldBe a [ Success[_] ]
-  //  println (result)
-  }
+  @Test
+  def parseAkkaConfFiles = {
+    val basic = ConfigFactory.parseString(AkkaConf.basic)
+    val long = ConfigFactory.parseString(AkkaConf.long)
 
+    assert { basic != null && long != null }
 
-  val concat_bare_strings =
-    """
-      |x = a b c d
-      |y = 10
-      |""".stripMargin
-  "x" should """be "a b c d"""" in {
-    import eu.unicredit.shocon._
-    val cfg = Config(concat_bare_strings)
-    cfg("x").as[String].get shouldBe "a b c d"
+    assertEquals (basic.getString("akka.version"), "2.0-SNAPSHOT")
+    assertEquals (long.getString("akka.version"), "2.0-SNAPSHOT")
   }
 
+  @Test
+  def parseDurations = {
+    val config = ConfigFactory.parseString(
+      """ a {
+        |x = 1 ms
+        |}""".stripMargin
+      )
 
-   val akka = io.Source.fromFile("jvm/src/test/resources/akka.conf").mkString
+    assert { config != null }
 
-   "akka.conf" should "parse" in {
-     val res = Config.parse(akka)
-//     println(res)
-     res shouldBe a [Success[_]]
-   }
-
-   val akka_long = io.Source.fromFile("jvm/src/test/resources/akka-long.conf").mkString
-
-   "akka-long.conf" should "parse" in {
-     val res = Config.parse(akka_long)
-     res shouldBe a [Success[_]]
-   }
-
-
-*/
+    assertEquals (config.getDuration("a.x").toMillis.toLong, 1L)
+    assertEquals (config.getDuration("a.x", TimeUnit.NANOSECONDS).toLong, 1000000L)
+  }
 }
