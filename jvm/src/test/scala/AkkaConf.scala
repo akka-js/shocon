@@ -12,14 +12,12 @@
 * See the License for the specific language governing permissions and
 * limitations under the License.
 */
-package com.typesafe
+object AkkaConf {
 
-package object config {
+  def basic =
+    io.Source.fromFile("jvm/src/test/resources/akka.conf").mkString
 
-  implicit def fromStringToShoconConfig(s: String): eu.unicredit.shocon.Config.Value =
-  	eu.unicredit.shocon.Config.StringLiteral(s)
-
-  implicit def fromShoconConfigToString(cv: eu.unicredit.shocon.Config.Value): String =
-  	cv.toString
+  def long =
+    io.Source.fromFile("jvm/src/test/resources/akka-long.conf").mkString      
 
 }

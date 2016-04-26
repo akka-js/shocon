@@ -1,31 +1,30 @@
-import SonatypeKeys._
-
-sonatypeSettings
-
-scalariformSettings
-
-org.scalastyle.sbt.ScalastylePlugin.Settings
+name := "shocon"
 
 lazy val root = project.in(file(".")).
-  aggregate(shoconJS, shoconJVM).
-  settings(
-    publish := {},
-    publishLocal := {}
-  )
+  aggregate(shoconJS, shoconJVM)
 
 lazy val shocon = crossProject.in(file(".")).
   settings(
-	name := "shocon",
-	organization := "eu.unicredit",
-	version := "0.0.1-SNAPSHOT",
-	scalaVersion := "2.11.7"
+  	name := "shocon",
+  	organization := "eu.unicredit",
+  	version := "0.0.2-SNAPSHOT",
+  	scalaVersion := "2.11.8",
+    scalacOptions ++= Seq("-feature", "-unchecked", "-language:implicitConversions")
+  ).
+  settings(
+    libraryDependencies += "com.lihaoyi" %%% "fastparse" % "0.3.1"
   ).
   jvmSettings(
-  	libraryDependencies += "org.parboiled" %% "parboiled" % "2.1.0",
-  	libraryDependencies += "org.scalatest" %% "scalatest" % "2.2.4" % "test"
+  	libraryDependencies += "com.novocode" % "junit-interface" % "0.9" % "test"
+  ).
+  jsConfigure(
+    _.enablePlugins(ScalaJSJUnitPlugin)
   ).
   jsSettings(
-  	libraryDependencies += "org.parboiled" %%% "parboiled" % "2.1.1-SNAPSHOT"
+    libraryDependencies += "org.scala-js" %%% "scalajs-java-time" % "0.1.0",
+    //libraryDependencies += "org.scala-js" % "scalajs-java-time_sjs0.6_2.11" % "0.1.0",
+    scalaJSUseRhino in Global := true,
+    parallelExecution in Test := true
   )
 
 lazy val shoconJVM = shocon.jvm
