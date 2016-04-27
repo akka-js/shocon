@@ -64,6 +64,8 @@ case class Config(cfg: shocon.Config.Value) {
     }
   }
 
+  def checkValid(c: Config, paths: String*): Unit = {}
+
   def withFallback(c: Config) = {
     fallback.success(c.cfg)
     this
