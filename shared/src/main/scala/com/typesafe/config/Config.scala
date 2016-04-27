@@ -34,7 +34,7 @@ object ConfigFactory {
 
   def load(cl: ClassLoader): Config = empty()
 
-  def defaultReference(cl: ClassLoader) = {}
+  def defaultReference(cl: ClassLoader): Config = empty()
 
   def empty() = Config(shocon.Config("{}"))
 }
