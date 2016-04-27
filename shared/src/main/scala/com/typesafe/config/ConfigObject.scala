@@ -15,9 +15,12 @@
 package com.typesafe.config
 
 import java.{util => ju}
+import scala.collection.JavaConverters._
 
 trait ConfigObject extends ju.AbstractMap[String, ConfigValue] with ConfigValue {
 
 	def toConfig = Config(inner)
+
+  override def render: String = this.entrySet().asScala.map(kv => kv.getKey+" -> "+kv.getValue).mkString("[", ",", "]")
 
 }
