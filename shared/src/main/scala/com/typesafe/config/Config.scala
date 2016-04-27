@@ -20,6 +20,8 @@ import java.{util => ju}
 import java.util.{concurrent => juc}
 import java.{time => jt}
 
+import java.lang.ClassLoader
+
 import scala.concurrent.duration._
 import scala.concurrent.{ Promise, Future }
 import scala.util.{Try, Success, Failure}
@@ -30,7 +32,11 @@ object ConfigFactory {
     new Config(shocon.Config(s))
   }
 
-   def empty() = Config(shocon.Config("{}"))
+  def load(cl: ClassLoader): Config = empty()
+
+  def defaultReference(cl: ClassLoader) = {}
+
+  def empty() = Config(shocon.Config("{}"))
 }
 
 case class Config(cfg: shocon.Config.Value) {
