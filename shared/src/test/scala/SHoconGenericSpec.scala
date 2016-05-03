@@ -138,4 +138,34 @@ class SHoconGenericSpec {
     assertEquals (config.getDuration("a.x").toMillis.toLong, 1L)
     assertEquals (config.getDuration("a.x", TimeUnit.NANOSECONDS).toLong, 1000000L)
   }
+
+  @Test
+  def parseBooleans = {
+    val config = ConfigFactory.parseString(
+      """ a {
+        |x1 = true
+        |x2 = on
+        |x3 = yes
+        |x4 = false
+        |x5 = off
+        |x6 = no
+        |}""".stripMargin
+      )
+
+    assert { config != null }
+
+    assertEquals (config.getBoolean("a.x1"), true)
+    assertEquals (config.getBoolean("a.x2"), true)
+    assertEquals (config.getBoolean("a.x3"), true)
+    assertEquals (config.getBoolean("a.x4"), false)
+    assertEquals (config.getBoolean("a.x5"), false)
+    assertEquals (config.getBoolean("a.x6"), false)
+  }
+
+  @Test
+  def parseAkkaConfiguration = {
+    val config = AkkaConfig.config
+
+    assert { config != null }
+  }
 }

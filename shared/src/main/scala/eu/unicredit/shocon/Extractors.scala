@@ -22,8 +22,11 @@ trait Extractors {
   type Extractor[T] = PartialFunction[Config.Value, T]
 
   implicit val BooleanExtractor: Extractor[Boolean] = {
-    case Config.BooleanLiteral(v) => v 
-  } 
+    case Config.StringLiteral(v) => v.trim match {
+      case "true" | "on" | "yes" => true
+      case "false" | "off" | "no" => false
+    }
+  }
   implicit val StringExtractor:  Extractor[String] = {
     case Config.StringLiteral(v) => v 
   } 
