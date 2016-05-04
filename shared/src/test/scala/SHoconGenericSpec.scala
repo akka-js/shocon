@@ -167,5 +167,9 @@ class SHoconGenericSpec {
     val config = AkkaConfig.config
 
     assert { config != null }
+
+    config.getConfig("akka").entrySet()
+
+    ()
   }
 }

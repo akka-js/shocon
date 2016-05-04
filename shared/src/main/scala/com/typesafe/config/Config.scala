@@ -64,6 +64,8 @@ case class Config(cfg: shocon.Config.Value) {
     }
   }
 
+  def entrySet(): ju.Set[ju.Map.Entry[String,ConfigValue]] = root.entrySet()
+
   def checkValid(c: Config, paths: String*): Unit = {}
 
   def withFallback(c: Config) = {
