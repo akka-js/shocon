@@ -172,4 +172,16 @@ class SHoconGenericSpec {
 
     ()
   }
+
+  @Test
+  def reloadConfigWithFallback() = {
+    val config1 = ConfigFactory.parseString("""{ "a" : [] }""")
+    val config2 = ConfigFactory.parseString("""{ "b" : [] }""")
+  
+    assert { config1 != null && config2 != null}
+
+    val config = config1.withFallback(config2).withFallback(config1)
+    
+    assert { config.hasPath("a") }
+  }
 }
