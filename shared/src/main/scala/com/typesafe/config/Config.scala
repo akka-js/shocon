@@ -164,12 +164,9 @@ case class Config(cfg: shocon.Config.Value) {
   private val nanos = Set("ns", "nanos", "nanoseconds")
   def getMillisDuration(path: String) = {
     try {
-      val res = getString(path)
-      val parts = res.split("[ \t]")
-      // either parts(1) is empty string (fallback: ms)
-      // or it actually is one spelling for "milliseconds"
-      assert( parts.size == 1 || (millis contains parts(1)) )
-      Duration(parts(0).toInt, MILLISECONDS)
+      val res = parseDurationAsNanos(getString(path))
+
+      Duration(res, NANOSECONDS)
     } catch {
       case err: Exception => null
     }
