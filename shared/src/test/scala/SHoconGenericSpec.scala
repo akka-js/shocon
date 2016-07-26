@@ -140,6 +140,82 @@ class SHoconGenericSpec {
   }
 
   @Test
+  def parseBytes = {
+    val config = ConfigFactory.parseString(
+      """ a {
+        |b = 9 b
+        |B = 9 b
+        |byte = 1 byte
+        |bytes = 9 bytes
+        |kB = 9 kB
+        |kilobyte = 1 kilobyte
+        |kilobytes = 9 kilobyte
+        |MB = 9 MB
+        |megabyte = 1 megabyte
+        |megabytes = 9 megabytes
+        |GB = 9 GB
+        |gigabyte = 1 gigabyte
+        |gigabytes = 9 gigabytes
+        |TB = 9 TB
+        |terabyte = 1 terabyte
+        |terabytes = 9 terabytes
+        |PB = 9 PB
+        |petabyte = 1 petabyte
+        |petabytes = 9 petabytes
+        |EB = 9 EB
+        |K = 1 K
+        |k = 1 k
+        |Ki = 1 Ki
+        |KiB = 1 KiB
+        |m = 1 m
+        |M = 1 M
+        |Mi = 1 Mi
+        |MiB = 1 MiB
+        |g = 1 g
+        |G = 1 G
+        |Gi = 1 Gi
+        |GiB = 1 GiB
+        |}""".stripMargin
+    )
+
+    assert { config != null }
+
+    assertEquals (config.getBytes("a.b"),                             9L)
+    assertEquals (config.getBytes("a.B"),                             9L)
+    assertEquals (config.getBytes("a.byte"),                          1L)
+    assertEquals (config.getBytes("a.bytes"),                         9L)
+    assertEquals (config.getBytes("a.kB"),                         9000L)
+    assertEquals (config.getBytes("a.kilobyte"),                   1000L)
+    assertEquals (config.getBytes("a.kilobytes"),                  9000L)
+    assertEquals (config.getBytes("a.MB"),                      9000000L)
+    assertEquals (config.getBytes("a.megabyte"),                1000000L)
+    assertEquals (config.getBytes("a.megabytes"),               9000000L)
+    assertEquals (config.getBytes("a.GB"),                   9000000000L)
+    assertEquals (config.getBytes("a.gigabyte"),             1000000000L)
+    assertEquals (config.getBytes("a.gigabytes"),            9000000000L)
+    assertEquals (config.getBytes("a.TB"),                9000000000000L)
+    assertEquals (config.getBytes("a.terabyte"),          1000000000000L)
+    assertEquals (config.getBytes("a.terabytes"),         9000000000000L)
+    assertEquals (config.getBytes("a.PB"),             9000000000000000L)
+    assertEquals (config.getBytes("a.petabyte"),       1000000000000000L)
+    assertEquals (config.getBytes("a.petabytes"),      9000000000000000L)
+    assertEquals (config.getBytes("a.k"),                          1024L)
+    assertEquals (config.getBytes("a.K"),                          1024L)
+    assertEquals (config.getBytes("a.Ki"),                         1024L)
+    assertEquals (config.getBytes("a.KiB"),                        1024L)
+    assertEquals (config.getBytes("a.m"),                    1024L*1024L)
+    assertEquals (config.getBytes("a.M"),                    1024L*1024L)
+    assertEquals (config.getBytes("a.Mi"),                   1024L*1024L)
+    assertEquals (config.getBytes("a.MiB"),                  1024L*1024L)
+    assertEquals (config.getBytes("a.g"),              1024L*1024L*1024L)
+    assertEquals (config.getBytes("a.G"),              1024L*1024L*1024L)
+    assertEquals (config.getBytes("a.Gi"),             1024L*1024L*1024L)
+    assertEquals (config.getBytes("a.GiB"),            1024L*1024L*1024L)
+
+  }
+
+
+  @Test
   def parseBooleans = {
     val config = ConfigFactory.parseString(
       """ a {
