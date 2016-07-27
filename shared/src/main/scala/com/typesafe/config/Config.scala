@@ -97,6 +97,64 @@ case class Config(cfg: shocon.Config.Value) {
 
   def getDouble(path: String)   = getOrReturnNull[Double](path)
 
+  def getBytes(path: String):Long = {
+    val bytesValue = getString(path)
+    parseBytes(bytesValue, path)
+  }
+
+  /**
+   * Parses a size-in-bytes string. If no units are specified in the string,
+   * it is assumed to be in bytes. The returned value is in bytes. The purpose
+   * of this function is to implement the size-in-bytes-related methods in the
+   * Config interface.
+   *
+   * @param input
+   *            the string to parse
+   * @param pathForException
+   *            path to include in exceptions
+   * @return size in bytes
+   * @throws ConfigException
+   *             if string is invalid
+   */
+  def parseBytes(input:String,
+      pathForException:String) : Long = {
+    val s:String = unicodeTrim(input)
+    val unitString:String = getUnits(s)
+    val numberString:String = unicodeTrim(s.substring(0, s.length() - unitString.length()))
+
+    // this would be caught later anyway, but the error message
+    // is more helpful if we check it here.
+    if (numberString.length() == 0) {
+      throw ConfigException.BadValue(pathForException)
+    }
+    val units: Option[MemoryUnit] = MemoryUnit.parseUnit(unitString)
+
+    if (units.isEmpty) {
+      throw ConfigException.BadValue(pathForException)
+    }
+
+    try {
+      val unitBytes = units.get.bytes
+      val  result:BigInt =
+      // if the string is purely digits, parse as an integer to avoid
+      // possible precision loss; otherwise as a double.
+      if (numberString.matches("[0-9]+")) {
+        unitBytes * BigInt(numberString)
+      } else {
+        val resultDecimal:BigDecimal = BigDecimal(unitBytes) * BigDecimal(numberString)
+        resultDecimal.toBigInt()
+      }
+
+      if (result.bitLength < 64) {
+        result.longValue()
+      } else {
+        throw ConfigException.BadValue(pathForException)
+      }
+    } catch { case e: NumberFormatException =>
+      throw ConfigException.BadValue(pathForException)
+    }
+  }
+
   def getStringList(path: String): ju.List[String] =
     getOrReturnNull[ju.List[String]](path) match {
       case null => List[String]().asJava
