@@ -28,10 +28,10 @@ class SHoconGenericSpec {
   @Test
   def parseEmptyList() = {
     val config = ConfigFactory.parseString("""{ "a" : [] }""")
-  
+
     assert { config != null }
     assert { config.hasPath("a") }
-    
+
     assert { config.getStringList("a").isEmpty }
   }
 
@@ -253,11 +253,20 @@ class SHoconGenericSpec {
   def reloadConfigWithFallback() = {
     val config1 = ConfigFactory.parseString("""{ "a" : [] }""")
     val config2 = ConfigFactory.parseString("""{ "b" : [] }""")
-  
+
     assert { config1 != null && config2 != null}
 
     val config = config1.withFallback(config2).withFallback(config1)
-    
+
     assert { config.hasPath("a") }
+  }
+
+  @Test
+  def loadDefaultConfig() = {
+    val config = ConfigFactory.load()
+
+    assert { config != null }
+
+    assert { config.getString("loaded") == "DONE" }
   }
 }

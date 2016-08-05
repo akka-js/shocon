@@ -32,9 +32,44 @@ object ConfigFactory {
     new Config(shocon.Config(s))
   }
 
-  def load(cl: ClassLoader): Config = empty()
+  import scala.language.experimental.macros
+  import scala.reflect.macros.blackbox.Context
 
-  def defaultReference(cl: ClassLoader): Config = empty()
+  def loadDefault(c: Context) = {
+    import c.universe._
+
+    val configStr: String =
+      try {
+        val confPath = new Object{}.getClass.getResource("/").toString + "application.conf"
+
+        c.warning(c.enclosingPosition,
+          s"shocon - statically reading configuration from $confPath"
+        )
+
+        val stream =
+          new Object{}.getClass.getResourceAsStream("/application.conf")
+
+        scala.io.Source.fromInputStream( stream ).getLines.mkString("\n")
+      } catch {
+        case e: Throwable =>
+          "{}"
+      }
+
+      c.Expr[com.typesafe.config.Config](q"""{
+        com.typesafe.config.Config(
+          eu.unicredit.shocon.Config($configStr)
+        )
+      }""")
+    }
+
+  def loadDefaultImpl(c: Context)() = loadDefault(c)
+  def loadDefaultImplCL(c: Context)(cl: c.Expr[ClassLoader]) = loadDefault(c)
+
+  def load(): Config = macro loadDefaultImpl
+
+  def load(cl: ClassLoader): Config = macro loadDefaultImplCL
+
+  def defaultReference(cl: ClassLoader): Config =  macro loadDefaultImplCL
 
   def empty() = Config(shocon.Config("{}"))
 }
