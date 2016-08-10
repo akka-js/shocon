@@ -259,6 +259,16 @@ class SHoconGenericSpec {
     val config = config1.withFallback(config2).withFallback(config1)
 
     assert { config.hasPath("a") }
+    assert { config.hasPath("b") }
+
+    val configAkka =
+      ConfigFactory.parseString("akka.actor.debug.event-stream = on").withFallback(
+        ConfigFactory.parseString("""
+          akka.actor.debug.event-stream = off
+          akka.actor.messages = on
+          """))
+
+    assert { configAkka.getBoolean("akka.actor.messages") }
   }
 
   @Test
