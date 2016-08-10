@@ -1,5 +1,7 @@
 # SHocon
 
+[![Build Status](https://travis-ci.org/unicredit/shocon.png?branch=master)](https://travis-ci.org/unicredit/shocon)
+
 A simple pure Scala implementation of the [HOCON](https://github.com/typesafehub/config/blob/master/HOCON.md) specification that (mostly*) expose the same api as [Typesafe Config](https://github.com/typesafehub/config).
 
 This library is intended to be used as a drop-in alternative to Typesafe Config expecially within Scala.JS projects.
