@@ -11,7 +11,7 @@ lazy val shocon = crossProject.in(file(".")).
   settings(
   	name := "shocon",
   	organization := "eu.unicredit",
-  	version := "0.0.3-SNAPSHOT",
+  	version := "0.1.0",
     scalacOptions ++=
       Seq(
         "-feature",
