@@ -23,6 +23,10 @@ lazy val shocon = crossProject.in(file(".")).
     sonatypeSettings: _*
   ).
   settings(
+    cleanKeepFiles ++= Seq(
+      (classDirectory in Compile).value / "application.conf",
+      (classDirectory in Test).value / "application.conf"
+    ),
     libraryDependencies ++= Seq(
       "com.lihaoyi" %%% "fastparse" % "0.3.1",
       "org.scala-lang" % "scala-reflect" % scalaVersion.value % "provided"

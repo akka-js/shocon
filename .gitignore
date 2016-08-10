@@ -7,3 +7,4 @@
 target
 bin
 .ensime*
+shared/src/main/scala/Empty.scala

@@ -12,13 +12,13 @@ Please consider that this implementation does not cover the total number of corn
 
 add this lines to your build.sbt
 
-with Scala:
-```
+Scala project:
+```scala
 libraryDependencies += "eu.unicredit" %% "shocon" % "0.1.0"
 ```
 
-with Scala.Js:
-```
+Scala.Js project:
+```scala
 libraryDependencies += "eu.unicredit" %%% "shocon" % "0.1.0"
 ```
 
