@@ -21,6 +21,4 @@ cache:
     - $HOME/.ivy2/cache
 
 script:
-  - sbt 'shoconJVM/test:compile' 'shoconJS/test:fastOptJS'
-  - sbt 'shoconJVM/test:clean' 'shoconJS/test:clean'
   - sbt 'shoconJVM/test' 'shoconJS/test'

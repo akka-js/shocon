@@ -7,6 +7,9 @@ scalaVersion in ThisBuild := "2.11.8"
 lazy val root = project.in(file(".")).
   aggregate(shoconJS, shoconJVM)
 
+  lazy val fixResources = taskKey[Unit](
+    "Fix application.conf presence on first clean build.")
+
 lazy val shocon = crossProject.in(file(".")).
   settings(
   	name := "shocon",
@@ -23,10 +26,22 @@ lazy val shocon = crossProject.in(file(".")).
     sonatypeSettings: _*
   ).
   settings(
-    cleanKeepFiles ++= Seq(
-      (classDirectory in Compile).value / "application.conf",
-      (classDirectory in Test).value / "application.conf"
-    ),
+    fixResources := {
+      val compileConf = (resourceDirectory in Compile).value / "application.conf"
+      if (compileConf.exists)
+        IO.copyFile(
+          compileConf,
+          (classDirectory in Compile).value / "application.conf"
+        )
+      val testConf = (resourceDirectory in Test).value / "application.conf"
+      if (testConf.exists) {
+        IO.copyFile(
+          testConf,
+          (classDirectory in Test).value / "application.conf"
+        )
+      }
+    },
+    compile in Compile <<= (compile in Compile) dependsOn fixResources,
     libraryDependencies ++= Seq(
       "com.lihaoyi" %%% "fastparse" % "0.3.1",
       "org.scala-lang" % "scala-reflect" % scalaVersion.value % "provided"
