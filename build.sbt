@@ -14,7 +14,7 @@ lazy val shocon = crossProject.in(file(".")).
   settings(
   	name := "shocon",
   	organization := "eu.unicredit",
-  	version := "0.1.0",
+  	version := "0.1.1",
     scalacOptions ++=
       Seq(
         "-feature",
@@ -43,7 +43,7 @@ lazy val shocon = crossProject.in(file(".")).
     },
     compile in Compile <<= (compile in Compile) dependsOn fixResources,
     libraryDependencies ++= Seq(
-      "com.lihaoyi" %%% "fastparse" % "0.3.1",
+      "com.lihaoyi" %%% "fastparse" % "0.3.7",
       "org.scala-lang" % "scala-reflect" % scalaVersion.value % "provided"
     ),
     pomExtra := {
