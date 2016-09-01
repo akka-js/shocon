@@ -254,12 +254,12 @@ class SHoconGenericSpec {
     val config1 = ConfigFactory.parseString("""{ "a" : [] }""")
     val config2 = ConfigFactory.parseString("""{ "b" : [] }""")
 
-    assert { config1 != null && config2 != null}
+    assert ( config1 != null && config2 != null , "both config were null" )
 
     val config = config1.withFallback(config2).withFallback(config1)
 
-    assert { config.hasPath("a") }
-    assert { config.hasPath("b") }
+    assert ( config.hasPath("a") , "config must have path a" )
+    assert ( config.hasPath("b") , "config must have path b" )
 
     val configAkka =
       ConfigFactory.parseString("akka.actor.debug.event-stream = on").withFallback(
