@@ -14,23 +14,44 @@
 */
 package eu.unicredit
 
+import scala.util.Try
+
 package object shocon extends Extractors {
 
   object Config {
     type Key = String
 
-    sealed trait Value
+    sealed trait Value {
+      def unwrapped: Any
+    }
 
-    case class Array(elements: Seq[Value]) extends Value
-    case class Object(fields: Map[Key, Value]) extends Value
-    case class KeyValue(key: String, value: Value) extends Value
+    case class Array(elements: Seq[Value]) extends Value {
+      lazy val unwrapped = elements.map(_.unwrapped)
+    }
+    case class Object(fields: Map[Key, Value]) extends Value {
+      lazy val unwrapped = fields.mapValues(_.unwrapped)
+    }
 
     trait SimpleValue extends Value
 
-    case class NumberLiteral(value: String) extends SimpleValue
-    case class StringLiteral(value: String) extends SimpleValue
-    case class BooleanLiteral(value: Boolean) extends SimpleValue
-    case object NullLiteral extends SimpleValue
+    case class NumberLiteral(value: String) extends SimpleValue {
+      lazy val unwrapped = Try {
+        value.toInt
+      }.recover {
+        case _ => value.toLong
+      }.recover {
+        case _ => value.toDouble
+      }.get : Any
+    }
+    case class StringLiteral(value: String) extends SimpleValue {
+      val unwrapped = value
+    }
+    case class BooleanLiteral(value: Boolean) extends SimpleValue {
+      lazy val unwrapped = value
+    }
+    case object NullLiteral extends SimpleValue {
+      def unwrapped = null
+    }
 
     import fastparse.core.Parsed
     def parse(input: String) = ConfigParser.root.parse(input)
