@@ -89,9 +89,7 @@ case class Config(cfg: shocon.Config.Value) {
     new ConfigObject {
       val inner = self.cfg
       def unwrapped =
-        cfg.as[shocon.Config.Object].get.fields.map{
-          case (k, v) => (k -> v.toString)
-        }.asJava
+        cfg.as[shocon.Config.Object].get.unwrapped.asJava
       def entrySet(): ju.Set[ju.Map.Entry[String,ConfigValue]] =
         cfg.as[shocon.Config.Object].get.fields.map{
           case (k, v) => (k -> new ConfigValue {val inner = v})

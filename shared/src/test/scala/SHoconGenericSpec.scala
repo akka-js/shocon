@@ -279,4 +279,19 @@ class SHoconGenericSpec {
 
     assert { config.getString("loaded") == "DONE" }
   }
+
+  @Test
+  def unwrappedToStringInMap() = {
+    val config = ConfigFactory.parseString(""" a="b" """)
+    val map = configToMap(config)
+    assertEquals("b", map("a"))
+  }
+
+
+
+
+  private final def configToMap(config: Config): Map[String, String] = {
+    import scala.collection.JavaConverters._
+    config.root.unwrapped.asScala.toMap map { case (k, v) ⇒ (k → v.toString) }
+  }
 }

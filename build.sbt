@@ -14,7 +14,7 @@ lazy val shocon = crossProject.in(file(".")).
   settings(
   	name := "shocon",
   	organization := "eu.unicredit",
-  	version := "0.1.0",
+  	version := "0.1.1",
     scalacOptions ++=
       Seq(
         "-feature",
@@ -43,9 +43,35 @@ lazy val shocon = crossProject.in(file(".")).
     },
     compile in Compile <<= (compile in Compile) dependsOn fixResources,
     libraryDependencies ++= Seq(
-      "com.lihaoyi" %%% "fastparse" % "0.3.1",
+      "com.lihaoyi" %%% "fastparse" % "0.3.7",
       "org.scala-lang" % "scala-reflect" % scalaVersion.value % "provided"
-    )
+    ),
+    pomExtra := {
+      <url>https://github.com/unicredit/shocon</url>
+      <licenses>
+        <license>
+          <name>Apache 2</name>
+          <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+        </license>
+      </licenses>
+      <scm>
+        <connection>scm:git:github.com/unicredit/shocon</connection>
+        <developerConnection>scm:git:git@github.com:unicredit/shocon</developerConnection>
+        <url>github.com/unicredit/shocon</url>
+      </scm>
+      <developers>
+        <developer>
+          <id>evacchi</id>
+          <name>Edoardo Vacchi</name>
+          <url>https://github.com/evacchi/</url>
+        </developer>
+        <developer>
+          <id>andreaTP</id>
+          <name>Andrea Peruffo</name>
+          <url>https://github.com/andreaTP/</url>
+        </developer>
+      </developers>
+    }
   ).
   jvmSettings(
   	libraryDependencies += "com.novocode" % "junit-interface" % "0.9" % "test"
@@ -67,30 +93,3 @@ publishMavenStyle := true
 pomIncludeRepository := { x => false }
 
 credentials += Credentials(Path.userHome / ".ivy2" / "sonatype.credentials")
-
-pomExtra := {
-  <url>https://github.com/unicredit/shocon</url>
-  <licenses>
-    <license>
-      <name>Apache 2</name>
-      <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
-    </license>
-  </licenses>
-  <scm>
-    <connection>scm:git:github.com/unicredit/shocon</connection>
-    <developerConnection>scm:git:git@github.com:unicredit/shocon</developerConnection>
-    <url>github.com/unicredit/shocon</url>
-  </scm>
-  <developers>
-    <developer>
-      <id>evacchi</id>
-      <name>Edoardo Vacchi</name>
-      <url>https://github.com/evacchi/</url>
-    </developer>
-    <developer>
-      <id>andreaTP</id>
-      <name>Andrea Peruffo</name>
-      <url>https://github.com/andreaTP/</url>
-    </developer>
-  </developers>
-}
