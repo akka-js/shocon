@@ -25,6 +25,7 @@ trait Extractors {
     case Config.StringLiteral(v) => v.trim match {
       case "true" | "on" | "yes" => true
       case "false" | "off" | "no" => false
+      case _ => throw new IllegalArgumentException(s"Cannot convert '$v' to boolean")
     }
   }
   implicit val StringExtractor:  Extractor[String] = {

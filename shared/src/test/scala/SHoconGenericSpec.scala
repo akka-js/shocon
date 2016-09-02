@@ -261,14 +261,24 @@ class SHoconGenericSpec {
     assert ( config.hasPath("a") , "config must have path a" )
     assert ( config.hasPath("b") , "config must have path b" )
 
-    val configAkka =
-      ConfigFactory.parseString("akka.actor.debug.event-stream = on").withFallback(
-        ConfigFactory.parseString("""
-          akka.actor.debug.event-stream = off
-          akka.actor.messages = on
-          """))
 
-    assert { configAkka.getBoolean("akka.actor.messages") }
+  }
+
+  @Test
+  def dottedConfig() = {
+    val configAkka =
+      ConfigFactory.parseString("akka.actor.messages = on")
+
+//    val fallback =
+//      ConfigFactory.parseString("""
+//          akka.actor.debug.event-stream = off
+//          akka.actor.messages = on
+//                                """)
+
+
+    println(configAkka)
+    assert (configAkka.hasPath("akka.actor.messages"), "config must have path akka.actor.messages")
+
   }
 
   @Test
