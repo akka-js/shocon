@@ -1,27 +1,29 @@
 /* Copyright 2016 UniCredit S.p.A.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-* http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 import java.{util => ju}
 
 import org.junit.Assert._
 import org.junit._
 
-import scala.util.{Success, Failure}
+import scala.util.{Failure, Success}
+import com.typesafe.config.{Config, ConfigFactory, ConfigValue}
 
-import com.typesafe.config.{Config, ConfigValue, ConfigFactory}
 import scala.collection.JavaConverters._
 import java.util.concurrent.TimeUnit
+
+import eu.unicredit.shocon
 
 class SHoconGenericSpec {
 
@@ -41,8 +43,8 @@ class SHoconGenericSpec {
 
     assert { config != null }
 
-    assertEquals ( config.getString("a"), "2" )
-    assertEquals ( config.getInt("a"), 2 )
+    assertEquals(config.getString("a"), "2")
+    assertEquals(config.getInt("a"), 2)
   }
 
   @Test
@@ -54,14 +56,14 @@ class SHoconGenericSpec {
         |  c
         |
         | d ]""".stripMargin
-      )
+    )
 
     val config2 = ConfigFactory.parseString("l = [a,b] \n[c, d]")
 
     assert { config1 != null && config2 != null }
 
-    assertEquals ( config1.getStringList("l"), List("a", "b", "c", "d").asJava )
-    assertEquals ( config2.getStringList("l"), config1.getStringList("l") )
+    assertEquals(config1.getStringList("l"), List("a", "b", "c", "d").asJava)
+    assertEquals(config2.getStringList("l"), config1.getStringList("l"))
   }
 
   @Test
@@ -70,7 +72,7 @@ class SHoconGenericSpec {
 
     assert { config != null }
 
-    assertEquals ( config.getConfig("a").getInt("b"), 1 )
+    assertEquals(config.getConfig("a").getInt("b"), 1)
   }
 
   @Test
@@ -85,9 +87,9 @@ class SHoconGenericSpec {
 
     assert { config != null }
 
-    assertEquals ( config.getInt("foo"), 1)
-    assertEquals ( config.getInt("bar"), 2)
-    assertEquals ( config.getInt("baz"), 3)
+    assertEquals(config.getInt("foo"), 1)
+    assertEquals(config.getInt("bar"), 2)
+    assertEquals(config.getInt("baz"), 3)
   }
 
   @Test
@@ -98,13 +100,12 @@ class SHoconGenericSpec {
 
     assert { config1 != null && config2 != null }
 
-    assertEquals ( config1, config2)
+    assertEquals(config1, config2)
   }
 
   @Test
   def parseAndConcatenateStringValues = {
-    val config = ConfigFactory.parseString(
-      """
+    val config = ConfigFactory.parseString("""
         |x = a b c d
         |y = 10
         |""".stripMargin)
@@ -121,8 +122,8 @@ class SHoconGenericSpec {
 
     assert { basic != null && long != null }
 
-    assertEquals (basic.getString("akka.version"), "2.0-SNAPSHOT")
-    assertEquals (long.getString("akka.version"), "2.0-SNAPSHOT")
+    assertEquals(basic.getString("akka.version"), "2.0-SNAPSHOT")
+    assertEquals(long.getString("akka.version"), "2.0-SNAPSHOT")
   }
 
   @Test
@@ -131,12 +132,13 @@ class SHoconGenericSpec {
       """ a {
         |x = 1 ms
         |}""".stripMargin
-      )
+    )
 
     assert { config != null }
 
-    assertEquals (config.getDuration("a.x").toMillis.toLong, 1L)
-    assertEquals (config.getDuration("a.x", TimeUnit.NANOSECONDS).toLong, 1000000L)
+    assertEquals(config.getDuration("a.x").toMillis.toLong, 1L)
+    assertEquals(config.getDuration("a.x", TimeUnit.NANOSECONDS).toLong,
+                 1000000L)
   }
 
   @Test
@@ -180,40 +182,39 @@ class SHoconGenericSpec {
 
     assert { config != null }
 
-    assertEquals (config.getBytes("a.b"),                             9L)
-    assertEquals (config.getBytes("a.B"),                             9L)
-    assertEquals (config.getBytes("a.byte"),                          1L)
-    assertEquals (config.getBytes("a.bytes"),                         9L)
-    assertEquals (config.getBytes("a.kB"),                         9000L)
-    assertEquals (config.getBytes("a.kilobyte"),                   1000L)
-    assertEquals (config.getBytes("a.kilobytes"),                  9000L)
-    assertEquals (config.getBytes("a.MB"),                      9000000L)
-    assertEquals (config.getBytes("a.megabyte"),                1000000L)
-    assertEquals (config.getBytes("a.megabytes"),               9000000L)
-    assertEquals (config.getBytes("a.GB"),                   9000000000L)
-    assertEquals (config.getBytes("a.gigabyte"),             1000000000L)
-    assertEquals (config.getBytes("a.gigabytes"),            9000000000L)
-    assertEquals (config.getBytes("a.TB"),                9000000000000L)
-    assertEquals (config.getBytes("a.terabyte"),          1000000000000L)
-    assertEquals (config.getBytes("a.terabytes"),         9000000000000L)
-    assertEquals (config.getBytes("a.PB"),             9000000000000000L)
-    assertEquals (config.getBytes("a.petabyte"),       1000000000000000L)
-    assertEquals (config.getBytes("a.petabytes"),      9000000000000000L)
-    assertEquals (config.getBytes("a.k"),                          1024L)
-    assertEquals (config.getBytes("a.K"),                          1024L)
-    assertEquals (config.getBytes("a.Ki"),                         1024L)
-    assertEquals (config.getBytes("a.KiB"),                        1024L)
-    assertEquals (config.getBytes("a.m"),                    1024L*1024L)
-    assertEquals (config.getBytes("a.M"),                    1024L*1024L)
-    assertEquals (config.getBytes("a.Mi"),                   1024L*1024L)
-    assertEquals (config.getBytes("a.MiB"),                  1024L*1024L)
-    assertEquals (config.getBytes("a.g"),              1024L*1024L*1024L)
-    assertEquals (config.getBytes("a.G"),              1024L*1024L*1024L)
-    assertEquals (config.getBytes("a.Gi"),             1024L*1024L*1024L)
-    assertEquals (config.getBytes("a.GiB"),            1024L*1024L*1024L)
+    assertEquals(config.getBytes("a.b"), 9L)
+    assertEquals(config.getBytes("a.B"), 9L)
+    assertEquals(config.getBytes("a.byte"), 1L)
+    assertEquals(config.getBytes("a.bytes"), 9L)
+    assertEquals(config.getBytes("a.kB"), 9000L)
+    assertEquals(config.getBytes("a.kilobyte"), 1000L)
+    assertEquals(config.getBytes("a.kilobytes"), 9000L)
+    assertEquals(config.getBytes("a.MB"), 9000000L)
+    assertEquals(config.getBytes("a.megabyte"), 1000000L)
+    assertEquals(config.getBytes("a.megabytes"), 9000000L)
+    assertEquals(config.getBytes("a.GB"), 9000000000L)
+    assertEquals(config.getBytes("a.gigabyte"), 1000000000L)
+    assertEquals(config.getBytes("a.gigabytes"), 9000000000L)
+    assertEquals(config.getBytes("a.TB"), 9000000000000L)
+    assertEquals(config.getBytes("a.terabyte"), 1000000000000L)
+    assertEquals(config.getBytes("a.terabytes"), 9000000000000L)
+    assertEquals(config.getBytes("a.PB"), 9000000000000000L)
+    assertEquals(config.getBytes("a.petabyte"), 1000000000000000L)
+    assertEquals(config.getBytes("a.petabytes"), 9000000000000000L)
+    assertEquals(config.getBytes("a.k"), 1024L)
+    assertEquals(config.getBytes("a.K"), 1024L)
+    assertEquals(config.getBytes("a.Ki"), 1024L)
+    assertEquals(config.getBytes("a.KiB"), 1024L)
+    assertEquals(config.getBytes("a.m"), 1024L * 1024L)
+    assertEquals(config.getBytes("a.M"), 1024L * 1024L)
+    assertEquals(config.getBytes("a.Mi"), 1024L * 1024L)
+    assertEquals(config.getBytes("a.MiB"), 1024L * 1024L)
+    assertEquals(config.getBytes("a.g"), 1024L * 1024L * 1024L)
+    assertEquals(config.getBytes("a.G"), 1024L * 1024L * 1024L)
+    assertEquals(config.getBytes("a.Gi"), 1024L * 1024L * 1024L)
+    assertEquals(config.getBytes("a.GiB"), 1024L * 1024L * 1024L)
 
   }
-
 
   @Test
   def parseBooleans = {
@@ -226,16 +227,16 @@ class SHoconGenericSpec {
         |x5 = off
         |x6 = no
         |}""".stripMargin
-      )
+    )
 
     assert { config != null }
 
-    assertEquals (config.getBoolean("a.x1"), true)
-    assertEquals (config.getBoolean("a.x2"), true)
-    assertEquals (config.getBoolean("a.x3"), true)
-    assertEquals (config.getBoolean("a.x4"), false)
-    assertEquals (config.getBoolean("a.x5"), false)
-    assertEquals (config.getBoolean("a.x6"), false)
+    assertEquals(config.getBoolean("a.x1"), true)
+    assertEquals(config.getBoolean("a.x2"), true)
+    assertEquals(config.getBoolean("a.x3"), true)
+    assertEquals(config.getBoolean("a.x4"), false)
+    assertEquals(config.getBoolean("a.x5"), false)
+    assertEquals(config.getBoolean("a.x6"), false)
   }
 
   @Test
@@ -254,31 +255,35 @@ class SHoconGenericSpec {
     val config1 = ConfigFactory.parseString("""{ "a" : [] }""")
     val config2 = ConfigFactory.parseString("""{ "b" : [] }""")
 
-    assert ( config1 != null && config2 != null , "both config were null" )
+    assert(config1 != null && config2 != null, "both config were null")
 
     val config = config1.withFallback(config2).withFallback(config1)
 
-    assert ( config.hasPath("a") , "config must have path a" )
-    assert ( config.hasPath("b") , "config must have path b" )
-
+    assert(config.hasPath("a"), "config must have path a")
+    assert(config.hasPath("b"), "config must have path b")
 
   }
 
   @Test
-  def dottedConfig() = {
+  def dottedConfigKey() = {
     val configAkka =
       ConfigFactory.parseString("akka.actor.messages = on")
 
-//    val fallback =
-//      ConfigFactory.parseString("""
-//          akka.actor.debug.event-stream = off
-//          akka.actor.messages = on
-//                                """)
+    assert(configAkka.hasPath("akka.actor.messages"),
+           "config must have path akka.actor.messages")
 
+  }
 
-    println(configAkka)
-    assert (configAkka.hasPath("akka.actor.messages"), "config must have path akka.actor.messages")
+  @Test
+  def dottedConfigKeyWithFallback() = {
+    val configAkka =
+      ConfigFactory.parseString("akka.actor.debug.event-stream = on").withFallback(
+        ConfigFactory.parseString("""
+          akka.actor.debug.event-stream = off
+          akka.actor.messages = on
+                                  """))
 
+    assert { configAkka.getBoolean("akka.actor.messages") }
   }
 
   @Test
@@ -298,7 +303,44 @@ class SHoconGenericSpec {
   }
 
 
+  @Test
+  def reparseKey() = {
+    val key = "foo.bar.baz"
+    val value = shocon.Config.StringLiteral("quux")
 
+    val reparsed = shocon.Config.Object.reparseKey(key, value)
+    val expected = shocon.Config.Object(
+      Map(
+        "foo" -> shocon.Config.Object(Map("bar" -> shocon.Config.Object(
+          Map("baz" -> shocon.Config.StringLiteral("quux")))))))
+
+    assertEquals(expected, reparsed)
+  }
+
+  @Test
+  def mergeConfigValues() {
+    val key1 = "foo.bar.baz"
+    val value1 = shocon.Config.StringLiteral("quux")
+    val key2 = "foo.bar.bazz"
+    val value2 = shocon.Config.StringLiteral("quuxxx")
+
+    val reparsed1 = shocon.Config.Object.reparseKey(key1, value1)
+    val reparsed2 = shocon.Config.Object.reparseKey(key2, value2)
+
+    import shocon.Config.StringLiteral
+    val merged = shocon.Config.Object.mergeConfigValues(reparsed1, reparsed2)
+    val expected = shocon.Config.Object(
+      Map(
+        "foo" -> shocon.Config.Object(
+          Map(
+            "bar" -> shocon.Config.Object(Map(
+              "baz" -> StringLiteral("quux"),
+              "bazz" -> StringLiteral("quuxxx")
+            ))))))
+
+    assertEquals(expected, merged)
+
+  }
 
   private final def configToMap(config: Config): Map[String, String] = {
     import scala.collection.JavaConverters._

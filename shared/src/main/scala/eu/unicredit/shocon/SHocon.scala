@@ -32,6 +32,7 @@ package object shocon extends Extractors {
       lazy val unwrapped = fields.mapValues(_.unwrapped)
     }
 
+
     trait SimpleValue extends Value
 
     case class NumberLiteral(value: String) extends SimpleValue {
@@ -60,6 +61,43 @@ package object shocon extends Extractors {
       case f: Parsed.Failure => throw new Error(f.msg)
     }
     def fromFile(path: String) = apply(io.Source.fromFile(path).mkString)
+
+    object Object {
+      def fromPairs(pairs: Seq[(Key, Value)]): Object = {
+        val os = pairs.map{ case (k,v) => reparseKey(k,v) }
+        os.reduceLeft(mergeConfigValues)
+      }
+      def reparseKey(key: Key, value: Value): Object = {
+        val pos = key.indexOf('.')
+        if (pos < 0) shocon.Config.Object(Map(key -> value))
+        else {
+          val k = key.substring(0, pos)
+          val rest = key.substring(pos + 1)
+          shocon.Config.Object(Map(k -> reparseKey(rest, value)))
+        }
+      }
+
+      def mergeConfigValues(base: Value, mergeable: Value): Value = {
+        if (base == mergeable) base
+        else
+          (base, mergeable) match {
+            case (Object(map1), Object(map2)) =>
+              val m1k = map1.keys.toSet
+              // all keys in m2 which are not found in m1
+              val diff = map2.keys.filterNot(m1k.contains).toSet
+              // m is the map that contains both keys from m2 and m1
+              // where if a key is in both, their value is merged
+              val m = map1.map {
+                case (k, v) => k -> mergeConfigValues(v, map2.getOrElse(k, v))
+              } ++ map2.filterKeys(diff.contains)
+              Object(m)
+            case (Array(seq1), Array(seq2)) =>
+              Array(seq1 ++ seq2)
+
+            case (v1, v2) => v2 // always the second wins
+          }
+      }
+    }
   }
 
 

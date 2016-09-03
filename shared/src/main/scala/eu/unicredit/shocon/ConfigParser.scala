@@ -84,6 +84,6 @@ object ConfigParser {
 
   val jsonExpr: P[Config.Value] = P( space ~ (repeatedObj | repeatedArray | string) ~ space ) // .log()
 
-  val root = P( (&(space ~ "{") ~/ obj )|(objBody)   ~ End ).map( x => Config.Object(Map(x:_*)) ) // .log()
+  val root = P( (&(space ~ "{") ~/ obj )|(objBody)   ~ End ).map( x => Config.Object.fromPairs(x) ) // .log()
 
 }
