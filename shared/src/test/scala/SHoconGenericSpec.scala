@@ -342,6 +342,17 @@ class SHoconGenericSpec {
 
   }
 
+  @Test
+  def concatValues(): Unit = {
+    val x = ConfigFactory.parseString(
+      """x="foo"
+        |y=   z "bar" """.stripMargin)
+    assertEquals("foo", x.getString("x"))
+    assertEquals("z bar", x.getString("y"))
+  }
+
+
+
   private final def configToMap(config: Config): Map[String, String] = {
     import scala.collection.JavaConverters._
     config.root.unwrapped.asScala.toMap map { case (k, v) ⇒ (k → v.toString) }
