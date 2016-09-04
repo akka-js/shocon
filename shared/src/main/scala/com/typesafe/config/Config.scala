@@ -87,12 +87,12 @@ case class Config(cfg: shocon.Config.Value) { self =>
   }
 
   def root() = {
-    new ConfigObject {
+    new ConfigObject() {
       val inner = self.cfg
       def unwrapped =
         cfg.as[shocon.Config.Object].get.unwrapped.asJava
       def entrySet(): ju.Set[ju.Map.Entry[String, ConfigValue]] =
-        cfg.as[shocon.Config.Object].get.fields.mapValues(v => new ConfigValue {
+        cfg.as[shocon.Config.Object].get.fields.mapValues(v => new ConfigValue() {
           override val inner: Value = v
         }).asJava.entrySet()
 //        cfg.as[shocon.Config.Object].get.fields.map {
