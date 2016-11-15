@@ -1,24 +1,17 @@
-sudo: required
+sudo: false
+
+language: scala
 
 scala:
+  - "2.12.0"
   - "2.11.8"
 
-matrix:
-  include:
-    - os: linux
-      jdk: oraclejdk8
-      language: scala
-      before_install:
-        - sudo apt-get -qq update
-    - os: osx
-      osx_image: xcode7.3
-      before_install:
-        - brew update
-        - brew install sbt
+jdk: oraclejdk8
 
 cache:
   directories:
     - $HOME/.ivy2/cache
+    - $HOME/.sbt/boot/
 
 script:
-  - sbt 'shoconJVM/test' 'shoconJS/test'
+  - sbt ++$TRAVIS_SCALA_VERSION test
