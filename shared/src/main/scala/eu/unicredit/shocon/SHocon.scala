@@ -58,7 +58,7 @@ package object shocon extends Extractors {
     def parse(input: String) = ConfigParser.root.parse(input)
     def apply(input: String): Config.Value = parse(input) match{
       case Parsed.Success(v,_) => v
-      case f: Parsed.Failure => throw new Error(f.msg)
+      case f: Parsed.Failure[_, _] => throw new Error(f.msg)
     }
     def fromFile(path: String) = apply(io.Source.fromFile(path).mkString)
 

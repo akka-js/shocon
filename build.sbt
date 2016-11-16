@@ -1,20 +1,23 @@
 import SonatypeKeys._
 
-name := "shocon"
-
-scalaVersion in ThisBuild := "2.11.8"
+val commonSettings = Vector(
+  name := "shocon",
+  organization := "eu.unicredit",
+  version := "0.1.3",
+  scalaVersion := "2.12.0",
+  crossScalaVersions  := Vector("2.11.8")
+)
 
 lazy val root = project.in(file(".")).
+  settings(commonSettings: _*).
   aggregate(shoconJS, shoconJVM)
 
   lazy val fixResources = taskKey[Unit](
     "Fix application.conf presence on first clean build.")
 
 lazy val shocon = crossProject.in(file(".")).
+  settings(commonSettings: _*).
   settings(
-  	name := "shocon",
-  	organization := "eu.unicredit",
-  	version := "0.1.2",
     scalacOptions ++=
       Seq(
         "-feature",
@@ -43,7 +46,7 @@ lazy val shocon = crossProject.in(file(".")).
     },
     compile in Compile <<= (compile in Compile) dependsOn fixResources,
     libraryDependencies ++= Seq(
-      "com.lihaoyi" %%% "fastparse" % "0.3.7",
+      "com.lihaoyi" %%% "fastparse" % "0.4.2",
       "org.scala-lang" % "scala-reflect" % scalaVersion.value % "provided"
     ),
     pomExtra := {
@@ -80,7 +83,7 @@ lazy val shocon = crossProject.in(file(".")).
     _.enablePlugins(ScalaJSJUnitPlugin)
   ).
   jsSettings(
-    libraryDependencies += "org.scala-js" %%% "scalajs-java-time" % "0.1.0",
+    libraryDependencies += "org.scala-js" %%% "scalajs-java-time" % "0.2.0",
     scalaJSUseRhino in Global := true,
     parallelExecution in Test := true
   )
