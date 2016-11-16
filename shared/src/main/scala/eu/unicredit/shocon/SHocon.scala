@@ -65,7 +65,7 @@ package object shocon extends Extractors {
     object Object {
       def fromPairs(pairs: Seq[(Key, Value)]): Object = {
         val os = pairs.map{ case (k,v) => reparseKey(k,v) }
-        os.reduceLeft(mergeConfigValues)
+        os.foldLeft(shocon.Config.Object(Map()))(mergeConfigValues)
       }
       def reparseKey(key: Key, value: Value): Object = {
         val pos = key.indexOf('.')
