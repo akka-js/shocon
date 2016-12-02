@@ -74,6 +74,11 @@ object ConfigFactory {
   def defaultReference(cl: ClassLoader): Config = macro loadDefaultImplCL
 
   def empty() = Config(shocon.Config("{}"))
+
+  def parseMap(values: java.util.Map[String, Any]) =
+    parseString(values.asScala.map{ case (k, v) => s"$k=$v"}.mkString("\n"))
+
+  def load(conf: Config): Config = conf
 }
 
 case class Config(cfg: shocon.Config.Value) { self =>

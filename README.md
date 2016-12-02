@@ -14,12 +14,12 @@ add this lines to your build.sbt
 
 Scala project:
 ```scala
-libraryDependencies += "eu.unicredit" %% "shocon" % "0.1.4"
+libraryDependencies += "eu.unicredit" %% "shocon" % "0.1.5"
 ```
 
 Scala.Js project:
 ```scala
-libraryDependencies += "eu.unicredit" %%% "shocon" % "0.1.4"
+libraryDependencies += "eu.unicredit" %%% "shocon" % "0.1.5"
 ```
 
 ## Notes
