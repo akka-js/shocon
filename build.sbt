@@ -3,9 +3,9 @@ import SonatypeKeys._
 val commonSettings = Vector(
   name := "shocon",
   organization := "eu.unicredit",
-  version := "0.1.5",
+  version := "0.1.6-SNAPSHOT",
   scalaVersion := "2.12.0",
-  crossScalaVersions  := Vector("2.11.8")
+  crossScalaVersions  := Vector("2.11.8", "2.12.0")
 )
 
 lazy val root = project.in(file(".")).

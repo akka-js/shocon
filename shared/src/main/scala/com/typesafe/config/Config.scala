@@ -85,7 +85,7 @@ case class Config(cfg: shocon.Config.Value) { self =>
   import shocon.ConfigOps
   import shocon.Extractors._
 
-  val fallbackStack: mutable.Stack[shocon.Config.Value] = mutable.Stack(cfg)
+  val fallbackStack: mutable.Queue[shocon.Config.Value] = mutable.Queue(cfg)
 
   def this() = {
     this(shocon.Config("{}"))
@@ -100,9 +100,6 @@ case class Config(cfg: shocon.Config.Value) { self =>
         cfg.as[shocon.Config.Object].get.fields.mapValues(v => new ConfigValue() {
           override val inner: Value = v
         }).asJava.entrySet()
-//        cfg.as[shocon.Config.Object].get.fields.map {
-//            case (k, v) => (k -> new ConfigValue { val inner = v })
-//          }.asJava.entrySet
     }
   }
 
@@ -111,7 +108,7 @@ case class Config(cfg: shocon.Config.Value) { self =>
   def checkValid(c: Config, paths: String*): Unit = {}
 
   def withFallback(c: Config) = {
-    fallbackStack.push(c.cfg)
+    fallbackStack.enqueue(c.cfg)
     this
   }
 

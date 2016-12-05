@@ -351,7 +351,14 @@ class SHoconGenericSpec {
     assertEquals("z bar", x.getString("y"))
   }
 
+  @Test
+  def properlyFallback(): Unit = {
+    val conf1 = ConfigFactory.parseString("""x = "1"""")
+    val conf2 = ConfigFactory.parseString("""x = "2"""")
 
+    val conf = conf1.withFallback(conf2)
+    assertEquals("1", conf.getString("x"))
+  }
 
   private final def configToMap(config: Config): Map[String, String] = {
     import scala.collection.JavaConverters._
