@@ -71,6 +71,8 @@ object ConfigFactory {
 
   def load(cl: ClassLoader): Config = macro loadDefaultImplCL
 
+  def defaultReference(): Config = macro loadDefaultImpl
+
   def defaultReference(cl: ClassLoader): Config = macro loadDefaultImplCL
 
   def empty() = Config(shocon.Config("{}"))
@@ -106,6 +108,8 @@ case class Config(cfg: shocon.Config.Value) { self =>
   def entrySet(): ju.Set[ju.Map.Entry[String, ConfigValue]] = root.entrySet()
 
   def checkValid(c: Config, paths: String*): Unit = {}
+
+  def resolve(): Config = this
 
   def withFallback(c: Config) = {
     fallbackStack.enqueue(c.cfg)
