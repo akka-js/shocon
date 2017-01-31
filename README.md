@@ -1,6 +1,7 @@
 # SHocon
 
 [![Build Status](https://travis-ci.org/unicredit/shocon.png?branch=master)](https://travis-ci.org/unicredit/shocon)
+[![Latest version](https://index.scala-lang.org/unicredit/shocon/shocon/latest.svg?color=orange)](https://index.scala-lang.org/unicredit/shocon/shocon)
 
 A simple pure Scala implementation of the [HOCON](https://github.com/typesafehub/config/blob/master/HOCON.md) specification that (mostly*) expose the same api as [Typesafe Config](https://github.com/typesafehub/config).
 
