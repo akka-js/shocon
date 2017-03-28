@@ -35,17 +35,20 @@ package object shocon extends Extractors {
 
     trait SimpleValue extends Value
 
-    case class NumberLiteral(value: String) extends SimpleValue {
-      lazy val unwrapped = Try {
+    private def unwrapStringAsNumber(value: String): Try[Any] =
+      Try {
         value.toInt
       }.recover {
         case _ => value.toLong
       }.recover {
         case _ => value.toDouble
-      }.get : Any
+      }
+
+    case class NumberLiteral(value: String) extends SimpleValue {
+      lazy val unwrapped = unwrapStringAsNumber(value).get
     }
     case class StringLiteral(value: String) extends SimpleValue {
-      val unwrapped = value
+      lazy val unwrapped = unwrapStringAsNumber(value).getOrElse(value)
     }
     case class BooleanLiteral(value: Boolean) extends SimpleValue {
       lazy val unwrapped = value

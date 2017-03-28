@@ -302,6 +302,11 @@ class SHoconGenericSpec {
     assertEquals("b", map("a"))
   }
 
+  @Test
+  def unwrappedNumber() = {
+    val map = ConfigFactory.parseString(""" a=2 """).root.unwrapped
+    assertEquals(2, map.get("a"))
+  }
 
   @Test
   def reparseKey() = {
