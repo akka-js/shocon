@@ -48,7 +48,10 @@ package object shocon extends Extractors {
       lazy val unwrapped = unwrapStringAsNumber(value).get
     }
     case class StringLiteral(value: String) extends SimpleValue {
-      lazy val unwrapped = unwrapStringAsNumber(value).getOrElse(value)
+      lazy val unwrapped =
+        Try(this.as[Boolean].get)
+          .orElse(unwrapStringAsNumber(value))
+          .getOrElse(value)
     }
     case class BooleanLiteral(value: Boolean) extends SimpleValue {
       lazy val unwrapped = value
