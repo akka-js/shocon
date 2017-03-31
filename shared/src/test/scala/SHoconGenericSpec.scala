@@ -309,6 +309,18 @@ class SHoconGenericSpec {
   }
 
   @Test
+  def unwrappedDuration() = {
+    val map = ConfigFactory.parseString(""" a=2ns """).root.unwrapped
+    assertEquals("2ns", map.get("a")) // Duration is not automatically unwrapped.
+  }
+
+  @Test
+  def unwrappedBoolean() = {
+    val map = ConfigFactory.parseString(""" a=true """).root.unwrapped
+    assertEquals(true, map.get("a"))
+  }
+
+  @Test
   def reparseKey() = {
     val key = "foo.bar.baz"
     val value = shocon.Config.StringLiteral("quux")
