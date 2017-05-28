@@ -345,7 +345,7 @@ class SHoconGenericSpec {
     val reparsed2 = shocon.Config.Object.reparseKey(key2, value2)
 
     import shocon.Config.StringLiteral
-    val merged = shocon.Config.Object.mergeConfigValues(reparsed1, reparsed2)
+    val merged = shocon.Config.Object.mergeConfigs(reparsed1, reparsed2)
     val expected = shocon.Config.Object(
       Map(
         "foo" -> shocon.Config.Object(

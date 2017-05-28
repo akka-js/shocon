@@ -32,7 +32,6 @@ package object shocon extends Extractors {
       lazy val unwrapped = fields.mapValues(_.unwrapped)
     }
 
-
     trait SimpleValue extends Value
 
     private def unwrapStringAsNumber(value: String): Try[Any] =
@@ -71,7 +70,7 @@ package object shocon extends Extractors {
     object Object {
       def fromPairs(pairs: Seq[(Key, Value)]): Object = {
         val os = pairs.map{ case (k,v) => reparseKey(k,v) }
-        os.foldLeft(shocon.Config.Object(Map()))(mergeConfigValues)
+        os.foldLeft(shocon.Config.Object(Map()))(mergeConfigs)
       }
       def reparseKey(key: Key, value: Value): Object = {
         val pos = key.indexOf('.')
@@ -83,25 +82,31 @@ package object shocon extends Extractors {
         }
       }
 
-      def mergeConfigValues(base: Value, mergeable: Value): Value = {
+      def mergeValues(base: Value, mergeable: Value): Value = {
         if (base == mergeable) base
         else
           (base, mergeable) match {
-            case (Object(map1), Object(map2)) =>
-              val m1k = map1.keys.toSet
-              // all keys in m2 which are not found in m1
-              val diff = map2.keys.filterNot(m1k.contains).toSet
-              // m is the map that contains both keys from m2 and m1
-              // where if a key is in both, their value is merged
-              val m = map1.map {
-                case (k, v) => k -> mergeConfigValues(v, map2.getOrElse(k, v))
-              } ++ map2.filterKeys(diff.contains)
-              Object(m)
+            case (m1: Object, m2: Object) =>
+              mergeConfigs(m1, m2)
             case (Array(seq1), Array(seq2)) =>
               Array(seq1 ++ seq2)
-
             case (v1, v2) => v2 // always the second wins
           }
+      }
+
+      def mergeConfigs(base: Object, mergeable: Object): Object = {
+        if (base == mergeable) base
+        else {
+          val m1k = base.fields.keys.toSet
+          // all keys in m2 which are not found in m1
+          val diff = mergeable.fields.keys.filterNot(m1k.contains).toSet
+          // m is the map that contains both keys from m2 and m1
+          // where if a key is in both, their value is merged
+          val m = base.fields.map {
+            case (k, v) => k -> mergeValues(v, mergeable.fields.getOrElse(k, v))
+          } ++ mergeable.fields.filterKeys(diff.contains)
+          Object(m)
+        }
       }
     }
   }

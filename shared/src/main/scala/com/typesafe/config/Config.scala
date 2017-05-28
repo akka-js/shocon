@@ -105,6 +105,8 @@ case class Config(cfg: shocon.Config.Value) { self =>
     }
   }
 
+  private var cache = mutable.Map[String, Any]()
+
   def entrySet(): ju.Set[ju.Map.Entry[String, ConfigValue]] = root.entrySet()
 
   def checkValid(c: Config, paths: String*): Unit = {}
@@ -116,14 +118,28 @@ case class Config(cfg: shocon.Config.Value) { self =>
     this
   }
 
-  def getOrReturnNull[T](path: String)(implicit ev: Extractor[T]): T =
-    fallbackStack
-      .find(_.get(path).isDefined)
-      .flatMap(_.get(path)).orNull
+  def getOrReturnNull[T](path: String)(implicit ev: Extractor[T]): T = {
+    lazy val res: T =
+      ev(
+        fallbackStack
+          .find(_.get(path).isDefined)
+          .flatMap(_.get(path)).orNull
+      )
+
+    val fullPath = s"$path${ev.serial}"
+    cache.get(fullPath) match {
+      case Some(elem) =>
+        try { elem.asInstanceOf[T] } catch {
+          case _: Throwable => res
+        }
+      case _ =>
+        cache.update(fullPath, res)
+        res
+    }
+  }
 
   def hasPath(path: String): Boolean =
     fallbackStack.exists(_.get(path).isDefined)
-
 
   def getConfig(path: String) =
     Config(getOrReturnNull[shocon.Config.Value](path))
@@ -133,6 +149,8 @@ case class Config(cfg: shocon.Config.Value) { self =>
   def getBoolean(path: String): Boolean = getOrReturnNull[Boolean](path)
 
   def getInt(path: String) = getOrReturnNull[Int](path)
+
+  def getLong(path: String) = getOrReturnNull[Long](path)
 
   def getDouble(path: String) = getOrReturnNull[Double](path)
 
