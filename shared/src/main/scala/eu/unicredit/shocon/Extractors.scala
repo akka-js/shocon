@@ -17,13 +17,13 @@ package eu.unicredit.shocon
 import java.{util => ju}
 import scala.collection.JavaConverters._
 
-trait Extractors {
+case class Extractor[T](pf: PartialFunction[Config.Value, T], val serial: Int) {
+  def apply(c: Config.Value) = pf.apply(c)
+  def applyOrElse(c: Config.Value, fallback: PartialFunction[Config.Value, T]) =
+    pf.applyOrElse(c, fallback)
+}
 
-  case class Extractor[T](pf: PartialFunction[Config.Value, T], val serial: Int) {
-    def apply(c: Config.Value) = pf.apply(c)
-    def applyOrElse(c: Config.Value, fallback: PartialFunction[Config.Value, T]) =
-      pf.applyOrElse(c, fallback)
-  }
+trait Extractors {
 
   implicit val BooleanExtractor: Extractor[Boolean] = Extractor({
     case Config.StringLiteral(v) => v.trim match {

@@ -20,6 +20,7 @@ import java.util.{concurrent => juc}
 import java.{time => jt}
 import java.lang.ClassLoader
 
+import eu.unicredit.shocon.Extractor
 import eu.unicredit.shocon.Config.Value
 
 import scala.concurrent.duration._
