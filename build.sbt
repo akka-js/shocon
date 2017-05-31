@@ -3,9 +3,10 @@ import SonatypeKeys._
 val commonSettings = Vector(
   name := "shocon",
   organization := "eu.unicredit",
-  version := "0.1.7",
-  scalaVersion := "2.12.1",
-  crossScalaVersions  := Vector("2.11.8", "2.12.0", "2.12.1")
+  version := "0.1.8-SNAPSHOT",
+  scalaVersion := "2.12.2",
+  crossScalaVersions  :=
+    Vector("2.11.8", "2.11.11", "2.12.0", "2.12.1", "2.12.2")
 )
 
 lazy val root = project.in(file(".")).
@@ -44,7 +45,7 @@ lazy val shocon = crossProject.in(file(".")).
         )
       }
     },
-    compile in Compile <<= (compile in Compile) dependsOn fixResources,
+    compile in Compile := (compile in Compile).dependsOn(fixResources).value,
     libraryDependencies ++= Seq(
       "com.lihaoyi" %%% "fastparse" % "0.4.2",
       "org.scala-lang" % "scala-reflect" % scalaVersion.value % "provided"
