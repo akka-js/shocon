@@ -3,13 +3,14 @@
 [![Build Status](https://travis-ci.org/unicredit/shocon.png?branch=master)](https://travis-ci.org/unicredit/shocon)
 [![Latest version](https://index.scala-lang.org/unicredit/shocon/shocon/latest.svg?color=orange)](https://index.scala-lang.org/unicredit/shocon/shocon)
 
-A simple pure Scala implementation of the [HOCON](https://github.com/typesafehub/config/blob/master/HOCON.md) specification that (mostly*) expose the same api as [Typesafe Config](https://github.com/typesafehub/config).
+SHocon is a simple, pure-Scala, alternative implementation of the [HOCON](https://github.com/typesafehub/config/blob/master/HOCON.md) 
+specification.
 
-This library is intended to be used as a drop-in alternative to Typesafe Config expecially within Scala.JS projects.
+SHocon ships with a native, Scala-idiomatic API, and a shim that mimics the [Typesafe Config](https://github.com/typesafehub/config) Java API, making it well-suited as a **drop-in replacement** wherever the Java implementation is not available, such as **Scala.JS** projects.
 
-Please consider that this implementation does not cover the total number of corner cases issues and PRs are welcome!
+This implementation does not cover all of the corner cases of the original implementation. Issues and PRs are welcome!
 
-##Use It
+## Usage
 
 add this lines to your build.sbt
 
