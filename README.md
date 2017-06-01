@@ -12,7 +12,7 @@ This implementation does not cover all of the corner cases of the original imple
 
 ## Usage
 
-add this lines to your build.sbt
+Add these lines to your build.sbt
 
 Scala project:
 ```scala
@@ -26,6 +26,6 @@ libraryDependencies += "eu.unicredit" %%% "shocon" % "0.1.8"
 
 ## Notes
 
-Since this implementation is un-aware to be on a JVM classloader is ignored everywhere and will be ```null```.
+Since this implementation is unaware to be on a JVM classloader, any such reference is ignored and will be `null`.
 
-Default configuration is loaded just from file "application.conf" in resources statically at compile time (using macro) and integrated as a string in target code.
+Default configuration is loaded from "application.conf" in resources statically at compile time (using macros) and integrated as a string in target code.
