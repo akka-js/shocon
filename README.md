@@ -29,3 +29,8 @@ libraryDependencies += "eu.unicredit" %%% "shocon" % "0.1.8"
 Since this implementation is unaware to be on a JVM classloader, any such reference is ignored and will be `null`.
 
 Default configuration is loaded from "application.conf" in resources statically at compile time (using macros) and integrated as a string in target code.
+
+Alternativley the list of files to be included during compilation can be specified as a compiler setting in your `build.sbt`:
+```scala
+scalacOptions += "-Xmacro-settings:shocon.files=file1.conf;file2.conf"
+```
