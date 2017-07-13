@@ -92,6 +92,61 @@ lazy val shocon = crossProject.in(file(".")).
 lazy val shoconJVM = shocon.jvm
 lazy val shoconJS = shocon.js
 
+lazy val plugin = project
+  .settings(
+    commonSettings ++
+    sonatypeSettings ++
+    publishingSettings: _*)
+  .settings(
+    name := "sbt-shocon",
+    description := "sbt plugin for shocon",
+    sbtPlugin := true,
+    scalaVersion := "2.10.6",
+    crossScalaVersions := Seq("2.10.6"),
+    addSbtPlugin("org.scala-js" % "sbt-scalajs" % scalaJSVersion),
+    scalacOptions ++= Seq(
+      "-feature",
+      "-unchecked",
+      "-language:implicitConversions"),
+    sourceGenerators in Compile += Def.task {
+      val file = (sourceManaged in Compile).value / "Version.scala"
+      IO.write(file,
+        s"""package eu.unicredit.shocon.sbtplugin
+        |object Version { val shoconVersion = "${version.value}" }
+        """.stripMargin)
+      Seq(file)
+    }.taskValue
+  )
+
+lazy val publishingSettings = Seq(
+  pomExtra := {
+    <url>https://github.com/unicredit/shocon</url>
+    <licenses>
+      <license>
+        <name>Apache 2</name>
+        <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+      </license>
+    </licenses>
+    <scm>
+      <connection>scm:git:github.com/unicredit/shocon</connection>
+      <developerConnection>scm:git:git@github.com:unicredit/shocon</developerConnection>
+      <url>github.com/unicredit/shocon</url>
+    </scm>
+    <developers>
+      <developer>
+        <id>evacchi</id>
+        <name>Edoardo Vacchi</name>
+        <url>https://github.com/evacchi/</url>
+      </developer>
+      <developer>
+        <id>andreaTP</id>
+        <name>Andrea Peruffo</name>
+        <url>https://github.com/andreaTP/</url>
+      </developer>
+    </developers>
+  }
+)
+
 publishMavenStyle := true
 
 pomIncludeRepository := { x => false }
