@@ -28,6 +28,9 @@ object ShoconJSPlugin extends AutoPlugin {
   override def requires: Plugins = ScalaJSPlugin
 
   object autoImport {
+    val shoconAddLib: SettingKey[Boolean] =
+      settingKey[Boolean]("If true, add shocon library to project")
+
     val shoconDebug: SettingKey[Boolean] =
       settingKey[Boolean]("If true, print debug about the assembled SHOCON file")
 
@@ -51,6 +54,8 @@ object ShoconJSPlugin extends AutoPlugin {
   import autoImport._
 
   override def projectSettings: Seq[Def.Setting[_]] = Seq(
+    shoconAddLib := true,
+
     shoconDebug := false,
 
     shoconLoadFromJars := true,
@@ -82,8 +87,12 @@ object ShoconJSPlugin extends AutoPlugin {
 
     compile in Compile <<= (compile in Compile).dependsOn(shoconConcat),
 
-    libraryDependencies ++= Seq("shocon") map { dep =>
-      DepBuilder.toScalaJSGroupID("eu.unicredit") %%% dep % Version.shoconVersion
+    libraryDependencies ++= {
+      if (shoconAddLib.value)
+        Seq("shocon") map { dep =>
+          DepBuilder.toScalaJSGroupID("eu.unicredit") %%% dep % Version.shoconVersion
+        }
+      else Nil
     }
 
   )
