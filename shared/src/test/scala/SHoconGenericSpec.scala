@@ -377,6 +377,19 @@ class SHoconGenericSpec {
     assertEquals("1", conf.getString("x"))
   }
 
+  @Test
+  def parseComments(): Unit = {
+    val conf = ConfigFactory.parseString(
+      """
+      // ignored
+      x = "1"
+      # ignored
+      y = "foo"
+      """)
+    assertEquals("1", conf.getString("x"))
+    assertEquals("foo", conf.getString("y"))
+  }
+
   private final def configToMap(config: Config): Map[String, String] = {
     import scala.collection.JavaConverters._
     config.root.unwrapped.asScala.toMap map { case (k, v) ⇒ (k → v.toString) }

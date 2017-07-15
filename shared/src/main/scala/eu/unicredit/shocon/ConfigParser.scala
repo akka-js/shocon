@@ -47,8 +47,7 @@ object ConfigParser {
   val keyValueSeparator = P( CharIn(":="))
 
   // whitespace
-  //  val wspace        = P( CharsWhile(Whitespace) )
-  val comment = P( "#" ~ CharsWhile(_ != '\n', min = 0) )
+  val comment = P( ("//" | "#") ~ CharsWhile(_ != '\n', min = 0) )
   val nlspace = P( (CharsWhile(isWhitespace, min = 1) | comment ).rep )
   val space   = P( ( CharsWhile(isWhitespaceNoNl, min = 1) | comment ).rep )
 
