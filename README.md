@@ -39,7 +39,7 @@ val root = project.in(file(".")
 For JVM project a call to `ConfigFactory.load()` will load the configuration from all `reference.conf` and `application.conf` files found on the classpath at runtime (the same as Typesafe config does).
 
 ### JS
-Since in a Scala.js project there are no runtime classloaders/ resources, the default configuration returned by `ConfigFactory.load()` is compiled statically into the code at compile time. This includes all `reference.conf` files found in the `resources` directory of the project itself, as well as all `reference.conf` files found in JARs on which the project depends. If there is an `application.conf` file in the `resources` directory of the project, this one will be included as well (after all `reference.conf` files.
+Since in a Scala.js project there are no runtime classloaders/ resources, the default configuration returned by `ConfigFactory.load()` is compiled statically into the code at compile time. This includes all `reference.conf` files found in the `resources` directory of the project itself, as well as all `reference.conf` files found in JARs on which the project depends. If there is an `application.conf` file in the `resources` directory of the project, this one will be included as well (after all `reference.conf` files).
 
 The resulting HOCON configuration file is assembled in `target-SCALA_VERSION/shocon.conf`.
 
