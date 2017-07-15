@@ -115,8 +115,17 @@ lazy val plugin = project
         |object Version { val shoconVersion = "${version.value}" }
         """.stripMargin)
       Seq(file)
-    }.taskValue
+    }.taskValue,
+
+    // configuration for testing with sbt-scripted
+    ScriptedPlugin.scriptedSettings,
+    scriptedLaunchOpts <++= version apply { version =>
+      Seq("-Xmx1024M", "-Dplugin.version=" + version)
+    },
+    scriptedBufferLog := false,
+    publishLocal <<= publishLocal.dependsOn((publishLocal in (shoconJS)))
   )
+
 
 lazy val publishingSettings = Seq(
   pomExtra := {
