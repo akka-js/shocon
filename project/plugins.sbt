@@ -13,6 +13,4 @@ resolvers += "Typesafe repository" at "http://repo.typesafe.com/typesafe/release
 resolvers += "sonatype-releases" at "https://oss.sonatype.org/content/repositories/releases/"
 
 // library for plugin testing
-libraryDependencies <+= (sbtVersion) { sv =>
-  "org.scala-sbt" % "scripted-plugin" % sv
-}
+libraryDependencies += "org.scala-sbt" % "scripted-plugin" % sbtVersion.value

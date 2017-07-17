@@ -119,11 +119,9 @@ lazy val plugin = project
 
     // configuration for testing with sbt-scripted
     ScriptedPlugin.scriptedSettings,
-    scriptedLaunchOpts <++= version apply { version =>
-      Seq("-Xmx1024M", "-Dplugin.version=" + version)
-    },
+    scriptedLaunchOpts ++= Seq("-Xmx1024M", "-Dplugin.version=" + version.value),
     scriptedBufferLog := false,
-    publishLocal <<= publishLocal.dependsOn((publishLocal in (shoconJS)))
+    publishLocal := publishLocal.dependsOn((publishLocal in (shoconJS))).value
   )
 
 

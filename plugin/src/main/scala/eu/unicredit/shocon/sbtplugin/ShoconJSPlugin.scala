@@ -74,13 +74,15 @@ object ShoconJSPlugin extends AutoPlugin {
       shoconDebug.value),
 
     shoconConcat := {
+      val log = streams.value.log
       val file = shoconConcatFile.value
+
       if(shoconDebug.value)
-        println(s"Assembling SHOCON files for project '${name.value}'")
+        log.debug(s"Assembling SHOCON files for project '${name.value}'")
       val config = shoconFiles.value.map( f => s"# SOURCE ${f._1}}\n" + IO.readStream(f._2) ).mkString("\n\n")
 
       if(shoconDebug.value)
-        println("SHOCON statically compiled into current project:\n"+config+"\n\n")
+        log.debug(s"SHOCON statically compiled into current project:\n$config\n\n")
       IO.write( file, config )
       file
     },
