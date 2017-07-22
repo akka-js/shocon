@@ -17,15 +17,12 @@ package eu.unicredit.shocon.sbtplugin
 import java.io.{BufferedInputStream, FileInputStream, FileNotFoundException, InputStream}
 import java.net.JarURLConnection
 
-import org.scalajs.sbtplugin.ScalaJSPlugin
-import org.scalajs.sbtplugin.impl.DependencyBuilders
 import sbt.Keys._
 import sbt.{AutoPlugin, Def, _}
 
-object ShoconJSPlugin extends AutoPlugin {
+object ShoconPlugin extends AutoPlugin {
 
   type ShoconFilter = Function1[(String,InputStream),Boolean]
-  override def requires: Plugins = ScalaJSPlugin
 
   object autoImport {
     val shoconAddLib: SettingKey[Boolean] =
@@ -78,18 +75,13 @@ object ShoconJSPlugin extends AutoPlugin {
       log.debug(s"SHOCON statically compiled into current project:\n$config\n\n")
       IO.write( file, config )
       file
-    },
-
-    compile in Compile := (compile in Compile).dependsOn(shoconConcat).value,
-
-    libraryDependencies ++= {
-      if (shoconAddLib.value)
-        Seq("shocon") map { dep =>
-          DepBuilder.toScalaJSGroupID("eu.unicredit") %%% dep % Version.shoconVersion
-        }
-      else Nil
     }
 
+    // Note: adding the shoconConcat task as dependency to compile does not work under Scala.js
+    //       if the ScalaJSPlugin is not declared as a requiredPlugin; however, doing so precludes
+    //       using this plugin for both, JVM and JS projects. Hence, shoconConcat must be either
+    //       called manually, or be defined as a dependency for compile in each project.
+    //  compile in Compile := (compile in Compile).dependsOn(shoconConcat).value
   )
 
 
@@ -146,5 +138,4 @@ object ShoconJSPlugin extends AutoPlugin {
 
   private def fin(file: File): BufferedInputStream = new BufferedInputStream(new FileInputStream(file))
 
-  private object DepBuilder extends DependencyBuilders
 }

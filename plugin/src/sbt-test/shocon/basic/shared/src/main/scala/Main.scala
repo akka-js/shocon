@@ -1,8 +1,7 @@
 import com.typesafe.config.ConfigFactory
-import scalajs.js
 
-object Main extends js.JSApp {
-  def main(): Unit = {
+object Main {
+  def main(args: Array[String]): Unit = {
     val config = ConfigFactory.load()
 
     // check that reference.conf in lib was loaded

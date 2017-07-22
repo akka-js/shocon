@@ -30,7 +30,6 @@ object ConfigLoader {
           .partition( _.canRead )
 
         if(notfound.nonEmpty)
-        // we use print instead of c.warning, since multiple warnings at the same c.enclosingPosition seem not to work (?)
           c.warning(c.enclosingPosition, s"shocon - could not read configuration files: $notfound")
 
         c.warning(c.enclosingPosition, s"shocon - statically reading configuration from $found")
@@ -62,7 +61,8 @@ object ConfigLoader {
             scala.io.Source.fromInputStream(stream).getLines.mkString("\n")
           } catch {
             case e: Throwable =>
-              println(s"WARNING: could not load config file: $e")
+              // we use print instead of c.warning, since multiple warnings at the same c.enclosingPosition seem not to work (?)
+              println(c.enclosingPosition, s"WARNING: could not load config file: $e")
               "{}"
           }
         }

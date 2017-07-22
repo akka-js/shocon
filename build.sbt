@@ -108,20 +108,11 @@ lazy val plugin = project
       "-feature",
       "-unchecked",
       "-language:implicitConversions"),
-    sourceGenerators in Compile += Def.task {
-      val file = (sourceManaged in Compile).value / "Version.scala"
-      IO.write(file,
-        s"""package eu.unicredit.shocon.sbtplugin
-        |object Version { val shoconVersion = "${version.value}" }
-        """.stripMargin)
-      Seq(file)
-    }.taskValue,
-
     // configuration for testing with sbt-scripted
     ScriptedPlugin.scriptedSettings,
     scriptedLaunchOpts ++= Seq("-Xmx1024M", "-Dplugin.version=" + version.value),
     scriptedBufferLog := false,
-    publishLocal := publishLocal.dependsOn((publishLocal in (shoconJS))).value
+    publishLocal := publishLocal.dependsOn(publishLocal in shoconJS).dependsOn(publishLocal in shoconJVM).value
   )
 
 
