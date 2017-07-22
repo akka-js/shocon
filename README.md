@@ -20,7 +20,7 @@ addSbtPlugin("eu.unicredit" % "sbt-shocon" % "0.1.9-SNAPSHOT")
 and in `build.sbt`:
 ```scala
 val root = project.in(file(".")
-  .enablePlugins(ScalaJSPlugin,ShoconJSPlugin)
+  .enablePlugins(ShoconPlugin)
   .settings(
     libraryDependencies += "eu.unicredit" %% "shocon" % "0.1.9-SNAPSHOT",
     // for Scala.js or cross projects use %%% instead:
