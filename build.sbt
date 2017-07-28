@@ -112,7 +112,7 @@ lazy val plugin = project
     ScriptedPlugin.scriptedSettings,
     scriptedLaunchOpts ++= Seq("-Xmx1024M", "-Dplugin.version=" + version.value),
     scriptedBufferLog := false,
-    publishLocal := publishLocal.dependsOn(publishLocal in shoconJS).dependsOn(publishLocal in shoconJVM).value
+    publishLocal := publishLocal.dependsOn(publishLocal in shoconJS, publishLocal in shoconJVM).value
   )
 
 
