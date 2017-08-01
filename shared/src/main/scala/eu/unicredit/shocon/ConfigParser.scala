@@ -58,7 +58,7 @@ object ConfigParser {
   // strings
   val strChars = P( CharsWhile(StringChars) )
   val quotedString = P( "\"" ~/ (strChars | escape).rep.! ~ "\"")
-  val unquotedString = P ( ( (letter | digit | "_" | "-" | ".").rep(min=1).! ).rep(min=1,sep=CharsWhile(_.isSpaceChar)).! )
+  val unquotedString = P ( ( (letter | digit | "_" | "-" | "." | "/").rep(min=1).! ).rep(min=1,sep=CharsWhile(_.isSpaceChar)).! )
   val string = P(nlspace) ~ P(quotedString|unquotedString|CharsWhile(_.isSpaceChar).!) // bit of an hack: this would parse whitespace to the end of line
                             .rep(min=1).map(_.mkString.trim) // so we will trim the remaining right-side
                             .map(Config.StringLiteral)
