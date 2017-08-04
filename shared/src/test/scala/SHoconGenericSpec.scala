@@ -48,6 +48,13 @@ class SHoconGenericSpec {
   }
 
   @Test
+  def parseStringLiteralsWithSlashes() = {
+    val config = ConfigFactory.parseString("""a = some/path""")
+    assert { config != null }
+    assertEquals(config.getString("a"), "some/path")
+  }
+
+  @Test
   def parseLists() = {
     val config1 = ConfigFactory.parseString(
       """l =[ a
