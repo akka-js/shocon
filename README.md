@@ -12,20 +12,40 @@ This implementation does not cover all of the corner cases of the original imple
 
 ## Usage
 
-Add these lines to your build.sbt
-
-Scala project:
+Add these lines to your `project/plugins.sbt`:
 ```scala
-libraryDependencies += "eu.unicredit" %% "shocon" % "0.1.8"
+addSbtPlugin("eu.unicredit" % "sbt-shocon" % "0.1.9-SNAPSHOT")
 ```
 
-Scala.Js project:
+and in `build.sbt`:
 ```scala
-libraryDependencies += "eu.unicredit" %%% "shocon" % "0.1.8"
+val root = project.in(file(".")
+  .enablePlugins(ShoconPlugin)
+  .settings(
+    libraryDependencies += "eu.unicredit" %% "shocon" % "0.1.9-SNAPSHOT",
+    // for Scala.js or cross projects use %%% instead:
+    // libraryDependencies += "eu.unicredit" %%% "shocon" % "0.1.9-SNAPSHOT"
+    
+    // add dependency on shocon file generation task
+    // (not required, but otherwise you need to call shoconConcat manually before compilation!)
+    compile in Compile := (compile in Compile).dependsOn(shoconConcat).value
+      
+    /* ... */
+  )
 ```
+
 
 ## Notes
 
-Since this implementation is unaware to be on a JVM classloader, any such reference is ignored and will be `null`.
+### Loading of default configuration
+In contrast to Typesafe config, which loads configuration files dynamically at run time, shocon compiles the default configuration returned by `ConfigFactory.load()` statically into the the code. This includes all `reference.conf` files found in the `resources` directory of the project itself, as well as all `reference.conf` files found in JARs on which the project depends. If there is an `application.conf` file in the `resources` directory of the project, this one will be included as well (after all `reference.conf` files).
 
-Default configuration is loaded from "application.conf" in resources statically at compile time (using macros) and integrated as a string in target code.
+The resulting HOCON configuration file is assembled in `target/scala-VERSION/shocon.conf`.
+
+*Note*: For Scala.JS / JVM projects only the `reference.config` files located in either `js/src/main/resources` and `jvm/src/main/resources` are included; files in `shared/src/main/resources/` are ignored!
+
+### ShoconPlugin setttings
+You can control the contents of the included default configuration with the following sbt settings:
+
+* `shoconLoadFromJars`: set to false, if you don't want to include any `reference.conf` files found in JARs
+* `shoconFilter: Function1[(String,InputStream), Boolean]`: set this setting to a filter function that return `true` for all configuration files to be included; the first element in the tuple passed to the function is the absolute URL of the configuration file.

@@ -14,67 +14,32 @@
  */
 package com.typesafe.config
 
-import eu.unicredit.shocon
-import java.{util => ju}
 import java.util.{concurrent => juc}
-import java.{time => jt}
-import java.lang.ClassLoader
+import java.{time => jt, util => ju}
 
-import eu.unicredit.shocon.Extractor
+import eu.unicredit.shocon
 import eu.unicredit.shocon.Config.Value
+import eu.unicredit.shocon.Extractor
 
-import scala.concurrent.duration._
-import scala.concurrent.{Future, Promise}
-import scala.util.{Failure, Success, Try}
 import scala.collection.JavaConverters._
 import scala.collection.mutable
+import scala.concurrent.duration._
+import scala.language.experimental.macros
 
 object ConfigFactory {
   def parseString(s: String): Config = {
     new Config(shocon.Config(s))
   }
 
-  import scala.language.experimental.macros
-  import scala.reflect.macros.blackbox.Context
+  import eu.unicredit.shocon.ConfigLoader
 
-  def loadDefault(c: Context) = {
-    import c.universe._
+  def load(): Config = macro ConfigLoader.loadDefaultImpl
 
-    val configStr: String =
-      try {
-        val confPath = new Object {}.getClass
-            .getResource("/")
-            .toString + "application.conf"
+  def load(cl: ClassLoader): Config = macro ConfigLoader.loadDefaultImplCL
 
-        c.warning(c.enclosingPosition,
-                  s"shocon - statically reading configuration from $confPath")
+  def defaultReference(): Config = macro ConfigLoader.loadDefaultImpl
 
-        val stream =
-          new Object {}.getClass.getResourceAsStream("/application.conf")
-
-        scala.io.Source.fromInputStream(stream).getLines.mkString("\n")
-      } catch {
-        case e: Throwable =>
-          "{}"
-      }
-
-    c.Expr[com.typesafe.config.Config](q"""{
-        com.typesafe.config.Config(
-          eu.unicredit.shocon.Config($configStr)
-        )
-      }""")
-  }
-
-  def loadDefaultImpl(c: Context)() = loadDefault(c)
-  def loadDefaultImplCL(c: Context)(cl: c.Expr[ClassLoader]) = loadDefault(c)
-
-  def load(): Config = macro loadDefaultImpl
-
-  def load(cl: ClassLoader): Config = macro loadDefaultImplCL
-
-  def defaultReference(): Config = macro loadDefaultImpl
-
-  def defaultReference(cl: ClassLoader): Config = macro loadDefaultImplCL
+  def defaultReference(cl: ClassLoader): Config = macro ConfigLoader.loadDefaultImplCL
 
   def empty() = Config(shocon.Config("{}"))
 
