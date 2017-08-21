@@ -56,7 +56,7 @@ object ConfigLoader {
               s"shocon - statically reading configuration from $confPath")
 
             val stream =
-              new Object {}.getClass.getResourceAsStream("application.conf")
+              new Object {}.getClass.getResourceAsStream("/application.conf")
 
             scala.io.Source.fromInputStream(stream).getLines.mkString("\n")
           } catch {
