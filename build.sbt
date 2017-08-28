@@ -3,7 +3,7 @@ import SonatypeKeys._
 val commonSettings = Vector(
   name := "shocon",
   organization := "eu.unicredit",
-  version := "0.1.9-SNAPSHOT",
+  version := "0.1.9",
   scalaVersion := "2.12.2",
   crossScalaVersions  :=
     Vector("2.11.11", "2.12.2")
@@ -145,8 +145,8 @@ lazy val publishingSettings = Seq(
   }
 )
 
-publishMavenStyle := true
+publishMavenStyle in ThisBuild := true
 
-pomIncludeRepository := { x => false }
+pomIncludeRepository  in ThisBuild := { x => false }
 
 credentials += Credentials(Path.userHome / ".ivy2" / "sonatype.credentials")
