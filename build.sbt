@@ -47,7 +47,7 @@ lazy val shocon = crossProject.in(file(".")).
     },
     compile in Compile := (compile in Compile).dependsOn(fixResources).value,
     libraryDependencies ++= Seq(
-      "com.lihaoyi" %%% "fastparse" % "0.4.2",
+      "com.lihaoyi" %%% "fastparse" % "0.4.4",
       "org.scala-lang" % "scala-reflect" % scalaVersion.value % "provided"
     ),
     pomExtra := {
