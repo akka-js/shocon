@@ -44,7 +44,7 @@ The resulting HOCON configuration file is assembled in `target/scala-VERSION/sho
 
 *Note*: For Scala.JS / JVM projects only the `reference.config` files located in either `js/src/main/resources` and `jvm/src/main/resources` are included; files in `shared/src/main/resources/` are ignored!
 
-### ShoconPlugin setttings
+### ShoconPlugin settings
 You can control the contents of the included default configuration with the following sbt settings:
 
 * `shoconLoadFromJars`: set to false, if you don't want to include any `reference.conf` files found in JARs
