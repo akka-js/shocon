@@ -3,7 +3,7 @@ import SonatypeKeys._
 val commonSettings = Vector(
   name := "shocon",
   organization := "eu.unicredit",
-  version := "0.1.10",
+  version := "0.2.0",
   scalaVersion := "2.12.2",
   crossScalaVersions  :=
     Vector("2.11.11", "2.12.2")
