@@ -14,7 +14,7 @@ This implementation does not cover all of the corner cases of the original imple
 
 Add these lines to your `project/plugins.sbt`:
 ```scala
-addSbtPlugin("eu.unicredit" % "sbt-shocon" % "0.1.10")
+addSbtPlugin("org.akka-js" % "sbt-shocon" % "0.2.0")
 ```
 
 and in `build.sbt`:
@@ -22,9 +22,9 @@ and in `build.sbt`:
 val root = project.in(file(".")
   .enablePlugins(ShoconPlugin)
   .settings(
-    libraryDependencies += "eu.unicredit" %% "shocon" % "0.1.10",
+    libraryDependencies += "org.akka-js" %% "shocon" % "0.1.10",
     // for Scala.js or cross projects use %%% instead:
-    // libraryDependencies += "eu.unicredit" %%% "shocon" % "0.1.10"
+    // libraryDependencies += "org.akka-js" %%% "shocon" % "0.1.10"
 
     // add dependency on shocon file generation task
     // (not required, but otherwise you need to call shoconConcat manually before compilation!)
