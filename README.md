@@ -22,9 +22,9 @@ and in `build.sbt`:
 val root = project.in(file(".")
   .enablePlugins(ShoconPlugin)
   .settings(
-    libraryDependencies += "org.akka-js" %% "shocon" % "0.1.10",
+    libraryDependencies += "org.akka-js" %% "shocon" % "0.2.0",
     // for Scala.js or cross projects use %%% instead:
-    // libraryDependencies += "org.akka-js" %%% "shocon" % "0.1.10"
+    // libraryDependencies += "org.akka-js" %%% "shocon" % "0.2.0"
 
     // add dependency on shocon file generation task
     // (not required, but otherwise you need to call shoconConcat manually before compilation!)
