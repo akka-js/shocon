@@ -3,7 +3,7 @@
 [![Build Status](https://travis-ci.org/unicredit/shocon.png?branch=master)](https://travis-ci.org/unicredit/shocon)
 [![Latest version](https://index.scala-lang.org/unicredit/shocon/shocon/latest.svg?color=orange)](https://index.scala-lang.org/unicredit/shocon/shocon)
 
-SHocon is a simple, pure-Scala, alternative implementation of the [HOCON](https://github.com/typesafehub/config/blob/master/HOCON.md) 
+SHocon is a simple, pure-Scala, alternative implementation of the [HOCON](https://github.com/typesafehub/config/blob/master/HOCON.md)
 specification.
 
 SHocon ships with a native, Scala-idiomatic API, and a shim that mimics the [Typesafe Config](https://github.com/typesafehub/config) Java API, making it well-suited as a **drop-in replacement** wherever the Java implementation is not available, such as **Scala.JS** projects.
@@ -25,15 +25,19 @@ val root = project.in(file(".")
     libraryDependencies += "eu.unicredit" %% "shocon" % "0.1.10",
     // for Scala.js or cross projects use %%% instead:
     // libraryDependencies += "eu.unicredit" %%% "shocon" % "0.1.10"
-    
+
     // add dependency on shocon file generation task
     // (not required, but otherwise you need to call shoconConcat manually before compilation!)
     compile in Compile := (compile in Compile).dependsOn(shoconConcat).value
-      
+
     /* ... */
   )
 ```
 
+## Credits
+
+SHocon wouldn't have been possible without the enormous support of the R&D department of UniCredit lead by Riccardo Prodam. Started as a side-project it quickly grew into an important open source milestone.
+Check out other projects from the UniCredit team [here](https://github.com/unicredit)
 
 ## Notes
 
