@@ -1,7 +1,7 @@
 # SHocon
 
-[![Build Status](https://travis-ci.org/unicredit/shocon.png?branch=master)](https://travis-ci.org/unicredit/shocon)
-[![Latest version](https://index.scala-lang.org/akka-js/shocon/shocon/latest.svg?color=orange)](https://index.scala-lang.org/akka-js/shocon)
+[![Build Status](https://travis-ci.org/akka-js/shocon.png?branch=master)](https://travis-ci.org/akka-js/shocon)
+[![Latest version](https://index.scala-lang.org/akka-js/shocon/shocon/latest.svg?color=green)](https://index.scala-lang.org/akka-js/shocon)
 
 SHocon is a simple, pure-Scala, alternative implementation of the [HOCON](https://github.com/typesafehub/config/blob/master/HOCON.md)
 specification.
