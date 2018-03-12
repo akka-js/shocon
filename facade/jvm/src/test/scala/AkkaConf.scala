@@ -12,17 +12,12 @@
 * See the License for the specific language governing permissions and
 * limitations under the License.
 */
-package com.typesafe.config
+object AkkaConf {
 
-import java.{util => ju}
-import scala.collection.JavaConverters._
+  def basic =
+    io.Source.fromFile("facade/jvm/src/test/resources/akka.conf").mkString
 
-trait ConfigObject extends ju.AbstractMap[String, ConfigValue] with ConfigValue {
-
-	def toConfig = Config(inner)
-  def unwrapped: ju.Map[String, Any]
-
-  override def render: String = this.entrySet().asScala.map(kv => kv.getKey+" -> "+kv.getValue).mkString("[", ",", "]")
-  override def valueType: ConfigValueType = ConfigValueType.OBJECT
+  def long =
+    io.Source.fromFile("facade/jvm/src/test/resources/akka-long.conf").mkString
 
 }

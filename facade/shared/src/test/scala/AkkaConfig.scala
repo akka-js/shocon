@@ -13,8 +13,6 @@
 * limitations under the License.
 */
 
-import com.typesafe.config.{Config, ConfigFactory}
-
 object AkkaConfig {
 
   val default = """
@@ -676,7 +674,7 @@ akka {
 }
 """
 
-  import com.typesafe.config.{ Config, ConfigFactory }
+  import com.typesafe.config.{Config, ConfigFactory}
 
   val config: Config = ConfigFactory.parseString(default)
 
