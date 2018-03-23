@@ -3,22 +3,24 @@ import SonatypeKeys._
 val commonSettings = Vector(
   name := "shocon",
   organization := "org.akka-js",
-  version := "0.2.1",
-  scalaVersion := "2.12.2",
-  crossScalaVersions  :=
-    Vector("2.11.11", "2.12.2")
+  version := "0.3.0-SNAPSHOT",
+  scalaVersion := "2.11.11",
+  crossScalaVersions :=
+    Vector("2.11.11", "2.12.4")
 )
 
-lazy val root = project.in(file(".")).
-  settings(commonSettings: _*).
-  aggregate(parserJS, parserJVM, facadeJS, facadeJVM)
+lazy val root = project
+  .in(file("."))
+  .settings(commonSettings: _*)
+  .aggregate(parserJS, parserJVM, facadeJS, facadeJVM)
 
-  lazy val fixResources = taskKey[Unit](
-    "Fix application.conf presence on first clean build.")
+lazy val fixResources =
+  taskKey[Unit]("Fix application.conf presence on first clean build.")
 
-lazy val parser = crossProject.in(file(".")).
-  settings(commonSettings: _*).
-  settings(
+lazy val parser = crossProject
+  .in(file("."))
+  .settings(commonSettings: _*)
+  .settings(
     name := "shocon-parser",
     scalacOptions ++=
       Seq(
@@ -26,11 +28,10 @@ lazy val parser = crossProject.in(file(".")).
         "-unchecked",
         "-language:implicitConversions"
       )
-  ).
-  settings(
-    sonatypeSettings: _*
-  ).
-  settings(
+  )
+  .settings(sonatypeSettings)
+  .settings(publishingSettings)
+  .settings(
     fixResources := {
       val compileConf = (resourceDirectory in Compile).value / "application.conf"
       if (compileConf.exists)
@@ -50,53 +51,21 @@ lazy val parser = crossProject.in(file(".")).
     libraryDependencies ++= Seq(
       "com.lihaoyi" %%% "fastparse" % "1.0.0",
       "org.scala-lang" % "scala-reflect" % scalaVersion.value % "provided"
-    ),
-    pomExtra := {
-      <url>https://github.com/unicredit/shocon</url>
-      <licenses>
-        <license>
-          <name>Apache 2</name>
-          <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
-        </license>
-      </licenses>
-      <scm>
-        <connection>scm:git:github.com/unicredit/shocon</connection>
-        <developerConnection>scm:git:git@github.com:unicredit/shocon</developerConnection>
-        <url>github.com/unicredit/shocon</url>
-      </scm>
-      <developers>
-        <developer>
-          <id>evacchi</id>
-          <name>Edoardo Vacchi</name>
-          <url>https://github.com/evacchi/</url>
-        </developer>
-        <developer>
-          <id>andreaTP</id>
-          <name>Andrea Peruffo</name>
-          <url>https://github.com/andreaTP/</url>
-        </developer>
-      </developers>
-    }
-  ).
-  jvmSettings(
-  	libraryDependencies += "com.novocode" % "junit-interface" % "0.9" % "test"
-  ).
-  jsConfigure(
-    _.enablePlugins(ScalaJSJUnitPlugin)
-  ).
-  jsSettings(
+    )
+  )
+  .jsSettings(
     libraryDependencies += "org.scala-js" %%% "scalajs-java-time" % "0.2.0",
-    scalaJSUseRhino in Global := true,
     parallelExecution in Test := true
   )
 
 lazy val parserJVM = parser.jvm
 lazy val parserJS = parser.js
 
-lazy val facade = crossProject.in(file("facade")).
-  dependsOn(parser).
-  settings(commonSettings: _*).
-  settings(
+lazy val facade = crossProject
+  .in(file("facade"))
+  .dependsOn(parser)
+  .settings(commonSettings: _*)
+  .settings(
     name := "shocon",
     scalacOptions ++=
       Seq(
@@ -104,11 +73,10 @@ lazy val facade = crossProject.in(file("facade")).
         "-unchecked",
         "-language:implicitConversions"
       )
-  ).
-  settings(
-    sonatypeSettings: _*
-  ).
-  settings(
+  )
+  .settings(sonatypeSettings)
+  .settings(publishingSettings)
+  .settings(
     fixResources := {
       val compileConf = (resourceDirectory in Compile).value / "application.conf"
       if (compileConf.exists)
@@ -125,46 +93,15 @@ lazy val facade = crossProject.in(file("facade")).
       }
     },
     compile in Compile := (compile in Compile).dependsOn(fixResources).value,
+    testFrameworks += new TestFramework("utest.runner.Framework"),
     libraryDependencies ++= Seq(
       "com.lihaoyi" %%% "fastparse" % "1.0.0",
+      "com.lihaoyi" %%% "utest" % "0.6.3" % "test",
       "org.scala-lang" % "scala-reflect" % scalaVersion.value % "provided"
-    ),
-    pomExtra := {
-      <url>https://github.com/unicredit/shocon</url>
-        <licenses>
-          <license>
-            <name>Apache 2</name>
-            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
-          </license>
-        </licenses>
-        <scm>
-          <connection>scm:git:github.com/unicredit/shocon</connection>
-          <developerConnection>scm:git:git@github.com:unicredit/shocon</developerConnection>
-          <url>github.com/unicredit/shocon</url>
-        </scm>
-        <developers>
-          <developer>
-            <id>evacchi</id>
-            <name>Edoardo Vacchi</name>
-            <url>https://github.com/evacchi/</url>
-          </developer>
-          <developer>
-            <id>andreaTP</id>
-            <name>Andrea Peruffo</name>
-            <url>https://github.com/andreaTP/</url>
-          </developer>
-        </developers>
-    }
-  ).
-  jvmSettings(
-    libraryDependencies += "com.novocode" % "junit-interface" % "0.9" % "test"
-  ).
-  jsConfigure(
-    _.enablePlugins(ScalaJSJUnitPlugin)
-  ).
-  jsSettings(
+    )
+  )
+  .jsSettings(
     libraryDependencies += "org.scala-js" %%% "scalajs-java-time" % "0.2.0",
-    scalaJSUseRhino in Global := true,
     parallelExecution in Test := true
   )
 
@@ -174,8 +111,8 @@ lazy val facadeJS = facade.js
 lazy val plugin = project
   .settings(
     commonSettings ++
-    sonatypeSettings ++
-    publishingSettings: _*)
+      sonatypeSettings ++
+      publishingSettings: _*)
   .settings(
     name := "sbt-shocon",
     description := "sbt plugin for shocon",
@@ -183,17 +120,18 @@ lazy val plugin = project
     scalaVersion := "2.10.6",
     crossScalaVersions := Seq("2.10.6"),
     addSbtPlugin("org.scala-js" % "sbt-scalajs" % scalaJSVersion),
-    scalacOptions ++= Seq(
-      "-feature",
-      "-unchecked",
-      "-language:implicitConversions"),
+    scalacOptions ++= Seq("-feature",
+                          "-unchecked",
+                          "-language:implicitConversions"),
     // configuration for testing with sbt-scripted
     ScriptedPlugin.scriptedSettings,
-    scriptedLaunchOpts ++= Seq("-Xmx1024M", "-Dplugin.version=" + version.value),
+    scriptedLaunchOpts ++= Seq("-Xmx1024M",
+                               "-Dplugin.version=" + version.value),
     scriptedBufferLog := false,
-    publishLocal := publishLocal.dependsOn(publishLocal in facadeJS, publishLocal in facadeJVM).value
+    publishLocal := publishLocal
+      .dependsOn(publishLocal in facadeJS, publishLocal in facadeJVM)
+      .value
   )
-
 
 lazy val publishingSettings = Seq(
   pomExtra := {
@@ -226,6 +164,11 @@ lazy val publishingSettings = Seq(
 
 publishMavenStyle in ThisBuild := true
 
-pomIncludeRepository  in ThisBuild := { x => false }
+pomIncludeRepository in ThisBuild := { x =>
+  false
+}
 
 credentials += Credentials(Path.userHome / ".ivy2" / "sonatype.credentials")
+
+// scalafmtOnCompile in ThisBuild := true
+// scalafmtTestOnCompile in ThisBuild := true
