@@ -1,22 +1,37 @@
+
+// https://github.com/portable-scala/sbt-crossproject
+// (5) shadow sbt-scalajs' crossProject and CrossType until Scala.js 1.0.0 is released
+import sbtcrossproject.{crossProject, CrossType}
+
 import SonatypeKeys._
 
 val commonSettings = Vector(
   name := "shocon",
   organization := "org.akka-js",
-  version := "0.2.1",
-  scalaVersion := "2.12.2",
+  version := "0.2.2",
+  scalaVersion := "2.11.12",
   crossScalaVersions  :=
-    Vector("2.11.11", "2.12.2")
+    Vector("2.11.12", "2.12.4")
+)
+
+val nativeSettings = Seq(
+    nativeGC := "boehm",
+    nativeMode := "debug",
+    nativeLinkStubs := false,
+    crossScalaVersions := Seq("2.11.12") // no 2.12.X
 )
 
 lazy val root = project.in(file(".")).
   settings(commonSettings: _*).
-  aggregate(parserJS, parserJVM, facadeJS, facadeJVM)
+  aggregate(
+    parserJVM, parserJS, parserNative, 
+    facadeJVM, facadeJS, facadeNative 
+  )
 
   lazy val fixResources = taskKey[Unit](
     "Fix application.conf presence on first clean build.")
 
-lazy val parser = crossProject.in(file(".")).
+lazy val parser = crossProject(JSPlatform, JVMPlatform, NativePlatform).in(file(".")).
   settings(commonSettings: _*).
   settings(
     name := "shocon-parser",
@@ -88,12 +103,16 @@ lazy val parser = crossProject.in(file(".")).
     libraryDependencies += "org.scala-js" %%% "scalajs-java-time" % "0.2.0",
     scalaJSUseRhino in Global := true,
     parallelExecution in Test := true
+  ).
+  nativeSettings(
+    nativeSettings
   )
 
 lazy val parserJVM = parser.jvm
 lazy val parserJS = parser.js
+lazy val parserNative = parser.native
 
-lazy val facade = crossProject.in(file("facade")).
+lazy val facade = crossProject(JSPlatform, JVMPlatform, NativePlatform).in(file("facade")).
   dependsOn(parser).
   settings(commonSettings: _*).
   settings(
@@ -166,10 +185,14 @@ lazy val facade = crossProject.in(file("facade")).
     libraryDependencies += "org.scala-js" %%% "scalajs-java-time" % "0.2.0",
     scalaJSUseRhino in Global := true,
     parallelExecution in Test := true
+  ).
+  nativeSettings(
+    nativeSettings
   )
 
 lazy val facadeJVM = facade.jvm
 lazy val facadeJS = facade.js
+lazy val facadeNative = facade.native
 
 lazy val plugin = project
   .settings(
@@ -182,7 +205,9 @@ lazy val plugin = project
     sbtPlugin := true,
     scalaVersion := "2.10.6",
     crossScalaVersions := Seq("2.10.6"),
-    addSbtPlugin("org.scala-js" % "sbt-scalajs" % scalaJSVersion),
+    // FIXME: see .travis.yml plugin/scripted
+    // sbtBinaryVersion in update := (sbtBinaryVersion in pluginCrossBuild).value,
+    // addSbtPlugin("org.portable-scala" % "sbt-platform-deps" % "1.0.0-M2"),
     scalacOptions ++= Seq(
       "-feature",
       "-unchecked",
@@ -191,7 +216,14 @@ lazy val plugin = project
     ScriptedPlugin.scriptedSettings,
     scriptedLaunchOpts ++= Seq("-Xmx1024M", "-Dplugin.version=" + version.value),
     scriptedBufferLog := false,
-    publishLocal := publishLocal.dependsOn(publishLocal in facadeJS, publishLocal in facadeJVM).value
+    publishLocal := publishLocal.dependsOn(
+        publishLocal in parserJVM,
+        publishLocal in parserJS, 
+        publishLocal in parserNative,
+        publishLocal in facadeJVM,
+        publishLocal in facadeJS, 
+        publishLocal in facadeNative
+    ).value
   )
 
 

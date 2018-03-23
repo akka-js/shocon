@@ -1,17 +1,25 @@
-sudo: false
-
+os: linux
+dist: trusty
+sudo: required
 language: scala
-
-scala:
-  - "2.12.0"
-  - "2.11.8"
-
 jdk: oraclejdk8
-
+matrix:
+  include:
+  - env:
+    - sbt_args="test"
+#    - sbt_args="test plugin/scripted" # FIXME: works locally, fails on travis
+    scala: 2.11.12
+  - env:
+    - sbt_args="parserJVM/test parserJS/test facadeJVM/test facadeJS/test"
+    scala: 2.12.4
 cache:
   directories:
-    - $HOME/.ivy2/cache
-    - $HOME/.sbt/boot/
-
+  - $HOME/.sbt
+  - $HOME/.ivy2/cache
+before_cache:
+- find $HOME/.sbt  -name "*.lock" -print -delete
+- find $HOME/.ivy2 -name "*.lock" -print -delete
+install:
+- ./project/ci/llvm-travis.sh || exit 1
 script:
-  - sbt ++$TRAVIS_SCALA_VERSION test
+- sbt ++$TRAVIS_SCALA_VERSION $sbt_args

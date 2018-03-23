@@ -9,3 +9,14 @@ bin
 .ensime*
 shared/src/main/scala/Empty.scala
 .idea/
+
+# Eclipse
+bin/
+.project
+.classpath
+.settings/
+.externalToolBuilders/
+
+# Scala IDE
+.cache*
+*.class

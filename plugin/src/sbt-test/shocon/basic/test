@@ -1,3 +1,6 @@
-> rootJS/run
 > rootJVM/run
-# $ exists js/target/scala-2.12/shocon.conf
+> rootJS/run
+> rootNative/run
+# $ exists jvm/target/scala-2.11/shocon.conf
+# $ exists js/target/scala-2.11/shocon.conf
+# $ exists native/target/scala-2.11/shocon.conf
