@@ -8,14 +8,20 @@ scala:
 
 jdk: oraclejdk8
 
+matrix:
+  include:
+    - env: SBT_VERSION=0.13.16
+      scala: "2.12.4"
+    - env: SBT_VERSION=1.1.2
+      scala: "2.12.4"
+
 env:
   - TRAVIS_NODE_VERSION="7.10.1"
   - TRAVIS_NODE_VERSION="8.9.1"
-  - TRAVIS_NODE_VERSION="9.2.0"
+  - TRAVIS_NODE_VERSION="9.10.1"
 
 install:
-  - rm -rf ~/.nvm && git clone https://github.com/creationix/nvm.git ~/.nvm && (cd ~/.nvm && git checkout `git describe --abbrev=0 --tags`) && source ~/.nvm/nvm.sh && nvm install $TRAVIS_NODE_VERSION
-  - npm install
+  - source travis/setNodeVersion.sh
 
 cache:
   directories:
@@ -24,6 +30,7 @@ cache:
 
 script:
   - sbt ++$TRAVIS_SCALA_VERSION test
+  - source travis/testSbtPlugin.sh
   # Tricks to avoid unnecessary cache updates, from
   # http://www.scala-sbt.org/0.13/docs/Travis-CI-with-sbt.html
   - find $HOME/.sbt -name "*.lock" | xargs rm
