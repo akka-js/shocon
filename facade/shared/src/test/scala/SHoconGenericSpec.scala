@@ -14,8 +14,7 @@
  */
 import java.{util => ju}
 
-import org.junit.Assert._
-import org.junit._
+import utest._
 
 import scala.util.{Failure, Success}
 import com.typesafe.config.{Config, ConfigFactory, ConfigValue}
@@ -25,376 +24,350 @@ import java.util.concurrent.TimeUnit
 
 import eu.unicredit.shocon
 
-class SHoconGenericSpec {
+object SHoconGenericSpec extends TestSuite {
 
-  @Test
-  def parseEmptyList() = {
-    val config = ConfigFactory.parseString("""{ "a" : [] }""")
+  val tests = Tests {
 
-    assert { config != null }
-    assert { config.hasPath("a") }
+    'parseEmptyList - {
+      val config = ConfigFactory.parseString("""{ "a" : [] }""")
 
-    assert { config.getStringList("a").isEmpty }
-  }
+      assert { config != null }
+      assert { config.hasPath("a") }
 
-  @Test
-  def parseBasicValues() = {
-    val config = ConfigFactory.parseString("""{ "a" : "2" }""")
+      assert { config.getStringList("a").isEmpty }
+    }
 
-    assert { config != null }
+    'parseBasicValues - {
+      val config = ConfigFactory.parseString("""{ "a" : "2" }""")
 
-    assertEquals(config.getString("a"), "2")
-    assertEquals(config.getInt("a"), 2)
-  }
+      assert { config != null }
 
-  @Test
-  def parseStringLiteralsWithSlashes() = {
-    val config = ConfigFactory.parseString("""a = some/path""")
-    assert { config != null }
-    assertEquals(config.getString("a"), "some/path")
-  }
+      assert { config.getString("a") == "2" }
+      assert { config.getInt("a") == 2 }
+    }
 
-  @Test
-  def parseLists() = {
-    val config1 = ConfigFactory.parseString(
-      """l =[ a
-        |
-        |   b
-        |  c
-        |
-        | d ]""".stripMargin
-    )
-
-    val config2 = ConfigFactory.parseString("l = [a,b] \n[c, d]")
-
-    assert { config1 != null && config2 != null }
-
-    assertEquals(config1.getStringList("l"), List("a", "b", "c", "d").asJava)
-    assertEquals(config2.getStringList("l"), config1.getStringList("l"))
-  }
-
-  @Test
-  def parseNestedObjects() = {
-    val config = ConfigFactory.parseString("a = { b = 1 }")
-
-    assert { config != null }
-
-    assertEquals(config.getConfig("a").getInt("b"), 1)
-  }
-
-  @Test
-  def pasreNewLinesIsteadOfCommas = {
-    val config = ConfigFactory.parseString("""{
-    foo = 1
-
-    bar = 2
-
-    baz = 3}
-    """)
-
-    assert { config != null }
-
-    assertEquals(config.getInt("foo"), 1)
-    assertEquals(config.getInt("bar"), 2)
-    assertEquals(config.getInt("baz"), 3)
-  }
-
-  @Test
-  def parseConcatenatedValues = {
-    val config1 = ConfigFactory.parseString("x = {a:1, b: 2}\n {c: 3, d: 4}")
-
-    val config2 = ConfigFactory.parseString("x = {a:1, b: 2\nc: 3, d: 4}")
-
-    assert { config1 != null && config2 != null }
-
-    assertEquals(config1, config2)
-  }
-
-  @Test
-  def parseAndConcatenateStringValues = {
-    val config = ConfigFactory.parseString("""
-        |x = a b c d
-        |y = 10
-        |""".stripMargin)
-
-    assert { config != null }
-
-    assertEquals(config.getString("x"), "a b c d")
-  }
-
-  @Test
-  def parseAkkaConfFiles = {
-    val basic = ConfigFactory.parseString(AkkaConf.basic)
-    val long = ConfigFactory.parseString(AkkaConf.long)
-
-    assert { basic != null && long != null }
-
-    assertEquals(basic.getString("akka.version"), "2.0-SNAPSHOT")
-    assertEquals(long.getString("akka.version"), "2.0-SNAPSHOT")
-  }
-
-  @Test
-  def parseDurations = {
-    val config = ConfigFactory.parseString(
-      """ a {
-        |x = 1 ms
-        |}""".stripMargin
-    )
-
-    assert { config != null }
-
-    assertEquals(config.getDuration("a.x").toMillis.toLong, 1L)
-    assertEquals(config.getDuration("a.x", TimeUnit.NANOSECONDS).toLong,
-                 1000000L)
-  }
-
-  @Test
-  def parseBytes = {
-    val config = ConfigFactory.parseString(
-      """ a {
-        |b = 9 b
-        |B = 9 b
-        |byte = 1 byte
-        |bytes = 9 bytes
-        |kB = 9 kB
-        |kilobyte = 1 kilobyte
-        |kilobytes = 9 kilobyte
-        |MB = 9 MB
-        |megabyte = 1 megabyte
-        |megabytes = 9 megabytes
-        |GB = 9 GB
-        |gigabyte = 1 gigabyte
-        |gigabytes = 9 gigabytes
-        |TB = 9 TB
-        |terabyte = 1 terabyte
-        |terabytes = 9 terabytes
-        |PB = 9 PB
-        |petabyte = 1 petabyte
-        |petabytes = 9 petabytes
-        |EB = 9 EB
-        |K = 1 K
-        |k = 1 k
-        |Ki = 1 Ki
-        |KiB = 1 KiB
-        |m = 1 m
-        |M = 1 M
-        |Mi = 1 Mi
-        |MiB = 1 MiB
-        |g = 1 g
-        |G = 1 G
-        |Gi = 1 Gi
-        |GiB = 1 GiB
-        |}""".stripMargin
-    )
-
-    assert { config != null }
-
-    assertEquals(config.getBytes("a.b"), 9L)
-    assertEquals(config.getBytes("a.B"), 9L)
-    assertEquals(config.getBytes("a.byte"), 1L)
-    assertEquals(config.getBytes("a.bytes"), 9L)
-    assertEquals(config.getBytes("a.kB"), 9000L)
-    assertEquals(config.getBytes("a.kilobyte"), 1000L)
-    assertEquals(config.getBytes("a.kilobytes"), 9000L)
-    assertEquals(config.getBytes("a.MB"), 9000000L)
-    assertEquals(config.getBytes("a.megabyte"), 1000000L)
-    assertEquals(config.getBytes("a.megabytes"), 9000000L)
-    assertEquals(config.getBytes("a.GB"), 9000000000L)
-    assertEquals(config.getBytes("a.gigabyte"), 1000000000L)
-    assertEquals(config.getBytes("a.gigabytes"), 9000000000L)
-    assertEquals(config.getBytes("a.TB"), 9000000000000L)
-    assertEquals(config.getBytes("a.terabyte"), 1000000000000L)
-    assertEquals(config.getBytes("a.terabytes"), 9000000000000L)
-    assertEquals(config.getBytes("a.PB"), 9000000000000000L)
-    assertEquals(config.getBytes("a.petabyte"), 1000000000000000L)
-    assertEquals(config.getBytes("a.petabytes"), 9000000000000000L)
-    assertEquals(config.getBytes("a.k"), 1024L)
-    assertEquals(config.getBytes("a.K"), 1024L)
-    assertEquals(config.getBytes("a.Ki"), 1024L)
-    assertEquals(config.getBytes("a.KiB"), 1024L)
-    assertEquals(config.getBytes("a.m"), 1024L * 1024L)
-    assertEquals(config.getBytes("a.M"), 1024L * 1024L)
-    assertEquals(config.getBytes("a.Mi"), 1024L * 1024L)
-    assertEquals(config.getBytes("a.MiB"), 1024L * 1024L)
-    assertEquals(config.getBytes("a.g"), 1024L * 1024L * 1024L)
-    assertEquals(config.getBytes("a.G"), 1024L * 1024L * 1024L)
-    assertEquals(config.getBytes("a.Gi"), 1024L * 1024L * 1024L)
-    assertEquals(config.getBytes("a.GiB"), 1024L * 1024L * 1024L)
-
-  }
-
-  @Test
-  def parseBooleans = {
-    val config = ConfigFactory.parseString(
-      """ a {
-        |x1 = true
-        |x2 = on
-        |x3 = yes
-        |x4 = false
-        |x5 = off
-        |x6 = no
-        |}""".stripMargin
-    )
-
-    assert { config != null }
-
-    assertEquals(config.getBoolean("a.x1"), true)
-    assertEquals(config.getBoolean("a.x2"), true)
-    assertEquals(config.getBoolean("a.x3"), true)
-    assertEquals(config.getBoolean("a.x4"), false)
-    assertEquals(config.getBoolean("a.x5"), false)
-    assertEquals(config.getBoolean("a.x6"), false)
-  }
-
-  @Test
-  def parseAkkaConfiguration = {
-    val config = AkkaConfig.config
-
-    assert { config != null }
-
-    config.getConfig("akka").entrySet()
-
-    ()
-  }
-
-  @Test
-  def reloadConfigWithFallback() = {
-    val config1 = ConfigFactory.parseString("""{ "a" : [] }""")
-    val config2 = ConfigFactory.parseString("""{ "b" : [] }""")
-
-    assert(config1 != null && config2 != null, "both config were null")
-
-    val config = config1.withFallback(config2).withFallback(config1)
-
-    assert(config.hasPath("a"), "config must have path a")
-    assert(config.hasPath("b"), "config must have path b")
-
-  }
-
-  @Test
-  def dottedConfigKey() = {
-    val configAkka =
-      ConfigFactory.parseString("akka.actor.messages = on")
-
-    assert(configAkka.hasPath("akka.actor.messages"),
-           "config must have path akka.actor.messages")
-
-  }
-
-  @Test
-  def dottedConfigKeyWithFallback() = {
-    val configAkka =
-      ConfigFactory.parseString("akka.actor.debug.event-stream = on").withFallback(
-        ConfigFactory.parseString("""
-          akka.actor.debug.event-stream = off
-          akka.actor.messages = on
-                                  """))
-
-    assert { configAkka.getBoolean("akka.actor.messages") }
-  }
-
-  @Test
-  def loadDefaultConfig() = {
-    val config = ConfigFactory.load()
-
-    assert { config != null }
-
-    assert { config.getString("loaded") == "DONE" }
-  }
-
-  @Test
-  def unwrappedToStringInMap() = {
-    val config = ConfigFactory.parseString(""" a="b" """)
-    val map = configToMap(config)
-    assertEquals("b", map("a"))
-  }
-
-  @Test
-  def unwrappedNumber() = {
-    val map = ConfigFactory.parseString(""" a=2 """).root.unwrapped
-    assertEquals(2, map.get("a"))
-  }
-
-  @Test
-  def unwrappedDuration() = {
-    val map = ConfigFactory.parseString(""" a=2ns """).root.unwrapped
-    assertEquals("2ns", map.get("a")) // Duration is not automatically unwrapped.
-  }
-
-  @Test
-  def unwrappedBoolean() = {
-    val map = ConfigFactory.parseString(""" a=true """).root.unwrapped
-    assertEquals(true, map.get("a"))
-  }
-
-  @Test
-  def reparseKey() = {
-    val key = "foo.bar.baz"
-    val value = shocon.Config.StringLiteral("quux")
-
-    val reparsed = shocon.Config.Object.reparseKey(key, value)
-    val expected = shocon.Config.Object(
-      Map(
-        "foo" -> shocon.Config.Object(Map("bar" -> shocon.Config.Object(
-          Map("baz" -> shocon.Config.StringLiteral("quux")))))))
-
-    assertEquals(expected, reparsed)
-  }
-
-  @Test
-  def mergeConfigValues() {
-    val key1 = "foo.bar.baz"
-    val value1 = shocon.Config.StringLiteral("quux")
-    val key2 = "foo.bar.bazz"
-    val value2 = shocon.Config.StringLiteral("quuxxx")
-
-    val reparsed1 = shocon.Config.Object.reparseKey(key1, value1)
-    val reparsed2 = shocon.Config.Object.reparseKey(key2, value2)
-
-    import shocon.Config.StringLiteral
-    val merged = shocon.Config.Object.mergeConfigs(reparsed1, reparsed2)
-    val expected = shocon.Config.Object(
-      Map(
-        "foo" -> shocon.Config.Object(
-          Map(
-            "bar" -> shocon.Config.Object(Map(
-              "baz" -> StringLiteral("quux"),
-              "bazz" -> StringLiteral("quuxxx")
-            ))))))
-
-    assertEquals(expected, merged)
-
-  }
-
-  @Test
-  def concatValues(): Unit = {
-    val x = ConfigFactory.parseString(
-      """x="foo"
-        |y=   z "bar" """.stripMargin)
-    assertEquals("foo", x.getString("x"))
-    assertEquals("z bar", x.getString("y"))
-  }
-
-  @Test
-  def properlyFallback(): Unit = {
-    val conf1 = ConfigFactory.parseString("""x = "1"""")
-    val conf2 = ConfigFactory.parseString("""x = "2"""")
-
-    val conf = conf1.withFallback(conf2)
-    assertEquals("1", conf.getString("x"))
-  }
-
-  @Test
-  def parseComments(): Unit = {
-    val conf = ConfigFactory.parseString(
-      """
-      // ignored
-      x = "1"
-      # ignored
-      y = "foo"
+    'parseStringLiteralsWithSlashes - {
+      val config = ConfigFactory.parseString("""a = some/path""")
+      assert { config != null }
+      assert { config.getString("a") == "some/path" }
+    }
+
+    'parseLists - {
+      val config1 = ConfigFactory.parseString(
+        """l =[ a
+          |
+          |   b
+          |  c
+          |
+          | d ]""".stripMargin
+      )
+
+      val config2 = ConfigFactory.parseString("l = [a,b] \n[c, d]")
+
+      assert { config1 != null && config2 != null }
+
+      assert { config1.getStringList("l") == List("a", "b", "c", "d").asJava }
+      assert { config2.getStringList("l") == config1.getStringList("l") }
+    }
+
+    'parseNestedObjects - {
+      val config = ConfigFactory.parseString("a = { b = 1 }")
+
+      assert { config != null }
+
+      assert { config.getConfig("a").getInt("b") == 1 }
+    }
+
+    'pasreNewLinesIsteadOfCommas - {
+      val config = ConfigFactory.parseString("""{
+      foo = 1
+
+      bar = 2
+
+      baz = 3}
       """)
-    assertEquals("1", conf.getString("x"))
-    assertEquals("foo", conf.getString("y"))
+
+      assert { config != null }
+
+      assert { config.getInt("foo") == 1 }
+      assert { config.getInt("bar") == 2 }
+      assert { config.getInt("baz") == 3 }
+    }
+
+    'parseConcatenatedValues - {
+      val config1 = ConfigFactory.parseString("x = {a:1, b: 2}\n {c: 3, d: 4}")
+
+      val config2 = ConfigFactory.parseString("x = {a:1, b: 2\nc: 3, d: 4}")
+
+      assert { config1 != null && config2 != null }
+
+      assert { config1 == config2 }
+    }
+
+    'parseAndConcatenateStringValues - {
+      val config = ConfigFactory.parseString("""
+          |x = a b c d
+          |y = 10
+          |""".stripMargin)
+
+      assert { config != null }
+
+      assert { config.getString("x") == "a b c d" }
+    }
+
+    'parseAkkaConfFiles - {
+      val basic = ConfigFactory.parseString(AkkaConf.basic)
+      val long = ConfigFactory.parseString(AkkaConf.long)
+
+      assert { basic != null && long != null }
+
+      assert { basic.getString("akka.version") == "2.0-SNAPSHOT" }
+      assert { long.getString("akka.version") == "2.0-SNAPSHOT" }
+    }
+
+    'parseDurations - {
+      val config = ConfigFactory.parseString(
+        """ a {
+          |x = 1 ms
+          |}""".stripMargin
+      )
+
+      assert { config != null }
+
+      assert { config.getDuration("a.x").toMillis.toLong == 1L }
+      assert { config.getDuration("a.x", TimeUnit.NANOSECONDS).toLong == 1000000L }
+    }
+
+    'parseBytes - {
+      val config = ConfigFactory.parseString(
+        """ a {
+          |b = 9 b
+          |B = 9 b
+          |byte = 1 byte
+          |bytes = 9 bytes
+          |kB = 9 kB
+          |kilobyte = 1 kilobyte
+          |kilobytes = 9 kilobyte
+          |MB = 9 MB
+          |megabyte = 1 megabyte
+          |megabytes = 9 megabytes
+          |GB = 9 GB
+          |gigabyte = 1 gigabyte
+          |gigabytes = 9 gigabytes
+          |TB = 9 TB
+          |terabyte = 1 terabyte
+          |terabytes = 9 terabytes
+          |PB = 9 PB
+          |petabyte = 1 petabyte
+          |petabytes = 9 petabytes
+          |EB = 9 EB
+          |K = 1 K
+          |k = 1 k
+          |Ki = 1 Ki
+          |KiB = 1 KiB
+          |m = 1 m
+          |M = 1 M
+          |Mi = 1 Mi
+          |MiB = 1 MiB
+          |g = 1 g
+          |G = 1 G
+          |Gi = 1 Gi
+          |GiB = 1 GiB
+          |}""".stripMargin
+      )
+
+      assert { config != null }
+
+      assert { config.getBytes("a.b") == 9L }
+      assert { config.getBytes("a.B") == 9L }
+      assert { config.getBytes("a.byte") == 1L }
+      assert { config.getBytes("a.bytes") == 9L }
+      assert { config.getBytes("a.kB") == 9000L }
+      assert { config.getBytes("a.kilobyte") == 1000L }
+      assert { config.getBytes("a.kilobytes") == 9000L }
+      assert { config.getBytes("a.MB") == 9000000L }
+      assert { config.getBytes("a.megabyte") == 1000000L }
+      assert { config.getBytes("a.megabytes") == 9000000L }
+      assert { config.getBytes("a.GB") == 9000000000L }
+      assert { config.getBytes("a.gigabyte") == 1000000000L }
+      assert { config.getBytes("a.gigabytes") == 9000000000L }
+      assert { config.getBytes("a.TB") == 9000000000000L }
+      assert { config.getBytes("a.terabyte") == 1000000000000L }
+      assert { config.getBytes("a.terabytes") == 9000000000000L }
+      assert { config.getBytes("a.PB") == 9000000000000000L }
+      assert { config.getBytes("a.petabyte") == 1000000000000000L }
+      assert { config.getBytes("a.petabytes") == 9000000000000000L }
+      assert { config.getBytes("a.k") == 1024L }
+      assert { config.getBytes("a.K") == 1024L }
+      assert { config.getBytes("a.Ki") == 1024L }
+      assert { config.getBytes("a.KiB") == 1024L }
+      assert { config.getBytes("a.m") == 1024L * 1024L }
+      assert { config.getBytes("a.M") == 1024L * 1024L }
+      assert { config.getBytes("a.Mi") == 1024L * 1024L }
+      assert { config.getBytes("a.MiB") == 1024L * 1024L }
+      assert { config.getBytes("a.g") == 1024L * 1024L * 1024L }
+      assert { config.getBytes("a.G") == 1024L * 1024L * 1024L }
+      assert { config.getBytes("a.Gi") == 1024L * 1024L * 1024L }
+      assert { config.getBytes("a.GiB") == 1024L * 1024L * 1024L }
+
+    }
+
+    'parseBooleans - {
+      val config = ConfigFactory.parseString(
+        """ a {
+          |x1 = true
+          |x2 = on
+          |x3 = yes
+          |x4 = false
+          |x5 = off
+          |x6 = no
+          |}""".stripMargin
+      )
+
+      assert { config != null }
+
+      assert { config.getBoolean("a.x1") == true }
+      assert { config.getBoolean("a.x2") == true }
+      assert { config.getBoolean("a.x3") == true }
+      assert { config.getBoolean("a.x4") == false }
+      assert { config.getBoolean("a.x5") == false }
+      assert { config.getBoolean("a.x6") == false }
+    }
+
+    'parseAkkaConfiguration - {
+      val config = AkkaConfig.config
+
+      assert { config != null }
+
+      config.getConfig("akka").entrySet()
+
+      ()
+    }
+
+    'reloadConfigWithFallback - {
+      val config1 = ConfigFactory.parseString("""{ "a" : [] }""")
+      val config2 = ConfigFactory.parseString("""{ "b" : [] }""")
+
+      assert { config1 != null && config2 != null }
+
+      val config = config1.withFallback(config2).withFallback(config1)
+
+      assert { config.hasPath("a") == true }
+      assert { config.hasPath("b") == true }
+
+    }
+
+    'dottedConfigKey - {
+      val configAkka =
+        ConfigFactory.parseString("akka.actor.messages = on")
+
+      assert { configAkka.hasPath("akka.actor.messages") == true }
+    }
+
+    'dottedConfigKeyWithFallback - {
+      val configAkka =
+        ConfigFactory.parseString("akka.actor.debug.event-stream = on").withFallback(
+          ConfigFactory.parseString("""
+            akka.actor.debug.event-stream = off
+            akka.actor.messages = on
+                                    """))
+
+      assert { configAkka.getBoolean("akka.actor.messages") == true }
+    }
+
+    'loadDefaultConfig - {
+      val config = ConfigFactory.load()
+
+      assert { config != null }
+
+      assert { config.getString("loaded") == "DONE" }
+    }
+
+    'unwrappedToStringInMap - {
+      val config = ConfigFactory.parseString(""" a="b" """)
+      val map = configToMap(config)
+      assert { "b" == map("a") }
+    }
+
+    'unwrappedNumber - {
+      val map = ConfigFactory.parseString(""" a=2 """).root.unwrapped
+      assert { 2 == map.get("a") }
+    }
+
+    'unwrappedDuration - {
+      val map = ConfigFactory.parseString(""" a=2ns """).root.unwrapped
+      assert { "2ns" == map.get("a") } // Duration is not automatically unwrapped.
+    }
+
+    'unwrappedBoolean - {
+      val map = ConfigFactory.parseString(""" a=true """).root.unwrapped
+      assert { true == map.get("a") }
+    }
+
+    'reparseKey - {
+      val key = "foo.bar.baz"
+      val value = shocon.Config.StringLiteral("quux")
+
+      val reparsed = shocon.Config.Object.reparseKey(key, value)
+      val expected = shocon.Config.Object(
+        Map(
+          "foo" -> shocon.Config.Object(Map("bar" -> shocon.Config.Object(
+            Map("baz" -> shocon.Config.StringLiteral("quux")))))))
+
+      assert { expected == reparsed }
+    }
+
+    'mergeConfigValues - {
+      val key1 = "foo.bar.baz"
+      val value1 = shocon.Config.StringLiteral("quux")
+      val key2 = "foo.bar.bazz"
+      val value2 = shocon.Config.StringLiteral("quuxxx")
+
+      val reparsed1 = shocon.Config.Object.reparseKey(key1, value1)
+      val reparsed2 = shocon.Config.Object.reparseKey(key2, value2)
+
+      import shocon.Config.StringLiteral
+      val merged = shocon.Config.Object.mergeConfigs(reparsed1, reparsed2)
+      val expected = shocon.Config.Object(
+        Map(
+          "foo" -> shocon.Config.Object(
+            Map(
+              "bar" -> shocon.Config.Object(Map(
+                "baz" -> StringLiteral("quux"),
+                "bazz" -> StringLiteral("quuxxx")
+              ))))))
+
+      assert { expected == merged }
+
+    }
+
+    'concatValues - {
+      val x = ConfigFactory.parseString(
+        """x="foo"
+          |y=   z "bar" """.stripMargin)
+      assert { "foo" == x.getString("x") }
+      assert { "z bar" == x.getString("y") }
+    }
+
+    'properlyFallback - {
+      val conf1 = ConfigFactory.parseString("""x = "1"""")
+      val conf2 = ConfigFactory.parseString("""x = "2"""")
+
+      val conf = conf1.withFallback(conf2)
+      assert { "1" == conf.getString("x") }
+    }
+
+    'parseComments - {
+      val conf = ConfigFactory.parseString(
+        """
+        // ignored
+        x = "1"
+        # ignored
+        y = "foo"
+        """)
+      assert { "1" == conf.getString("x") }
+      assert { "foo" == conf.getString("y") }
+    }
   }
 
   private final def configToMap(config: Config): Map[String, String] = {
