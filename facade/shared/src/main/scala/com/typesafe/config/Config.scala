@@ -28,7 +28,7 @@ import scala.language.experimental.macros
 
 object ConfigFactory {
   def parseString(s: String): Config = {
-    new Config(shocon.Config(s))
+    new Config(() => shocon.Config(s))
   }
 
   import eu.unicredit.shocon.ConfigLoader
@@ -41,7 +41,7 @@ object ConfigFactory {
 
   def defaultReference(cl: ClassLoader): Config = macro ConfigLoader.loadDefaultImplCL
 
-  def empty() = Config(shocon.Config("{}"))
+  def empty() = Config(() => shocon.Config("{}"))
 
   def parseMap(values: java.util.Map[String, Any]) =
     parseString(values.asScala.map{ case (k, v) => s"$k=$v"}.mkString("\n"))
@@ -49,17 +49,25 @@ object ConfigFactory {
   def load(conf: Config): Config = conf
 }
 
-case class Config(cfg: shocon.Config.Value) { self =>
+case class Config(initial_cfg: () => shocon.Config.Value) { self =>
+  lazy val cfg = {
+    println("parser called ... :-(")
+    initial_cfg()
+  }
   import shocon.ConfigOps
   import shocon.Extractors._
 
-  val fallbackStack: mutable.Queue[shocon.Config.Value] = mutable.Queue(cfg)
+  lazy val fallbackStack: mutable.Queue[shocon.Config.Value] = {
+    println("fallback")
+    mutable.Queue(cfg)
+  }
 
   def this() = {
-    this(shocon.Config("{}"))
+    this(() => shocon.Config("{}"))
   }
 
   def root() = {
+    println("called root")
     new ConfigObject() {
       val inner = self.cfg
       def unwrapped =
@@ -71,7 +79,16 @@ case class Config(cfg: shocon.Config.Value) { self =>
     }
   }
 
-  private var cache = mutable.Map[String, Any]()
+  var initialCache = mutable.Map[String, String]()
+
+  private lazy val cache = initialCache.map{
+    case (k, v) =>
+      println("adding -> " + s"{ $k = $v }")
+      shocon.Config(s"{ $k = $v }") match {
+        case shocon.Config.Object(map) =>
+          k -> map.values.head
+      }
+  }
 
   def entrySet(): ju.Set[ju.Map.Entry[String, ConfigValue]] = root.entrySet()
 
@@ -85,30 +102,40 @@ case class Config(cfg: shocon.Config.Value) { self =>
   }
 
   def getOrReturnNull[T](path: String)(implicit ev: Extractor[T]): T = {
-    lazy val res: T =
-      ev(
-        fallbackStack
-          .find(_.get(path).isDefined)
-          .flatMap(_.get(path)).orNull
-      )
+    lazy val res =
+      fallbackStack
+        .find(_.get(path).isDefined)
+        .flatMap(_.get(path)).orNull
 
-    val fullPath = s"$path${ev.serial}"
-    cache.get(fullPath) match {
-      case Some(elem) =>
-        try { elem.asInstanceOf[T] } catch {
-          case _: Throwable => res
-        }
-      case _ =>
-        cache.update(fullPath, res)
-        res
-    }
+    val fullPath = s"$path"
+    ev(
+      cache.get(fullPath) match {
+        case Some(elem) =>
+          try { elem } catch {
+            case _: Throwable =>
+              println("wrong type for "+path)
+              res
+          }
+        case _ =>
+          println("cache miss for "+path)
+          cache.update(fullPath, res)
+          res
+      }
+    )
   }
 
   def hasPath(path: String): Boolean =
     fallbackStack.exists(_.get(path).isDefined)
 
-  def getConfig(path: String) =
-    Config(getOrReturnNull[shocon.Config.Value](path))
+  def getConfig(path: String) = {
+    val res = Config(() => getOrReturnNull[shocon.Config.Value](path))
+    res.initialCache = initialCache.flatMap{
+      case (k, v) if k.startsWith(path) =>
+        Some(k.replace(s"$path.", "") -> v)
+      case _ => None
+    }
+    res
+  }
 
   def getString(path: String) = getOrReturnNull[String](path)
 

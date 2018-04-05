@@ -67,10 +67,35 @@ object ConfigLoader {
           }
         }
 
+    val config =
+     eu.unicredit.shocon.Config(configStr)
+
+    import eu.unicredit.shocon.Config
+    def flatten(key: Seq[String], cfg: Config.Value): Map[String, String] = {
+      cfg match {
+        case v: Config.SimpleValue =>
+          Map((key).mkString(".") -> v.unwrapped.toString)
+        case Config.Array(arr) =>
+          Map((key).mkString(".") -> arr.map(_.unwrapped).mkString("[", ", ", "]"))
+        case Config.Object(map) =>
+          map.flatMap{
+            case (k, v) =>
+              flatten((key :+ k), v)
+          }
+      }
+    }
+    println("DEBUG!")
+    println(flatten(Seq(), config))
+
+    val cache = flatten(Seq(), config)
+
     c.Expr[com.typesafe.config.Config](q"""{
+        val res =
         com.typesafe.config.Config(
-          eu.unicredit.shocon.Config($configStr)
+          () => eu.unicredit.shocon.Config($configStr)
         )
+        res.initialCache = scala.collection.mutable.Map(..$cache)
+        res
       }""")
   }
 
