@@ -51,8 +51,10 @@ object ConfigFactory {
 
 case class Config(initial_cfg: () => shocon.Config.Value) { self =>
   lazy val cfg = {
-    println("parser called ... :-(")
-    initial_cfg()
+    // println("parser called ... :-(")
+    // need to put this in place back...
+    // initial_cfg()
+    shocon.Config("{}")
   }
   import shocon.ConfigOps
   import shocon.Extractors._
@@ -69,26 +71,24 @@ case class Config(initial_cfg: () => shocon.Config.Value) { self =>
   def root() = {
     println("called root")
     new ConfigObject() {
-      val inner = self.cfg
-      def unwrapped =
-        cfg.as[shocon.Config.Object].get.unwrapped.asJava
-      def entrySet(): ju.Set[ju.Map.Entry[String, ConfigValue]] =
-        cfg.as[shocon.Config.Object].get.fields.mapValues(v => new ConfigValue() {
-          override val inner: Value = v
-        }).asJava.entrySet()
+      val inner = null
+      def unwrapped = cache.map{
+        case (k,v) => (k -> v.unwrapped)
+      }.asJava
+      def entrySet = null
+      // lazy val inner = self.cfg
+      // def unwrapped =
+      //   cfg.as[shocon.Config.Object].get.unwrapped.asJava
+      // def entrySet(): ju.Set[ju.Map.Entry[String, ConfigValue]] =
+      //   cfg.as[shocon.Config.Object].get.fields.mapValues(v => new ConfigValue() {
+      //     override val inner: Value = v
+      //   }).asJava.entrySet()
     }
   }
 
-  var initialCache = mutable.Map[String, String]()
+  var initialCache = mutable.Map[String, Value]()
 
-  private lazy val cache = initialCache.map{
-    case (k, v) =>
-      println("adding -> " + s"{ $k = $v }")
-      shocon.Config(s"{ $k = $v }") match {
-        case shocon.Config.Object(map) =>
-          k -> map.values.head
-      }
-  }
+  lazy val cache = initialCache
 
   def entrySet(): ju.Set[ju.Map.Entry[String, ConfigValue]] = root.entrySet()
 
@@ -97,40 +97,60 @@ case class Config(initial_cfg: () => shocon.Config.Value) { self =>
   def resolve(): Config = this
 
   def withFallback(c: Config) = {
-    fallbackStack.enqueue(c.cfg)
+    println("adding fallback?????")
+
+    println(s"1-> cache is $cache")
+    println(s"2-> cache is ${c.cache}")
+    cache ++= c.cache
+    // fallbackStack.enqueue(c.cfg)
     this
   }
 
   def getOrReturnNull[T](path: String)(implicit ev: Extractor[T]): T = {
-    lazy val res =
-      fallbackStack
-        .find(_.get(path).isDefined)
-        .flatMap(_.get(path)).orNull
+    // lazy val res =
+    //   fallbackStack
+    //     .find(_.get(path).isDefined)
+    //     .flatMap(_.get(path)).orNull
 
-    val fullPath = s"$path"
-    ev(
-      cache.get(fullPath) match {
-        case Some(elem) =>
-          try { elem } catch {
-            case _: Throwable =>
-              println("wrong type for "+path)
-              res
-          }
-        case _ =>
-          println("cache miss for "+path)
-          cache.update(fullPath, res)
-          res
+    // val fullPath = s"$path"
+    try {
+      ev(
+        cache.get(path) match {
+          case Some(elem) =>
+            println("elem is "+elem)
+            try { elem } catch {
+              case _: Throwable =>
+                println("wrong type for "+path)
+                // res
+                eu.unicredit.shocon.Config.NullLiteral
+                //null.asInstanceOf[T]
+            }
+          case _ =>
+            println("cache miss for "+path)
+            // cache.update(fullPath, res)
+            // res
+            eu.unicredit.shocon.Config.NullLiteral
+            //null.asInstanceOf[T]
+        })
+      } catch {
+        case err: Throwable =>
+          println(s"cache is $cache")
+          throw err
       }
-    )
   }
 
   def hasPath(path: String): Boolean =
     fallbackStack.exists(_.get(path).isDefined)
 
   def getConfig(path: String) = {
-    val res = Config(() => getOrReturnNull[shocon.Config.Value](path))
+    val res = new Config(() => shocon.Config("{}")) {
+      override def root() = self.root()
+    }
+    // getOrReturnNull[shocon.Config.Value](path))
+    println(s"adding config: $path")
     res.initialCache = initialCache.flatMap{
       case (k, v) if k.startsWith(path) =>
+        println(s"adding config: $k as "+ k.replace(s"$path.", ""))
         Some(k.replace(s"$path.", "") -> v)
       case _ => None
     }

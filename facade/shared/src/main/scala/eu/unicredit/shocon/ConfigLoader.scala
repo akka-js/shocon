@@ -70,13 +70,43 @@ object ConfigLoader {
     val config =
      eu.unicredit.shocon.Config(configStr)
 
+    implicit val SimpleValue = Liftable[eu.unicredit.shocon.Config.SimpleValue] { sv =>
+      sv match {
+        case nl: eu.unicredit.shocon.Config.NumberLiteral =>
+          q"_root_.eu.unicredit.shocon.Config.NumberLiteral(${nl.value})"
+        case sl: eu.unicredit.shocon.Config.StringLiteral =>
+          q"_root_.eu.unicredit.shocon.Config.StringLiteral(${sl.value})"
+        case bl: eu.unicredit.shocon.Config.BooleanLiteral =>
+          q"_root_.eu.unicredit.shocon.Config.BooleanLiteral(${bl.value})"
+        case _ =>
+          q"""_root_.eu.unicredit.shocon.Config.NullLiteral"""
+      }
+    }
+
+    implicit val ArrayValue = Liftable[eu.unicredit.shocon.Config.Array] { arr =>
+      q"""eu.unicredit.shocon.Config.Array(Seq(${arr.elements.mkString(",")}))"""
+    }
+
+    // implicit val NumberLiteral = Liftable[eu.unicredit.shocon.Config.NumberLiteral] { l =>
+    //   q"_root_.eu.unicredit.shocon.Config.NumberLiteral(${l.value})"
+    // }
+    // implicit val StringLiteral = Liftable[eu.unicredit.shocon.Config.StringLiteral] { l =>
+    //   q"_root_.eu.unicredit.shocon.Config.StringLiteral(${l.value.toString})"
+    // }
+    // implicit val BooleanLiteral = Liftable[eu.unicredit.shocon.Config.BooleanLiteral] { l =>
+    //   q"_root_.eu.unicredit.shocon.Config.BooleanLiteral(${l.value})"
+    // }
+    // implicit val NullLiteral = Liftable[eu.unicredit.shocon.Config.NullLiteral] { l =>
+    //   q"_root_.eu.unicredit.shocon.Config.NullLiteral"
+    // }
+
     import eu.unicredit.shocon.Config
-    def flatten(key: Seq[String], cfg: Config.Value): Map[String, String] = {
+    def flatten(key: Seq[String], cfg: Config.Value): Map[String, Tree] = {
       cfg match {
         case v: Config.SimpleValue =>
-          Map((key).mkString(".") -> v.unwrapped.toString)
-        case Config.Array(arr) =>
-          Map((key).mkString(".") -> arr.map(_.unwrapped).mkString("[", ", ", "]"))
+          Map((key).mkString(".") -> q"$v")
+        case arr: Config.Array =>
+          Map((key).mkString(".") -> q"$arr")
         case Config.Object(map) =>
           map.flatMap{
             case (k, v) =>
@@ -92,7 +122,7 @@ object ConfigLoader {
     c.Expr[com.typesafe.config.Config](q"""{
         val res =
         com.typesafe.config.Config(
-          () => eu.unicredit.shocon.Config($configStr)
+          () => eu.unicredit.shocon.Config("{}")//configStr)
         )
         res.initialCache = scala.collection.mutable.Map(..$cache)
         res

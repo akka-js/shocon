@@ -27,6 +27,8 @@ package object shocon extends Extractors {
 
     case class Array(elements: Seq[Value]) extends Value {
       lazy val unwrapped = elements.map(_.unwrapped)
+      override def toString() =
+        s"""eu.unicredit.shocon.Config.Array(Seq(${elements.mkString(",")}))"""
     }
     case class Object(fields: Map[Key, Value]) extends Value {
       lazy val unwrapped = fields.mapValues(_.unwrapped)
@@ -45,18 +47,26 @@ package object shocon extends Extractors {
 
     case class NumberLiteral(value: String) extends SimpleValue {
       lazy val unwrapped = unwrapStringAsNumber(value).get
+      override def toString() =
+        s"""eu.unicredit.shocon.Config.NumberLiteral($value)"""
     }
     case class StringLiteral(value: String) extends SimpleValue {
       lazy val unwrapped =
         Try(this.as[Boolean].get)
           .orElse(unwrapStringAsNumber(value))
           .getOrElse(value)
+      override def toString() =
+        s"""eu.unicredit.shocon.Config.StringLiteral("$value")"""
     }
     case class BooleanLiteral(value: Boolean) extends SimpleValue {
       lazy val unwrapped = value
+      override def toString() =
+        s"""eu.unicredit.shocon.Config.BooleanLiteral($value)"""
     }
     case object NullLiteral extends SimpleValue {
       def unwrapped = null
+      override def toString() =
+        s"""eu.unicredit.shocon.Config.NullLiteral"""
     }
 
     import fastparse.core.Parsed
