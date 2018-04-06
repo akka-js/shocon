@@ -28,7 +28,8 @@ import scala.language.experimental.macros
 
 object ConfigFactory {
   def parseString(s: String): Config = {
-    new Config(() => shocon.Config(s))
+    println("have to parse dynamically string")
+    new Config(() => shocon.Config("{}"))
   }
 
   import eu.unicredit.shocon.ConfigLoader
@@ -71,11 +72,28 @@ case class Config(initial_cfg: () => shocon.Config.Value) { self =>
   def root() = {
     println("called root")
     new ConfigObject() {
-      val inner = null
-      def unwrapped = cache.map{
-        case (k,v) => (k -> v.unwrapped)
-      }.asJava
-      def entrySet = null
+      override val inner = null
+
+      override def toConfig = {
+        val res = Config(() => shocon.Config("{}"))
+        res.initialCache = cache
+        res
+      }
+      def unwrapped =  ???
+        //cache.asInstanceOf[Map[String,Any]].asJava
+        // cache.map{
+        //   case (k,v) =>
+        //     //(k -> v.unwrapped)
+        //     (k -> v)
+        // }.asJava
+      def entrySet() = ???
+    }
+    // new ConfigObject() {
+    //   val inner = null
+    //   def unwrapped = cache.map{
+    //     case (k,v) => (k -> v.unwrapped)
+    //   }.asJava
+    //   def entrySet = null
       // lazy val inner = self.cfg
       // def unwrapped =
       //   cfg.as[shocon.Config.Object].get.unwrapped.asJava
@@ -83,12 +101,12 @@ case class Config(initial_cfg: () => shocon.Config.Value) { self =>
       //   cfg.as[shocon.Config.Object].get.fields.mapValues(v => new ConfigValue() {
       //     override val inner: Value = v
       //   }).asJava.entrySet()
-    }
+    // }
   }
 
   var initialCache = mutable.Map[String, Value]()
 
-  lazy val cache = initialCache
+  lazy val cache: mutable.Map[String, Value] = initialCache
 
   def entrySet(): ju.Set[ju.Map.Entry[String, ConfigValue]] = root.entrySet()
 
@@ -100,11 +118,13 @@ case class Config(initial_cfg: () => shocon.Config.Value) { self =>
     println("adding fallback?????")
 
     println(s"1-> cache is $cache")
-    println(s"2-> cache is ${c.cache}")
-    cache ++= c.cache
+    println(s"2-> cache is ${c.initialCache}")
+    // cache ++= c.cache
     // fallbackStack.enqueue(c.cfg)
     this
   }
+
+  val prePath = ""
 
   def getOrReturnNull[T](path: String)(implicit ev: Extractor[T]): T = {
     // lazy val res =
@@ -115,7 +135,7 @@ case class Config(initial_cfg: () => shocon.Config.Value) { self =>
     // val fullPath = s"$path"
     try {
       ev(
-        cache.get(path) match {
+        cache.get(prePath + path) match {
           case Some(elem) =>
             println("elem is "+elem)
             try { elem } catch {
@@ -134,8 +154,9 @@ case class Config(initial_cfg: () => shocon.Config.Value) { self =>
         })
       } catch {
         case err: Throwable =>
-          println(s"cache is $cache")
-          throw err
+          // println(s"cache is $cache")
+          null.asInstanceOf[T]
+          // throw err
       }
   }
 
@@ -145,15 +166,17 @@ case class Config(initial_cfg: () => shocon.Config.Value) { self =>
   def getConfig(path: String) = {
     val res = new Config(() => shocon.Config("{}")) {
       override def root() = self.root()
+      override val prePath = path + "."
     }
+    res.initialCache = initialCache
     // getOrReturnNull[shocon.Config.Value](path))
-    println(s"adding config: $path")
-    res.initialCache = initialCache.flatMap{
-      case (k, v) if k.startsWith(path) =>
-        println(s"adding config: $k as "+ k.replace(s"$path.", ""))
-        Some(k.replace(s"$path.", "") -> v)
-      case _ => None
-    }
+    // println(s"adding config: $path")
+    // res.initialCache = initialCache.flatMap{
+    //   case (k, v) if k.startsWith(path) =>
+    //     println(s"adding config: $k as "+ k.replace(s"$path.", ""))
+    //     Some(k.replace(s"$path.", "") -> v)
+    //   case _ => None
+    // }
     res
   }
 
