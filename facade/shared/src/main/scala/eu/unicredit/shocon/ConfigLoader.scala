@@ -14,9 +14,22 @@
  */
 package eu.unicredit.shocon
 
+import scala.language.experimental.macros
 import scala.reflect.macros.blackbox.Context
 
 object ConfigLoader {
+
+  var verboseLog = false
+
+  def setVerboseLogImpl(c: Context)(): c.Expr[Unit] = {
+    import c.universe._
+
+    verboseLog = true
+
+    c.Expr[Unit](q"{}")
+  }
+
+  def setVerboseLog(): Unit = macro setVerboseLogImpl
 
   /// Loads the content of all config files passed with -Xmacro-settings:
   private def loadExplicitConfigFiles(c: Context): Option[String] =
@@ -69,7 +82,7 @@ object ConfigLoader {
 
     c.Expr[com.typesafe.config.Config](q"""{
         com.typesafe.config.Config(
-          eu.unicredit.shocon.Config($configStr)
+          eu.unicredit.shocon.Config.gen($configStr)
         )
       }""")
   }
@@ -77,4 +90,41 @@ object ConfigLoader {
 
   def loadDefaultImpl(c: Context)() = loadDefault(c)
   def loadDefaultImplCL(c: Context)(cl: c.Expr[ClassLoader]) = loadDefault(c)
+
+  def loadFromString(c: Context)(s: c.Expr[String]) = {
+    import c.universe._
+
+    s.tree match {
+      case q"""$strLit""" =>
+        strLit match {
+          case Literal(Constant(str)) =>
+            if (verboseLog)
+              c.info(c.enclosingPosition, "[shocon-facade] optimized at compile time", false)
+            
+            c.Expr[com.typesafe.config.Config](q"""{
+              com.typesafe.config.Config(
+                eu.unicredit.shocon.Config.gen(${str.toString})
+              )
+            }""")
+          case _ =>
+            if (verboseLog)
+              c.warning(c.enclosingPosition, "[shocon-facade] fallback to runtime parser")
+
+            c.Expr[com.typesafe.config.Config](q"""{
+              com.typesafe.config.Config(
+                eu.unicredit.shocon.Config($strLit)
+              )
+            }""")
+        }
+      // case _ =>
+      //   if (verboseLog)
+      //     c.warning(c.enclosingPosition, "[shocon-facade] fallback to runtime parser ...")
+
+      //   c.Expr[com.typesafe.config.Config](q"""{
+      //     com.typesafe.config.Config(
+      //       eu.unicredit.shocon.Config($s)
+      //     )
+      //   }""")
+    }
+  }
 }

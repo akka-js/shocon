@@ -16,7 +16,11 @@ package eu.unicredit
 
 import scala.util.Try
 
+import scala.language.experimental.macros
+import fastparse.core.Parsed
+
 package object shocon extends Extractors {
+
 
   object Config {
     type Key = String
@@ -59,7 +63,9 @@ package object shocon extends Extractors {
       def unwrapped = null
     }
 
-    import fastparse.core.Parsed
+    def gen(input: String): Config.Value = macro eu.unicredit.ConfigMacroLoader.parse
+
+    /* these methods are here only for retro-compatibility and fallbacks */
     def parse(input: String) = ConfigParser.root.parse(input)
     def apply(input: String): Config.Value = parse(input) match{
       case Parsed.Success(v,_) => v
