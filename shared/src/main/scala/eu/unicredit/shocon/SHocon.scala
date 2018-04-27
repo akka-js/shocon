@@ -128,7 +128,9 @@ package object shocon extends Extractors {
         case o@Config.Object(fields) =>
             if (fields.contains(keys.head))
               visit(fields(keys.head), keys.tail)
-            else None
+            else {
+              None
+            }
       }
       visit(tree, keys)
     }

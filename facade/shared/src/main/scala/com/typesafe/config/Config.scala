@@ -46,9 +46,9 @@ object ConfigFactory {
   def empty() = Config(shocon.Config.gen("{}"))
 
   def parseMap(values: java.util.Map[String, Any]) =
-    shocon.Config.Object(values.asScala.map{
+    Config(shocon.Config.Object.fromPairs(values.asScala.map{
       case (k, v) => k -> shocon.Config.StringLiteral(v.toString)
-    }.toMap)
+    }.toSeq))
     // to be verified ...
     // parseString(values.asScala.map{ case (k, v) => s"$k=$v"}.mkString("\n"))
 
