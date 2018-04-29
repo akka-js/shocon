@@ -85,9 +85,12 @@ package object shocon extends Extractors {
         val pos = key.indexOf('.')
         if (pos < 0) shocon.Config.Object(Map(key -> value))
         else {
-          val k = key.substring(0, pos)
-          val rest = key.substring(pos + 1)
-          shocon.Config.Object(Map(k -> reparseKey(rest, value)))
+          val splitted = key.split('.').reverse
+
+          splitted.tail.foldLeft(shocon.Config.Object(Map(splitted.head -> value))){
+            case (acc, elem) =>
+              shocon.Config.Object(Map(elem -> acc))
+          }
         }
       }
 
@@ -111,9 +114,17 @@ package object shocon extends Extractors {
           val diff = mergeable.fields.keys.filterNot(m1k.contains).toSet
           // m is the map that contains both keys from m2 and m1
           // where if a key is in both, their value is merged
+
           val m = base.fields.map {
-            case (k, v) => k -> mergeValues(v, mergeable.fields.getOrElse(k, v))
+            case (k, v) =>
+              mergeable.fields.get(k) match {
+                case Some(v2) =>
+                  k -> mergeValues(v, v2)
+                case _ =>
+                  k -> v
+              }
           } ++ mergeable.fields.filterKeys(diff.contains)
+
           Object(m)
         }
       }

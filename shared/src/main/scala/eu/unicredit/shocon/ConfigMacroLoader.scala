@@ -79,7 +79,7 @@ object ConfigMacroLoader {
 
             val config =
               eu.unicredit.shocon.Config(str.toString)
-            
+
             val flattened = flatten(Seq(), config).toSeq
 
             val ast =

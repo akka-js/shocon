@@ -6,7 +6,7 @@ object Common extends AutoPlugin {
   override lazy val buildSettings = Seq(
     name := "shocon",
     organization := "org.akka-js",
-    version := "0.3.0-SNAPSHOT",
+    version := "0.3.0-PERF",
     scalaVersion := "2.11.11",
     crossScalaVersions :=
       Vector("2.11.11", "2.12.4"),
