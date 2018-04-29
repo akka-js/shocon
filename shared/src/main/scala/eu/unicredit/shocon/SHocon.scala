@@ -21,6 +21,9 @@ import fastparse.core.Parsed
 
 package object shocon extends Extractors {
 
+  var verboseLog = false
+
+  def setVerboseLog(): Unit = macro ConfigMacroLoader.setVerboseLogImpl
 
   object Config {
     type Key = String
@@ -63,7 +66,7 @@ package object shocon extends Extractors {
       def unwrapped = null
     }
 
-    def gen(input: String): Config.Value = macro eu.unicredit.ConfigMacroLoader.parse
+    def gen(input: String): Config.Value = macro ConfigMacroLoader.parse
 
     /* these methods are here only for retro-compatibility and fallbacks */
     def parse(input: String) = ConfigParser.root.parse(input)

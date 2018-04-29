@@ -31,9 +31,6 @@ object ConfigFactory {
   import eu.unicredit.shocon.ConfigLoader
 
   def parseString(s: String): Config = macro ConfigLoader.loadFromString
-  // def parseString(s: String): Config = {
-  //   new Config(shocon.Config.gen(s))
-  // }
 
   def load(): Config = macro ConfigLoader.loadDefaultImpl
 
@@ -49,8 +46,6 @@ object ConfigFactory {
     Config(shocon.Config.Object.fromPairs(values.asScala.map{
       case (k, v) => k -> shocon.Config.StringLiteral(v.toString)
     }.toSeq))
-    // to be verified ...
-    // parseString(values.asScala.map{ case (k, v) => s"$k=$v"}.mkString("\n"))
 
   def load(conf: Config): Config = conf
 }
@@ -77,6 +72,8 @@ case class Config(cfg: shocon.Config.Value) { self =>
     }
   }
 
+  private var cache = mutable.Map[String, Any]()
+
   def entrySet(): ju.Set[ju.Map.Entry[String, ConfigValue]] = root.entrySet()
 
   def checkValid(c: Config, paths: String*): Unit = {}
@@ -89,11 +86,25 @@ case class Config(cfg: shocon.Config.Value) { self =>
   }
 
   def getOrReturnNull[T](path: String)(implicit ev: Extractor[T]): T = {
-    ev(
-      fallbackStack
-        .find(_.get(path).isDefined)
-        .flatMap(_.get(path)).orNull
-    )
+    lazy val res: T =
+      scala.util.Try {
+        ev(
+          fallbackStack
+            .find(_.get(path).isDefined)
+            .flatMap(_.get(path)).get
+        )
+      }.toOption.getOrElse(null.asInstanceOf[T])
+
+    val fullPath = s"$path${ev.serial}"
+    cache.get(fullPath) match {
+      case Some(elem) =>
+        try { elem.asInstanceOf[T] } catch {
+          case _: Throwable => res
+        }
+      case _ =>
+        cache.update(fullPath, res)
+        res
+    }
   }
 
   def hasPath(path: String): Boolean =

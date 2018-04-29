@@ -19,17 +19,7 @@ import scala.reflect.macros.blackbox.Context
 
 object ConfigLoader {
 
-  var verboseLog = false
-
-  def setVerboseLogImpl(c: Context)(): c.Expr[Unit] = {
-    import c.universe._
-
-    verboseLog = true
-
-    c.Expr[Unit](q"{}")
-  }
-
-  def setVerboseLog(): Unit = macro setVerboseLogImpl
+  import eu.unicredit.shocon.verboseLog
 
   /// Loads the content of all config files passed with -Xmacro-settings:
   private def loadExplicitConfigFiles(c: Context): Option[String] =
@@ -116,15 +106,6 @@ object ConfigLoader {
               )
             }""")
         }
-      // case _ =>
-      //   if (verboseLog)
-      //     c.warning(c.enclosingPosition, "[shocon-facade] fallback to runtime parser ...")
-
-      //   c.Expr[com.typesafe.config.Config](q"""{
-      //     com.typesafe.config.Config(
-      //       eu.unicredit.shocon.Config($s)
-      //     )
-      //   }""")
     }
   }
 }
