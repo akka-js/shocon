@@ -19,8 +19,8 @@ object ConfigMacroLoader {
 
   def parse(c: Context)(input: c.Expr[String]): c.Expr[shocon.Config.Value] = {
     import c.universe._
-    import c.universe.internal.reificationSupport.SyntacticTuple
 
+    // inspiration from: https://github.com/scala/scala/blob/v2.12.6/src/reflect/scala/reflect/api/StandardLiftables.scala
     def lift[T: Liftable](value: T): Tree = implicitly[Liftable[T]].apply(value)
 
     def selectShocon(names: Name*) = names.foldLeft(q"_root_.eu.unicredit.shocon": Tree) { Select(_, _) }
