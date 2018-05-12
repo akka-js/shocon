@@ -22,7 +22,7 @@ import com.typesafe.config.{Config, ConfigFactory, ConfigValue}
 import scala.collection.JavaConverters._
 import java.util.concurrent.TimeUnit
 
-import eu.unicredit.shocon
+import org.akkajs.shocon
 
 object SHoconGenericSpec extends TestSuite {
 

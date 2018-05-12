@@ -1,22 +1,15 @@
-/* Copyright 2016 UniCredit S.p.A.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-* http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-package eu.unicredit
+package org.akkajs
 
 import scala.util.Try
 
+import scala.language.experimental.macros
+import fastparse.core.Parsed
+
 package object shocon extends Extractors {
+
+  var verboseLog = false
+
+  def setVerboseLog(): Unit = macro ConfigMacroLoader.setVerboseLogImpl
 
   object Config {
     type Key = String
@@ -59,7 +52,9 @@ package object shocon extends Extractors {
       def unwrapped = null
     }
 
-    import fastparse.core.Parsed
+    def gen(input: String): Config.Value = macro ConfigMacroLoader.parse
+
+    /* these methods are here only for retro-compatibility and fallbacks */
     def parse(input: String) = ConfigParser.root.parse(input)
     def apply(input: String): Config.Value = parse(input) match{
       case Parsed.Success(v,_) => v
@@ -76,9 +71,12 @@ package object shocon extends Extractors {
         val pos = key.indexOf('.')
         if (pos < 0) shocon.Config.Object(Map(key -> value))
         else {
-          val k = key.substring(0, pos)
-          val rest = key.substring(pos + 1)
-          shocon.Config.Object(Map(k -> reparseKey(rest, value)))
+          val splitted = key.split('.').reverse
+
+          splitted.tail.foldLeft(shocon.Config.Object(Map(splitted.head -> value))){
+            case (acc, elem) =>
+              shocon.Config.Object(Map(elem -> acc))
+          }
         }
       }
 
@@ -102,9 +100,17 @@ package object shocon extends Extractors {
           val diff = mergeable.fields.keys.filterNot(m1k.contains).toSet
           // m is the map that contains both keys from m2 and m1
           // where if a key is in both, their value is merged
+
           val m = base.fields.map {
-            case (k, v) => k -> mergeValues(v, mergeable.fields.getOrElse(k, v))
+            case (k, v) =>
+              mergeable.fields.get(k) match {
+                case Some(v2) =>
+                  k -> mergeValues(v, v2)
+                case _ =>
+                  k -> v
+              }
           } ++ mergeable.fields.filterKeys(diff.contains)
+
           Object(m)
         }
       }
@@ -122,7 +128,9 @@ package object shocon extends Extractors {
         case o@Config.Object(fields) =>
             if (fields.contains(keys.head))
               visit(fields(keys.head), keys.tail)
-            else None
+            else {
+              None
+            }
       }
       visit(tree, keys)
     }

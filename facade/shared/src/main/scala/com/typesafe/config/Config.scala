@@ -1,25 +1,11 @@
-/* Copyright 2016 UniCredit S.p.A.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
 package com.typesafe.config
 
 import java.util.{concurrent => juc}
 import java.{time => jt, util => ju}
 
-import eu.unicredit.shocon
-import eu.unicredit.shocon.Config.Value
-import eu.unicredit.shocon.Extractor
+import org.akkajs.shocon
+import org.akkajs.shocon.Config.Value
+import org.akkajs.shocon.Extractor
 
 import scala.collection.JavaConverters._
 import scala.collection.mutable
@@ -27,11 +13,10 @@ import scala.concurrent.duration._
 import scala.language.experimental.macros
 
 object ConfigFactory {
-  def parseString(s: String): Config = {
-    new Config(shocon.Config(s))
-  }
 
-  import eu.unicredit.shocon.ConfigLoader
+  import org.akkajs.shocon.ConfigLoader
+
+  def parseString(s: String): Config = macro ConfigLoader.loadFromString
 
   def load(): Config = macro ConfigLoader.loadDefaultImpl
 
@@ -41,10 +26,12 @@ object ConfigFactory {
 
   def defaultReference(cl: ClassLoader): Config = macro ConfigLoader.loadDefaultImplCL
 
-  def empty() = Config(shocon.Config("{}"))
+  def empty() = Config(shocon.Config.gen("{}"))
 
   def parseMap(values: java.util.Map[String, Any]) =
-    parseString(values.asScala.map{ case (k, v) => s"$k=$v"}.mkString("\n"))
+    Config(shocon.Config.Object.fromPairs(values.asScala.map{
+      case (k, v) => k -> shocon.Config.StringLiteral(v.toString)
+    }.toSeq))
 
   def load(conf: Config): Config = conf
 }
@@ -56,7 +43,7 @@ case class Config(cfg: shocon.Config.Value) { self =>
   val fallbackStack: mutable.Queue[shocon.Config.Value] = mutable.Queue(cfg)
 
   def this() = {
-    this(shocon.Config("{}"))
+    this(shocon.Config.gen("{}"))
   }
 
   def root() = {
@@ -86,11 +73,13 @@ case class Config(cfg: shocon.Config.Value) { self =>
 
   def getOrReturnNull[T](path: String)(implicit ev: Extractor[T]): T = {
     lazy val res: T =
-      ev(
-        fallbackStack
-          .find(_.get(path).isDefined)
-          .flatMap(_.get(path)).orNull
-      )
+      scala.util.Try {
+        ev(
+          fallbackStack
+            .find(_.get(path).isDefined)
+            .flatMap(_.get(path)).get
+        )
+      }.toOption.getOrElse(null.asInstanceOf[T])
 
     val fullPath = s"$path${ev.serial}"
     cache.get(fullPath) match {
