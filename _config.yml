@@ -2,7 +2,7 @@ title: Shocon
 description: Simple pure-scala Typesafe HOCON implementation using FastParse
 google_analytics: 
 show_downloads: true
-theme: jekyll-theme-minimal
+theme: jekyll-theme-merlot
 
 gems:
   - jekyll-mentions
