@@ -1,25 +1,11 @@
-/* Copyright 2016 UniCredit S.p.A.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-package eu.unicredit.shocon
+package org.akkajs.shocon
 
 import scala.language.experimental.macros
 import scala.reflect.macros.blackbox.Context
 
 object ConfigLoader {
 
-  import eu.unicredit.shocon.verboseLog
+  import org.akkajs.shocon.verboseLog
 
   /// Loads the content of all config files passed with -Xmacro-settings:
   private def loadExplicitConfigFiles(c: Context): Option[String] =
@@ -72,7 +58,7 @@ object ConfigLoader {
 
     c.Expr[com.typesafe.config.Config](q"""{
         com.typesafe.config.Config(
-          eu.unicredit.shocon.Config.gen($configStr)
+          org.akkajs.shocon.Config.gen($configStr)
         )
       }""")
   }
@@ -93,7 +79,7 @@ object ConfigLoader {
             
             c.Expr[com.typesafe.config.Config](q"""{
               com.typesafe.config.Config(
-                eu.unicredit.shocon.Config.gen(${str.toString})
+                org.akkajs.shocon.Config.gen(${str.toString})
               )
             }""")
           case _ =>
@@ -102,7 +88,7 @@ object ConfigLoader {
 
             c.Expr[com.typesafe.config.Config](q"""{
               com.typesafe.config.Config(
-                eu.unicredit.shocon.Config($strLit)
+                org.akkajs.shocon.Config($strLit)
               )
             }""")
         }

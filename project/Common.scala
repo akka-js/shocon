@@ -11,7 +11,7 @@ object Common extends AutoPlugin {
     crossScalaVersions :=
       Vector("2.11.11", "2.12.4"),
     pomExtra := {
-      <url>https://github.com/unicredit/shocon</url>
+      <url>https://github.com/akka-js/shocon</url>
       <licenses>
         <license>
           <name>Apache 2</name>
@@ -19,9 +19,9 @@ object Common extends AutoPlugin {
         </license>
       </licenses>
       <scm>
-        <connection>scm:git:github.com/unicredit/shocon</connection>
-        <developerConnection>scm:git:git@github.com:unicredit/shocon</developerConnection>
-        <url>github.com/unicredit/shocon</url>
+        <connection>scm:git:github.com/akka-js/shocon</connection>
+        <developerConnection>scm:git:git@github.com:akka-js/shocon</developerConnection>
+        <url>github.com/akka-js/shocon</url>
       </scm>
       <developers>
         <developer>
