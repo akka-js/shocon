@@ -3,6 +3,7 @@ import xerial.sbt.Sonatype._
 lazy val root = project
   .in(file("."))
   .aggregate(parserJS, parserJVM, facadeJS, facadeJVM)
+  .settings(sonatypeSettings)
 
 lazy val fixResources =
   taskKey[Unit]("Fix application.conf presence on first clean build.")
@@ -16,7 +17,8 @@ lazy val parser = crossProject
         "-feature",
         "-unchecked",
         "-language:implicitConversions"
-      )
+      ),
+    publishTo := sonatypePublishTo.value
   )
   .settings(sonatypeSettings)
   .settings(
@@ -59,7 +61,8 @@ lazy val facade = crossProject
         "-feature",
         "-unchecked",
         "-language:implicitConversions"
-      )
+      ),
+    publishTo := sonatypePublishTo.value
   )
   .settings(sonatypeSettings)
   .settings(
