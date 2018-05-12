@@ -21,6 +21,7 @@ object ConfigMacroLoader {
     import c.universe._
 
     // inspiration from: https://github.com/scala/scala/blob/v2.12.6/src/reflect/scala/reflect/api/StandardLiftables.scala
+    // thanks @blaisorblade
     def lift[T: Liftable](value: T): Tree = implicitly[Liftable[T]].apply(value)
 
     def selectShocon(names: Name*) = names.foldLeft(q"_root_.eu.unicredit.shocon": Tree) { Select(_, _) }
