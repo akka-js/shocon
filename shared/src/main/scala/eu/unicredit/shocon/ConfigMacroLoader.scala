@@ -19,46 +19,52 @@ object ConfigMacroLoader {
 
   def parse(c: Context)(input: c.Expr[String]): c.Expr[shocon.Config.Value] = {
     import c.universe._
+    import c.universe.internal.reificationSupport.SyntacticTuple
 
-    implicit val SimpleValueL = Liftable[eu.unicredit.shocon.Config.SimpleValue] { sv =>
-      sv match {
-        case nl: eu.unicredit.shocon.Config.NumberLiteral =>
-          q"_root_.eu.unicredit.shocon.Config.NumberLiteral(${nl.value})"
-        case sl: eu.unicredit.shocon.Config.StringLiteral =>
-          q"_root_.eu.unicredit.shocon.Config.StringLiteral(${sl.value})"
-        case bl: eu.unicredit.shocon.Config.BooleanLiteral =>
-          q"_root_.eu.unicredit.shocon.Config.BooleanLiteral(${bl.value})"
-        case _ =>
-          q"""_root_.eu.unicredit.shocon.Config.NullLiteral"""
-      }
-    }
+    def lift[T: Liftable](value: T): Tree = implicitly[Liftable[T]].apply(value)
 
-    implicit val ArrayValueL = Liftable[eu.unicredit.shocon.Config.Array] { arr =>
+    def selectShocon(names: Name*) = names.foldLeft(q"_root_.eu.unicredit.shocon": Tree) { Select(_, _) }
+    def callPackage(names: Name*)(args: List[Tree])    = Apply(selectShocon(names: _*), args)
+    def callConfig(name: Name)(args: List[Tree]) = callPackage(TermName("Config"), name)(args)
 
-      implicit val ConfigValue: Liftable[eu.unicredit.shocon.Config.Value] = Liftable[eu.unicredit.shocon.Config.Value] { value =>
-        value match {
-          case sv: eu.unicredit.shocon.Config.SimpleValue =>
-            q"$sv"
+    def callApply(str: String)(args: List[Tree]) = callConfig(TermName(str))(args)
+
+    def callPackageConst(names: Name*) = selectShocon(names: _*)
+    def callConfigConst(name: Name) =
+      callPackageConst(TermName("Config"), name)
+
+    def callConst(str: String) = callConfigConst(TermName(str))
+
+    implicit def liftConfigValue: Liftable[eu.unicredit.shocon.Config.Value] =
+      Liftable { cfg =>
+        cfg match {
+          case v: eu.unicredit.shocon.Config.SimpleValue =>
+            v match {
+              case nl: eu.unicredit.shocon.Config.NumberLiteral =>
+                callApply("NumberLiteral")(lift(nl.value) :: Nil)
+              case sl: eu.unicredit.shocon.Config.StringLiteral =>
+                callApply("StringLiteral")(lift(sl.value) :: Nil)
+              case bl: eu.unicredit.shocon.Config.BooleanLiteral =>
+                callApply("BooleanLiteral")(lift(bl.value) :: Nil)
+              case _ =>
+                callConst("NullLiteral")
+            }
+          case arr: eu.unicredit.shocon.Config.Array =>
+            callApply("Array"){
+              val arrayBody = arr.elements.map(lift(_)).toList
+
+              q"Seq( ..$arrayBody )" :: Nil
+            }
+          case obj: eu.unicredit.shocon.Config.Object =>
+            callApply("Object"){
+              val mapBody = obj.fields.map{
+                case (k, v) => q"($k, $v)"
+              }
+
+              q"Map( ..$mapBody )" :: Nil
+            }
         }
       }
-
-      q"""eu.unicredit.shocon.Config.Array(Seq(..${arr.elements}))"""
-    }
-
-    import eu.unicredit.shocon.Config
-    def flatten(key: Seq[String], cfg: Config.Value): Map[String, Tree] = {
-      cfg match {
-        case v: Config.SimpleValue =>
-          Map((key).mkString(".") -> q"$v")
-        case arr: Config.Array =>
-          Map((key).mkString(".") -> q"$arr")
-        case Config.Object(map) =>
-          map.flatMap{
-            case (k, v) =>
-              flatten((key :+ k), v)
-          }
-      }
-    }
 
     def fallback() = {
       if (verboseLog)
@@ -80,12 +86,7 @@ object ConfigMacroLoader {
             val config =
               eu.unicredit.shocon.Config(str.toString)
 
-            val flattened = flatten(Seq(), config).toSeq
-
-            val ast =
-              q"""{
-                _root_.eu.unicredit.shocon.Config.Object.fromPairs(Seq(..${flattened}))
-              }"""
+            val ast = liftConfigValue(config)
 
             try {
               if (verboseLog)
@@ -95,26 +96,10 @@ object ConfigMacroLoader {
               c.Expr[shocon.Config.Value](ast)
             } catch {
               case err: Throwable =>
-                if (verboseLog)
-                  c.warning(c.enclosingPosition, "[shocon-parser] fallback to runtime parser")
-
-                c.Expr[shocon.Config.Value](q"""{
-                  eu.unicredit.shocon.ConfigParser.root.parse($input) match{
-                    case fastparse.core.Parsed.Success(v,_) => v
-                    case f: fastparse.core.Parsed.Failure[_, _] => throw new Error(f.msg)
-                  }
-                }""")
+                fallback()
             }
           case _ =>
-            if (verboseLog)
-              c.warning(c.enclosingPosition, "[shocon-parser] fallback to runtime parser")
-
-            c.Expr[shocon.Config.Value](q"""{
-              eu.unicredit.shocon.ConfigParser.root.parse($input) match{
-                case fastparse.core.Parsed.Success(v,_) => v
-                case f: fastparse.core.Parsed.Failure[_, _] => throw new Error(f.msg)
-              }
-            }""")
+            fallback()
         }
     }
   }
