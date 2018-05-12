@@ -90,10 +90,11 @@ object ConfigMacroLoader {
             val ast = liftConfigValue(config)
 
             try {
+              c.typecheck(ast)
+
               if (verboseLog)
                 c.info(c.enclosingPosition, "[shocon-parser] optimized at compile time", false)
 
-              c.typecheck(ast)
               c.Expr[shocon.Config.Value](ast)
             } catch {
               case err: Throwable =>
