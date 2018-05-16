@@ -21,7 +21,7 @@ object ConfigLoader {
         if(notfound.nonEmpty)
           c.warning(c.enclosingPosition, s"shocon - could not read configuration files: $notfound")
 
-        c.warning(c.enclosingPosition, s"shocon - statically reading configuration from $found")
+        c.info(c.enclosingPosition, s"shocon - statically reading configuration from $found", force=false)
         found
       case _ => Nil
     })
@@ -41,8 +41,8 @@ object ConfigLoader {
               .getResource("/")
               .toString + "application.conf"
 
-            c.warning(c.enclosingPosition,
-              s"shocon - statically reading configuration from $confPath")
+            c.info(c.enclosingPosition,
+              s"shocon - statically reading configuration from $confPath", force=false)
 
             val stream =
               new Object {}.getClass.getResourceAsStream("/application.conf")
