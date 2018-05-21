@@ -7,6 +7,9 @@ import fastparse.core.Parsed
 
 object ConfigMacroLoader {
 
+  val loaded =
+    scala.collection.mutable.ListBuffer.empty[org.akkajs.shocon.Config.Value]
+
   import org.akkajs.shocon.verboseLog
   
   def setVerboseLogImpl(c: Context)(): c.Expr[Unit] = {
@@ -94,6 +97,8 @@ object ConfigMacroLoader {
 
               if (verboseLog)
                 c.info(c.enclosingPosition, "[shocon-parser] optimized at compile time", false)
+
+              loaded += config
 
               c.Expr[shocon.Config.Value](ast)
             } catch {

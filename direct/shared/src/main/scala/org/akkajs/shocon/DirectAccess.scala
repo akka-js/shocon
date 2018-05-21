@@ -5,6 +5,14 @@ import scala.reflect.macros.blackbox.Context
 
 object DirectAccess {
 
+  var i = 0L
+
+  def number(c: Context) = {
+    import c.universe._
+    i += 1
+    c.Expr[String](q"${i.hashCode}")
+  }
+
   def extractString(c: Context)(str: c.Expr[String]): String = {
     import c.universe._
 
@@ -23,23 +31,29 @@ object DirectAccess {
   def getBooleanImpl(c: Context)(path: c.Expr[String]) = {
     import c.universe._
 
-    println(showRaw(c.prefix))
-
-    // q"this.cfg" match {
-    //   case q"org.akkajs.shocon.Config.Onject(value)" =>
-    //     println("Yay")
-    //   case _ => println("not sure...")
-    // }
-// , config: c.Expr[org.akkajs.shocon.Config.Value]
-
     val pathStr = extractString(c)(path)
 
-    println("on from here...")
-    // val res = config.getString(pathStr)
+    val alternatives = org.akkajs.ConfigMacroLoader.loaded.map {
+      cfg =>
+      scala.util.Try {
+        cfg.get(pathStr).get
+      }.toOption
+    }.flatten.distinct
 
-    c.Expr[Boolean](q"""
-    true
-    """)
+    if (alternatives.size == 1) {
+      import org.akkajs.shocon.Extractors._
+      val ev = implicitly[Extractor[Boolean]]
+
+      val result = ev(alternatives.head)
+
+      c.Expr[Boolean](q"""
+      $result
+      """)
+    } else {
+      c.Expr[Boolean](q"""
+        getOrReturnNull[Boolean]($path)
+      """)
+    }
   }
 
 }

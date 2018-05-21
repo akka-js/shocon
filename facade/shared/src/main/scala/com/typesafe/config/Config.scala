@@ -103,7 +103,7 @@ case class Config(cfg: shocon.Config.Value) { self =>
 
   import org.akkajs.shocon.DirectAccess
 
-  def getBoolean(path: String): Boolean = macro DirectAccess.getBooleanImpl
+  def getBoolean(path: String) = macro DirectAccess.getBooleanImpl
 
   def getInt(path: String) = getOrReturnNull[Int](path)
 
