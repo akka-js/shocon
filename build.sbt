@@ -51,9 +51,32 @@ lazy val parser = crossProject
 lazy val parserJVM = parser.jvm
 lazy val parserJS = parser.js
 
+lazy val direct = crossProject
+  .in(file("direct"))
+  .dependsOn(parser)
+  .settings(
+    name := "shocon-direct",
+    scalacOptions ++=
+      Seq(
+        "-feature",
+        "-unchecked",
+        "-language:implicitConversions"
+      ),
+    publishTo := sonatypePublishTo.value
+  )
+  .settings(
+    libraryDependencies ++= Seq(
+      "org.scala-lang" % "scala-reflect" % scalaVersion.value % "provided"
+    )
+  )
+  .settings(sonatypeSettings)
+
+lazy val directJVM = direct.jvm
+lazy val directJS = direct.js
+
 lazy val facade = crossProject
   .in(file("facade"))
-  .dependsOn(parser)
+  .dependsOn(parser, direct)
   .settings(
     name := "shocon",
     scalacOptions ++=

@@ -101,7 +101,9 @@ case class Config(cfg: shocon.Config.Value) { self =>
 
   def getString(path: String) = getOrReturnNull[String](path)
 
-  def getBoolean(path: String): Boolean = getOrReturnNull[Boolean](path)
+  import org.akkajs.shocon.DirectAccess
+
+  def getBoolean(path: String): Boolean = macro DirectAccess.getBooleanImpl
 
   def getInt(path: String) = getOrReturnNull[Int](path)
 
