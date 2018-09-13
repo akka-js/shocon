@@ -1,5 +1,7 @@
 import xerial.sbt.Sonatype._
 
+import sbtcrossproject.CrossPlugin.autoImport.{crossProject, CrossType}
+
 lazy val root = project
   .in(file("."))
   .aggregate(parserJS, parserJVM, facadeJS, facadeJVM)
@@ -8,7 +10,7 @@ lazy val root = project
 lazy val fixResources =
   taskKey[Unit]("Fix application.conf presence on first clean build.")
 
-lazy val parser = crossProject
+lazy val parser = crossProject(JSPlatform, JVMPlatform, NativePlatform)
   .in(file("."))
   .settings(
     name := "shocon-parser",
@@ -47,11 +49,17 @@ lazy val parser = crossProject
     libraryDependencies += "org.scala-js" %%% "scalajs-java-time" % "0.2.0",
     parallelExecution in Test := true
   )
+  .nativeSettings(
+    nativeLinkStubs := true,
+    libraryDependencies += "org.akka-js" %%% "scalanative-java-time" % "0.1.0-SNAPSHOT"
+    // parallelExecution in Test := true
+  )
 
 lazy val parserJVM = parser.jvm
 lazy val parserJS = parser.js
+lazy val parserNative = parser.native
 
-lazy val facade = crossProject
+lazy val facade = crossProject(JSPlatform, JVMPlatform, NativePlatform)
   .in(file("facade"))
   .dependsOn(parser)
   .settings(
@@ -93,6 +101,12 @@ lazy val facade = crossProject
     libraryDependencies += "org.scala-js" %%% "scalajs-java-time" % "0.2.0",
     parallelExecution in Test := true
   )
+  .nativeSettings(
+    nativeLinkStubs := true,
+    libraryDependencies += "org.akka-js" %%% "scalanative-java-time" % "0.1.0-SNAPSHOT"
+    // parallelExecution in Test := true
+  )
 
 lazy val facadeJVM = facade.jvm
 lazy val facadeJS = facade.js
+lazy val facadeNative = facade.native

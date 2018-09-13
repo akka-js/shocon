@@ -1,3 +1,5 @@
+package tests
+
 object AkkaConfig {
 
   val default = """
