@@ -1,4 +1,4 @@
-package eu.unicredit.shocon.sbtplugin
+package org.akkajs.shocon.sbtplugin
 
 import java.io.{BufferedInputStream, FileInputStream, FileNotFoundException, InputStream}
 import java.net.JarURLConnection
