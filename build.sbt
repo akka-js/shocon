@@ -2,6 +2,8 @@ import xerial.sbt.Sonatype._
 
 import sbtcrossproject.CrossPlugin.autoImport.{crossProject, CrossType}
 
+import scala.scalanative.sbtplugin.ScalaNativePluginInternal.NativeTest
+
 lazy val root = project
   .in(file("."))
   .aggregate(parserJS, parserJVM, parserNative, facadeJS, facadeJVM, facadeNative)
@@ -54,9 +56,10 @@ lazy val parser = crossProject(JSPlatform, JVMPlatform, NativePlatform)
     resolvers += Resolver.sonatypeRepo("releases"),
     nativeLinkStubs := true,
     libraryDependencies += "org.akka-js" %%% "scalanative-java-time" % "0.0.1",
+    // disable Native testing with Scala 2.12
     (test in Test) := (Def.taskDyn {
       if (scalaVersion.value.startsWith("2.11"))
-        (test in Test)
+        (test in NativeTest)
       else Def.task { }
     }).value
   )
@@ -112,9 +115,10 @@ lazy val facade = crossProject(JSPlatform, JVMPlatform, NativePlatform)
     resolvers += Resolver.sonatypeRepo("releases"),
     nativeLinkStubs := true,
     libraryDependencies += "org.akka-js" %%% "scalanative-java-time" % "0.1.0-SNAPSHOT",
+    // disable Native testing with Scala 2.12
     (test in Test) := (Def.taskDyn {
       if (scalaVersion.value.startsWith("2.11"))
-        (test in Test)
+        (test in NativeTest)
       else Def.task { }
     }).value
   )
