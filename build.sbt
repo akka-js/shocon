@@ -4,7 +4,7 @@ import sbtcrossproject.CrossPlugin.autoImport.{crossProject, CrossType}
 
 lazy val root = project
   .in(file("."))
-  .aggregate(parserJS, parserJVM, facadeJS, facadeJVM)
+  .aggregate(parserJS, parserJVM, parserNative, facadeJS, facadeJVM, facadeNative)
   .settings(sonatypeSettings)
 
 lazy val fixResources =
@@ -50,9 +50,15 @@ lazy val parser = crossProject(JSPlatform, JVMPlatform, NativePlatform)
     parallelExecution in Test := true
   )
   .nativeSettings(
+    // temporary
+    resolvers += Resolver.sonatypeRepo("releases"),
     nativeLinkStubs := true,
-    libraryDependencies += "org.akka-js" %%% "scalanative-java-time" % "0.1.0-SNAPSHOT"
-    // parallelExecution in Test := true
+    libraryDependencies += "org.akka-js" %%% "scalanative-java-time" % "0.0.1",
+    (test in Test) := (Def.taskDyn {
+      if (scalaVersion.value.startsWith("2.11"))
+        (test in Test)
+      else Def.task { }
+    }).value
   )
 
 lazy val parserJVM = parser.jvm
@@ -102,9 +108,15 @@ lazy val facade = crossProject(JSPlatform, JVMPlatform, NativePlatform)
     parallelExecution in Test := true
   )
   .nativeSettings(
+    // temporary
+    resolvers += Resolver.sonatypeRepo("releases"),
     nativeLinkStubs := true,
-    libraryDependencies += "org.akka-js" %%% "scalanative-java-time" % "0.1.0-SNAPSHOT"
-    // parallelExecution in Test := true
+    libraryDependencies += "org.akka-js" %%% "scalanative-java-time" % "0.1.0-SNAPSHOT",
+    (test in Test) := (Def.taskDyn {
+      if (scalaVersion.value.startsWith("2.11"))
+        (test in Test)
+      else Def.task { }
+    }).value
   )
 
 lazy val facadeJVM = facade.jvm
