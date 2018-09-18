@@ -1,7 +1,5 @@
 package tests
 
-import scala.scalajs.js.Dynamic.global
-
 object AkkaConf {
 
   def basic: String = """

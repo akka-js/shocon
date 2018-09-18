@@ -1,3 +1,5 @@
+package tests
+
 import java.{util => ju}
 
 import utest._

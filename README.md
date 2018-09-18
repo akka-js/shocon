@@ -1,7 +1,6 @@
 # SHocon
 
 [![Build Status](https://travis-ci.org/akka-js/shocon.png?branch=master)](https://travis-ci.org/akka-js/shocon)
-[![Latest version](https://index.scala-lang.org/akka-js/shocon/shocon/latest.svg?color=green)](https://index.scala-lang.org/akka-js/shocon)
 
 SHocon is a simple, pure-Scala, alternative implementation of the [HOCON](https://github.com/typesafehub/config/blob/master/HOCON.md)
 specification.
@@ -14,7 +13,7 @@ This implementation does not cover all of the corner cases of the original imple
 
 Add these lines to your `project/plugins.sbt`:
 ```scala
-addSbtPlugin("org.akka-js" % "sbt-shocon" % "0.3.1")
+addSbtPlugin("org.akka-js" % "sbt-shocon" % "0.4.0")
 ```
 
 and in `build.sbt`:
@@ -22,9 +21,9 @@ and in `build.sbt`:
 val root = project.in(file(".")
   .enablePlugins(ShoconPlugin)
   .settings(
-    libraryDependencies += "org.akka-js" %% "shocon" % "0.3.1",
+    libraryDependencies += "org.akka-js" %% "shocon" % "0.4.0",
     // for Scala.js or cross projects use %%% instead:
-    // libraryDependencies += "org.akka-js" %%% "shocon" % "0.3.1"
+    // libraryDependencies += "org.akka-js" %%% "shocon" % "0.4.0"
 
     // add dependency on shocon file generation task
     // (not required, but otherwise you need to call shoconConcat manually before compilation!)

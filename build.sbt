@@ -1,14 +1,18 @@
 import xerial.sbt.Sonatype._
 
+import sbtcrossproject.CrossPlugin.autoImport.{crossProject, CrossType}
+
+import scala.scalanative.sbtplugin.ScalaNativePluginInternal.NativeTest
+
 lazy val root = project
   .in(file("."))
-  .aggregate(parserJS, parserJVM, facadeJS, facadeJVM)
+  .aggregate(parserJS, parserJVM, parserNative, facadeJS, facadeJVM, facadeNative)
   .settings(sonatypeSettings)
 
 lazy val fixResources =
   taskKey[Unit]("Fix application.conf presence on first clean build.")
 
-lazy val parser = crossProject
+lazy val parser = crossProject(JSPlatform, JVMPlatform, NativePlatform)
   .in(file("."))
   .settings(
     name := "shocon-parser",
@@ -47,11 +51,23 @@ lazy val parser = crossProject
     libraryDependencies += "org.scala-js" %%% "scalajs-java-time" % "0.2.0",
     parallelExecution in Test := true
   )
+  .nativeSettings(
+    resolvers += Resolver.sonatypeRepo("releases"),
+    nativeLinkStubs := true,
+    libraryDependencies += "org.akka-js" %%% "scalanative-java-time" % "0.0.1",
+    // disable Native testing with Scala 2.12
+    (test in Test) := (Def.taskDyn {
+      if (scalaVersion.value.startsWith("2.11"))
+        (test in NativeTest)
+      else Def.task { }
+    }).value
+  )
 
 lazy val parserJVM = parser.jvm
 lazy val parserJS = parser.js
+lazy val parserNative = parser.native
 
-lazy val facade = crossProject
+lazy val facade = crossProject(JSPlatform, JVMPlatform, NativePlatform)
   .in(file("facade"))
   .dependsOn(parser)
   .settings(
@@ -93,6 +109,18 @@ lazy val facade = crossProject
     libraryDependencies += "org.scala-js" %%% "scalajs-java-time" % "0.2.0",
     parallelExecution in Test := true
   )
+  .nativeSettings(
+    resolvers += Resolver.sonatypeRepo("releases"),
+    nativeLinkStubs := true,
+    libraryDependencies += "org.akka-js" %%% "scalanative-java-time" % "0.0.1",
+    // disable Native testing with Scala 2.12
+    (test in Test) := (Def.taskDyn {
+      if (scalaVersion.value.startsWith("2.11"))
+        (test in NativeTest)
+      else Def.task { }
+    }).value
+  )
 
 lazy val facadeJVM = facade.jvm
 lazy val facadeJS = facade.js
+lazy val facadeNative = facade.native

@@ -1,3 +1,5 @@
+package tests
+
 object AkkaConf {
 
   def basic =
