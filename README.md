@@ -5,7 +5,7 @@
 SHocon is a simple, pure-Scala, alternative implementation of the [HOCON](https://github.com/typesafehub/config/blob/master/HOCON.md)
 specification.
 
-SHocon ships with a native, Scala-idiomatic API, and a shim that mimics the [Typesafe Config](https://github.com/typesafehub/config) Java API, making it well-suited as a **drop-in replacement** wherever the Java implementation is not available, such as **Scala.JS** projects.
+SHocon ships with a native, Scala-idiomatic API, and a shim that mimics the [Typesafe Config](https://github.com/typesafehub/config) Java API, making it well-suited as a **drop-in replacement** wherever the Java implementation is not available, such as **Scala.JS** or **Scala Native** projects.
 
 This implementation does not cover all of the corner cases of the original implementation. Issues and PRs are welcome!
 
@@ -22,7 +22,7 @@ val root = project.in(file(".")
   .enablePlugins(ShoconPlugin)
   .settings(
     libraryDependencies += "org.akka-js" %% "shocon" % "0.4.0",
-    // for Scala.js or cross projects use %%% instead:
+    // for Scala.js/Native or cross projects use %%% instead:
     // libraryDependencies += "org.akka-js" %%% "shocon" % "0.4.0"
 
     // add dependency on shocon file generation task
@@ -45,7 +45,7 @@ In contrast to Typesafe config, which loads configuration files dynamically at r
 
 The resulting HOCON configuration file is assembled in `target/scala-VERSION/shocon.conf`.
 
-*Note*: For Scala.JS / JVM projects only the `reference.config` files located in either `js/src/main/resources` and `jvm/src/main/resources` are included; files in `shared/src/main/resources/` are ignored!
+*Note*: For Scala.JS / Native / JVM projects only the `reference.config` files located in either `js/src/main/resources` and `jvm/src/main/resources` are included; files in `shared/src/main/resources/` are ignored!
 
 Since version `0.3.1` the parse phase is aggressively moved at compile time, please note that runtime parsing cost a lot in terms of performances.
 
