@@ -52,7 +52,6 @@ lazy val parser = crossProject(JSPlatform, JVMPlatform, NativePlatform)
     parallelExecution in Test := true
   )
   .nativeSettings(
-    // temporary
     resolvers += Resolver.sonatypeRepo("releases"),
     nativeLinkStubs := true,
     libraryDependencies += "org.akka-js" %%% "scalanative-java-time" % "0.0.1",
@@ -111,10 +110,9 @@ lazy val facade = crossProject(JSPlatform, JVMPlatform, NativePlatform)
     parallelExecution in Test := true
   )
   .nativeSettings(
-    // temporary
     resolvers += Resolver.sonatypeRepo("releases"),
     nativeLinkStubs := true,
-    libraryDependencies += "org.akka-js" %%% "scalanative-java-time" % "0.1.0-SNAPSHOT",
+    libraryDependencies += "org.akka-js" %%% "scalanative-java-time" % "0.0.1",
     // disable Native testing with Scala 2.12
     (test in Test) := (Def.taskDyn {
       if (scalaVersion.value.startsWith("2.11"))
