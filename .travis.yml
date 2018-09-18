@@ -1,5 +1,8 @@
-sudo: false
+sudo: required
 
+os: linux
+dist: trusty
+jdk: oraclejdk8
 language: scala
 
 scala:
