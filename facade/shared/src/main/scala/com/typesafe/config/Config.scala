@@ -175,6 +175,12 @@ case class Config(cfg: shocon.Config.Value) { self =>
       case ret => ret
     }
 
+  def getConfigList(path: String): ju.List[Config] =
+    getOrReturnNull[ju.List[shocon.Config.Value]](path) match {
+      case null => List[Config]().asJava
+      case ret => ret.asScala.map(Config).asJava
+    }
+
   def getDuration(path: String, unit: TimeUnit): Long = {
     val durationValue = getString(path)
     val nanos = parseDurationAsNanos(durationValue)
