@@ -356,6 +356,84 @@ object SHoconGenericSpec extends TestSuite {
       assert { "1" == conf.getString("x") }
       assert { "foo" == conf.getString("y") }
     }
+
+    'parseListOfObjects - {
+      // protect against having this parsed at compile time
+      var x = ""
+      val conf = ConfigFactory.parseString(
+        s"""
+        $x
+        x = [{
+            foo = 1
+          }, {
+            foo = 2
+          }]
+        """)
+      val res = conf.getConfigList("x")
+      assert(res.size == 2)
+      assert(res.asScala(0).getInt("foo") == 1)
+      assert(res.asScala(1).getInt("foo") == 2)
+    }
+
+    'parseListOfObjectsStartingNextLine - {
+      // protect against having this parsed at compile time
+      var x = ""
+      val conf = ConfigFactory.parseString(
+        s"""
+        $x
+        x = [
+          {
+            foo = 1
+          }, {
+            foo = 2
+          }]
+        """)
+      val res = conf.getConfigList("x")
+      assert(res.size == 2)
+      assert(res.asScala(0).getInt("foo") == 1)
+      assert(res.asScala(1).getInt("foo") == 2)
+    }
+
+    'parseListOfObjectsWithNewLineSeparatedObjects - {
+      // protect against having this parsed at compile time
+      var x = ""
+      val conf = ConfigFactory.parseString(
+        s"""
+        $x
+        x = [
+          {
+            foo = 1
+          },
+          {
+            foo = 2
+          }]
+        """)
+      val res = conf.getConfigList("x")
+      assert(res.size == 2)
+      assert(res.asScala(0).getInt("foo") == 1)
+      assert(res.asScala(1).getInt("foo") == 2)
+    }
+
+    'parseListOfObjectsWithTrailingCommas - {
+      // protect against having this parsed at compile time
+      var x = ""
+      val conf = ConfigFactory.parseString(
+        s"""
+        $x
+        x = [
+          {
+            foo = 1
+          },
+          {
+            foo = 2
+          },
+        ]
+        """)
+      val res = conf.getConfigList("x")
+      assert(res.size == 2)
+      assert(res.asScala(0).getInt("foo") == 1)
+      assert(res.asScala(1).getInt("foo") == 2)
+    }
   }
 
   private final def configToMap(config: Config): Map[String, String] = {
