@@ -18,7 +18,7 @@ addSbtPlugin("org.akka-js" % "sbt-shocon" % "0.4.1")
 
 and in `build.sbt`:
 ```scala
-val root = project.in(file(".")
+val root = project.in(file("."))
   .enablePlugins(ShoconPlugin)
   .settings(
     libraryDependencies += "org.akka-js" %% "shocon" % "0.4.1",
