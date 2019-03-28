@@ -56,7 +56,7 @@ object ShoconPlugin extends AutoPlugin {
       val file = shoconConcatFile.value
 
       log.debug(s"Assembling SHOCON files for project '${name.value}'")
-      val config = shoconFiles.value.map( f => s"# SOURCE ${f._1}}\n" + IO.readStream(f._2) ).mkString("\n\n")
+      val config = shoconFiles.value.map( f => s"# SOURCE ${f._1}\n" + IO.readStream(f._2) ).mkString("\n\n")
 
       log.debug(s"SHOCON statically compiled into current project:\n$config\n\n")
       IO.write( file, config )
