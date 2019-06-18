@@ -3,7 +3,7 @@ package org.akkajs
 import scala.util.Try
 
 import scala.language.experimental.macros
-import fastparse.core.Parsed
+import fastparse.Parsed
 
 package object shocon extends Extractors {
 

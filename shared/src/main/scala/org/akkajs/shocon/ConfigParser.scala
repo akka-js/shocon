@@ -1,6 +1,6 @@
 package org.akkajs.shocon
 
-import fastparse.all._
+import fastparse._
 
 object ConfigParser {
   case class NamedFunction[T, V](f: T => V, name: String) extends (T => V){
@@ -21,31 +21,31 @@ object ConfigParser {
 
   // *** Lexing ***
   //  val Whitespace = NamedFunction(isWhitespace, "Whitespace")
-  val letter     = P( lowercase | uppercase )
-  val lowercase  = P( CharIn('a' to 'z') )
-  val uppercase  = P( CharIn('A' to 'Z') )
-  val digit      = P( CharIn('0' to '9') )
+  def letter[_ : P]     = P( lowercase | uppercase )
+  def lowercase[_ : P]  = P( CharIn("a-z") )
+  def uppercase[_ : P]  = P( CharIn("A-Z") )
+  def digit[_ : P]      = P( CharIn("0-9") )
 
   val Digits = NamedFunction('0' to '9' contains (_: Char), "Digits")
   val StringChars = NamedFunction(!"\"\\".contains(_: Char), "StringChars")
   val UnquotedStringChars = NamedFunction(!isWhitespaceNoNl(_: Char), "UnquotedStringChars  ")
 
-  val keyValueSeparator = P( CharIn(":="))
+  def keyValueSeparator[_ : P] = P( CharIn(":="))
 
   // whitespace
-  val comment = P( ("//" | "#") ~ CharsWhile(_ != '\n', min = 0) )
-  val nlspace = P( (CharsWhile(isWhitespace, min = 1) | comment ).rep )
-  val space   = P( ( CharsWhile(isWhitespaceNoNl, min = 1) | comment ).rep )
+  def comment[_ : P] = P( ("//" | "#") ~ CharsWhile(_ != '\n', min = 0) )
+  def nlspace[_ : P] = P( (CharsWhile(isWhitespace, min = 1) | comment ).rep )
+  def space[_ : P]   = P( ( CharsWhile(isWhitespaceNoNl, min = 1) | comment ).rep )
 
-  val hexDigit      = P( CharIn('0'to'9', 'a'to'f', 'A'to'F') )
-  val unicodeEscape = P( "u" ~ hexDigit ~ hexDigit ~ hexDigit ~ hexDigit )
-  val escape        = P( "\\" ~ (CharIn("\"/\\bfnrt") | unicodeEscape) )
+  def hexDigit[_ : P] = P( CharIn("0-9", "a-f", "A-F") )
+  def unicodeEscape[_ : P]   = P( "u" ~ hexDigit ~ hexDigit ~ hexDigit ~ hexDigit )
+  def escape[_ : P]          = P( "\\" ~ (CharIn("\"/\\bfnrt") | unicodeEscape) )
 
   // strings
-  val strChars = P( CharsWhile(StringChars) )
-  val quotedString = P( "\"" ~/ (strChars | escape).rep.! ~ "\"")
-  val unquotedString = P ( ( (letter | digit | "_" | "-" | "." | "/").rep(min=1).! ).rep(min=1,sep=CharsWhile(_.isSpaceChar)).! )
-  val string = P(nlspace) ~ P(quotedString|unquotedString|CharsWhile(_.isSpaceChar).!) // bit of an hack: this would parse whitespace to the end of line
+  def strChars[_ : P] = P( CharsWhile(StringChars) )
+  def quotedString[_ : P] = P( "\"" ~/ (strChars | escape).rep.! ~ "\"")
+  def unquotedString[_ : P] = P ( ( (letter | digit | "_" | "-" | "." | "/").rep(min=1).! ).rep(min=1,sep=CharsWhile(_.isSpaceChar)).! )
+  def string[_ : P] = P(nlspace) ~ P(quotedString|unquotedString|CharsWhile(_.isSpaceChar).!) // bit of an hack: this would parse whitespace to the end of line
                             .rep(min=1).map(_.mkString.trim) // so we will trim the remaining right-side
                             .map(Config.StringLiteral)
 

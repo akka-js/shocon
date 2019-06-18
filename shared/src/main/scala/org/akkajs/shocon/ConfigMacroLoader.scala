@@ -3,12 +3,12 @@ package org.akkajs
 import scala.language.experimental.macros
 import scala.reflect.macros.blackbox.Context
 
-import fastparse.core.Parsed
+import fastparse.Parsed
 
 object ConfigMacroLoader {
 
   import org.akkajs.shocon.verboseLog
-  
+
   def setVerboseLogImpl(c: Context)(): c.Expr[Unit] = {
     import c.universe._
 
