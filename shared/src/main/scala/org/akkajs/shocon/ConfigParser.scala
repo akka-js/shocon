@@ -1,12 +1,12 @@
 package org.akkajs.shocon
 
 import fastparse._
+import NoWhitespace._ // or we can refactor to use an upstream whitespace handler
 
 object ConfigParser {
   case class NamedFunction[T, V](f: T => V, name: String) extends (T => V){
     def apply(t: T) = f(t)
     override def toString() = name
-
   }
 
   val isWhitespace = (c: Char) =>
@@ -33,9 +33,9 @@ object ConfigParser {
   def keyValueSeparator[_ : P] = P( CharIn(":="))
 
   // whitespace
-  def comment[_ : P] = P( ("//" | "#") ~ CharsWhile(_ != '\n', min = 0) )
-  def nlspace[_ : P] = P( (CharsWhile(isWhitespace, min = 1) | comment ).rep )
-  def space[_ : P]   = P( ( CharsWhile(isWhitespaceNoNl, min = 1) | comment ).rep )
+  def comment[_ : P] = P( ("//" | "#") ~ CharsWhile(_ != '\n', 0) )
+  def nlspace[_ : P] = P( (CharsWhile(isWhitespace, 1) | comment ).rep )
+  def space[_ : P]   = P( ( CharsWhile(isWhitespaceNoNl, 1) | comment ).rep )
 
   def hexDigit[_ : P] = P( CharIn("0-9", "a-f", "A-F") )
   def unicodeEscape[_ : P]   = P( "u" ~ hexDigit ~ hexDigit ~ hexDigit ~ hexDigit )
@@ -44,32 +44,34 @@ object ConfigParser {
   // strings
   def strChars[_ : P] = P( CharsWhile(StringChars) )
   def quotedString[_ : P] = P( "\"" ~/ (strChars | escape).rep.! ~ "\"")
-  def unquotedString[_ : P] = P ( ( (letter | digit | "_" | "-" | "." | "/").rep(min=1).! ).rep(min=1,sep=CharsWhile(_.isSpaceChar)).! )
+  def unquotedString[_ : P] = P ( ( (letter | digit | "_" | "-" | "." | "/").rep(1).! ).rep(1,CharsWhile(_.isSpaceChar)).! )
   def string[_ : P] = P(nlspace) ~ P(quotedString|unquotedString|CharsWhile(_.isSpaceChar).!) // bit of an hack: this would parse whitespace to the end of line
-                            .rep(min=1).map(_.mkString.trim) // so we will trim the remaining right-side
+                            .rep(1).map(_.mkString.trim) // so we will trim the remaining right-side
                             .map(Config.StringLiteral)
 
   // *** Parsing ***
-  val array: P[Seq[Config.Value]] = P( "[" ~ nlspace ~/ jsonExpr.rep(sep=itemSeparator) ~ nlspace ~ ",".? ~ nlspace ~ "]")
+  def array[_: P]: P[Seq[Config.Value]] = P( "[" ~ nlspace ~/ jsonExpr.rep(sep=itemSeparator) ~ nlspace ~ ",".? ~ nlspace ~ "]")
 
-  val repeatedArray: P[Config.Array] =
+  def repeatedArray[_ :P]: P[Config.Array] =
     array.rep(min = 1, sep=nlspace).map( ( arrays: Seq[Seq[Config.Value]] ) => Config.Array ( arrays.flatten ) )
 
-  val pair: P[(String, Config.Value)] = P( string.map(_.value) ~/ space ~
+  def pair[_: P]: P[(String, Config.Value)] = P( string.map(_.value) ~/ space ~
     ((keyValueSeparator   ~/ jsonExpr )
     |(repeatedObj ~ space)) )
 
-  val obj: P[Seq[(String, Config.Value)]] = P( "{" ~/ objBody ~ "}")
+  def obj[_: P]: P[Seq[(String, Config.Value)]] = P( "{" ~/ objBody ~ "}")
 
-  val repeatedObj: P[Config.Object] =
+  def repeatedObj[_: P]: P[Config.Object] =
     obj.rep(min = 1, sep=nlspace).map(fields => Config.Object(Map( fields.flatten :_*) ))
 
-  val itemSeparator = P(("\n" ~ nlspace ~ ",".?)|(("," ~ nlspace).?))
+  def itemSeparator[_: P] = P(("\n" ~ nlspace ~ ",".?)|(("," ~ nlspace).?))
 
-  val objBody = P( pair.rep(sep=itemSeparator) ~ nlspace ) // .log()
+  def objBody[_: P] = P( pair.rep(sep=itemSeparator) ~ nlspace ) // .log()
 
-  val jsonExpr: P[Config.Value] = P( space ~ (repeatedObj | repeatedArray | string) ~ space ) // .log()
+  def jsonExpr[_: P] = P( space ~ (repeatedObj | repeatedArray | string) ~ space ) // .log()
 
-  val root = P( (&(space ~ "{") ~/ obj )|(objBody)   ~ End ).map( x => Config.Object.fromPairs(x) ) // .log()
+  def root[_: P] = P( (&(space ~ "{") ~/ obj )|(objBody)   ~ End ).map( x => Config.Object.fromPairs(x) ) // .log()
+
+  def parseString(str: String) = parse(str, root(_))
 
 }
