@@ -22,7 +22,8 @@ lazy val parser = crossProject(JSPlatform, JVMPlatform)
       Seq(
         "-feature",
         "-unchecked",
-        "-language:implicitConversions"
+        "-language:implicitConversions",
+        "-deprecation",
       ),
     publishTo := sonatypePublishTo.value
   )
@@ -45,12 +46,12 @@ lazy val parser = crossProject(JSPlatform, JVMPlatform)
     },
     compile in Compile := (compile in Compile).dependsOn(fixResources).value,
     libraryDependencies ++= Seq(
-      "com.lihaoyi" %%% "fastparse" % "2.1.2",
+      "com.lihaoyi" %%% "fastparse" % "2.1.3",
       "org.scala-lang" % "scala-reflect" % scalaVersion.value % "provided"
     )
   )
   .jsSettings(
-    libraryDependencies += "org.scala-js" %%% "scalajs-java-time" % "0.2.0",
+    libraryDependencies += "org.scala-js" %%% "scalajs-java-time" % "0.2.5",
     parallelExecution in Test := true
   )
   // .nativeSettings(
@@ -79,7 +80,8 @@ lazy val facade = crossProject(JSPlatform, JVMPlatform)
       Seq(
         "-feature",
         "-unchecked",
-        "-language:implicitConversions"
+        "-language:implicitConversions",
+        "-deprecation",
       ),
     publishTo := sonatypePublishTo.value
   )
@@ -103,13 +105,13 @@ lazy val facade = crossProject(JSPlatform, JVMPlatform)
     compile in Compile := (compile in Compile).dependsOn(fixResources).value,
     testFrameworks += new TestFramework("utest.runner.Framework"),
     libraryDependencies ++= Seq(
-      "com.lihaoyi" %%% "fastparse" % "1.0.0",
-      "com.lihaoyi" %%% "utest" % "0.6.3" % "test",
+      "com.lihaoyi" %%% "fastparse" % "2.1.3",
+      "com.lihaoyi" %%% "utest" % "0.7.1" % "test",
       "org.scala-lang" % "scala-reflect" % scalaVersion.value % "provided"
     )
   )
   .jsSettings(
-    libraryDependencies += "org.scala-js" %%% "scalajs-java-time" % "0.2.0",
+    libraryDependencies += "org.scala-js" %%% "scalajs-java-time" % "0.2.5",
     parallelExecution in Test := true
   )
   // .nativeSettings(

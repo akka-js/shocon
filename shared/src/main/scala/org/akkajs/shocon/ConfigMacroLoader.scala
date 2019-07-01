@@ -8,7 +8,7 @@ import fastparse.Parsed
 object ConfigMacroLoader {
 
   import org.akkajs.shocon.verboseLog
-
+  
   def setVerboseLogImpl(c: Context)(): c.Expr[Unit] = {
     import c.universe._
 

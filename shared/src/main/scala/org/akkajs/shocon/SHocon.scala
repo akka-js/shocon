@@ -22,7 +22,7 @@ package object shocon extends Extractors {
       lazy val unwrapped = elements.map(_.unwrapped)
     }
     case class Object(fields: Map[Key, Value]) extends Value {
-      lazy val unwrapped = fields.mapValues(_.unwrapped)
+      lazy val unwrapped = fields.view.mapValues(_.unwrapped)
     }
 
     trait SimpleValue extends Value
@@ -109,7 +109,7 @@ package object shocon extends Extractors {
                 case _ =>
                   k -> v
               }
-          } ++ mergeable.fields.filterKeys(diff.contains)
+          } ++ mergeable.fields.view.filterKeys(diff.contains)
 
           Object(m)
         }
@@ -132,7 +132,7 @@ package object shocon extends Extractors {
               None
             }
       }
-      visit(tree, keys)
+      visit(tree, keys.toSeq)
     }
 
     // def getOrElse[T](fallback: => Config.Value)(implicit ev: Extractor[T]): T =
