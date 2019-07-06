@@ -46,6 +46,7 @@ lazy val parser = crossProject(JSPlatform, JVMPlatform)
     },
     compile in Compile := (compile in Compile).dependsOn(fixResources).value,
     libraryDependencies ++= Seq(
+      "org.scala-lang.modules" %%% "scala-collection-compat" % "2.1.1",
       "com.lihaoyi" %%% "fastparse" % "2.1.3",
       "org.scala-lang" % "scala-reflect" % scalaVersion.value % "provided"
     )
@@ -105,6 +106,7 @@ lazy val facade = crossProject(JSPlatform, JVMPlatform)
     compile in Compile := (compile in Compile).dependsOn(fixResources).value,
     testFrameworks += new TestFramework("utest.runner.Framework"),
     libraryDependencies ++= Seq(
+      "org.scala-lang.modules" %%% "scala-collection-compat" % "2.1.1",
       "com.lihaoyi" %%% "fastparse" % "2.1.3",
       "com.lihaoyi" %%% "utest" % "0.7.1" % "test",
       "org.scala-lang" % "scala-reflect" % scalaVersion.value % "provided"

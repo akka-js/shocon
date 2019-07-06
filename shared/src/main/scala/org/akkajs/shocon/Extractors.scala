@@ -1,6 +1,7 @@
 package org.akkajs.shocon
 
 import java.{util => ju}
+import scala.collection.compat._
 import scala.jdk.CollectionConverters._
 
 case class Extractor[T](pf: PartialFunction[Config.Value, T], val serial: Int) {

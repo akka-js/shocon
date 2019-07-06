@@ -4,6 +4,7 @@ import scala.util.Try
 
 import scala.language.experimental.macros
 import fastparse.Parsed
+import scala.collection.compat._
 
 package object shocon extends Extractors {
 
@@ -22,7 +23,7 @@ package object shocon extends Extractors {
       lazy val unwrapped = elements.map(_.unwrapped)
     }
     case class Object(fields: Map[Key, Value]) extends Value {
-      lazy val unwrapped = fields.view.mapValues(_.unwrapped)
+      lazy val unwrapped = fields.view.mapValues(_.unwrapped).toSeq
     }
 
     trait SimpleValue extends Value
@@ -109,8 +110,11 @@ package object shocon extends Extractors {
                 case _ =>
                   k -> v
               }
-          } ++ mergeable.fields.view.filterKeys(diff.contains)
-
+          } ++ mergeable.fields.view.filter(e => diff.contains(e._1))
+          //.filterKeys(diff.contains)
+          // IS THIS A BUG ON scala-collection-compat FIXME: [error} value mapValues is not a member of
+          // scala.collection.IterableView[(org.akkajs.shocon.Config.Key, org.akkajs.shocon.Config.Value),
+          // scala.collection.immutable.Map[org.akkajs.shocon.Config.Key,org.akkajs.shocon.Config.Value]]
           Object(m)
         }
       }

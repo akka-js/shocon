@@ -8,6 +8,7 @@ import org.akkajs.shocon.Config.Value
 import org.akkajs.shocon.Extractor
 
 import scala.jdk.CollectionConverters._
+import scala.collection.compat._
 import scala.collection.mutable
 import scala.concurrent.duration._
 import scala.language.experimental.macros
