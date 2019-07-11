@@ -23,7 +23,7 @@ package object shocon extends Extractors {
       lazy val unwrapped = elements.map(_.unwrapped)
     }
     case class Object(fields: Map[Key, Value]) extends Value {
-      lazy val unwrapped = fields.view.mapValues(_.unwrapped).toSeq
+      lazy val unwrapped = fields.view.mapValues(_.unwrapped).to(Seq)
     }
 
     trait SimpleValue extends Value
@@ -111,10 +111,6 @@ package object shocon extends Extractors {
                   k -> v
               }
           } ++ mergeable.fields.view.filter(e => diff.contains(e._1))
-          //.filterKeys(diff.contains)
-          // IS THIS A BUG ON scala-collection-compat FIXME: [error} value mapValues is not a member of
-          // scala.collection.IterableView[(org.akkajs.shocon.Config.Key, org.akkajs.shocon.Config.Value),
-          // scala.collection.immutable.Map[org.akkajs.shocon.Config.Key,org.akkajs.shocon.Config.Value]]
           Object(m)
         }
       }
@@ -136,7 +132,7 @@ package object shocon extends Extractors {
               None
             }
       }
-      visit(tree, keys.toSeq)
+      visit(tree, keys.toIndexedSeq)
     }
 
     // def getOrElse[T](fallback: => Config.Value)(implicit ev: Extractor[T]): T =
