@@ -1,19 +1,15 @@
 import xerial.sbt.Sonatype._
 
-import sbtcrossproject.CrossPlugin.autoImport.{crossProject, CrossType}
-
-// import scala.scalanative.sbtplugin.ScalaNativePluginInternal.NativeTest
+import sbtcrossproject.CrossPlugin.autoImport.crossProject
 
 lazy val root = project
   .in(file("."))
-  // .aggregate(parserJS, parserJVM, parserNative, facadeJS, facadeJVM, facadeNative)
   .aggregate(parserJS, parserJVM, facadeJS, facadeJVM)
   .settings(sonatypeSettings)
 
 lazy val fixResources =
   taskKey[Unit]("Fix application.conf presence on first clean build.")
 
-// lazy val parser = crossProject(JSPlatform, JVMPlatform, NativePlatform)
 lazy val parser = crossProject(JSPlatform, JVMPlatform)
   .in(file("."))
   .settings(
@@ -55,23 +51,10 @@ lazy val parser = crossProject(JSPlatform, JVMPlatform)
     libraryDependencies += "org.scala-js" %%% "scalajs-java-time" % "0.2.5",
     parallelExecution in Test := true
   )
-  // .nativeSettings(
-  //   resolvers += Resolver.sonatypeRepo("releases"),
-  //   nativeLinkStubs := true,
-  //   libraryDependencies += "org.akka-js" %%% "scalanative-java-time" % "0.0.2",
-  //   // disable Native testing with Scala 2.12
-  //   (test in Test) := (Def.taskDyn {
-  //     if (scalaVersion.value.startsWith("2.11"))
-  //       (test in NativeTest)
-  //     else Def.task { }
-  //   }).value
-  // )
 
 lazy val parserJVM = parser.jvm
 lazy val parserJS = parser.js
-// lazy val parserNative = parser.native
 
-// lazy val facade = crossProject(JSPlatform, JVMPlatform, NativePlatform)
 lazy val facade = crossProject(JSPlatform, JVMPlatform)
   .in(file("facade"))
   .dependsOn(parser)
@@ -116,18 +99,6 @@ lazy val facade = crossProject(JSPlatform, JVMPlatform)
     libraryDependencies += "org.scala-js" %%% "scalajs-java-time" % "0.2.5",
     parallelExecution in Test := true
   )
-  // .nativeSettings(
-  //   resolvers += Resolver.sonatypeRepo("releases"),
-  //   nativeLinkStubs := true,
-  //   libraryDependencies += "org.akka-js" %%% "scalanative-java-time" % "0.0.1",
-  //   // disable Native testing with Scala 2.12
-  //   (test in Test) := (Def.taskDyn {
-  //     if (scalaVersion.value.startsWith("2.11"))
-  //       (test in NativeTest)
-  //     else Def.task { }
-  //   }).value
-  // )
 
 lazy val facadeJVM = facade.jvm
 lazy val facadeJS = facade.js
-// lazy val facadeNative = facade.native
