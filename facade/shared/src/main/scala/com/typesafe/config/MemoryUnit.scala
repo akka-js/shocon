@@ -30,7 +30,7 @@ object MemoryUnit {
 
 
   lazy val unitsMap: Map[String, MemoryUnit] = {
-    val map = Map.canBuildFrom[String, MemoryUnit]()
+    val map = Map.newBuilder[String, MemoryUnit]
 
     MemoryUnit.values.foreach { unit =>
       map += unit.prefix + "byte" -> unit

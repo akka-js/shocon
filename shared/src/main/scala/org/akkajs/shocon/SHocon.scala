@@ -3,7 +3,8 @@ package org.akkajs
 import scala.util.Try
 
 import scala.language.experimental.macros
-import fastparse.core.Parsed
+import fastparse.Parsed
+import scala.collection.compat._
 
 package object shocon extends Extractors {
 
@@ -22,7 +23,7 @@ package object shocon extends Extractors {
       lazy val unwrapped = elements.map(_.unwrapped)
     }
     case class Object(fields: Map[Key, Value]) extends Value {
-      lazy val unwrapped = fields.mapValues(_.unwrapped)
+      lazy val unwrapped = fields.view.mapValues(_.unwrapped).to(Seq)
     }
 
     trait SimpleValue extends Value
@@ -55,10 +56,10 @@ package object shocon extends Extractors {
     def gen(input: String): Config.Value = macro ConfigMacroLoader.parse
 
     /* these methods are here only for retro-compatibility and fallbacks */
-    def parse(input: String) = ConfigParser.root.parse(input)
+    def parse(input: String) = ConfigParser.parseString(input)
     def apply(input: String): Config.Value = parse(input) match{
       case Parsed.Success(v,_) => v
-      case f: Parsed.Failure[_, _] => throw new Error(f.msg)
+      case f: Parsed.Failure => throw new Error(f.msg)
     }
     def fromFile(path: String) = apply(io.Source.fromFile(path).mkString)
 
@@ -109,8 +110,7 @@ package object shocon extends Extractors {
                 case _ =>
                   k -> v
               }
-          } ++ mergeable.fields.filterKeys(diff.contains)
-
+          } ++ mergeable.fields.view.filter(e => diff.contains(e._1))
           Object(m)
         }
       }
@@ -132,7 +132,7 @@ package object shocon extends Extractors {
               None
             }
       }
-      visit(tree, keys)
+      visit(tree, keys.toIndexedSeq)
     }
 
     // def getOrElse[T](fallback: => Config.Value)(implicit ev: Extractor[T]): T =

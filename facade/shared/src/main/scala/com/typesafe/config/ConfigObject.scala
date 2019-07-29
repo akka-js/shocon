@@ -2,7 +2,7 @@ package com.typesafe.config
 
 import java.{util => ju}
 
-import scala.collection.JavaConverters._
+import scala.jdk.CollectionConverters._
 
 trait ConfigObject extends ju.AbstractMap[String, ConfigValue] with ConfigValue {
 

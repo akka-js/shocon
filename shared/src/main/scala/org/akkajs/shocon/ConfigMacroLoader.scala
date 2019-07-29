@@ -3,7 +3,7 @@ package org.akkajs
 import scala.language.experimental.macros
 import scala.reflect.macros.blackbox.Context
 
-import fastparse.core.Parsed
+import fastparse.Parsed
 
 object ConfigMacroLoader {
 

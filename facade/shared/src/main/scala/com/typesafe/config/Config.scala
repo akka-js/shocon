@@ -7,7 +7,8 @@ import org.akkajs.shocon
 import org.akkajs.shocon.Config.Value
 import org.akkajs.shocon.Extractor
 
-import scala.collection.JavaConverters._
+import scala.jdk.CollectionConverters._
+import scala.collection.compat._
 import scala.collection.mutable
 import scala.concurrent.duration._
 import scala.language.experimental.macros
@@ -50,11 +51,11 @@ case class Config(cfg: shocon.Config.Value) { self =>
     new ConfigObject() {
       val inner = self.cfg
       def unwrapped =
-        cfg.as[shocon.Config.Object].get.unwrapped.asJava
+        cfg.as[shocon.Config.Object].get.unwrapped.toMap.asJava
       def entrySet(): ju.Set[ju.Map.Entry[String, ConfigValue]] =
-        cfg.as[shocon.Config.Object].get.fields.mapValues(v => new ConfigValue() {
+        cfg.as[shocon.Config.Object].get.fields.view.mapValues(v => new ConfigValue() {
           override val inner: Value = v
-        }).asJava.entrySet()
+        }).toMap.asJava.entrySet()
     }
   }
 
@@ -155,11 +156,11 @@ case class Config(cfg: shocon.Config.Value) { self =>
         } else {
           val resultDecimal: BigDecimal = BigDecimal(unitBytes) * BigDecimal(
               numberString)
-          resultDecimal.toBigInt()
+          resultDecimal.toBigInt
         }
 
       if (result.bitLength < 64) {
-        result.longValue()
+        result.longValue
       } else {
         throw ConfigException.BadValue(pathForException)
       }
