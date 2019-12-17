@@ -437,9 +437,9 @@ object SHoconGenericSpec extends TestSuite {
 
     'mergeConfigObjects - {
       val conf1 = ConfigFactory.load(ConfigFactory.parseString("""
-    akka.stream.materializer.initial-input-buffer-size = 2
-    akka.stream.materializer.max-input-buffer-size = 2
-  """))
+        akka.stream.materializer.initial-input-buffer-size = 2
+        akka.stream.materializer.max-input-buffer-size = 2
+      """))
       val conf2 = ConfigFactory.load(ConfigFactory.parseString(s"""
         akka {
           stream {
