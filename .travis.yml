@@ -9,14 +9,14 @@ scala:
   - "2.13.0"
   - "2.12.8"
 
-jdk: oraclejdk8
+jdk: openjdk8
 
 matrix:
   include:
-    - env: SBT_VERSION=0.13.16
-      scala: "2.12.8"
+    - env: SBT_VERSION=0.13.18
+      scala: "2.12.10"
     - env: SBT_VERSION=1.2.8
-      scala: "2.12.8"
+      scala: "2.12.10"
 
 env:
   - TRAVIS_NODE_VERSION="8.12.0"
