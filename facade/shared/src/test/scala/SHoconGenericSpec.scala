@@ -434,6 +434,35 @@ object SHoconGenericSpec extends TestSuite {
       assert(res.asScala(0).getInt("foo") == 1)
       assert(res.asScala(1).getInt("foo") == 2)
     }
+
+    'mergeConfigObjects - {
+      val conf1 = ConfigFactory.load(ConfigFactory.parseString("""
+        akka.stream.materializer.initial-input-buffer-size = 2
+        akka.stream.materializer.max-input-buffer-size = 2
+      """))
+      val conf2 = ConfigFactory.load(ConfigFactory.parseString(s"""
+        akka {
+          stream {
+            materializer {
+              creation-timeout = 20s
+              initial-input-buffer-size = 4
+              max-input-buffer-size = 16
+              blocking-io-dispatcher = "akka.stream.default-blocking-io-dispatcher"
+              dispatcher = ""
+              subscription-timeout {
+                mode = cancel
+                timeout = 5s
+              }
+            }
+          }
+        }
+        """))
+
+      val conf = ConfigFactory.load(conf1.withFallback(conf2))
+      
+      assert(conf.getInt("akka.stream.materializer.initial-input-buffer-size") == 2)
+      assert(conf.getConfig("akka.stream.materializer").getString("subscription-timeout.mode") == "cancel")
+    }
   }
 
   private final def configToMap(config: Config): Map[String, String] = {
