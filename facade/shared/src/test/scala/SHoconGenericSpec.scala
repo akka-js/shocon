@@ -461,6 +461,7 @@ object SHoconGenericSpec extends TestSuite {
       val conf = ConfigFactory.load(conf1.withFallback(conf2))
       
       assert(conf.getInt("akka.stream.materializer.initial-input-buffer-size") == 2)
+      assert(conf.getConfig("akka.stream.materializer").getInt("initial-input-buffer-size") == 2)
       assert(conf.getConfig("akka.stream.materializer").getString("subscription-timeout.mode") == "cancel")
     }
   }

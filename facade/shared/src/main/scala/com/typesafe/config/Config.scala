@@ -66,7 +66,8 @@ case class Config(cfg: shocon.Config.Value) { self =>
   def resolve(): Config = this
 
   def withFallback(c: Config) = {
-    fallbackStack.enqueue(c.cfg)
+    if (c != null)
+      fallbackStack.enqueue(c.cfg)
     this
   }
 
@@ -87,17 +88,22 @@ case class Config(cfg: shocon.Config.Value) { self =>
     fallbackStack.exists(_.get(path).isDefined)
 
   def getConfig(path: String): Config = {
-    scala.util.Try {
-      val configs = fallbackStack
+    try {
+      val configs = fallbackStack.toSeq
         .filter(_.get(path).isDefined)
         .map(_.get(path).get)
+        .map(Config(_))
+        .filter(_ != null)
 
-      val config = Config(configs(0))
+      val config = configs(0)
       configs.tail.foreach{ c =>
-        config.withFallback(Config(c))
+        config.withFallback(c)
       }
       config
-    }.toOption.getOrElse(null.asInstanceOf[Config])
+    } catch {
+      case _ : Throwable =>
+        null.asInstanceOf[Config]
+    }
   }
 
   def getString(path: String) = getOrReturnNull[String](path)
