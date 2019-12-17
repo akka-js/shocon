@@ -59,8 +59,6 @@ case class Config(cfg: shocon.Config.Value) { self =>
     }
   }
 
-  private var cache = mutable.Map[String, Any]()
-
   def entrySet(): ju.Set[ju.Map.Entry[String, ConfigValue]] = root.entrySet()
 
   def checkValid(c: Config, paths: String*): Unit = {}
@@ -82,23 +80,25 @@ case class Config(cfg: shocon.Config.Value) { self =>
         )
       }.toOption.getOrElse(null.asInstanceOf[T])
 
-    val fullPath = s"$path${ev.serial}"
-    cache.get(fullPath) match {
-      case Some(elem) =>
-        try { elem.asInstanceOf[T] } catch {
-          case _: Throwable => res
-        }
-      case _ =>
-        cache.update(fullPath, res)
-        res
-    }
+    res
   }
 
   def hasPath(path: String): Boolean =
     fallbackStack.exists(_.get(path).isDefined)
 
-  def getConfig(path: String) =
-    Config(getOrReturnNull[shocon.Config.Value](path))
+  def getConfig(path: String): Config = {
+    scala.util.Try {
+      val configs = fallbackStack
+        .filter(_.get(path).isDefined)
+        .map(_.get(path).get)
+
+      val config = Config(configs(0))
+      configs.tail.foreach{ c =>
+        config.withFallback(Config(c))
+      }
+      config
+    }.toOption.getOrElse(null.asInstanceOf[Config])
+  }
 
   def getString(path: String) = getOrReturnNull[String](path)
 
