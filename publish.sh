@@ -10,9 +10,7 @@ sbt sonatypeReleaseAll
 
 cd plugin
 
-sbt ";^^0.13.18;publishSigned"
-
-sbt ";^^1.2.8;publishSigned"
+sbt ";^^1.3.5;publishSigned"
 
 sbt sonatypeReleaseAll
 
