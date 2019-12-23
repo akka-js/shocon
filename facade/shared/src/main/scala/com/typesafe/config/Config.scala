@@ -92,6 +92,7 @@ case class Config(cfg: shocon.Config.Value) { self =>
       val configs = fallbackStack.toSeq
         .filter(_.get(path).isDefined)
         .map(_.get(path).get)
+        .filter(_ != null)
         .map(Config(_))
         .filter(_ != null)
 
