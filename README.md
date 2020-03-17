@@ -13,7 +13,7 @@ This implementation does not cover all of the corner cases of the original imple
 
 Add these lines to your `project/plugins.sbt`:
 ```scala
-addSbtPlugin("org.akka-js" % "sbt-shocon" % "0.5.0")
+addSbtPlugin("org.akka-js" % "sbt-shocon" % "1.0.0")
 ```
 
 and in `build.sbt`:
@@ -21,9 +21,9 @@ and in `build.sbt`:
 val root = project.in(file("."))
   .enablePlugins(ShoconPlugin)
   .settings(
-    libraryDependencies += "org.akka-js" %% "shocon" % "0.5.0",
+    libraryDependencies += "org.akka-js" %% "shocon" % "1.0.0",
     // for Scala.js/Native or cross projects use %%% instead:
-    // libraryDependencies += "org.akka-js" %%% "shocon" % "0.5.0"
+    // libraryDependencies += "org.akka-js" %%% "shocon" % "1.0.0"
 
     // add dependency on shocon file generation task
     // (not required, but otherwise you need to call shoconConcat manually before compilation!)
@@ -39,6 +39,10 @@ SHocon wouldn't have been possible without the enormous support of the R&D depar
 Check out other projects from the UniCredit team [here](https://github.com/unicredit)
 
 ## Notes
+
+### Scala.Js support
+
+Starting from shocon `1.0.0` we dropped support for Scala.Js `0.6`, the latest artifact published for Scala.Js `0.6` is Shocon `0.5.0`
 
 ### Loading of default configuration
 In contrast to Typesafe config, which loads configuration files dynamically at run time, shocon compiles the default configuration returned by `ConfigFactory.load()` statically into the the code. This includes all `reference.conf` files found in the `resources` directory of the project itself, as well as all `reference.conf` files found in JARs on which the project depends. If there is an `application.conf` file in the `resources` directory of the project, this one will be included as well (after all `reference.conf` files).
