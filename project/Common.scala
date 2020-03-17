@@ -6,10 +6,10 @@ object Common extends AutoPlugin {
   override lazy val projectSettings = super.projectSettings ++ Seq(
     name := "shocon",
     organization := "org.akka-js",
-    version := "0.5.0",
+    version := "1.0.0",
     scalaVersion := "2.13.1",
     crossScalaVersions :=
-      Vector("2.12.8", "2.13.1"),
+      Vector("2.12.10", "2.13.1"),
     pomExtra := {
       <url>https://github.com/akka-js/shocon</url>
       <licenses>
