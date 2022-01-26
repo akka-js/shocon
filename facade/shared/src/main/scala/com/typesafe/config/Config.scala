@@ -67,7 +67,7 @@ case class Config(cfg: shocon.Config.Value) { self =>
 
   def withFallback(c: Config) = {
     if (c != null)
-      fallbackStack.enqueue(c.cfg)
+      c.fallbackStack.foreach(fallback => fallbackStack.enqueue(fallback))
     this
   }
 

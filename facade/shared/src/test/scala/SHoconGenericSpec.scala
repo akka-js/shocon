@@ -345,6 +345,43 @@ object SHoconGenericSpec extends TestSuite {
       assert { "1" == conf.getString("x") }
     }
 
+    'nestedFallback - {
+      val conf1 = ConfigFactory.parseString(
+        """
+          |lib {
+          |  message = a
+          |  state = true
+          |  value = 10
+          |}
+          |""".stripMargin
+      )
+      val conf2 = ConfigFactory.parseString(
+        """
+          |lib {
+          |  message = b
+          |  state = false
+          |}
+          |""".stripMargin
+      )
+      val conf3 = ConfigFactory.parseString(
+        """
+          |lib {
+          |  message = c
+          |}
+          |""".stripMargin
+      )
+
+      val conf21 = conf2.withFallback(conf1)
+      assert { conf21.getString("lib.message") == "b" }
+      assert { conf21.getBoolean("lib.state") == false }
+      assert { conf21.getInt("lib.value") == 10 }
+
+      val conf321 = conf3.withFallback(conf21)
+      assert { conf321.getString("lib.message") == "c" }
+      assert { conf321.getBoolean("lib.state") == false }
+      assert { conf321.getInt("lib.value") == 10 }
+    }
+
     'parseComments - {
       val conf = ConfigFactory.parseString(
         """
