@@ -1,7 +1,5 @@
 package tests
 
-import scala.scalajs.js.Dynamic.global
-
 object AkkaConf {
 
   def basic: String = """
@@ -73,7 +71,7 @@ akka {
 
 """
 
-  def long =
+  def long: String =
     """
 # This is an unmodified akka-reference.conf, except for this
 # comment and quoting one key that contained slashes.

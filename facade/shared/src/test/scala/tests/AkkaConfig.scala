@@ -1,8 +1,11 @@
 package tests
 
+import com.typesafe.config.{ Config, ConfigFactory }
+
 object AkkaConfig {
 
-  val default = """
+  val default: String =
+    """
 ####################################
 # Akka Actor Reference Config File #
 ####################################
@@ -660,8 +663,6 @@ akka {
 
 }
 """
-
-  import com.typesafe.config.{Config, ConfigFactory}
 
   val config: Config = ConfigFactory.parseString(default)
 
