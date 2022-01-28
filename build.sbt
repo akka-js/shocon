@@ -2,7 +2,7 @@ import xerial.sbt.Sonatype._
 
 import sbtcrossproject.CrossPlugin.autoImport.crossProject
 
-lazy val root = project.in(file(".")).aggregate(parserJS, parserJVM, facadeJS, facadeJVM).settings(sonatypeSettings)
+lazy val root = project.in(file(".")).aggregate(parser.js, parser.jvm, facade.js, facade.jvm).settings(sonatypeSettings)
 
 lazy val fixResources =
   taskKey[Unit]("Fix application.conf presence on first clean build.")
@@ -28,15 +28,12 @@ lazy val parser = crossProject(JSPlatform, JVMPlatform)
     },
     compile in Compile := (compile in Compile).dependsOn(fixResources).value,
     libraryDependencies ++= Seq(
-        "org.scala-lang.modules" %%% "scala-collection-compat" % "2.1.4",
-        "com.lihaoyi" %%% "fastparse" % "2.2.4",
+        "org.scala-lang.modules" %%% "scala-collection-compat" % "2.1.6",
+        "com.lihaoyi" %%% "fastparse" % "2.3.0",
         "org.scala-lang" % "scala-reflect" % scalaVersion.value % "provided"))
   .jsSettings(
     libraryDependencies += "org.scala-js" %%% "scalajs-java-time" % "1.0.0",
     parallelExecution in Test := true)
-
-lazy val parserJVM = parser.jvm
-lazy val parserJS = parser.js
 
 lazy val facade = crossProject(JSPlatform, JVMPlatform)
   .in(file("facade"))
@@ -61,13 +58,10 @@ lazy val facade = crossProject(JSPlatform, JVMPlatform)
     compile in Compile := (compile in Compile).dependsOn(fixResources).value,
     testFrameworks += new TestFramework("utest.runner.Framework"),
     libraryDependencies ++= Seq(
-        "org.scala-lang.modules" %%% "scala-collection-compat" % "2.1.4",
-        "com.lihaoyi" %%% "fastparse" % "2.2.4",
-        "com.lihaoyi" %%% "utest" % "0.7.4" % "test",
+        "org.scala-lang.modules" %%% "scala-collection-compat" % "2.1.6",
+        "com.lihaoyi" %%% "fastparse" % "2.3.0",
+        "com.lihaoyi" %%% "utest" % "0.7.5" % "test",
         "org.scala-lang" % "scala-reflect" % scalaVersion.value % "provided"))
   .jsSettings(
     libraryDependencies += "org.scala-js" %%% "scalajs-java-time" % "1.0.0",
     parallelExecution in Test := true)
-
-lazy val facadeJVM = facade.jvm
-lazy val facadeJS = facade.js

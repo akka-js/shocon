@@ -7,7 +7,7 @@ object Common extends AutoPlugin {
       name := "shocon",
       organization := "org.akka-js",
       version := "1.0.0",
-      scalaVersion := "2.13.1",
+      scalaVersion := "2.13.4",
       crossScalaVersions := Vector("2.12.13", "2.13.4"),
       pomExtra := {
         <url>https://github.com/akka-js/shocon</url>
