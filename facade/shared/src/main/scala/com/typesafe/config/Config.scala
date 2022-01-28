@@ -211,7 +211,7 @@ case class Config(cfg: shocon.Config.Value) { self =>
     val numberString: String = unicodeTrim(s.substring(0, s.length - unitString.length))
 
     if (numberString.isEmpty) {
-      throw ConfigException.BadValue("No number in duration value '" + input + "'")
+      throw ConfigException.BadValue(s"No number in duration value '$input'")
     }
     if (unitString.length > 2 && !unitString.endsWith("s")) {
       unitString = unitString + "s"
