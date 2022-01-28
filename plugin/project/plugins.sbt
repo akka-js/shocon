@@ -8,7 +8,7 @@ addSbtPlugin("org.scalameta" % "sbt-scalafmt" % "2.4.2")
 
 resolvers += Resolver.typesafeIvyRepo("releases")
 
-resolvers += "Typesafe repository".at("http://repo.typesafe.com/typesafe/releases/")
+resolvers += "Typesafe repository".at("https://repo.typesafe.com/typesafe/releases/")
 
 resolvers += "sonatype-releases".at("https://oss.sonatype.org/content/repositories/releases/")
 

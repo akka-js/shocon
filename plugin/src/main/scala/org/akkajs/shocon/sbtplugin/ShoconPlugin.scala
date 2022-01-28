@@ -3,6 +3,9 @@ package org.akkajs.shocon.sbtplugin
 import java.io.{ BufferedInputStream, FileInputStream, FileNotFoundException, InputStream }
 import java.net.JarURLConnection
 
+import sbt._
+import sbt.Keys._
+
 object ShoconPlugin extends AutoPlugin {
 
   type ShoconFilter = Function1[(String, InputStream), Boolean]
