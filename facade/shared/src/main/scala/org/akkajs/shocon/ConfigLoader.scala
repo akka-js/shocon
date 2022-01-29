@@ -2,6 +2,7 @@ package org.akkajs.shocon
 
 import scala.language.experimental.macros
 import scala.reflect.macros.blackbox
+import scala.util.Using
 
 object ConfigLoader {
 
@@ -30,11 +31,8 @@ object ConfigLoader {
       .map { files =>
         files
           .map { file =>
-            val bufferedSource = scala.io.Source.fromFile(file)
-            try {
+            Using.resource(scala.io.Source.fromFile(file)) { bufferedSource =>
               bufferedSource.getLines().mkString("\n")
-            } finally {
-              bufferedSource.close()
             }
           }
           .mkString("\n\n")
@@ -53,11 +51,8 @@ object ConfigLoader {
             c.info(c.enclosingPosition, s"shocon - statically reading configuration from $confPath", force = false)
 
             val stream = new Object {}.getClass.getResourceAsStream("/application.conf")
-            val bufferedSource = scala.io.Source.fromInputStream(stream)
-            try {
+            Using.resource(scala.io.Source.fromInputStream(stream)) { bufferedSource =>
               bufferedSource.getLines().mkString("\n")
-            } finally {
-              bufferedSource.close()
             }
           } catch {
             case e: Throwable =>

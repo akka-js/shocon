@@ -8,7 +8,7 @@ lazy val plugin = project
     name := "sbt-shocon",
     description := "sbt plugin for shocon",
     sbtPlugin := true,
-    scalaVersion := "2.12.10",
+    scalaVersion := "2.12.15",
     crossSbtVersions := Vector("1.3.13"),
     addSbtPlugin("org.scala-js" % "sbt-scalajs" % scalaJSVersion),
     scalacOptions ++= Seq("-feature", "-unchecked", "-language:implicitConversions"),

@@ -5,7 +5,7 @@ import fastparse.Parsed
 import scala.annotation.tailrec
 import scala.collection.compat._
 import scala.language.experimental.macros
-import scala.util.Try
+import scala.util.{ Try, Using }
 
 package object shocon extends Extractors {
 
@@ -62,11 +62,8 @@ package object shocon extends Extractors {
       case f: Parsed.Failure    => throw new Error(f.msg)
     }
     def fromFile(path: String): Value = {
-      val bufferedSource = io.Source.fromFile(path)
-      try {
+      Using.resource(io.Source.fromFile(path)) { bufferedSource =>
         apply(bufferedSource.mkString)
-      } finally {
-        bufferedSource.close()
       }
     }
 

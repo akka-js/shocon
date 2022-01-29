@@ -1,23 +1,11 @@
 package tests
 
+import scala.util.Using
+
 object AkkaConf {
 
-  def basic: String = {
-    val bufferedSource = io.Source.fromFile("facade/jvm/src/test/resources/akka.conf")
-    try {
-      bufferedSource.mkString
-    } finally {
-      bufferedSource.close()
-    }
-  }
+  def basic: String = Using.resource(io.Source.fromFile("facade/jvm/src/test/resources/akka.conf")) { _.mkString }
 
-  def long: String = {
-    val bufferedSource = io.Source.fromFile("facade/jvm/src/test/resources/akka-long.conf")
-    try {
-      bufferedSource.mkString
-    } finally {
-      bufferedSource.close()
-    }
-  }
+  def long: String = Using.resource(io.Source.fromFile("facade/jvm/src/test/resources/akka-long.conf")) { _.mkString }
 
 }
