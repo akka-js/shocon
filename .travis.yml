@@ -11,7 +11,7 @@ scala:
 
 matrix:
   include:
-    - env: SBT_VERSION=1.3.13
+    - env: SBT_VERSION=1.4.9
       scala: "2.12.15"
 
 env:
