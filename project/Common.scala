@@ -6,7 +6,7 @@ object Common extends AutoPlugin {
   override lazy val projectSettings: Seq[Def.Setting[_]] = super.projectSettings ++ Seq(
       name := "shocon",
       organization := "org.akka-js",
-      version := "1.0.0",
+      version := "1.1.0-SNAPSHOT",
       scalaVersion := "2.13.8",
       crossScalaVersions := Vector("2.12.15", "2.13.8"),
       pomExtra := {
