@@ -6,15 +6,13 @@ jdk: openjdk8
 language: scala
 
 scala:
-  - "2.13.1"
-  - "2.12.10"
-
-jdk: openjdk8
+  - "2.13.8"
+  - "2.12.15"
 
 matrix:
   include:
-    - env: SBT_VERSION=1.3.8
-      scala: "2.12.10"
+    - env: SBT_VERSION=1.4.9
+      scala: "2.12.15"
 
 env:
   - TRAVIS_NODE_VERSION="10.17.0"
@@ -30,6 +28,3 @@ cache:
 script:
   - sbt ++$TRAVIS_SCALA_VERSION test
   - source travis/testSbtPlugin.sh
-cache:
-  directories:
-    - $HOME/.cache

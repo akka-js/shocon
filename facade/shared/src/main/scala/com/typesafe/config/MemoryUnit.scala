@@ -1,7 +1,7 @@
 package com.typesafe.config
 
-sealed abstract class MemoryUnit(val prefix:String, val powerOf:Int, val power:Int) {
-  lazy val bytes = BigInt(powerOf).pow(power)
+sealed abstract class MemoryUnit(val prefix: String, val powerOf: Int, val power: Int) {
+  lazy val bytes: BigInt = BigInt(powerOf).pow(power)
 }
 
 object MemoryUnit {
@@ -24,10 +24,24 @@ object MemoryUnit {
   case object ZEBIBYTES extends MemoryUnit("zebi", 1024, 7)
   case object YOBIBYTES extends MemoryUnit("yobi", 1024, 8)
 
-  val values: Vector[MemoryUnit] = Vector(BYTES, KILOBYTES, MEGABYTES, GIGABYTES, TERABYTES, PETABYTES,
-    EXABYTES, ZETTABYTES, YOTTABYTES, KIBIBYTES, MEBIBYTES, GIBIBYTES, TEBIBYTES,
-    PEBIBYTES, EXBIBYTES, ZEBIBYTES, YOBIBYTES)
-
+  val values: Vector[MemoryUnit] = Vector(
+    BYTES,
+    KILOBYTES,
+    MEGABYTES,
+    GIGABYTES,
+    TERABYTES,
+    PETABYTES,
+    EXABYTES,
+    ZETTABYTES,
+    YOTTABYTES,
+    KIBIBYTES,
+    MEBIBYTES,
+    GIBIBYTES,
+    TEBIBYTES,
+    PEBIBYTES,
+    EXBIBYTES,
+    ZEBIBYTES,
+    YOBIBYTES)
 
   lazy val unitsMap: Map[String, MemoryUnit] = {
     val map = Map.newBuilder[String, MemoryUnit]
@@ -35,7 +49,7 @@ object MemoryUnit {
     MemoryUnit.values.foreach { unit =>
       map += unit.prefix + "byte" -> unit
       map += unit.prefix + "bytes" -> unit
-      if (unit.prefix.length() == 0) {
+      if (unit.prefix.isEmpty) {
         map += "b" -> unit
         map += "B" -> unit
         map += "" -> unit // no unit specified means bytes
@@ -56,11 +70,10 @@ object MemoryUnit {
         }
       }
     }
-      map.result()
+    map.result()
   }
 
-
-  def parseUnit(unit: String):Option[MemoryUnit] = {
+  def parseUnit(unit: String): Option[MemoryUnit] = {
     unitsMap.get(unit)
   }
 }
