@@ -8,7 +8,7 @@ lazy val fixResources =
   taskKey[Unit]("Fix application.conf presence on first clean build.")
 
 lazy val parser = crossProject(JSPlatform, JVMPlatform)
-  .in(file("."))
+  .in(file("parser"))
   .settings(
     name := "shocon-parser",
     scalacOptions ++=
